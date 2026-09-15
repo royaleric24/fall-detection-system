@@ -319,6 +319,22 @@ Expected containers later:
 
 ## 11. Current Status
 
-**Stage 0 — repository and system architecture initialized.**
+**Stage 1 — dataset exploration and validation.** Stage 0 is complete.
 
-Next milestone: **Stage 1 — dataset exploration and dataset-selection validation.**
+The local CAUCAFall V5 download passes structural and full sequential media validation:
+10 subjects × 10 activities = 100 AVI videos, all 19,877 frames decoded with metadata-count agreement at reported 20 FPS and 720 × 480 resolution. Six PNGs and four frame TXT
+annotations have unmatched basenames; all 100 `classes.txt` files are separate
+metadata. Raw data is unchanged. Stage 2 has not started.
+
+See [inspection usage and annotation exceptions](ml/datasets/README.md),
+[generated summary](artifacts/dataset_inspection/summary.md), and
+[video inventory](artifacts/dataset_inspection/inventory.csv).
+
+Stage 1.3 pose compatibility: **PASS WITH WARNINGS**, using the official MediaPipe
+Tasks API on ten clips. Valid 33-landmark poses were returned for 1,504/1,724
+frames (87.24% pose availability, not accuracy or robustness evidence).
+Subject.1 / Fall forward remains a key warning: 94/190 valid poses (49.47%),
+with a longest missing run of 92 frames (4.60 seconds). Stage 1.4 must define
+missing-pose and low-visibility policy. See the [compatibility report](artifacts/pose_compatibility/REPORT.md)
+for missing-pose intervals, runtime workaround, and required follow-up protocol.
+Stage 1 remains current; Stage 2 has not started.

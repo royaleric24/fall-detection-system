@@ -448,11 +448,11 @@ At minimum the following should not be buried as magic numbers in code:
 
 ## 14. Stage Boundaries
 
-### Stage 0 — current
+### Stage 0 — complete
 
 Architecture and repository freeze.
 
-### Stage 1
+### Stage 1 — current
 
 Dataset exploration and validation.
 

@@ -1,0 +1,350 @@
+{
+  "runtime": {
+    "python": "3.13.15",
+    "mediapipe": "0.10.35",
+    "opencv": "4.12.0",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O"
+  },
+  "model_url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task",
+  "model_sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+  "config": {
+    "mode": "VIDEO",
+    "delegate": "CPU",
+    "num_poses": 1,
+    "confidence": 0.5,
+    "timestamps": "round(zero_based_frame_index * 1000 / measured_fps)",
+    "input": "BGR to RGB; original resolution and FPS; no resampling"
+  },
+  "criterion": "FAIL for decode/inference/landmark errors or any clip with zero valid poses; WARN for any missing poses; otherwise PASS. Visual review required separately.",
+  "decision": "PASS WITH WARNINGS",
+  "decoded_frames": 1724,
+  "valid_pose_frames": 1504,
+  "pose_detection_rate": 0.8723897911832946,
+  "videos": [
+    {
+      "subject": "Subject.1",
+      "activity": "Fall forward",
+      "label": "fall",
+      "relative_video_path": "Subject.1/Fall forward/FallForwardS1.avi",
+      "decoded_frames": 190,
+      "valid_pose_frames": 94,
+      "frames_without_pose": 96,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 190.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 0.49473684210526314,
+      "visibility_min": 0.08927284181118011,
+      "visibility_mean": 0.8189951302681832,
+      "visibility_max": 0.9999761581420898,
+      "missing_frame_intervals": [
+        [
+          0,
+          91
+        ],
+        [
+          133,
+          133
+        ],
+        [
+          136,
+          138
+        ]
+      ],
+      "longest_missing_run": 92,
+      "diagnostics": [
+        "Subject.1_Fall_forward_0000.jpg",
+        "Subject.1_Fall_forward_0047.jpg",
+        "Subject.1_Fall_forward_0142.jpg"
+      ]
+    },
+    {
+      "subject": "Subject.2",
+      "activity": "Fall backwards",
+      "label": "fall",
+      "relative_video_path": "Subject.2/Fall backwards/FallBackwardsS2.avi",
+      "decoded_frames": 119,
+      "valid_pose_frames": 119,
+      "frames_without_pose": 0,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 119.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 1.0,
+      "visibility_min": 0.025728777050971985,
+      "visibility_mean": 0.796946015275364,
+      "visibility_max": 0.9999771118164062,
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "diagnostics": []
+    },
+    {
+      "subject": "Subject.3",
+      "activity": "Fall left",
+      "label": "fall",
+      "relative_video_path": "Subject.3/Fall left/FallLeftS3.avi",
+      "decoded_frames": 171,
+      "valid_pose_frames": 147,
+      "frames_without_pose": 24,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 171.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 0.8596491228070176,
+      "visibility_min": 0.026323992758989334,
+      "visibility_mean": 0.7826789664951238,
+      "visibility_max": 0.9999858736991882,
+      "missing_frame_intervals": [
+        [
+          0,
+          3
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          78,
+          78
+        ],
+        [
+          83,
+          83
+        ],
+        [
+          101,
+          103
+        ],
+        [
+          105,
+          116
+        ]
+      ],
+      "longest_missing_run": 12,
+      "diagnostics": [
+        "Subject.3_Fall_left_0000.jpg"
+      ]
+    },
+    {
+      "subject": "Subject.4",
+      "activity": "Fall right",
+      "label": "fall",
+      "relative_video_path": "Subject.4/Fall right/FallRightS4.avi",
+      "decoded_frames": 150,
+      "valid_pose_frames": 150,
+      "frames_without_pose": 0,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 150.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 1.0,
+      "visibility_min": 0.051398418843746185,
+      "visibility_mean": 0.7587663629982206,
+      "visibility_max": 0.9999098777770996,
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "diagnostics": []
+    },
+    {
+      "subject": "Subject.5",
+      "activity": "Fall sitting",
+      "label": "fall",
+      "relative_video_path": "Subject.5/Fall sitting/FallSittingS5.avi",
+      "decoded_frames": 229,
+      "valid_pose_frames": 224,
+      "frames_without_pose": 5,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 229.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 0.9781659388646288,
+      "visibility_min": 0.07071667909622192,
+      "visibility_mean": 0.8853879708955992,
+      "visibility_max": 0.9999743103981018,
+      "missing_frame_intervals": [
+        [
+          54,
+          58
+        ]
+      ],
+      "longest_missing_run": 5,
+      "diagnostics": [
+        "Subject.5_Fall_sitting_0054.jpg"
+      ]
+    },
+    {
+      "subject": "Subject.1",
+      "activity": "Sit down",
+      "label": "non_fall",
+      "relative_video_path": "Subject.1/Sit down/SitDownS1.avi",
+      "decoded_frames": 187,
+      "valid_pose_frames": 187,
+      "frames_without_pose": 0,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 187.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 1.0,
+      "visibility_min": 0.0354192741215229,
+      "visibility_mean": 0.7554856452682217,
+      "visibility_max": 0.9999885559082031,
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "diagnostics": []
+    },
+    {
+      "subject": "Subject.2",
+      "activity": "Kneel",
+      "label": "non_fall",
+      "relative_video_path": "Subject.2/Kneel/KneelS2.avi",
+      "decoded_frames": 130,
+      "valid_pose_frames": 130,
+      "frames_without_pose": 0,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 130.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 1.0,
+      "visibility_min": 0.049943964928388596,
+      "visibility_mean": 0.724406969820807,
+      "visibility_max": 0.9999850392341614,
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "diagnostics": [
+        "Subject.2_Kneel_0032.jpg",
+        "Subject.2_Kneel_0097.jpg"
+      ]
+    },
+    {
+      "subject": "Subject.3",
+      "activity": "Pick up object",
+      "label": "non_fall",
+      "relative_video_path": "Subject.3/Pick up object/PickupobjectS3.avi",
+      "decoded_frames": 186,
+      "valid_pose_frames": 132,
+      "frames_without_pose": 54,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 186.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 0.7096774193548387,
+      "visibility_min": 0.09386233240365982,
+      "visibility_mean": 0.8410117141440634,
+      "visibility_max": 0.9999871253967285,
+      "missing_frame_intervals": [
+        [
+          0,
+          4
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          12,
+          16
+        ],
+        [
+          19,
+          19
+        ],
+        [
+          21,
+          21
+        ],
+        [
+          23,
+          23
+        ],
+        [
+          25,
+          25
+        ],
+        [
+          60,
+          60
+        ],
+        [
+          62,
+          74
+        ],
+        [
+          92,
+          93
+        ],
+        [
+          95,
+          112
+        ],
+        [
+          114,
+          118
+        ]
+      ],
+      "longest_missing_run": 18,
+      "diagnostics": [
+        "Subject.3_Pick_up_object_0000.jpg"
+      ]
+    },
+    {
+      "subject": "Subject.4",
+      "activity": "Walk",
+      "label": "non_fall",
+      "relative_video_path": "Subject.4/Walk/WalkS4.avi",
+      "decoded_frames": 240,
+      "valid_pose_frames": 222,
+      "frames_without_pose": 18,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 240.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 0.925,
+      "visibility_min": 0.09629335254430771,
+      "visibility_mean": 0.8665564617052076,
+      "visibility_max": 0.9999845027923584,
+      "missing_frame_intervals": [
+        [
+          0,
+          17
+        ]
+      ],
+      "longest_missing_run": 18,
+      "diagnostics": [
+        "Subject.4_Walk_0000.jpg",
+        "Subject.4_Walk_0060.jpg",
+        "Subject.4_Walk_0180.jpg"
+      ]
+    },
+    {
+      "subject": "Subject.5",
+      "activity": "Hop",
+      "label": "non_fall",
+      "relative_video_path": "Subject.5/Hop/HopS5.avi",
+      "decoded_frames": 122,
+      "valid_pose_frames": 99,
+      "frames_without_pose": 23,
+      "invalid_landmark_frames": 0,
+      "metadata_frames": 122.0,
+      "fps": 20.0,
+      "errors": [],
+      "pose_detection_rate": 0.8114754098360656,
+      "visibility_min": 0.13240943849086761,
+      "visibility_mean": 0.8675339031892703,
+      "visibility_max": 0.9999945163726807,
+      "missing_frame_intervals": [
+        [
+          0,
+          22
+        ]
+      ],
+      "longest_missing_run": 23,
+      "diagnostics": [
+        "Subject.5_Hop_0000.jpg"
+      ]
+    }
+  ]
+}

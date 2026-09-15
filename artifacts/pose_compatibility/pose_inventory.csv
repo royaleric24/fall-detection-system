@@ -1,0 +1,11 @@
+subject,activity,label,relative_video_path,decoded_frames,valid_pose_frames,frames_without_pose,invalid_landmark_frames,metadata_frames,fps,pose_detection_rate,visibility_min,visibility_mean,visibility_max,longest_missing_run
+Subject.1,Fall forward,fall,Subject.1/Fall forward/FallForwardS1.avi,190,94,96,0,190.0,20.0,0.49473684210526314,0.08927284181118011,0.8189951302681832,0.9999761581420898,92
+Subject.2,Fall backwards,fall,Subject.2/Fall backwards/FallBackwardsS2.avi,119,119,0,0,119.0,20.0,1.0,0.025728777050971985,0.796946015275364,0.9999771118164062,0
+Subject.3,Fall left,fall,Subject.3/Fall left/FallLeftS3.avi,171,147,24,0,171.0,20.0,0.8596491228070176,0.026323992758989334,0.7826789664951238,0.9999858736991882,12
+Subject.4,Fall right,fall,Subject.4/Fall right/FallRightS4.avi,150,150,0,0,150.0,20.0,1.0,0.051398418843746185,0.7587663629982206,0.9999098777770996,0
+Subject.5,Fall sitting,fall,Subject.5/Fall sitting/FallSittingS5.avi,229,224,5,0,229.0,20.0,0.9781659388646288,0.07071667909622192,0.8853879708955992,0.9999743103981018,5
+Subject.1,Sit down,non_fall,Subject.1/Sit down/SitDownS1.avi,187,187,0,0,187.0,20.0,1.0,0.0354192741215229,0.7554856452682217,0.9999885559082031,0
+Subject.2,Kneel,non_fall,Subject.2/Kneel/KneelS2.avi,130,130,0,0,130.0,20.0,1.0,0.049943964928388596,0.724406969820807,0.9999850392341614,0
+Subject.3,Pick up object,non_fall,Subject.3/Pick up object/PickupobjectS3.avi,186,132,54,0,186.0,20.0,0.7096774193548387,0.09386233240365982,0.8410117141440634,0.9999871253967285,18
+Subject.4,Walk,non_fall,Subject.4/Walk/WalkS4.avi,240,222,18,0,240.0,20.0,0.925,0.09629335254430771,0.8665564617052076,0.9999845027923584,18
+Subject.5,Hop,non_fall,Subject.5/Hop/HopS5.avi,122,99,23,0,122.0,20.0,0.8114754098360656,0.13240943849086761,0.8675339031892703,0.9999945163726807,23

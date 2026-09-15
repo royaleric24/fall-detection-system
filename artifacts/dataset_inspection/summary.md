@@ -1,0 +1,113 @@
+# CAUCAFall V5 inspection
+
+Validation: **PASS_WITH_ANNOTATION_WARNINGS**.
+
+Sequential decode to read() failure; normal end means decoded count equals metadata. OpenCV does not distinguish EOF from a decoder failure; count agreement is not proof of visual integrity.
+FPS and frame counts come from OpenCV metadata; duration = frame_count / FPS (seconds).
+Paths are relative to the supplied CAUCAFall root. No raw files are changed.
+
+## Counts and media
+
+```json
+{
+  "counts": {
+    "subjects": 10,
+    "activity_directories": 100,
+    "avi": 100,
+    "png": 20001,
+    "txt": 20099
+  },
+  "labels": {
+    "fall": 50,
+    "non_fall": 50
+  },
+  "media": {
+    "fps_distribution": {
+      "20.0": 100
+    },
+    "resolution_distribution": {
+      "720.0x480.0": 100
+    },
+    "frame_count_range": [
+      86.0,
+      292.0
+    ],
+    "duration_seconds_range": [
+      4.3,
+      14.6
+    ],
+    "opened": 100,
+    "decoded_first_frame": 100,
+    "decoded_frame_count": 19877,
+    "reached_end_normally": 100,
+    "issues": []
+  }
+}
+```
+
+## Annotation findings
+
+```json
+{
+  "counts": {
+    "classes_metadata": 100,
+    "frame_annotation": 19999,
+    "other_txt": 0
+  },
+  "matched_frame_annotations": 19995,
+  "png_without_txt": [
+    "Subject.2/Fall backwards/cas200091 - copia.png",
+    "Subject.5/Kneel/ars500236.png",
+    "Subject.6/Walk/cams600260.png",
+    "Subject.8/Hop/sals800096.png",
+    "Subject.8/Pick up object/res800090.png",
+    "Subject.9/Walk/cams900140.png"
+  ],
+  "non_classes_txt_without_png": [
+    "Subject.2/Fall backwards/cas200091.txt",
+    "Subject.8/Hop/sals800096a.txt",
+    "Subject.8/Pick up object/res800090a.txt",
+    "Subject.9/Walk/cams900140w.txt"
+  ],
+  "orphan_frame_annotations": [
+    "Subject.2/Fall backwards/cas200091.txt",
+    "Subject.8/Hop/sals800096a.txt",
+    "Subject.8/Pick up object/res800090a.txt",
+    "Subject.9/Walk/cams900140w.txt"
+  ],
+  "png_with_other_txt": [],
+  "other_txt": [],
+  "read_errors": [],
+  "classes_content_distribution": {
+    "nofall\nfall\n": 50,
+    "nofall\n": 48,
+    "nofall": 2
+  },
+  "frame_class_id_distribution": {
+    "0": 13610,
+    "1": 6389
+  },
+  "invalid_or_missing_class_mapping": [],
+  "missing_classes_metadata": [],
+  "representative_samples": {
+    "frame_annotation": {
+      "path": "Subject.1/Fall backwards/cas100001.txt",
+      "content": "0 0.309028 0.526042 0.215278 0.489583\n"
+    },
+    "classes_metadata": {
+      "path": "Subject.1/Fall backwards/classes.txt",
+      "content": "nofall\nfall\n"
+    }
+  },
+  "orphan_txt_contents": {
+    "Subject.2/Fall backwards/cas200091.txt": "1 0.516667 0.538542 0.277778 0.252083\n",
+    "Subject.8/Hop/sals800096a.txt": "0 0.507639 0.235417 0.115278 0.458333\n",
+    "Subject.8/Pick up object/res800090a.txt": "0 0.460417 0.589583 0.131944 0.345833\n",
+    "Subject.9/Walk/cams900140w.txt": "0 0.535417 0.545833 0.187500 0.679167\n"
+  }
+}
+```
+
+## Structure issues
+
+None.
