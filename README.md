@@ -334,7 +334,21 @@ Stage 1.3 pose compatibility: **PASS WITH WARNINGS**, using the official MediaPi
 Tasks API on ten clips. Valid 33-landmark poses were returned for 1,504/1,724
 frames (87.24% pose availability, not accuracy or robustness evidence).
 Subject.1 / Fall forward remains a key warning: 94/190 valid poses (49.47%),
-with a longest missing run of 92 frames (4.60 seconds). Stage 1.4 must define
-missing-pose and low-visibility policy. See the [compatibility report](artifacts/pose_compatibility/REPORT.md)
+with a longest missing run of 92 frames (4.60 seconds). Stage 1.4 defines
+missing-pose and low-visibility policy in the dataset protocol. See the [compatibility report](artifacts/pose_compatibility/REPORT.md)
 for missing-pose intervals, runtime workaround, and required follow-up protocol.
 Stage 1 remains current; Stage 2 has not started.
+
+Stage 1.4 — dataset protocol and subject-independent split — is complete.
+**Stage 1 is READY TO PASS GATE REVIEW**, not yet marked complete. Stage 2 has not
+started. The [dataset protocol](docs/dataset_protocol.md) freezes labels, subject
+membership and raw pose/missingness rules; the [split config](configs/dataset_split.json)
+and [100-video split manifest](artifacts/dataset_inspection/split_inventory.csv)
+record train/validation/test assignments (60/20/20 videos). All five architecture
+Stage 1 questions have documented answers, with compatibility warnings retained.
+
+Gate-review correction: the final fixed subject-independent split is train
+8/4/3/9/1/2, validation 10/5, test 6/7. Subjects 1–5 were explored in Stage 1.3;
+Subjects 6/7 are reserved for final evaluation under the protocol
+[held-out test policy](docs/dataset_protocol.md#held-out-test-policy). Seed 42
+describes only the original candidate, not the final adjusted assignment.

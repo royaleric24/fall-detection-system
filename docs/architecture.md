@@ -454,7 +454,10 @@ Architecture and repository freeze.
 
 ### Stage 1 — current
 
-Dataset exploration and validation.
+Dataset exploration and validation. Stage 1.1–1.4 are complete; Stage 1 is
+**READY TO PASS GATE REVIEW**, not automatically approved. Stage 2 has not started.
+[Dataset protocol](dataset_protocol.md) records the answers and limitations for
+each question below, the frozen subject split, and raw missing-pose policy.
 
 Questions to answer before training:
 

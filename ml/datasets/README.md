@@ -24,7 +24,7 @@ experiment manifests.
 Reports are Git-trackable metadata under `artifacts/dataset_inspection/`:
 
 - `inventory.csv`: one row per discovered AVI, ordered numerically by subject;
-  original activity names and provisional `fall` / `non_fall` labels are retained.
+  original activity names and frozen V1 `fall` / `non_fall` labels are retained.
 - `summary.json`: counts, annotation samples, complete orphan lists, structural
   issues, runtime versions, media distributions, and validation status.
 - `summary.md`: human-readable rendering of the same results.
@@ -140,9 +140,10 @@ of missing-run lengths must accompany the gate: near-total loss or loss of a
 critical fall phase can still block pose-based downstream work.
 
 See [experiment report](../../artifacts/pose_compatibility/REPORT.md) for measured
-results and the final reviewed compatibility decision. Stage 1 remains current;
-subject-independent split strategy and the reproducible preprocessing/feature
-protocol remain to be specified before subsequent training work.
+results and the final reviewed compatibility decision. Stage 1 remains current.
+Stage 1.4 now freezes split membership and raw extraction policy in the
+[dataset protocol](../../docs/dataset_protocol.md); later preprocessing/feature
+design remains necessary before training.
 
 Official references checked for this experiment:
 
@@ -170,3 +171,28 @@ created by the documented one-off OpenCV snippet, not by the pose validator.
 Stage 1.4 is responsible for the missing-pose/low-visibility dataset policy.
 Stage 1.3 counts missing frames explicitly and does not fill them, interpolate
 them, or remove them from the pose-availability denominator.
+
+## Stage 1.4 — frozen split and raw extraction protocol
+
+[Dataset protocol](../../docs/dataset_protocol.md) is the Stage 1 source of truth.
+[Split config](../../configs/dataset_split.json) fixes final subject membership:
+train 8/4/3/9/1/2, validation 10/5, test 6/7. The seed-42 candidate is recorded
+as history only; the gate-review adjustment protects Subjects 6/7 from exploratory
+pose-policy development. The final split is not generated solely by seed 42. JSON avoids
+adding a YAML dependency. Never reassign frames/windows independently of subjects.
+
+```sh
+uv run --python 3.13.15 ml/datasets/assign_dataset_split.py
+```
+
+This standard-library-only tool reads the existing inspection inventory and
+writes `artifacts/dataset_inspection/split_inventory.csv` with all original
+columns plus `split`. It does not read videos or run pose extraction. The
+original inventory stays intact. Each of 100 subject/activity pairs must appear
+exactly once, and split counts must be 60/20/20 with 30/10/10 examples of each
+binary label. Invalid/overlapping assignments fail rather than dropping records.
+
+Raw Stage 2 policy is now specified: keep all 33 returned landmarks, including
+low visibility, and keep every missing frame/time explicitly without filling
+or interpolation. No joint visibility rejection threshold is introduced.
+Stage 1 is READY TO PASS GATE REVIEW; Stage 2 has not started.

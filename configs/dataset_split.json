@@ -1,0 +1,37 @@
+{
+  "dataset_name": "CAUCAFall",
+  "dataset_version": "V5",
+  "split_strategy": "fixed_subject_independent",
+  "train": [
+    8,
+    4,
+    3,
+    9,
+    1,
+    2
+  ],
+  "validation": [
+    10,
+    5
+  ],
+  "test": [
+    6,
+    7
+  ],
+  "candidate_generation": {
+    "seed": 42,
+    "shuffled_subject_order": [
+      8,
+      4,
+      3,
+      9,
+      6,
+      7,
+      10,
+      5,
+      1,
+      2
+    ],
+    "note": "Historical candidate only; final membership was deliberately adjusted at the Stage 1 gate review."
+  }
+}
