@@ -1,4 +1,4 @@
-# Python
+ # Python
 __pycache__/
 *.py[cod]
 *.so
@@ -49,3 +49,6 @@ mosquitto_log/
 .tmp/
 tmp/
 *.swp
+
+# Local datasets
+/data/
