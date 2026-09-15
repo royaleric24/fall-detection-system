@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# ML / data
+ml/datasets/raw/
+ml/datasets/processed/
+ml/checkpoints/*
+!ml/checkpoints/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.ckpt
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs / runtime
+logs/
+*.log
+*.pid
+
+# Docker / local volumes
+postgres_data/
+mosquitto_data/
+mosquitto_log/
+
+# Temporary files
+.tmp/
+tmp/
+*.swp

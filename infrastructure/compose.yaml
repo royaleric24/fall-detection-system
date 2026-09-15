@@ -1,0 +1,4 @@
+# Stage 0 placeholder.
+# Services (Mosquitto, FastAPI, PostgreSQL, React/Nginx) will be added
+# only after the local camera -> pose -> temporal inference loop is validated.
+services: {}
