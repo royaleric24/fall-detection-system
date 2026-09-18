@@ -1,0 +1,117 @@
+{
+  "schema_version": "pose_raw_v1",
+  "run_id": "cbab83af-29a0-427c-873f-9800a5a21ba6",
+  "dataset_name": "CAUCAFall",
+  "dataset_version": "V5",
+  "status": "complete",
+  "requested_source": "data/raw/caucafall_v5/CAUCAFall/Subject.5/Fall sitting/FallSittingS5.avi",
+  "decoded_frame_count": 229,
+  "extracted_frame_count": 229,
+  "pose_detected_count": 224,
+  "pose_missing_count": 5,
+  "timestamp_method": "derived_from_frame_index_and_source_fps",
+  "subject_id": 5,
+  "original_activity": "Fall sitting",
+  "binary_label": "fall",
+  "split": "validation",
+  "source_relative_video_path": "Subject.5/Fall sitting/FallSittingS5.avi",
+  "source_fps": 20.0,
+  "width": 720,
+  "height": 480,
+  "expected_frame_count": 229,
+  "output_root": "/Users/eric/Developer/fall-detection-system/data/interim/caucafall_v5/pose_raw_v1",
+  "output_relative_path": "Subject.5/Fall sitting/FallSittingS5.npz",
+  "source_sha256": "bd2df0f8c185335fa71811d947e5dbbed572c6af4d959d3e9dca59671af47222",
+  "provenance": {
+    "contract_version": 1,
+    "dataset_protocol_version": 2,
+    "git_commit": "f7eecb0d0de246f932001daf910b4ebd9d0898a7",
+    "git_dirty": true,
+    "file_sha256": {
+      "artifacts/dataset_inspection/inventory.csv": "855406c628aba7b0f6c53935393237ec72cb562b47381170ba0c72c921210bc8",
+      "configs/dataset_split.json": "c1de39a02dd1ca2fe6cb1bd06c594ed9149477b4bc65c8774de527bd53a140d3",
+      "docs/dataset_protocol.md": "e8197e9fedc41185dac1bd4adae0f5552017fa9c4a36d3be53dc586c6d39a8bd",
+      "docs/pose_extraction_contract.md": "4a4547bec9b40d5ba287aaa142b6ca613c0c3b5bdba57939060370a8b80bf783",
+      "ml/datasets/extract_pose_video.py": "d8ba41d765e09355630914d74ccc6f32dcc041ab99e171af3efb7fcbdec0c44f",
+      "ml/datasets/pose_raw.py": "f348b8bf26dac67160ac3ede67d3b49b4096a3607f2368615d21cfc951a57f67",
+      "ml/datasets/pose_runtime.py": "7f00d55dfcbd3ed12442764c830f36ff6e7f3c6cac5691a98328ea8dd5cf37cf",
+      "ml/datasets/assign_dataset_split.py": "b64c55bf29b0a567aeb2b7f365e92233d432614ffe957784557674786df5999d",
+      "ml/datasets/inspect_caucafall.py": "aefb8c123d0a6457d5c37bdc202285d1c857d23941fe1e8bc1aac524d4d7b2fb"
+    },
+    "python": "3.13.15",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "packages": {
+      "opencv-contrib-python": "4.12.0.88",
+      "kiwisolver": "1.5.1",
+      "numpy": "2.2.6",
+      "packaging": "26.3",
+      "fonttools": "4.65.0",
+      "sounddevice": "0.5.6",
+      "mediapipe": "0.10.35",
+      "contourpy": "1.4.0",
+      "absl-py": "2.5.0",
+      "pycparser": "3.0",
+      "python-dateutil": "2.9.0.post0",
+      "matplotlib": "3.11.2",
+      "cffi": "2.1.1",
+      "certifi": "2026.7.22",
+      "cycler": "0.12.1",
+      "pyparsing": "3.3.2",
+      "flatbuffers": "25.12.19",
+      "pillow": "12.3.0",
+      "six": "1.17.0"
+    },
+    "model_identity": "PoseLandmarker Full float16 v1",
+    "model_url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task",
+    "model_sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+    "running_mode": "VIDEO",
+    "delegate": "CPU",
+    "num_poses": 1,
+    "detection_confidence": 0.5,
+    "presence_confidence": 0.5,
+    "tracking_confidence": 0.5,
+    "segmentation": false,
+    "timestamp_method": "derived_from_frame_index_and_source_fps",
+    "source_root": "/Users/eric/Developer/fall-detection-system/data/raw/caucafall_v5/CAUCAFall",
+    "source_download_provenance": "Locally supplied; unverified",
+    "input_policy": "Original resolution; BGR to RGB; no resampling; fresh tracker per video",
+    "opencv_runtime": "4.12.0"
+  },
+  "error_type": null,
+  "error_message": null,
+  "error_frame_index": null,
+  "arrays": {
+    "frame_index": {
+      "shape": [
+        229
+      ],
+      "dtype": "int32"
+    },
+    "timestamp_ms": {
+      "shape": [
+        229
+      ],
+      "dtype": "int64"
+    },
+    "pose_detected": {
+      "shape": [
+        229
+      ],
+      "dtype": "bool"
+    },
+    "landmarks": {
+      "shape": [
+        229,
+        33,
+        4
+      ],
+      "dtype": "float32"
+    }
+  },
+  "missing_frame_intervals": [
+    [
+      54,
+      58
+    ]
+  ]
+}

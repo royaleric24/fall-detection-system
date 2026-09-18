@@ -196,3 +196,91 @@ Raw Stage 2 policy is now specified: keep all 33 returned landmarks, including
 low visibility, and keep every missing frame/time explicitly without filling
 or interpolation. No joint visibility rejection threshold is introduced.
 Stage 1 is READY TO PASS GATE REVIEW; Stage 2 has not started.
+
+## Stage 2.2 — single-video raw pose extraction
+
+The [approved Stage 2 contract](../../docs/pose_extraction_contract.md) governs
+the new single-video tool. The Stage 1 status statements above describe those
+earlier tasks. Stage 2.1 has passed review; this command implements only the
+Stage 2.2 single-video path, not full-dataset extraction or preprocessing.
+
+Run from the repository root, first on the Stage 1.3 high-availability train clip,
+then on the known missing-pose train clip:
+
+```sh
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py 'data/raw/caucafall_v5/CAUCAFall/Subject.2/Fall backwards/FallBackwardsS2.avi'
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py 'data/raw/caucafall_v5/CAUCAFall/Subject.1/Fall forward/FallForwardS1.avi'
+```
+
+`--offline` uses an already populated uv cache; omit it when dependencies need
+installation. Inline metadata pins Python 3.13.15, MediaPipe 0.10.35,
+opencv-contrib-python 4.12.0.88 and NumPy 2.2.6. The official Full float16 v1 model
+must already exist at `ml/checkpoints/pose_landmarker_full.task`; `--model` may
+select another local copy with the same approved SHA-256. The shared
+`pose_runtime.py` module retains Stage 1.3 VIDEO/CPU/one-pose settings with all three
+confidence settings at 0.5 and segmentation disabled. No threshold tuning occurs.
+
+The CLI accepts exactly one canonical AVI path under the expected source root.
+It derives identity, labels, split and expected media properties from the inspected
+inventory and frozen split config. It refuses Subjects 6/7 before opening their
+videos. All source frames retain their original resolution and temporal indices;
+VIDEO timestamps use the frozen formula, with no resampling or wall-clock throttle.
+
+The ignored output root defaults to `data/interim/caucafall_v5/pose_raw_v1/`;
+`--output-root` can change it. Subject/activity/stem hierarchy is mirrored. The
+NPZ contains exactly the four contract arrays, without labels or Python objects.
+`pose_raw.py` validates the in-memory arrays, writes a temporary NPZ and reloads
+with `allow_pickle=False` to validate again. The CLI stages the required JSON
+result too, verifies its contents and syncs both staged files. It publishes the
+validated NPZ first and the result JSON last using filesystem links that refuse
+overwrites. The final `status = complete` result JSON is the completion marker.
+Caught failures or interruptions roll back this attempt's published files and
+clean temporary artifacts; existing files belonging to another run are preserved.
+Missing poses retain all-NaN landmarks; low-visibility detections remain
+finite and present. Malformed output and decode/inference errors stop extraction
+with a separate error category and frame index when known.
+
+A small per-video JSON result is written under
+`artifacts/pose_extraction/single_video/<subject>/<activity>/<stem>.json` and logged
+as JSON. It records identity/split, counts, missing intervals, output location,
+source/model hashes, runtime/package versions, Git commit/dirty status and hashes
+of relevant implementation/configuration files. Source hashes are checked before
+and after the selected video only; this is not the 100-video checksum preflight.
+Both existing NPZ and existing result destinations are refused, so preserve or
+move prior artifacts deliberately before repeating a run. No resume is implemented.
+
+This per-video result is development evidence, not the planned full manifest and
+`extraction_run.json` lifecycle; those remain deferred. A valid development NPZ
+is not a complete bulk dataset deliverable. Caught interruptions report
+`incomplete`/`interrupted_run`; known errors report `failed`. Native process
+aborts cannot be caught by Python and may leave no result file; absence of a
+successful result never establishes completion. A result-write failure exits
+nonzero and leaves no final NPZ from that attempt. Failed/interrupted attempts
+are reported through structured stderr logs, without a final result JSON.
+
+Publication across two paths is not a single filesystem transaction. An
+uncatchable termination between publication steps can leave an NPZ without a
+result JSON. Such an orphan NPZ is incomplete; consumers must require both the
+NPZ and its matching complete result JSON. The completion marker is never
+deliberately published before its validated final NPZ exists. No crash
+recovery/resume or full Stage 2.6 manifest lifecycle is implemented here.
+
+On this macOS host, the first restricted-sandbox attempt aborted during native
+MediaPipe graph initialization with graphics-context/service errors (exit 134).
+The same pinned CPU setup succeeded outside the sandbox. This does not establish
+headless portability or real-time LIVE_STREAM performance.
+
+Run all lightweight tests with NumPy only; no MediaPipe inference or raw-video
+reads are required:
+
+```sh
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache uv run --offline --python 3.13.15 --no-project --with numpy==2.2.6 python -B -m unittest discover -s tests -v
+```
+
+Stage 2.3 extends the regression suite with timestamp/type checks, malformed and
+missing-pose cases, corrupt archives, decode/metadata/inference failures,
+source/model provenance changes, interruption and result-publication failure
+injection. The two Stage 2.2 result JSONs and local ignored NPZs are preserved as
+historical regression evidence. Tests reload the NPZs when present; they do not
+rerun inference, read held-out videos or tune pose settings. Their recorded code
+hashes identify the historical Stage 2.2 implementation, not subsequent fixes.

@@ -1,0 +1,11 @@
+# Executed from /Users/eric/Developer/fall-detection-system, in this order.
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py 'data/raw/caucafall_v5/CAUCAFall/Subject.8/Fall forward/FallForwardS8.avi'
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py 'data/raw/caucafall_v5/CAUCAFall/Subject.9/Fall backwards/FallBackwardsS9.avi'
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py 'data/raw/caucafall_v5/CAUCAFall/Subject.3/Fall left/FallLeftS3.avi'
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py 'data/raw/caucafall_v5/CAUCAFall/Subject.4/Fall right/FallRightS4.avi'
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py 'data/raw/caucafall_v5/CAUCAFall/Subject.5/Fall sitting/FallSittingS5.avi'
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py data/raw/caucafall_v5/CAUCAFall/Subject.8/Hop/HopS8.avi
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py data/raw/caucafall_v5/CAUCAFall/Subject.9/Kneel/KneelS9.avi
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py 'data/raw/caucafall_v5/CAUCAFall/Subject.3/Pick up object/PickupobjectS3.avi'
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py 'data/raw/caucafall_v5/CAUCAFall/Subject.10/Sit down/SitDownS10.avi'
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache MPLCONFIGDIR=/private/tmp/caucafall-matplotlib uv run --offline --python 3.13.15 ml/datasets/extract_pose_video.py data/raw/caucafall_v5/CAUCAFall/Subject.10/Walk/WalkS10.avi

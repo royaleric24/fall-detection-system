@@ -1,0 +1,7 @@
+{
+  "command": "UV_CACHE_DIR=/private/tmp/caucafall-uv-cache uv run --offline --python 3.13.15 --no-project --with numpy==2.2.6 python -B -m unittest discover -s tests -v",
+  "started_at_utc": "2026-09-17T15:53:04.476315+00:00",
+  "finished_at_utc": "2026-09-17T15:53:04.981973+00:00",
+  "exit_code": 0,
+  "log": "tests_after.txt"
+}

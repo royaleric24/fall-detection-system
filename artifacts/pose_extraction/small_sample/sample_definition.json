@@ -1,0 +1,80 @@
+{
+  "stage": "2.4",
+  "schema_version": "pose_raw_v1",
+  "predeclared_at_utc": "2026-09-17T08:52:43.437185+00:00",
+  "selection_basis": "Structural coverage only, fixed before new inference: all 10 activities, balanced video labels, 6 permitted subjects, 7 train and 3 validation videos. Train subjects 8/9 were outside the original Stage 1.3 Subjects 1-5 subset. No pose-availability criterion or cutoff.",
+  "prior_evidence_policy": "Stage 2.2 Subject.1/Fall forward and Subject.2/Fall backwards remain immutable prior evidence; neither is in this sample or counted as a newly executed Stage 2.4 run.",
+  "existing_output_policy": "All ten intended NPZ/result destinations were absent at predeclaration. Never overwrite; stop on collision or failure; never replace a selected video.",
+  "videos": [
+    {
+      "subject_id": 8,
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Fall forward/FallForwardS8.avi"
+    },
+    {
+      "subject_id": 9,
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Fall backwards/FallBackwardsS9.avi"
+    },
+    {
+      "subject_id": 3,
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Fall left/FallLeftS3.avi"
+    },
+    {
+      "subject_id": 4,
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Fall right/FallRightS4.avi"
+    },
+    {
+      "subject_id": 5,
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Fall sitting/FallSittingS5.avi"
+    },
+    {
+      "subject_id": 8,
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Hop/HopS8.avi"
+    },
+    {
+      "subject_id": 9,
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Kneel/KneelS9.avi"
+    },
+    {
+      "subject_id": 3,
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Pick up object/PickupobjectS3.avi"
+    },
+    {
+      "subject_id": 10,
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Sit down/SitDownS10.avi"
+    },
+    {
+      "subject_id": 10,
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Walk/WalkS10.avi"
+    }
+  ]
+}

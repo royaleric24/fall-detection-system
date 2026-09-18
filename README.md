@@ -35,7 +35,7 @@ MQTT
   ↓
 Cloud Sequence Buffer
   ↓
-Temporal Model (TCN baseline; GRU for comparison)
+Temporal Model (GRU initial baseline; TCN primary candidate)
   ↓
 Fall Probability
   ↓
@@ -319,12 +319,17 @@ Expected containers later:
 
 ## 11. Current Status
 
-**Stage 1 — dataset exploration and validation.** Stage 0 is complete.
+**Stage 2.1 — Pose Record Schema & Extraction Contract is active.** Stage 0 is
+complete; Stage 1 is complete and has passed Gate Review. This step defines the
+[raw pose extraction contract](docs/pose_extraction_contract.md) only. Stage 2.2
+extractor implementation and bulk extraction have not started. No model training
+has occurred; GRU is the initial baseline and TCN is the primary candidate, with
+deployment selection to follow measured comparison.
 
 The local CAUCAFall V5 download passes structural and full sequential media validation:
 10 subjects × 10 activities = 100 AVI videos, all 19,877 frames decoded with metadata-count agreement at reported 20 FPS and 720 × 480 resolution. Six PNGs and four frame TXT
 annotations have unmatched basenames; all 100 `classes.txt` files are separate
-metadata. Raw data is unchanged. Stage 2 has not started.
+metadata. Raw data is unchanged.
 
 See [inspection usage and annotation exceptions](ml/datasets/README.md),
 [generated summary](artifacts/dataset_inspection/summary.md), and
@@ -337,11 +342,9 @@ Subject.1 / Fall forward remains a key warning: 94/190 valid poses (49.47%),
 with a longest missing run of 92 frames (4.60 seconds). Stage 1.4 defines
 missing-pose and low-visibility policy in the dataset protocol. See the [compatibility report](artifacts/pose_compatibility/REPORT.md)
 for missing-pose intervals, runtime workaround, and required follow-up protocol.
-Stage 1 remains current; Stage 2 has not started.
 
 Stage 1.4 — dataset protocol and subject-independent split — is complete.
-**Stage 1 is READY TO PASS GATE REVIEW**, not yet marked complete. Stage 2 has not
-started. The [dataset protocol](docs/dataset_protocol.md) freezes labels, subject
+**Stage 1 has passed Gate Review.** The [dataset protocol](docs/dataset_protocol.md) freezes labels, subject
 membership and raw pose/missingness rules; the [split config](configs/dataset_split.json)
 and [100-video split manifest](artifacts/dataset_inspection/split_inventory.csv)
 record train/validation/test assignments (60/20/20 videos). All five architecture

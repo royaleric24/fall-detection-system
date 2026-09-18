@@ -15,29 +15,19 @@ from typing import Any
 
 try:
     from .inspect_caucafall import DEFAULT_ROOT, activity_label, validate_output
+    from .pose_runtime import MODEL_URL, missing_runs, pose_options
 except ImportError:
     from inspect_caucafall import DEFAULT_ROOT, activity_label, validate_output
+    from pose_runtime import MODEL_URL, missing_runs, pose_options
 
 # Fixed before running: all ten activities, five subjects; not a statistical sample.
 SAMPLES = [(1, "Fall forward"), (2, "Fall backwards"), (3, "Fall left"),
            (4, "Fall right"), (5, "Fall sitting"), (1, "Sit down"),
            (2, "Kneel"), (3, "Pick up object"), (4, "Walk"), (5, "Hop")]
-MODEL_URL = "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task"
 # Standard body connections, excluding face details to keep overlays legible.
 CONNECTIONS = [(11,12),(11,13),(13,15),(12,14),(14,16),(11,23),(12,24),
                (23,24),(23,25),(25,27),(24,26),(26,28),(27,29),(29,31),
                (28,30),(30,32),(15,17),(15,19),(16,18),(16,20)]
-
-
-def missing_runs(indices: list[int]) -> list[list[int]]:
-    """Inclusive zero-based missing-frame intervals; no skeletons retained."""
-    runs: list[list[int]] = []
-    for index in indices:
-        if runs and index == runs[-1][1] + 1:
-            runs[-1][1] = index
-        else:
-            runs.append([index, index])
-    return runs
 
 
 def compatibility_decision(rows: list[dict[str, Any]]) -> str:
@@ -88,12 +78,7 @@ def inspect_pose(root: Path, path: Path, model: Path, output: Path,
         if not math.isfinite(fps) or fps <= 0 or not math.isfinite(expected) or expected <= 0:
             raise ValueError("Invalid FPS/frame count")
         row.update(fps=fps, metadata_frames=expected)
-        options = mp.tasks.vision.PoseLandmarkerOptions(
-            base_options=mp.tasks.BaseOptions(model_asset_path=str(model),
-                                             delegate=mp.tasks.BaseOptions.Delegate.CPU),
-            running_mode=mp.tasks.vision.RunningMode.VIDEO, num_poses=1,
-            min_pose_detection_confidence=confidence, min_pose_presence_confidence=confidence,
-            min_tracking_confidence=confidence, output_segmentation_masks=False)
+        options = pose_options(model, mp, confidence)
         # New tracker per clip prevents carrying subject state between unrelated videos.
         with mp.tasks.vision.PoseLandmarker.create_from_options(options) as landmarker:
             while True:

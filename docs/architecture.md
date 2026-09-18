@@ -452,10 +452,10 @@ At minimum the following should not be buried as magic numbers in code:
 
 Architecture and repository freeze.
 
-### Stage 1 — current
+### Stage 1 — complete; Gate Review passed
 
-Dataset exploration and validation. Stage 1.1–1.4 are complete; Stage 1 is
-**READY TO PASS GATE REVIEW**, not automatically approved. Stage 2 has not started.
+Dataset exploration and validation. Stage 1.1–1.4 are complete and Stage 1 has
+passed Gate Review. Compatibility warnings remain explicit constraints.
 [Dataset protocol](dataset_protocol.md) records the answers and limitations for
 each question below, the frozen subject split, and raw missing-pose policy.
 
@@ -467,9 +467,13 @@ Questions to answer before training:
 - Can the dataset video be reliably converted using the same pose pipeline as the real camera?
 - What class labels should V1 use?
 
-### Stage 2+
+### Stage 2.1 — active
 
-Implementation proceeds only after Stage 1 establishes a reproducible data protocol.
+Pose Record Schema & Extraction Contract: documentation/schema definition only.
+The [raw pose extraction contract](pose_extraction_contract.md) specifies Stage 2
+storage, timestamps, missingness, failures and provenance under the frozen Stage 1
+protocol. Stage 2.2 extractor implementation and bulk extraction have not started.
+Normalization, temporal windows and training remain Stage 3 or later work.
 
 ## 15. Architecture Change Policy
 

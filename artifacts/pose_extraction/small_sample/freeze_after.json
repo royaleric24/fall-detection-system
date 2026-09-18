@@ -1,0 +1,25 @@
+{
+  "recorded_at_utc": "2026-09-17T15:54:52.094346+00:00",
+  "sha256": {
+    "ml/datasets/extract_pose_video.py": "d8ba41d765e09355630914d74ccc6f32dcc041ab99e171af3efb7fcbdec0c44f",
+    "ml/datasets/pose_raw.py": "f348b8bf26dac67160ac3ede67d3b49b4096a3607f2368615d21cfc951a57f67",
+    "ml/datasets/pose_runtime.py": "7f00d55dfcbd3ed12442764c830f36ff6e7f3c6cac5691a98328ea8dd5cf37cf",
+    "ml/datasets/assign_dataset_split.py": "b64c55bf29b0a567aeb2b7f365e92233d432614ffe957784557674786df5999d",
+    "ml/datasets/inspect_caucafall.py": "aefb8c123d0a6457d5c37bdc202285d1c857d23941fe1e8bc1aac524d4d7b2fb",
+    "docs/pose_extraction_contract.md": "4a4547bec9b40d5ba287aaa142b6ca613c0c3b5bdba57939060370a8b80bf783",
+    "docs/dataset_protocol.md": "e8197e9fedc41185dac1bd4adae0f5552017fa9c4a36d3be53dc586c6d39a8bd",
+    "configs/dataset_split.json": "c1de39a02dd1ca2fe6cb1bd06c594ed9149477b4bc65c8774de527bd53a140d3",
+    "artifacts/dataset_inspection/inventory.csv": "855406c628aba7b0f6c53935393237ec72cb562b47381170ba0c72c921210bc8",
+    "artifacts/dataset_inspection/split_inventory.csv": "323eb716b8714c6503ddba14f6a310214931872bb1c7ed4268f0ac7f9bbebb56",
+    "ml/checkpoints/pose_landmarker_full.task": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+    "artifacts/pose_extraction/small_sample/sample_definition.json": "38a4ee9e34a4e8e9fb0401e35bbc69c7012bc982bf984a32b0d6635076a01200"
+  },
+  "prior_evidence_sha256": {
+    "artifacts/pose_extraction/single_video/Subject.1/Fall forward/FallForwardS1.json": "88b73e5ca01c886044ea48889aa514183dd73fabd4dad6adc0333c51202f5e8e",
+    "artifacts/pose_extraction/single_video/Subject.2/Fall backwards/FallBackwardsS2.json": "6a7708ad34bacbe1fb42a7c6fcbc71f6484f26edb0448c106f25502be57f85d8",
+    "data/interim/caucafall_v5/pose_raw_v1/Subject.1/Fall forward/FallForwardS1.npz": "eeb1a19dae05c64d6d4b55e49e05b7242f10a6c18790e798848ecebce1ff2dc9",
+    "data/interim/caucafall_v5/pose_raw_v1/Subject.2/Fall backwards/FallBackwardsS2.npz": "c37d5387ec1e715c0e4e6f155df9ce2ef5c4881f447f502a03f263f4e1fc64b1"
+  },
+  "all_match_before": true,
+  "per_video_checks": "execution.jsonl"
+}
