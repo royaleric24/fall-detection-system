@@ -1,8 +1,9 @@
 # Stage 2.6 preflight preparation
 
-This layer prepares a fresh run namespace without running MediaPipe. It does not
-implement a bulk execution/resume command, generate pose outputs, or claim full-run
-completion. The approved pose-extraction contract remains unchanged.
+This layer prepares a fresh run namespace without running MediaPipe. The separate
+[executor](stage26_execution.md) consumes that namespace only after its own review
+and explicit execution authorization. Preflight does not generate pose outputs or
+claim full-run completion. The approved pose-extraction contract remains unchanged.
 
 ## Review and commit boundary
 
@@ -12,7 +13,11 @@ First review the orchestration and tests and run the lightweight suite. Commit
 these additions in a separate orchestration/preflight commit only after explicit
 approval. Run-creating preflight refuses any dirty tracked or untracked files,
 requires checkpoint ancestry, and compares frozen core/configuration bytes with
-that checkpoint. Run provenance records the actual subsequent clean HEAD, as well
+that checkpoint. The executor and all lightweight test modules are included in implementation
+hashes before a run is created. The preflight test log is also hashed. An identity
+checksum covers immutable run provenance; only lifecycle status/execution audit
+fields are excluded. This detects accidental edits, not cryptographic forgery.
+Run provenance records the actual subsequent clean HEAD, as well
 as the original core checkpoint; it never substitutes the older development run's
 Git identity.
 
@@ -79,7 +84,7 @@ metadata fields for Subjects 6/7 without changing that production function or
 interpreting their pose data.
 
 It reuses `sha256`, `output_path`, `runtime_provenance`, and frozen schema/model
-constants. A later authorized execution layer must invoke the existing
+constants. The separately authorized execution layer invokes the existing
 `extract_arrays` (which owns `verify_capture`, sequential decoding and a fresh
 tracker), `publish_video_pair` (validated NPZ first, complete result JSON last),
 and `pose_raw.load_validated`. No extraction algorithm is duplicated here.
@@ -90,7 +95,7 @@ namespace ownership. Preflight-generated metadata itself makes the working tree
 dirty; it must not conceal unrelated code changes. Source metadata is checked
 against the actual capture by the frozen `extract_arrays` path before inference.
 The full-run executor, manifest transitions, final independent validation and
-aggregate report are not executed by this preflight-only entry point.
+aggregate report remain separate from this preflight-only entry point.
 
 Subjects 6/7 are permitted for mechanical extraction/schema/completeness checks
 only. Their outputs must not influence extraction, preprocessing, model or alert

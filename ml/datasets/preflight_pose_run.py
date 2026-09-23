@@ -6,6 +6,7 @@
 
 import argparse
 import csv
+import hashlib
 import io
 import json
 import os
@@ -153,6 +154,22 @@ def runtime() -> dict[str, Any]:
     return p
 
 
+def identity_sha256(provenance: dict[str, Any]) -> str:
+    """Detect accidental edits to immutable run identity, excluding lifecycle state."""
+    identity = {k: v for k, v in provenance.items()
+                if k not in ("identity_sha256", "status", "execution")}
+    return hashlib.sha256(json.dumps(identity, sort_keys=True, allow_nan=False).encode()).hexdigest()
+
+
+def implementation_hashes() -> dict[str, str]:
+    """Include the executor and all tests before any official run is declared."""
+    names = set(FROZEN_FILES) | {"ml/datasets/preflight_pose_run.py",
+                               "ml/datasets/execute_pose_run.py"}
+    names.update(p.relative_to(core.REPO).as_posix()
+                 for p in (core.REPO / "tests").glob("test_*.py"))
+    return {name: core.sha256(core.REPO / name) for name in sorted(names)}
+
+
 def run_tests() -> dict[str, Any]:
     command = [sys.executable, "-B", "-m", "unittest", "discover", "-s", "tests", "-v"]
     result = subprocess.run(command, cwd=core.REPO, text=True, capture_output=True)
@@ -171,13 +188,11 @@ def prepare(check_only: bool = False) -> dict[str, Any]:
     if initial_status and not check_only:
         raise ValueError("Commit/review orchestration first: clean worktree required")
     initial_commit = git("rev-parse", "HEAD")
-    frozen = verify_checkpoint()
+    verify_checkpoint()
     metadata = inventory_metadata()
     checksums = source_checksums(metadata, core.SOURCE_ROOT)
     provenance = runtime()
-    implementation = {**frozen, Path(__file__).resolve().relative_to(core.REPO).as_posix(): core.sha256(Path(__file__))}
-    implementation.update({p.relative_to(core.REPO).as_posix(): core.sha256(p)
-                           for p in sorted((core.REPO / "tests").glob("test_*.py"))})
+    implementation = implementation_hashes()
     tests = run_tests()
     if any(core.sha256(core.REPO / p) != h for p, h in implementation.items()):
         raise ValueError("Implementation changed during preflight")
@@ -206,6 +221,8 @@ def prepare(check_only: bool = False) -> dict[str, Any]:
         (stage / "source_checksums.csv").write_text(csv_text(checksums, ["relative_video_path", "sha256"]), encoding="utf-8")
         (stage / "manifest.csv").write_text(csv_text(manifest_rows(metadata, checksums, run_id), FIELDS), encoding="utf-8")
         checksum_path = (run_dir / "source_checksums.csv").relative_to(core.REPO).as_posix()
+        (stage / "tests_before.txt").write_text(tests["output"], encoding="utf-8")
+        test_path = (run_dir / "tests_before.txt").relative_to(core.REPO).as_posix()
         provenance.update(schema_version=core.SCHEMA_VERSION, run_id=run_id,
                           dataset_name="CAUCAFall", dataset_version="V5", status="pending",
                           created_at_utc=datetime.now(timezone.utc).isoformat(),
@@ -213,12 +230,13 @@ def prepare(check_only: bool = False) -> dict[str, Any]:
                           output_root=str(npz_root), result_root=str(run_dir / "results"),
                           scope=[m["source_relative_video_path"] for m in metadata],
                           source_checksum_manifest_path=checksum_path,
-                          file_sha256=implementation | {checksum_path: core.sha256(stage / "source_checksums.csv")},
+                          file_sha256=implementation | {checksum_path: core.sha256(stage / "source_checksums.csv"),
+                                                       test_path: core.sha256(stage / "tests_before.txt")},
                           source_checksum_baseline="Current bytes only; historical immutability not certified",
                           historical_evidence_policy="No reuse; all 100 outputs must be newly extracted",
                           fresh_tracker_per_video=True, preflight=summary)
+        provenance["identity_sha256"] = identity_sha256(provenance)
         (stage / "extraction_run.json").write_text(json.dumps(provenance, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-        (stage / "tests_before.txt").write_text(tests["output"], encoding="utf-8")
         # mkdir claims the UUID without overwriting another run; rename only into
         # our empty reservation. On failure, preserve any unexpectedly nonempty dir.
         run_dir.mkdir()

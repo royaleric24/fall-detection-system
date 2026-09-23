@@ -99,6 +99,12 @@ class PreflightTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "checkpoint mismatch"):
                 batch.verify_checkpoint()
 
+    def test_implementation_hashes_include_executor_and_its_tests(self):
+        hashes = batch.implementation_hashes()
+        for name in ("ml/datasets/execute_pose_run.py", "ml/datasets/preflight_pose_run.py",
+                     "tests/test_pose_run_executor.py", "tests/test_pose_run_preflight.py"):
+            self.assertEqual(hashes[name], batch.core.sha256(batch.core.REPO / name))
+
     def test_runtime_or_model_mismatch_refused(self):
         p = dict(python="3.13.15", packages={"mediapipe": "0.10.35",
                  "opencv-contrib-python": "4.12.0.88", "numpy": "2.2.6"}, model_sha256="wrong")
@@ -125,6 +131,7 @@ class PreflightTests(unittest.TestCase):
             stack.enter_context(patch.object(obj, key, value))
         stack.enter_context(patch.object(batch, "git", side_effect=git))
         stack.enter_context(patch.object(batch, "verify_checkpoint", return_value={}))
+        stack.enter_context(patch.object(batch, "implementation_hashes", return_value={"ml/datasets/preflight_pose_run.py": batch.core.sha256(script)}))
         stack.enter_context(patch.object(batch, "inventory_metadata", return_value=self.metadata))
         stack.enter_context(patch.object(batch, "runtime", return_value={"model_sha256": batch.core.sha256(model)}))
         tests = stack.enter_context(patch.object(batch, "run_tests", return_value={"command": ["test"], "exit_code": 0, "output": "OK"}))
@@ -146,6 +153,8 @@ class PreflightTests(unittest.TestCase):
         self.assertFalse(provenance["git_dirty"])
         self.assertEqual(provenance["git_commit"], "committed-head")
         self.assertEqual(provenance["status"], "pending")
+        self.assertEqual(provenance["identity_sha256"], batch.identity_sha256(provenance))
+        self.assertIn(str((run_dir / "tests_before.txt").relative_to(self.root)), provenance["file_sha256"])
         self.assertEqual(provenance["run_id"], result["run_id"])
         self.assertEqual(batch.read_csv(run_dir / "manifest.csv")[0]["status"], "pending")
         self.assertEqual(list((run_dir / "results").iterdir()), [])
