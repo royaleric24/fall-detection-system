@@ -1,0 +1,4155 @@
+{
+  "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+  "status": "complete",
+  "totals": {
+    "videos": 100,
+    "statuses": {
+      "complete": 100
+    },
+    "expected_frames": 19877,
+    "validated_extracted_frames": 19877,
+    "detected": 17116,
+    "missing": 2761
+  },
+  "pose_availability": 0.8610957387935805,
+  "audits": {
+    "source_checksums": true,
+    "implementation_hashes": true,
+    "runtime_model_config": true,
+    "post_tests": true,
+    "held_out_policy": true
+  },
+  "videos": [
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Fall backwards/FallBackwardsS1.avi",
+      "source_sha256": "c314121952a73a157bfb06b8434a653dcdcb0e98eb97d77492419e64965246a9",
+      "output_relative_path": "Subject.1/Fall backwards/FallBackwardsS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "125",
+      "extracted_frame_count": 125,
+      "pose_detected_count": 125,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Fall forward/FallForwardS1.avi",
+      "source_sha256": "fcd0d92864c70999616e22af619b0bbde020496ce94da2b4c5f24c3efb149bdf",
+      "output_relative_path": "Subject.1/Fall forward/FallForwardS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "190",
+      "extracted_frame_count": 190,
+      "pose_detected_count": 94,
+      "pose_missing_count": 96,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          91
+        ],
+        [
+          133,
+          133
+        ],
+        [
+          136,
+          138
+        ]
+      ],
+      "longest_missing_run": 92,
+      "pose_availability": 0.49473684210526314
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Fall left/FallLeftS1.avi",
+      "source_sha256": "76e290413f3e1453a2e7a44942879bcab71ead8e8bf14820630870228b203330",
+      "output_relative_path": "Subject.1/Fall left/FallLeftS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "86",
+      "extracted_frame_count": 86,
+      "pose_detected_count": 86,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Fall right/FallRightS1.avi",
+      "source_sha256": "c401a92bfb38bf0c54dca0cf57bbbdc489c1c1ad426ab94cd4394da39e022c75",
+      "output_relative_path": "Subject.1/Fall right/FallRightS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "114",
+      "extracted_frame_count": 114,
+      "pose_detected_count": 110,
+      "pose_missing_count": 4,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          43,
+          45
+        ],
+        [
+          54,
+          54
+        ]
+      ],
+      "longest_missing_run": 3,
+      "pose_availability": 0.9649122807017544
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Fall sitting/FallSittingS1.avi",
+      "source_sha256": "4e43bc0fae80d286ca9670307af4d38e954a9230340b45d055f021965324fca7",
+      "output_relative_path": "Subject.1/Fall sitting/FallSittingS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "182",
+      "extracted_frame_count": 182,
+      "pose_detected_count": 180,
+      "pose_missing_count": 2,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          80,
+          80
+        ],
+        [
+          82,
+          82
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.989010989010989
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Hop/HopS1.avi",
+      "source_sha256": "1f5ecb50d2d454f265d6a3c036dd5b7ca9835cf7492821d68f99ed7d259ecd66",
+      "output_relative_path": "Subject.1/Hop/HopS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "182",
+      "extracted_frame_count": 182,
+      "pose_detected_count": 182,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Kneel/KneelS1.avi",
+      "source_sha256": "010f7f6f03908b72e62ef03fe8c96cbf0a7f4fa1f740f5b3c911f66df8edbbbb",
+      "output_relative_path": "Subject.1/Kneel/KneelS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "219",
+      "extracted_frame_count": 219,
+      "pose_detected_count": 219,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Pick up object/PickupobjectS1.avi",
+      "source_sha256": "507951c796e33524a48d90c05bf340c3d07539b4884a75747ed8470a38d7784f",
+      "output_relative_path": "Subject.1/Pick up object/PickupobjectS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "117",
+      "extracted_frame_count": 117,
+      "pose_detected_count": 87,
+      "pose_missing_count": 30,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          21
+        ],
+        [
+          52,
+          59
+        ]
+      ],
+      "longest_missing_run": 22,
+      "pose_availability": 0.7435897435897436
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Sit down/SitDownS1.avi",
+      "source_sha256": "d76e3235b539f61e7e5774d1bfd4324186281bac6d4b894c722869ab3b40b574",
+      "output_relative_path": "Subject.1/Sit down/SitDownS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "187",
+      "extracted_frame_count": 187,
+      "pose_detected_count": 187,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "1",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.1/Walk/WalkS1.avi",
+      "source_sha256": "2a1cd10ea795086e8bbdfe50027c0e31fedacc556c7327298bf0f1aa2840b6f1",
+      "output_relative_path": "Subject.1/Walk/WalkS1.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "242",
+      "extracted_frame_count": 242,
+      "pose_detected_count": 214,
+      "pose_missing_count": 28,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          16
+        ],
+        [
+          18,
+          28
+        ]
+      ],
+      "longest_missing_run": 17,
+      "pose_availability": 0.8842975206611571
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Fall backwards/FallBackwardsS2.avi",
+      "source_sha256": "c854d5d71324a95e0cd02aaa47c390575bbe61d187fcb363e67ed202ffb02d77",
+      "output_relative_path": "Subject.2/Fall backwards/FallBackwardsS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "119",
+      "extracted_frame_count": 119,
+      "pose_detected_count": 119,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Fall forward/FallForwardS2.avi",
+      "source_sha256": "90bdeb79af92bcfc2d1e5907ece58760f43700ad1d65e8d2d9d7ce80f2bad2cb",
+      "output_relative_path": "Subject.2/Fall forward/FallForwardS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "106",
+      "extracted_frame_count": 106,
+      "pose_detected_count": 83,
+      "pose_missing_count": 23,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          21
+        ],
+        [
+          25,
+          25
+        ]
+      ],
+      "longest_missing_run": 22,
+      "pose_availability": 0.7830188679245284
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Fall left/FallLeftS2.avi",
+      "source_sha256": "f0b7a67ef05d4df030247c4b46d7a59983a2c2d3d3ef0c3153978f5875ce062b",
+      "output_relative_path": "Subject.2/Fall left/FallLeftS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "109",
+      "extracted_frame_count": 109,
+      "pose_detected_count": 109,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Fall right/FallRightS2.avi",
+      "source_sha256": "fd6cafd10426e7e63a8e2571f2779fc6554db39c46d5e6b477a90ccddcfcd7e1",
+      "output_relative_path": "Subject.2/Fall right/FallRightS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "146",
+      "extracted_frame_count": 146,
+      "pose_detected_count": 146,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Fall sitting/FallSittingS2.avi",
+      "source_sha256": "908a88acd5f8fd08b10fa7cb9a14e0472e03c4434cfe068a2b57f48832716333",
+      "output_relative_path": "Subject.2/Fall sitting/FallSittingS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "157",
+      "extracted_frame_count": 157,
+      "pose_detected_count": 156,
+      "pose_missing_count": 1,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          74,
+          74
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9936305732484076
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Hop/HopS2.avi",
+      "source_sha256": "741630c13a1ef6bd058c40f1759296d792d070a67cb4452774edffcac7f2335f",
+      "output_relative_path": "Subject.2/Hop/HopS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "171",
+      "extracted_frame_count": 171,
+      "pose_detected_count": 171,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Kneel/KneelS2.avi",
+      "source_sha256": "b2fba26f4789dab8425dc8c995a67fff0aa98c90e619bc2c4897c8dba1b44ca7",
+      "output_relative_path": "Subject.2/Kneel/KneelS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "130",
+      "extracted_frame_count": 130,
+      "pose_detected_count": 130,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Pick up object/PickupobjectS2.avi",
+      "source_sha256": "fd7f3a1e42185b6ce58d74095085bf06a35909454a0c99dae42f18cb8b62949f",
+      "output_relative_path": "Subject.2/Pick up object/PickupobjectS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "166",
+      "extracted_frame_count": 166,
+      "pose_detected_count": 156,
+      "pose_missing_count": 10,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          8
+        ],
+        [
+          141,
+          141
+        ]
+      ],
+      "longest_missing_run": 9,
+      "pose_availability": 0.9397590361445783
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Sit down/SitDownS2.avi",
+      "source_sha256": "e5cb284651fddc54c844116cacad043a769f965932d5e2eb2f98e8cfba1ef310",
+      "output_relative_path": "Subject.2/Sit down/SitDownS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "112",
+      "extracted_frame_count": 112,
+      "pose_detected_count": 112,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "2",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.2/Walk/WalkS2.avi",
+      "source_sha256": "dd87d6d2b7dad7c12623ed6b148f5fff8ce2665651b03ba5829a6a1192d9f162",
+      "output_relative_path": "Subject.2/Walk/WalkS2.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "244",
+      "extracted_frame_count": 244,
+      "pose_detected_count": 209,
+      "pose_missing_count": 35,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          19
+        ],
+        [
+          21,
+          27
+        ],
+        [
+          29,
+          29
+        ],
+        [
+          31,
+          32
+        ],
+        [
+          35,
+          36
+        ],
+        [
+          38,
+          38
+        ],
+        [
+          40,
+          41
+        ]
+      ],
+      "longest_missing_run": 20,
+      "pose_availability": 0.8565573770491803
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Fall backwards/FallBackwardsS3.avi",
+      "source_sha256": "50fa91766e832650418085e8b81abce21e3d3fcc27fa540df54cc56312b8b3c7",
+      "output_relative_path": "Subject.3/Fall backwards/FallBackwardsS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "166",
+      "extracted_frame_count": 166,
+      "pose_detected_count": 166,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Fall forward/FallForwardS3.avi",
+      "source_sha256": "c75f8e4162d74509c27462dd5c366a87fe1b9f14d213660eb188b80a14331740",
+      "output_relative_path": "Subject.3/Fall forward/FallForwardS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "153",
+      "extracted_frame_count": 153,
+      "pose_detected_count": 49,
+      "pose_missing_count": 104,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          66
+        ],
+        [
+          84,
+          91
+        ],
+        [
+          97,
+          115
+        ],
+        [
+          119,
+          128
+        ]
+      ],
+      "longest_missing_run": 67,
+      "pose_availability": 0.3202614379084967
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Fall left/FallLeftS3.avi",
+      "source_sha256": "9d8f69b0b8b3e895b32b9661ea4d723186b926632cf5bd74185b8918edd5c7dc",
+      "output_relative_path": "Subject.3/Fall left/FallLeftS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "171",
+      "extracted_frame_count": 171,
+      "pose_detected_count": 147,
+      "pose_missing_count": 24,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          3
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          78,
+          78
+        ],
+        [
+          83,
+          83
+        ],
+        [
+          101,
+          103
+        ],
+        [
+          105,
+          116
+        ]
+      ],
+      "longest_missing_run": 12,
+      "pose_availability": 0.8596491228070176
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Fall right/FallRightS3.avi",
+      "source_sha256": "37d1b7540cbe0757de31973b7666741f7e5065a35a4a171f92e96b4842091ea5",
+      "output_relative_path": "Subject.3/Fall right/FallRightS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "220",
+      "extracted_frame_count": 220,
+      "pose_detected_count": 220,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Fall sitting/FallSittingS3.avi",
+      "source_sha256": "4e82fad555ede644fd852884eb729da8ba636e5c460e6edee46317bf797bb88f",
+      "output_relative_path": "Subject.3/Fall sitting/FallSittingS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "202",
+      "extracted_frame_count": 202,
+      "pose_detected_count": 199,
+      "pose_missing_count": 3,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          0
+        ],
+        [
+          139,
+          140
+        ]
+      ],
+      "longest_missing_run": 2,
+      "pose_availability": 0.9851485148514851
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Hop/HopS3.avi",
+      "source_sha256": "2bc573a7c6c058eb92a642c4c3ebd9180e8ebf84efbeb7b0d72129ff1b082ce6",
+      "output_relative_path": "Subject.3/Hop/HopS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "162",
+      "extracted_frame_count": 162,
+      "pose_detected_count": 121,
+      "pose_missing_count": 41,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          13
+        ],
+        [
+          20,
+          20
+        ],
+        [
+          25,
+          36
+        ],
+        [
+          38,
+          46
+        ],
+        [
+          49,
+          52
+        ],
+        [
+          55,
+          55
+        ]
+      ],
+      "longest_missing_run": 14,
+      "pose_availability": 0.7469135802469136
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Kneel/KneelS3.avi",
+      "source_sha256": "226a3a8deda52e09a87eb712cdd5a4948677fbbd14be9489e1a38433559857d1",
+      "output_relative_path": "Subject.3/Kneel/KneelS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "213",
+      "extracted_frame_count": 213,
+      "pose_detected_count": 104,
+      "pose_missing_count": 109,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          4
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          31,
+          31
+        ],
+        [
+          38,
+          39
+        ],
+        [
+          43,
+          44
+        ],
+        [
+          47,
+          54
+        ],
+        [
+          56,
+          56
+        ],
+        [
+          61,
+          68
+        ],
+        [
+          93,
+          95
+        ],
+        [
+          98,
+          155
+        ],
+        [
+          157,
+          159
+        ],
+        [
+          174,
+          174
+        ],
+        [
+          177,
+          181
+        ],
+        [
+          184,
+          184
+        ],
+        [
+          187,
+          187
+        ],
+        [
+          191,
+          191
+        ],
+        [
+          197,
+          199
+        ],
+        [
+          208,
+          211
+        ]
+      ],
+      "longest_missing_run": 58,
+      "pose_availability": 0.48826291079812206
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Pick up object/PickupobjectS3.avi",
+      "source_sha256": "b33eff62ba3a0d84c7df2c1de51f197d5146ac509a95c63297ba926301105b88",
+      "output_relative_path": "Subject.3/Pick up object/PickupobjectS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "186",
+      "extracted_frame_count": 186,
+      "pose_detected_count": 132,
+      "pose_missing_count": 54,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          4
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          12,
+          16
+        ],
+        [
+          19,
+          19
+        ],
+        [
+          21,
+          21
+        ],
+        [
+          23,
+          23
+        ],
+        [
+          25,
+          25
+        ],
+        [
+          60,
+          60
+        ],
+        [
+          62,
+          74
+        ],
+        [
+          92,
+          93
+        ],
+        [
+          95,
+          112
+        ],
+        [
+          114,
+          118
+        ]
+      ],
+      "longest_missing_run": 18,
+      "pose_availability": 0.7096774193548387
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Sit down/SitDownS3.avi",
+      "source_sha256": "8f1ef95774f6df9acfe2074eeea4e2aa395b65142628f31c84e456127714fcbb",
+      "output_relative_path": "Subject.3/Sit down/SitDownS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "261",
+      "extracted_frame_count": 261,
+      "pose_detected_count": 216,
+      "pose_missing_count": 45,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          20
+        ],
+        [
+          23,
+          26
+        ],
+        [
+          30,
+          30
+        ],
+        [
+          37,
+          37
+        ],
+        [
+          156,
+          156
+        ],
+        [
+          159,
+          169
+        ],
+        [
+          171,
+          171
+        ],
+        [
+          173,
+          177
+        ]
+      ],
+      "longest_missing_run": 21,
+      "pose_availability": 0.8275862068965517
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "3",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.3/Walk/WalkS3.avi",
+      "source_sha256": "f27c01974837f3421ad6585dc107943259755898f295d1b675243cdf971ae639",
+      "output_relative_path": "Subject.3/Walk/WalkS3.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "176",
+      "extracted_frame_count": 176,
+      "pose_detected_count": 113,
+      "pose_missing_count": 63,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          61
+        ],
+        [
+          70,
+          70
+        ]
+      ],
+      "longest_missing_run": 62,
+      "pose_availability": 0.6420454545454546
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Fall backwards/FallBackwardsS4.avi",
+      "source_sha256": "3703b0119f8a1f622ea18f7d2c5435b61d111bf6be921ea6b5e3b54594dd99d1",
+      "output_relative_path": "Subject.4/Fall backwards/FallBackwardsS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "192",
+      "extracted_frame_count": 192,
+      "pose_detected_count": 182,
+      "pose_missing_count": 10,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          70,
+          78
+        ],
+        [
+          165,
+          165
+        ]
+      ],
+      "longest_missing_run": 9,
+      "pose_availability": 0.9479166666666666
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Fall forward/FallForwardS4.avi",
+      "source_sha256": "ad37adb65a004b07bfd186fb988d41effb87dab6e43937f2454da861d597749b",
+      "output_relative_path": "Subject.4/Fall forward/FallForwardS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "168",
+      "extracted_frame_count": 168,
+      "pose_detected_count": 148,
+      "pose_missing_count": 20,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          13
+        ],
+        [
+          15,
+          18
+        ],
+        [
+          27,
+          28
+        ]
+      ],
+      "longest_missing_run": 14,
+      "pose_availability": 0.8809523809523809
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Fall left/FallLeftS4.avi",
+      "source_sha256": "6eb52cad0248766f4f6ec7c40568d14d3c817bbe09774f42d3144b3bbeb15b6b",
+      "output_relative_path": "Subject.4/Fall left/FallLeftS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "162",
+      "extracted_frame_count": 162,
+      "pose_detected_count": 160,
+      "pose_missing_count": 2,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          0
+        ],
+        [
+          76,
+          76
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9876543209876543
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Fall right/FallRightS4.avi",
+      "source_sha256": "3c04bef83794daeed2639b07144e016dec82ac0687e278f1642a549b6c9f9dc4",
+      "output_relative_path": "Subject.4/Fall right/FallRightS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "150",
+      "extracted_frame_count": 150,
+      "pose_detected_count": 150,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Fall sitting/FallSittingS4.avi",
+      "source_sha256": "e3bab7285d617c588065e8599718f1b9c2bc83304db0f1e8dbbebd9bb5ba70bb",
+      "output_relative_path": "Subject.4/Fall sitting/FallSittingS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "198",
+      "extracted_frame_count": 198,
+      "pose_detected_count": 198,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Hop/HopS4.avi",
+      "source_sha256": "5622c3637c069569ab55bf70168033a347c5219e05116ce53f610b942b7c60c6",
+      "output_relative_path": "Subject.4/Hop/HopS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "144",
+      "extracted_frame_count": 144,
+      "pose_detected_count": 135,
+      "pose_missing_count": 9,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          8
+        ]
+      ],
+      "longest_missing_run": 9,
+      "pose_availability": 0.9375
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Kneel/KneelS4.avi",
+      "source_sha256": "db3178cf245f16114e3be698e9b6a8f033f1d6ab83692fb38851c7989b9f80b2",
+      "output_relative_path": "Subject.4/Kneel/KneelS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "222",
+      "extracted_frame_count": 222,
+      "pose_detected_count": 222,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Pick up object/PickupobjectS4.avi",
+      "source_sha256": "20ec67d9d0f94e7d2209a8ac00b3cd2833856d5c055a3367a430a0c15de74c13",
+      "output_relative_path": "Subject.4/Pick up object/PickupobjectS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "179",
+      "extracted_frame_count": 179,
+      "pose_detected_count": 175,
+      "pose_missing_count": 4,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          82,
+          82
+        ],
+        [
+          88,
+          88
+        ],
+        [
+          91,
+          92
+        ]
+      ],
+      "longest_missing_run": 2,
+      "pose_availability": 0.9776536312849162
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Sit down/SitDownS4.avi",
+      "source_sha256": "33fff11f0b7a652265c94d3ba440215fc68fe24af05e296aba9ebeab6d593941",
+      "output_relative_path": "Subject.4/Sit down/SitDownS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "199",
+      "extracted_frame_count": 199,
+      "pose_detected_count": 199,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "4",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.4/Walk/WalkS4.avi",
+      "source_sha256": "aebd7de624439b199b4aaa2a72e613dd7cfb59be5badd63a3b9f9a8005b0d1bd",
+      "output_relative_path": "Subject.4/Walk/WalkS4.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "240",
+      "extracted_frame_count": 240,
+      "pose_detected_count": 222,
+      "pose_missing_count": 18,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          17
+        ]
+      ],
+      "longest_missing_run": 18,
+      "pose_availability": 0.925
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Fall backwards/FallBackwardsS5.avi",
+      "source_sha256": "4134c44369c712337e273d5b8fa133f0c2a7718c4bfe2600fcb6ac3f97b265a8",
+      "output_relative_path": "Subject.5/Fall backwards/FallBackwardsS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "214",
+      "extracted_frame_count": 214,
+      "pose_detected_count": 214,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Fall forward/FallForwardS5.avi",
+      "source_sha256": "40bc4b138ef15245926eb765348a1e045adc7a36ab66b91eed2d3b786bfdbe14",
+      "output_relative_path": "Subject.5/Fall forward/FallForwardS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "200",
+      "extracted_frame_count": 200,
+      "pose_detected_count": 148,
+      "pose_missing_count": 52,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          47
+        ],
+        [
+          52,
+          55
+        ]
+      ],
+      "longest_missing_run": 48,
+      "pose_availability": 0.74
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Fall left/FallLeftS5.avi",
+      "source_sha256": "cf6e087654c44d0108d728dfe6d1ecdf1b49231496aed4278cdb6656c272be36",
+      "output_relative_path": "Subject.5/Fall left/FallLeftS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "247",
+      "extracted_frame_count": 247,
+      "pose_detected_count": 222,
+      "pose_missing_count": 25,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          3,
+          6
+        ],
+        [
+          11,
+          13
+        ],
+        [
+          53,
+          53
+        ],
+        [
+          56,
+          57
+        ],
+        [
+          62,
+          76
+        ]
+      ],
+      "longest_missing_run": 15,
+      "pose_availability": 0.8987854251012146
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Fall right/FallRightS5.avi",
+      "source_sha256": "0fc750f08f9e78fad22a9e80a298d7bdf4060a376aa5d721a18ceb195e4806a4",
+      "output_relative_path": "Subject.5/Fall right/FallRightS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "219",
+      "extracted_frame_count": 219,
+      "pose_detected_count": 174,
+      "pose_missing_count": 45,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          44
+        ]
+      ],
+      "longest_missing_run": 45,
+      "pose_availability": 0.7945205479452054
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Fall sitting/FallSittingS5.avi",
+      "source_sha256": "bd2df0f8c185335fa71811d947e5dbbed572c6af4d959d3e9dca59671af47222",
+      "output_relative_path": "Subject.5/Fall sitting/FallSittingS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "229",
+      "extracted_frame_count": 229,
+      "pose_detected_count": 224,
+      "pose_missing_count": 5,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          54,
+          58
+        ]
+      ],
+      "longest_missing_run": 5,
+      "pose_availability": 0.9781659388646288
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Hop/HopS5.avi",
+      "source_sha256": "243e44f0708921b1eebf7910c9145bc4c2b8cdc344532cc9e470b33b811592e8",
+      "output_relative_path": "Subject.5/Hop/HopS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "122",
+      "extracted_frame_count": 122,
+      "pose_detected_count": 99,
+      "pose_missing_count": 23,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          22
+        ]
+      ],
+      "longest_missing_run": 23,
+      "pose_availability": 0.8114754098360656
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Kneel/KneelS5.avi",
+      "source_sha256": "0f73541402f4d432f5ad5808d9fba188d66dde8bc8ac130c8b79149c3b9a5a55",
+      "output_relative_path": "Subject.5/Kneel/KneelS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "208",
+      "extracted_frame_count": 208,
+      "pose_detected_count": 203,
+      "pose_missing_count": 5,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          4
+        ]
+      ],
+      "longest_missing_run": 5,
+      "pose_availability": 0.9759615384615384
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Pick up object/PickupobjectS5.avi",
+      "source_sha256": "60512bf30f1da6e46accd087eea35af32d57984dd1c5e7e326b7b259bfb14b1c",
+      "output_relative_path": "Subject.5/Pick up object/PickupobjectS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "271",
+      "extracted_frame_count": 271,
+      "pose_detected_count": 132,
+      "pose_missing_count": 139,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          65
+        ],
+        [
+          153,
+          225
+        ]
+      ],
+      "longest_missing_run": 73,
+      "pose_availability": 0.4870848708487085
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Sit down/SitDownS5.avi",
+      "source_sha256": "150230d34b5e3822eab4350e14e404f7736a894c16840138e41255fb16b4f21a",
+      "output_relative_path": "Subject.5/Sit down/SitDownS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "260",
+      "extracted_frame_count": 260,
+      "pose_detected_count": 259,
+      "pose_missing_count": 1,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          117,
+          117
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9961538461538462
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "5",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.5/Walk/WalkS5.avi",
+      "source_sha256": "0aa4741cfb9523fca778f0bc06739c832fe70089b37d0b0b9968e97ee9c61555",
+      "output_relative_path": "Subject.5/Walk/WalkS5.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "226",
+      "extracted_frame_count": 226,
+      "pose_detected_count": 192,
+      "pose_missing_count": 34,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          33
+        ]
+      ],
+      "longest_missing_run": 34,
+      "pose_availability": 0.8495575221238938
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Fall backwards/FallBackwardsS6.avi",
+      "source_sha256": "b0b8a9cb5ae4d54be4dd354c000e81baa0333a6a6f5a6a7f4fea13ea404ad95b",
+      "output_relative_path": "Subject.6/Fall backwards/FallBackwardsS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "234",
+      "extracted_frame_count": 234,
+      "pose_detected_count": 234,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Fall forward/FallForwardS6.avi",
+      "source_sha256": "1fbca584022a422118db5229d965041e50a4500be89726b23f5c9929d6b59fc3",
+      "output_relative_path": "Subject.6/Fall forward/FallForwardS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "202",
+      "extracted_frame_count": 202,
+      "pose_detected_count": 132,
+      "pose_missing_count": 70,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          61
+        ],
+        [
+          83,
+          83
+        ],
+        [
+          85,
+          91
+        ]
+      ],
+      "longest_missing_run": 62,
+      "pose_availability": 0.6534653465346535
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Fall left/FallLeftS6.avi",
+      "source_sha256": "ad1cff41c97b390b6854acb7c781632ac01f1f124b0c9cde99047f0588b58142",
+      "output_relative_path": "Subject.6/Fall left/FallLeftS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "229",
+      "extracted_frame_count": 229,
+      "pose_detected_count": 43,
+      "pose_missing_count": 186,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          0
+        ],
+        [
+          44,
+          228
+        ]
+      ],
+      "longest_missing_run": 185,
+      "pose_availability": 0.18777292576419213
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Fall right/FallRightS6.avi",
+      "source_sha256": "5ca6cabf5d62ae15c1db3b0a7f41aa4afd24c02301591c6f2a71abae0d7658b7",
+      "output_relative_path": "Subject.6/Fall right/FallRightS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "229",
+      "extracted_frame_count": 229,
+      "pose_detected_count": 229,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Fall sitting/FallSittingS6.avi",
+      "source_sha256": "5f8be9f0a1e45af8e81891b57334e5d656bee39b8bbd3d3693718c313d92830d",
+      "output_relative_path": "Subject.6/Fall sitting/FallSittingS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "248",
+      "extracted_frame_count": 248,
+      "pose_detected_count": 230,
+      "pose_missing_count": 18,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          70,
+          87
+        ]
+      ],
+      "longest_missing_run": 18,
+      "pose_availability": 0.9274193548387096
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Hop/HopS6.avi",
+      "source_sha256": "93567068cd33b20675120ea6e60a5368526e9aaf615979ab6f776bb2ff0a8d1f",
+      "output_relative_path": "Subject.6/Hop/HopS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "162",
+      "extracted_frame_count": 162,
+      "pose_detected_count": 135,
+      "pose_missing_count": 27,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          26
+        ]
+      ],
+      "longest_missing_run": 27,
+      "pose_availability": 0.8333333333333334
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Kneel/KneelS6.avi",
+      "source_sha256": "ff7ae813f7cec881e0a0e548806c63c367e8e10e6aeb327077641ee3d567cbee",
+      "output_relative_path": "Subject.6/Kneel/KneelS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "189",
+      "extracted_frame_count": 189,
+      "pose_detected_count": 181,
+      "pose_missing_count": 8,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          60,
+          60
+        ],
+        [
+          62,
+          62
+        ],
+        [
+          84,
+          84
+        ],
+        [
+          171,
+          175
+        ]
+      ],
+      "longest_missing_run": 5,
+      "pose_availability": 0.9576719576719577
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Pick up object/PickupobjectS6.avi",
+      "source_sha256": "23de7908d3b531b51714130327a97639cd2117bbbf0516afe42cb3d64301ad06",
+      "output_relative_path": "Subject.6/Pick up object/PickupobjectS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "202",
+      "extracted_frame_count": 202,
+      "pose_detected_count": 108,
+      "pose_missing_count": 94,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          58,
+          151
+        ]
+      ],
+      "longest_missing_run": 94,
+      "pose_availability": 0.5346534653465347
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Sit down/SitDownS6.avi",
+      "source_sha256": "bba4fc0196747a66e6b540b4baafaf870a7951d90f1146752982470189e84acc",
+      "output_relative_path": "Subject.6/Sit down/SitDownS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "189",
+      "extracted_frame_count": 189,
+      "pose_detected_count": 189,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "6",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.6/Walk/WalkS6.avi",
+      "source_sha256": "c49a3305d31e2ba72a7d71dda9ba5c7475fe008a9c8f4efed34c51405bcb2101",
+      "output_relative_path": "Subject.6/Walk/WalkS6.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "266",
+      "extracted_frame_count": 266,
+      "pose_detected_count": 265,
+      "pose_missing_count": 1,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          0
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9962406015037594
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Fall backwards/FallBackwardsS7.avi",
+      "source_sha256": "c7534882a8ce13ea796bc70230afcb76ab344e753ee29915ba79717954083938",
+      "output_relative_path": "Subject.7/Fall backwards/FallBackwardsS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "252",
+      "extracted_frame_count": 252,
+      "pose_detected_count": 252,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Fall forward/FallForwardS7.avi",
+      "source_sha256": "510b4c80019275bd36afca22e00bf8fd0b1ec08ae10d97694a34c4e8fec49d9f",
+      "output_relative_path": "Subject.7/Fall forward/FallForwardS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "162",
+      "extracted_frame_count": 162,
+      "pose_detected_count": 157,
+      "pose_missing_count": 5,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          40,
+          40
+        ],
+        [
+          45,
+          45
+        ],
+        [
+          48,
+          48
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9691358024691358
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Fall left/FallLeftS7.avi",
+      "source_sha256": "7ba925ad02d4de8a9d70a9539cfbc5942de711fd457fc81a55abe509e8385858",
+      "output_relative_path": "Subject.7/Fall left/FallLeftS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "212",
+      "extracted_frame_count": 212,
+      "pose_detected_count": 207,
+      "pose_missing_count": 5,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          72,
+          75
+        ],
+        [
+          77,
+          77
+        ]
+      ],
+      "longest_missing_run": 4,
+      "pose_availability": 0.9764150943396226
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Fall right/FallRightS7.avi",
+      "source_sha256": "164a92aa91baf2d49e4e3a7253e4e4fb90e67361b744dc822c7ac5114fbfdf19",
+      "output_relative_path": "Subject.7/Fall right/FallRightS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "166",
+      "extracted_frame_count": 166,
+      "pose_detected_count": 166,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Fall sitting/FallSittingS7.avi",
+      "source_sha256": "59cbb5696a75b1c32263779e76412846a485629c7df41a1dffc024efd3f9aafb",
+      "output_relative_path": "Subject.7/Fall sitting/FallSittingS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "207",
+      "extracted_frame_count": 207,
+      "pose_detected_count": 203,
+      "pose_missing_count": 4,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          50,
+          52
+        ],
+        [
+          54,
+          54
+        ]
+      ],
+      "longest_missing_run": 3,
+      "pose_availability": 0.9806763285024155
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Hop/HopS7.avi",
+      "source_sha256": "51d195f516cb58b0bcb62f74cc9a1d96af11544895d1b304d29bb31e7b73c6e8",
+      "output_relative_path": "Subject.7/Hop/HopS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "198",
+      "extracted_frame_count": 198,
+      "pose_detected_count": 184,
+      "pose_missing_count": 14,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          13
+        ],
+        [
+          16,
+          16
+        ]
+      ],
+      "longest_missing_run": 11,
+      "pose_availability": 0.9292929292929293
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Kneel/KneelS7.avi",
+      "source_sha256": "d5372ed4ec9793ef6525afc229668470c86c35f220a08bb39865b5a3638eb333",
+      "output_relative_path": "Subject.7/Kneel/KneelS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "202",
+      "extracted_frame_count": 202,
+      "pose_detected_count": 156,
+      "pose_missing_count": 46,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          2
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          73,
+          75
+        ],
+        [
+          77,
+          89
+        ],
+        [
+          91,
+          95
+        ],
+        [
+          97,
+          98
+        ],
+        [
+          144,
+          144
+        ],
+        [
+          149,
+          150
+        ],
+        [
+          152,
+          157
+        ],
+        [
+          159,
+          160
+        ],
+        [
+          164,
+          164
+        ],
+        [
+          184,
+          187
+        ]
+      ],
+      "longest_missing_run": 13,
+      "pose_availability": 0.7722772277227723
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Pick up object/PickupobjectS7.avi",
+      "source_sha256": "2a365ba3d1cc79350b1c245309c567b783d1ce1a1747a63826cffc797516d14e",
+      "output_relative_path": "Subject.7/Pick up object/PickupobjectS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "153",
+      "extracted_frame_count": 153,
+      "pose_detected_count": 152,
+      "pose_missing_count": 1,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          115,
+          115
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9934640522875817
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Sit down/SitDownS7.avi",
+      "source_sha256": "dcaab5988cd5b5ff4cafaa7b9bd2fdb5331687c23eb0673803f4df92c1efcd0b",
+      "output_relative_path": "Subject.7/Sit down/SitDownS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "193",
+      "extracted_frame_count": 193,
+      "pose_detected_count": 191,
+      "pose_missing_count": 2,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          2,
+          2
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9896373056994818
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "7",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "test",
+      "source_relative_video_path": "Subject.7/Walk/WalkS7.avi",
+      "source_sha256": "006033704c9c155c70730ca0750cff8e94a319954ab00b3b6574cb189c3ea8db",
+      "output_relative_path": "Subject.7/Walk/WalkS7.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "193",
+      "extracted_frame_count": 193,
+      "pose_detected_count": 191,
+      "pose_missing_count": 2,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          163,
+          163
+        ],
+        [
+          172,
+          172
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9896373056994818
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Fall backwards/FallBackwardsS8.avi",
+      "source_sha256": "8ec4590a85bc8a10d262f1f246305fdaac96178e5412677af7f69f67edf05cad",
+      "output_relative_path": "Subject.8/Fall backwards/FallBackwardsS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "212",
+      "extracted_frame_count": 212,
+      "pose_detected_count": 211,
+      "pose_missing_count": 1,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          0
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9952830188679245
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Fall forward/FallForwardS8.avi",
+      "source_sha256": "ac6a716da6471aa7d3f9a0f4cfeda57b32d2245bfa9d326c0bcb5cef1eca13e1",
+      "output_relative_path": "Subject.8/Fall forward/FallForwardS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "122",
+      "extracted_frame_count": 122,
+      "pose_detected_count": 0,
+      "pose_missing_count": 122,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          121
+        ]
+      ],
+      "longest_missing_run": 122,
+      "pose_availability": 0.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Fall left/FallLeftS8.avi",
+      "source_sha256": "9e1f587661587c39244c351a8c9362e7afb021c8e3106d69d81fa26d1eefb4ca",
+      "output_relative_path": "Subject.8/Fall left/FallLeftS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "202",
+      "extracted_frame_count": 202,
+      "pose_detected_count": 73,
+      "pose_missing_count": 129,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          41,
+          169
+        ]
+      ],
+      "longest_missing_run": 129,
+      "pose_availability": 0.3613861386138614
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Fall right/FallRightS8.avi",
+      "source_sha256": "9baae58db53584b2d036ab722bbc0516ff56788918e616c4e8ab6af20611e05a",
+      "output_relative_path": "Subject.8/Fall right/FallRightS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "229",
+      "extracted_frame_count": 229,
+      "pose_detected_count": 34,
+      "pose_missing_count": 195,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          42
+        ],
+        [
+          77,
+          228
+        ]
+      ],
+      "longest_missing_run": 152,
+      "pose_availability": 0.14847161572052403
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Fall sitting/FallSittingS8.avi",
+      "source_sha256": "9595fb85ae150c298b965824f527437e2ee9183dc245de9ed8183f03e7a93f5e",
+      "output_relative_path": "Subject.8/Fall sitting/FallSittingS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "234",
+      "extracted_frame_count": 234,
+      "pose_detected_count": 201,
+      "pose_missing_count": 33,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          31
+        ],
+        [
+          68,
+          68
+        ]
+      ],
+      "longest_missing_run": 32,
+      "pose_availability": 0.8589743589743589
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Hop/HopS8.avi",
+      "source_sha256": "c364f028b1bd32a969ac805cfb5607043855d9ea1d387eefbc7e1952eb36abfe",
+      "output_relative_path": "Subject.8/Hop/HopS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "166",
+      "extracted_frame_count": 166,
+      "pose_detected_count": 156,
+      "pose_missing_count": 10,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          9
+        ]
+      ],
+      "longest_missing_run": 10,
+      "pose_availability": 0.9397590361445783
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Kneel/KneelS8.avi",
+      "source_sha256": "703c93ca053d76c8455d8a9b0907865d9c928e98c12705e71201b873a354ad9d",
+      "output_relative_path": "Subject.8/Kneel/KneelS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "256",
+      "extracted_frame_count": 256,
+      "pose_detected_count": 181,
+      "pose_missing_count": 75,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          2
+        ],
+        [
+          119,
+          190
+        ]
+      ],
+      "longest_missing_run": 72,
+      "pose_availability": 0.70703125
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Pick up object/PickupobjectS8.avi",
+      "source_sha256": "12d35a769f0500ad45624570e346f8884e34c96f8c96a946952074d60794e711",
+      "output_relative_path": "Subject.8/Pick up object/PickupobjectS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "266",
+      "extracted_frame_count": 266,
+      "pose_detected_count": 245,
+      "pose_missing_count": 21,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          20
+        ]
+      ],
+      "longest_missing_run": 21,
+      "pose_availability": 0.9210526315789473
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Sit down/SitDownS8.avi",
+      "source_sha256": "6ee18eec4616fb37daf886f8426804b30520c53e6f8ae22d11c452d5743a4a82",
+      "output_relative_path": "Subject.8/Sit down/SitDownS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "212",
+      "extracted_frame_count": 212,
+      "pose_detected_count": 174,
+      "pose_missing_count": 38,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          37
+        ]
+      ],
+      "longest_missing_run": 38,
+      "pose_availability": 0.8207547169811321
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "8",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.8/Walk/WalkS8.avi",
+      "source_sha256": "4399912b9588d8b33151d528694b627dfda2ae95821499951719e73b214161b1",
+      "output_relative_path": "Subject.8/Walk/WalkS8.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "216",
+      "extracted_frame_count": 216,
+      "pose_detected_count": 216,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Fall backwards/FallBackwardsS9.avi",
+      "source_sha256": "2f6058978ef5bc097767f612e4945885d86e3d823c9e09574d32664ae37ec3b0",
+      "output_relative_path": "Subject.9/Fall backwards/FallBackwardsS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "252",
+      "extracted_frame_count": 252,
+      "pose_detected_count": 252,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Fall forward/FallForwardS9.avi",
+      "source_sha256": "79516c87fba3c8eb1f3d1fb6608d84d40fd169258c426b2395e66c195c76a61d",
+      "output_relative_path": "Subject.9/Fall forward/FallForwardS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "148",
+      "extracted_frame_count": 148,
+      "pose_detected_count": 128,
+      "pose_missing_count": 20,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          18
+        ],
+        [
+          49,
+          49
+        ]
+      ],
+      "longest_missing_run": 19,
+      "pose_availability": 0.8648648648648649
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Fall left/FallLeftS9.avi",
+      "source_sha256": "c4fa50b461e4e2cf1a511ce6925fdc03c44de0a54ba2505cc0cf451a7e9b6da3",
+      "output_relative_path": "Subject.9/Fall left/FallLeftS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "207",
+      "extracted_frame_count": 207,
+      "pose_detected_count": 104,
+      "pose_missing_count": 103,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          2
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          39,
+          41
+        ],
+        [
+          43,
+          45
+        ],
+        [
+          47,
+          47
+        ],
+        [
+          49,
+          63
+        ],
+        [
+          80,
+          87
+        ],
+        [
+          89,
+          89
+        ],
+        [
+          91,
+          92
+        ],
+        [
+          94,
+          94
+        ],
+        [
+          97,
+          98
+        ],
+        [
+          100,
+          100
+        ],
+        [
+          102,
+          102
+        ],
+        [
+          104,
+          104
+        ],
+        [
+          106,
+          106
+        ],
+        [
+          108,
+          108
+        ],
+        [
+          110,
+          110
+        ],
+        [
+          113,
+          113
+        ],
+        [
+          115,
+          115
+        ],
+        [
+          117,
+          118
+        ],
+        [
+          120,
+          120
+        ],
+        [
+          122,
+          122
+        ],
+        [
+          124,
+          124
+        ],
+        [
+          126,
+          126
+        ],
+        [
+          128,
+          128
+        ],
+        [
+          130,
+          130
+        ],
+        [
+          133,
+          135
+        ],
+        [
+          138,
+          138
+        ],
+        [
+          140,
+          140
+        ],
+        [
+          142,
+          142
+        ],
+        [
+          144,
+          144
+        ],
+        [
+          146,
+          146
+        ],
+        [
+          148,
+          148
+        ],
+        [
+          150,
+          150
+        ],
+        [
+          152,
+          152
+        ],
+        [
+          154,
+          156
+        ],
+        [
+          158,
+          158
+        ],
+        [
+          160,
+          167
+        ],
+        [
+          169,
+          169
+        ],
+        [
+          171,
+          177
+        ],
+        [
+          180,
+          180
+        ],
+        [
+          182,
+          183
+        ],
+        [
+          185,
+          185
+        ],
+        [
+          187,
+          188
+        ],
+        [
+          190,
+          192
+        ],
+        [
+          195,
+          199
+        ],
+        [
+          202,
+          202
+        ],
+        [
+          206,
+          206
+        ]
+      ],
+      "longest_missing_run": 15,
+      "pose_availability": 0.5024154589371981
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Fall right/FallRightS9.avi",
+      "source_sha256": "db4040ba2934980413adc82a37a0630d25a18003cf212cf2b93c3d91f4cf8631",
+      "output_relative_path": "Subject.9/Fall right/FallRightS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "189",
+      "extracted_frame_count": 189,
+      "pose_detected_count": 180,
+      "pose_missing_count": 9,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          8
+        ]
+      ],
+      "longest_missing_run": 9,
+      "pose_availability": 0.9523809523809523
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Fall sitting/FallSittingS9.avi",
+      "source_sha256": "d531f4785f188f6dd94ef354557be1abf6715065f0431ee7fd65c72f55108a58",
+      "output_relative_path": "Subject.9/Fall sitting/FallSittingS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "216",
+      "extracted_frame_count": 216,
+      "pose_detected_count": 215,
+      "pose_missing_count": 1,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          75,
+          75
+        ]
+      ],
+      "longest_missing_run": 1,
+      "pose_availability": 0.9953703703703703
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Hop/HopS9.avi",
+      "source_sha256": "2ef5d7cfdc7ea842ffd88ee94a00299b273cc9d00b27dbaca6ab3488dea59959",
+      "output_relative_path": "Subject.9/Hop/HopS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "212",
+      "extracted_frame_count": 212,
+      "pose_detected_count": 210,
+      "pose_missing_count": 2,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          1
+        ]
+      ],
+      "longest_missing_run": 2,
+      "pose_availability": 0.9905660377358491
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Kneel/KneelS9.avi",
+      "source_sha256": "56e26721f9866bf514d7f412ef84261cab0690a816695b7ff048f04ae6a874f2",
+      "output_relative_path": "Subject.9/Kneel/KneelS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "216",
+      "extracted_frame_count": 216,
+      "pose_detected_count": 203,
+      "pose_missing_count": 13,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          2
+        ],
+        [
+          101,
+          101
+        ],
+        [
+          106,
+          106
+        ],
+        [
+          109,
+          109
+        ],
+        [
+          112,
+          118
+        ]
+      ],
+      "longest_missing_run": 7,
+      "pose_availability": 0.9398148148148148
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Pick up object/PickupobjectS9.avi",
+      "source_sha256": "e394dd8361318ba6a11537b182119d33c1a42d7339721492bfc542f108e70b4c",
+      "output_relative_path": "Subject.9/Pick up object/PickupobjectS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "220",
+      "extracted_frame_count": 220,
+      "pose_detected_count": 212,
+      "pose_missing_count": 8,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          7
+        ]
+      ],
+      "longest_missing_run": 8,
+      "pose_availability": 0.9636363636363636
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Sit down/SitDownS9.avi",
+      "source_sha256": "8e096744e202f837cd1c1f02b52068d5816e5ec81822eea1b68bbe8653f10069",
+      "output_relative_path": "Subject.9/Sit down/SitDownS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "238",
+      "extracted_frame_count": 238,
+      "pose_detected_count": 208,
+      "pose_missing_count": 30,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          2
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          58,
+          65
+        ],
+        [
+          70,
+          72
+        ],
+        [
+          74,
+          86
+        ]
+      ],
+      "longest_missing_run": 13,
+      "pose_availability": 0.8739495798319328
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "9",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "train",
+      "source_relative_video_path": "Subject.9/Walk/WalkS9.avi",
+      "source_sha256": "5116084849067721c58bf18cd449a01122062fe88f5dedc338eaeb9f252e55a3",
+      "output_relative_path": "Subject.9/Walk/WalkS9.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "234",
+      "extracted_frame_count": 234,
+      "pose_detected_count": 199,
+      "pose_missing_count": 35,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          34
+        ]
+      ],
+      "longest_missing_run": 35,
+      "pose_availability": 0.8504273504273504
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Fall backwards",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Fall backwards/FallBackwardsS10.avi",
+      "source_sha256": "620d7f1d44a1df3ed19ea9cf1051f68fd40aa3b722fe45420790d42709d91b07",
+      "output_relative_path": "Subject.10/Fall backwards/FallBackwardsS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "274",
+      "extracted_frame_count": 274,
+      "pose_detected_count": 266,
+      "pose_missing_count": 8,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          7
+        ]
+      ],
+      "longest_missing_run": 8,
+      "pose_availability": 0.9708029197080292
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Fall forward",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Fall forward/FallForwardS10.avi",
+      "source_sha256": "4f46775795f223c8434901c7d6be83a6ace590369da13b697b3aaf4635a58d9e",
+      "output_relative_path": "Subject.10/Fall forward/FallForwardS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "243",
+      "extracted_frame_count": 243,
+      "pose_detected_count": 185,
+      "pose_missing_count": 58,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          2
+        ],
+        [
+          4,
+          24
+        ],
+        [
+          28,
+          31
+        ],
+        [
+          34,
+          47
+        ],
+        [
+          49,
+          57
+        ],
+        [
+          59,
+          65
+        ]
+      ],
+      "longest_missing_run": 21,
+      "pose_availability": 0.7613168724279835
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Fall left",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Fall left/FallLeftS10.avi",
+      "source_sha256": "75b35738c8fc821ed8fdca773790cb3b35a4c8e47d882f0f93499229dc97e7a4",
+      "output_relative_path": "Subject.10/Fall left/FallLeftS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "212",
+      "extracted_frame_count": 212,
+      "pose_detected_count": 197,
+      "pose_missing_count": 15,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          11
+        ],
+        [
+          201,
+          203
+        ]
+      ],
+      "longest_missing_run": 12,
+      "pose_availability": 0.9292452830188679
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Fall right",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Fall right/FallRightS10.avi",
+      "source_sha256": "661abb9452bcf0e28cbea14ffc24c7271cf7202ddf0efa57538b53a2d22d5817",
+      "output_relative_path": "Subject.10/Fall right/FallRightS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "202",
+      "extracted_frame_count": 202,
+      "pose_detected_count": 202,
+      "pose_missing_count": 0,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [],
+      "longest_missing_run": 0,
+      "pose_availability": 1.0
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Fall sitting",
+      "binary_label": "fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Fall sitting/FallSittingS10.avi",
+      "source_sha256": "c66f46cda1eb979303a805d186ea6a514e1c81cc08c00fe0a80b0f08ab79dd17",
+      "output_relative_path": "Subject.10/Fall sitting/FallSittingS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "288",
+      "extracted_frame_count": 288,
+      "pose_detected_count": 187,
+      "pose_missing_count": 101,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          1
+        ],
+        [
+          5,
+          18
+        ],
+        [
+          20,
+          21
+        ],
+        [
+          23,
+          31
+        ],
+        [
+          33,
+          34
+        ],
+        [
+          39,
+          56
+        ],
+        [
+          63,
+          69
+        ],
+        [
+          79,
+          125
+        ]
+      ],
+      "longest_missing_run": 47,
+      "pose_availability": 0.6493055555555556
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Hop",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Hop/HopS10.avi",
+      "source_sha256": "1a9c205f4596d2fe2bb715454b26bb43dbe112a840f7dae55bb3b57e85b3a9cb",
+      "output_relative_path": "Subject.10/Hop/HopS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "248",
+      "extracted_frame_count": 248,
+      "pose_detected_count": 246,
+      "pose_missing_count": 2,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          1
+        ]
+      ],
+      "longest_missing_run": 2,
+      "pose_availability": 0.9919354838709677
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Kneel",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Kneel/KneelS10.avi",
+      "source_sha256": "0bfd527d1930a1fd7faad1076c1cde187eb1f858bf74f80d4aa9b7e8fc501194",
+      "output_relative_path": "Subject.10/Kneel/KneelS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "261",
+      "extracted_frame_count": 261,
+      "pose_detected_count": 182,
+      "pose_missing_count": 79,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          3
+        ],
+        [
+          42,
+          56
+        ],
+        [
+          58,
+          67
+        ],
+        [
+          69,
+          69
+        ],
+        [
+          71,
+          71
+        ],
+        [
+          74,
+          74
+        ],
+        [
+          79,
+          88
+        ],
+        [
+          90,
+          93
+        ],
+        [
+          95,
+          115
+        ],
+        [
+          117,
+          120
+        ],
+        [
+          189,
+          190
+        ],
+        [
+          230,
+          232
+        ],
+        [
+          236,
+          236
+        ],
+        [
+          239,
+          239
+        ],
+        [
+          241,
+          241
+        ]
+      ],
+      "longest_missing_run": 21,
+      "pose_availability": 0.6973180076628352
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Pick up object",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Pick up object/PickupobjectS10.avi",
+      "source_sha256": "7d0ef1fccb87f752252bceda2ae9e648dde933efd56b338767a3a7ab7f2e3726",
+      "output_relative_path": "Subject.10/Pick up object/PickupobjectS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "292",
+      "extracted_frame_count": 292,
+      "pose_detected_count": 214,
+      "pose_missing_count": 78,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          23
+        ],
+        [
+          64,
+          78
+        ],
+        [
+          97,
+          98
+        ],
+        [
+          111,
+          144
+        ],
+        [
+          218,
+          219
+        ],
+        [
+          222,
+          222
+        ]
+      ],
+      "longest_missing_run": 34,
+      "pose_availability": 0.7328767123287672
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Sit down",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Sit down/SitDownS10.avi",
+      "source_sha256": "7b50d78ea70228e6dd123a467b8d77a38b691c7b8516123ddfce5353d2cb9f32",
+      "output_relative_path": "Subject.10/Sit down/SitDownS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "234",
+      "extracted_frame_count": 234,
+      "pose_detected_count": 220,
+      "pose_missing_count": 14,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          47,
+          49
+        ],
+        [
+          73,
+          76
+        ],
+        [
+          82,
+          83
+        ],
+        [
+          85,
+          85
+        ],
+        [
+          89,
+          91
+        ],
+        [
+          206,
+          206
+        ]
+      ],
+      "longest_missing_run": 4,
+      "pose_availability": 0.9401709401709402
+    },
+    {
+      "schema_version": "pose_raw_v1",
+      "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+      "dataset_name": "CAUCAFall",
+      "dataset_version": "V5",
+      "subject_id": "10",
+      "original_activity": "Walk",
+      "binary_label": "non_fall",
+      "split": "validation",
+      "source_relative_video_path": "Subject.10/Walk/WalkS10.avi",
+      "source_sha256": "709bd4c4b4f320079d8cbe2e15915c27ba53005cbdc572dbde2bef732e81c5c9",
+      "output_relative_path": "Subject.10/Walk/WalkS10.npz",
+      "source_fps": "20.0",
+      "width": "720",
+      "height": "480",
+      "expected_frame_count": "224",
+      "extracted_frame_count": 224,
+      "pose_detected_count": 210,
+      "pose_missing_count": 14,
+      "timestamp_method": "derived_from_frame_index_and_source_fps",
+      "status": "complete",
+      "error_type": "",
+      "error_message": "",
+      "error_frame_index": "",
+      "missing_frame_intervals": [
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          7,
+          10
+        ],
+        [
+          12,
+          15
+        ],
+        [
+          81,
+          81
+        ],
+        [
+          107,
+          107
+        ]
+      ],
+      "longest_missing_run": 4,
+      "pose_availability": 0.9375
+    }
+  ],
+  "zero_pose_videos": [
+    "Subject.8/Fall forward/FallForwardS8.avi"
+  ],
+  "per_split": {
+    "train": {
+      "videos": 60,
+      "statuses": {
+        "complete": 60
+      },
+      "expected_frames": 11115,
+      "validated_extracted_frames": 11115,
+      "detected": 9535,
+      "missing": 1580
+    },
+    "validation": {
+      "videos": 20,
+      "statuses": {
+        "complete": 20
+      },
+      "expected_frames": 4674,
+      "validated_extracted_frames": 4674,
+      "detected": 3976,
+      "missing": 698
+    },
+    "test": {
+      "videos": 20,
+      "statuses": {
+        "complete": 20
+      },
+      "expected_frames": 4088,
+      "validated_extracted_frames": 4088,
+      "detected": 3605,
+      "missing": 483
+    }
+  },
+  "per_activity": {
+    "Fall backwards": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 2040,
+      "validated_extracted_frames": 2040,
+      "detected": 2021,
+      "missing": 19
+    },
+    "Fall forward": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 1694,
+      "validated_extracted_frames": 1694,
+      "detected": 1124,
+      "missing": 570
+    },
+    "Fall left": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 1837,
+      "validated_extracted_frames": 1837,
+      "detected": 1348,
+      "missing": 489
+    },
+    "Fall right": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 1864,
+      "validated_extracted_frames": 1864,
+      "detected": 1611,
+      "missing": 253
+    },
+    "Fall sitting": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 2161,
+      "validated_extracted_frames": 2161,
+      "detected": 1993,
+      "missing": 168
+    },
+    "Hop": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 1767,
+      "validated_extracted_frames": 1767,
+      "detected": 1639,
+      "missing": 128
+    },
+    "Kneel": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 2116,
+      "validated_extracted_frames": 2116,
+      "detected": 1781,
+      "missing": 335
+    },
+    "Pick up object": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 2052,
+      "validated_extracted_frames": 2052,
+      "detected": 1613,
+      "missing": 439
+    },
+    "Sit down": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 2085,
+      "validated_extracted_frames": 2085,
+      "detected": 1955,
+      "missing": 130
+    },
+    "Walk": {
+      "videos": 10,
+      "statuses": {
+        "complete": 10
+      },
+      "expected_frames": 2261,
+      "validated_extracted_frames": 2261,
+      "detected": 2031,
+      "missing": 230
+    }
+  }
+}
