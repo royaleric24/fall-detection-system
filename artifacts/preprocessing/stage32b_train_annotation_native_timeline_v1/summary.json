@@ -1,0 +1,110 @@
+{
+  "analysis_version": "stage32b_train_annotation_native_timeline_v1",
+  "status": "pending_external_gate_review",
+  "totals": {
+    "sequences": 60,
+    "png_files": 11176,
+    "txt_files": 11176,
+    "exact_stem_pairs": 11172,
+    "explicit_sequence_alias_pairs": 4,
+    "order_status_counts": {
+      "verified": 60
+    },
+    "timebase_status_counts": {
+      "unresolved": 60
+    },
+    "sequences_with_pixel_duplicates": 14,
+    "pixel_duplicate_groups": 18,
+    "pixel_duplicate_excess": 66,
+    "file_duplicate_groups": 18,
+    "class0_count": 7927,
+    "class1_count": 3249,
+    "avi_frames_reference": 11115,
+    "png_minus_avi_counts": {
+      "1": 59,
+      "2": 1
+    },
+    "leading_boundary_duplicate_sequences": 1,
+    "trailing_boundary_duplicate_sequences": 2,
+    "workbook_train_frames": 11177,
+    "workbook_count_mismatches": 1,
+    "png_ancillary_record_count": 0
+  },
+  "provenance": {
+    "parent_stage32a_commit": "98c34e553b3a75dddef6f28816db2227a6188aa7",
+    "stage2_run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "split": "train",
+    "subject_ids": [
+      8,
+      4,
+      3,
+      9,
+      1,
+      2
+    ],
+    "code_sha256": "c7aedc7c4f4be5595275f600f0eae79172175d02a35b8f628ee89f2790a509d1",
+    "workbook_path": "data/raw/caucafall_v5/Dataset details.xlsx",
+    "workbook_sha256": "71d2ab888da9ced9737fcc457e8c464c6923baaaccae36e63c9dcc99fddef75c",
+    "stage32a_summary_sha256": "03769361e6969989a1d68c9f5f999e67cd6b2e7c5713346b27d9e32340622d27",
+    "stage32a_sources_sha256": "650fd528e8d3536cf18dddcfe53c35f1922597a63fa7fbb9cb70429611090d57",
+    "stage3_config_sha256": "d7868a6c97de7c804a7a96306c6ab7f725fad5d9bc0c6fb7d9dee43cc6b63160",
+    "external_documentation_url": "https://data.mendeley.com/datasets/7w7fccy7ky/5",
+    "external_documentation_version": 5,
+    "python": "3.13.15",
+    "opencv": "4.12.0",
+    "numpy": "2.2.6",
+    "png_source_hashes_verified_against_stage32a": true
+  },
+  "definitions": {
+    "annotation_order_status": {
+      "verified": "Unique filename order and bijective PNG/TXT sequence identity; not proof of uniform physical time or complete acquisition coverage",
+      "unresolved": "Unparsed/duplicate ordering keys or non-bijective identity"
+    },
+    "annotation_timebase_status": {
+      "unresolved": "No verified PNG sampling interval or per-image physical timestamp"
+    },
+    "explicit_alias_rule": "Only the four declared anomalies; unique identical prefix and numeric token in each sequence, no competing stem, explicit names preserved. Establishes deterministic identity, not independent author-intent certification.",
+    "duplicates": "Exact byte SHA-256 or IMREAD_UNCHANGED decoded shape/dtype/pixel SHA-256; repeated pixel hashes confirmed by array_equal. No similarity threshold and no deletion.",
+    "workbook": "Known Hoja1 block layout; Train subjects selected before resolving activity/count cells; no subject-specific Validation/Test values analyzed.",
+    "timing_formulas": {
+      "avi_count_duration_seconds": "T_avi/f_avi",
+      "avi_first_last_sample_span_seconds": "(T_avi-1)/f_avi",
+      "png_count_over_avi_count_duration": "N_png/(T_avi/f_avi)",
+      "png_count_over_avi_first_last_span": "N_png/((T_avi-1)/f_avi)",
+      "png_intervals_over_avi_count_duration": "(N_png-1)/(T_avi/f_avi)",
+      "png_intervals_over_avi_first_last_span": "(N_png-1)/((T_avi-1)/f_avi)"
+    },
+    "timing_limitations": "These compare counts to AVI reference durations only; same endpoints/coverage and constant PNG cadence are unverified. None is accepted as PNG FPS.",
+    "filename_vs_ordinal": "Full displayed numeric token retained; ordinal is zero-based sorted sequence position; AVI frame index and PNG timestamp remain null.",
+    "labels": "0 nofall, 1 grounded_fall_state; transitions reported only as PNG ordinals"
+  },
+  "conclusions": {
+    "physical_png_fps": null,
+    "systematic_plus_one": "unresolved",
+    "subject2_fall_backwards_plus_two": "unresolved; exact duplicate group documented separately",
+    "acquisition_avi_difference": "External 23 FPS camera capability and local 20 FPS AVI are distinct provenance layers; their relationship is undocumented",
+    "downstream_decisions": {
+      "missing_pose_policy": "UNDECIDED",
+      "visibility_threshold": "UNDECIDED",
+      "interpolation_policy": "UNDECIDED",
+      "maximum_interpolation_gap_ms": "UNDECIDED",
+      "normalization_denominator": "UNDECIDED",
+      "invalid_normalization_scale_policy": "UNDECIDED",
+      "temporal_resampling_method": "UNDECIDED",
+      "target_model_fps": "UNDECIDED",
+      "window_duration_ms": "UNDECIDED",
+      "window_stride_ms": "UNDECIDED",
+      "minimum_pose_coverage": "UNDECIDED",
+      "temporal_supervision_protocol": "UNDECIDED",
+      "positive_window_overlap_threshold": "UNDECIDED",
+      "ambiguous_window_policy": "UNDECIDED",
+      "optional_motion_features": "UNDECIDED",
+      "transform_order": "UNDECIDED",
+      "derived_schema_version": "UNDECIDED"
+    },
+    "avi_decoded": false,
+    "pose_arrays_loaded": false,
+    "mediapipe_run": false,
+    "png_timestamps_fabricated": false
+  }
+}

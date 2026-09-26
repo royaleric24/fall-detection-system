@@ -1,0 +1,112 @@
+{
+  "status": "pending_external_gate_review",
+  "baseline_commit": "98c34e553b3a75dddef6f28816db2227a6188aa7",
+  "commands": {
+    "tests": "UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with numpy==2.2.6 --with opencv-contrib-python==4.12.0.88 python -B -m unittest tests.test_stage32b_annotation_timeline tests.test_stage3_contract -v",
+    "official_analysis": "UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with numpy==2.2.6 --with opencv-contrib-python==4.12.0.88 python -B -m ml.preprocessing.audit_annotation_timeline",
+    "whitespace": "git diff --check"
+  },
+  "test_results": {
+    "stage32b": 25,
+    "stage3_contract": 18,
+    "total": 43,
+    "summary": "Ran 43 tests in 0.060s; OK",
+    "exit_code": 0
+  },
+  "official_analysis_invocations": 1,
+  "official_analysis_exit_code": 0,
+  "mechanical_checks": {
+    "Train_sequences": 60,
+    "subjects": [
+      8,
+      4,
+      3,
+      9,
+      1,
+      2
+    ],
+    "PNG_TXT_pairs": 11176,
+    "AVI_frames_frozen_reference": 11115,
+    "boundary_records": 240,
+    "unique_bijective_ordinals_all_sequences": true,
+    "null_PNG_timestamps_and_AVI_indices": true,
+    "order_verified_sequences": 60,
+    "timebase_unresolved_sequences": 60,
+    "file_and_pixel_duplicate_groups_identical": true,
+    "duplicate_groups": 18,
+    "extra_identical_copies": 66,
+    "formula_checks_all_60_sequences": true,
+    "Stage32a_frozen_artifact_hashes_verified": 14,
+    "Stage2_frozen_source_hashes_verified": 21,
+    "all_tracked_files_unchanged": true,
+    "all_decisions_UNDECIDED": true,
+    "git_diff_check_exit_code": 0,
+    "new_untracked_files_whitespace_checked": true
+  },
+  "supplemental_read_only_workbook_metadata_check": {
+    "scope": "Only Train subject blocks; all populated cells in five-column blocks from subject header through last activity",
+    "selected_Train_nonempty_cells": 342,
+    "timing_term_hits": [
+      {
+        "subject_id": 8,
+        "cell": "J55",
+        "value": "Frames"
+      },
+      {
+        "subject_id": 4,
+        "cell": "J25",
+        "value": "Frames"
+      },
+      {
+        "subject_id": 3,
+        "cell": "D25",
+        "value": "Frames"
+      },
+      {
+        "subject_id": 9,
+        "cell": "D70",
+        "value": "Frames"
+      },
+      {
+        "subject_id": 1,
+        "cell": "D10",
+        "value": "Frames"
+      },
+      {
+        "subject_id": 2,
+        "cell": "J10",
+        "value": "Frames"
+      }
+    ],
+    "png_timebase_evidence_found": false
+  },
+  "scope_confirmations": {
+    "Validation_Test_subject_contents_accessed": false,
+    "pose_arrays_loaded": false,
+    "AVI_decoded": false,
+    "MediaPipe_run": false,
+    "PNG_pose_extraction": false,
+    "pose_label_join": false,
+    "fabricated_timestamps": false,
+    "preprocessing_or_training": false,
+    "commit_created": false
+  },
+  "implementation_sha256": {
+    "ml/preprocessing/audit_annotation_timeline.py": "c7aedc7c4f4be5595275f600f0eae79172175d02a35b8f628ee89f2790a509d1",
+    "tests/test_stage32b_annotation_timeline.py": "bacd280500847431b63d63ec58a921ea9c36012238befeb802e2cd7019dbe795",
+    "docs/stage32b_annotation_timeline.md": "b8c3bb3530fe7562abf15cac622481daf3237777b64e60a0e719e381eec63a18"
+  },
+  "artifact_sha256": {
+    "REPORT.md": "81c2bc628be2ea1ca00ba04b045f4702480fa14885c8022448112958125e90f2",
+    "annotation_native_frames.csv": "fbd5de355c03e2823bf125178aaba66fd4defdb8084a7a98075f70f1ef1fc053",
+    "annotation_native_sequence_inventory.csv": "405a976956d6826b510d17ecb93ef3d7d091c946f0a54883ca86cd13ae67d4e8",
+    "anomaly_cases.csv": "a0f6c996191e47a2ea16111403d3998a20acd54b734ce8815f6e9130c2dda357",
+    "local_provenance_search.csv": "da5ba8c430264ce3d659a71776e0d84a5af79bb1f1e19d61f1a0be86c1caffa5",
+    "png_boundary_audit.csv": "6506977ac5be42a5124e55a9d7f11511e1ebbba361dd1bc11c299b5bb61a2f23",
+    "png_duplicate_audit.csv": "8835f4fa2481228e903a2db96c8e7910bedb1521ce3b2cb9f24564175efe5556",
+    "summary.json": "472daffd9dd5f7313409eb74ea614531acea12880381f9ff1e1669247c03c6c0",
+    "timebase_diagnostics.csv": "8c3a73a8d3b9152d86925c2593f8134e573068f73395816d23f4c62b6f51f4ac",
+    "timeline_provenance.csv": "3490f707636d6c1f938f49c1b59c3aacf9e290f0ca23e278d82e0b40e6055cc9",
+    "workbook_train_evidence.csv": "a77b584a99f7f0445400220fa8fcc7801337084d7a541adac49b2a5eb6f88983"
+  }
+}

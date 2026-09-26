@@ -1,0 +1,61 @@
+subject_id,activity,source_video_identity,split,workbook,sheet,activity_cell,frames_cell,documented_frames,count_generation_method,fps_or_timestamp_field,actual_png_count,png_minus_documented_frames
+1,Fall backwards,Subject.1/Fall backwards/FallBackwardsS1.avi,train,Dataset details.xlsx,Hoja1,C16,D16,126,undocumented,absent_from_inspected_Train_blocks,126,0
+1,Fall forward,Subject.1/Fall forward/FallForwardS1.avi,train,Dataset details.xlsx,Hoja1,C17,D17,191,undocumented,absent_from_inspected_Train_blocks,191,0
+1,Fall left,Subject.1/Fall left/FallLeftS1.avi,train,Dataset details.xlsx,Hoja1,C18,D18,87,undocumented,absent_from_inspected_Train_blocks,87,0
+1,Fall right,Subject.1/Fall right/FallRightS1.avi,train,Dataset details.xlsx,Hoja1,C19,D19,115,undocumented,absent_from_inspected_Train_blocks,115,0
+1,Fall sitting,Subject.1/Fall sitting/FallSittingS1.avi,train,Dataset details.xlsx,Hoja1,C20,D20,183,undocumented,absent_from_inspected_Train_blocks,183,0
+1,Hop,Subject.1/Hop/HopS1.avi,train,Dataset details.xlsx,Hoja1,C11,D11,183,undocumented,absent_from_inspected_Train_blocks,183,0
+1,Kneel,Subject.1/Kneel/KneelS1.avi,train,Dataset details.xlsx,Hoja1,C12,D12,220,undocumented,absent_from_inspected_Train_blocks,220,0
+1,Pick up object,Subject.1/Pick up object/PickupobjectS1.avi,train,Dataset details.xlsx,Hoja1,C13,D13,118,undocumented,absent_from_inspected_Train_blocks,118,0
+1,Sit down,Subject.1/Sit down/SitDownS1.avi,train,Dataset details.xlsx,Hoja1,C14,D14,189,undocumented,absent_from_inspected_Train_blocks,188,-1
+1,Walk,Subject.1/Walk/WalkS1.avi,train,Dataset details.xlsx,Hoja1,C15,D15,243,undocumented,absent_from_inspected_Train_blocks,243,0
+2,Fall backwards,Subject.2/Fall backwards/FallBackwardsS2.avi,train,Dataset details.xlsx,Hoja1,I16,J16,121,undocumented,absent_from_inspected_Train_blocks,121,0
+2,Fall forward,Subject.2/Fall forward/FallForwardS2.avi,train,Dataset details.xlsx,Hoja1,I17,J17,107,undocumented,absent_from_inspected_Train_blocks,107,0
+2,Fall left,Subject.2/Fall left/FallLeftS2.avi,train,Dataset details.xlsx,Hoja1,I18,J18,110,undocumented,absent_from_inspected_Train_blocks,110,0
+2,Fall right,Subject.2/Fall right/FallRightS2.avi,train,Dataset details.xlsx,Hoja1,I19,J19,147,undocumented,absent_from_inspected_Train_blocks,147,0
+2,Fall sitting,Subject.2/Fall sitting/FallSittingS2.avi,train,Dataset details.xlsx,Hoja1,I20,J20,158,undocumented,absent_from_inspected_Train_blocks,158,0
+2,Hop,Subject.2/Hop/HopS2.avi,train,Dataset details.xlsx,Hoja1,I11,J11,172,undocumented,absent_from_inspected_Train_blocks,172,0
+2,Kneel,Subject.2/Kneel/KneelS2.avi,train,Dataset details.xlsx,Hoja1,I12,J12,131,undocumented,absent_from_inspected_Train_blocks,131,0
+2,Pick up object,Subject.2/Pick up object/PickupobjectS2.avi,train,Dataset details.xlsx,Hoja1,I13,J13,167,undocumented,absent_from_inspected_Train_blocks,167,0
+2,Sit down,Subject.2/Sit down/SitDownS2.avi,train,Dataset details.xlsx,Hoja1,I14,J14,113,undocumented,absent_from_inspected_Train_blocks,113,0
+2,Walk,Subject.2/Walk/WalkS2.avi,train,Dataset details.xlsx,Hoja1,I15,J15,245,undocumented,absent_from_inspected_Train_blocks,245,0
+3,Fall backwards,Subject.3/Fall backwards/FallBackwardsS3.avi,train,Dataset details.xlsx,Hoja1,C31,D31,167,undocumented,absent_from_inspected_Train_blocks,167,0
+3,Fall forward,Subject.3/Fall forward/FallForwardS3.avi,train,Dataset details.xlsx,Hoja1,C32,D32,154,undocumented,absent_from_inspected_Train_blocks,154,0
+3,Fall left,Subject.3/Fall left/FallLeftS3.avi,train,Dataset details.xlsx,Hoja1,C33,D33,172,undocumented,absent_from_inspected_Train_blocks,172,0
+3,Fall right,Subject.3/Fall right/FallRightS3.avi,train,Dataset details.xlsx,Hoja1,C34,D34,221,undocumented,absent_from_inspected_Train_blocks,221,0
+3,Fall sitting,Subject.3/Fall sitting/FallSittingS3.avi,train,Dataset details.xlsx,Hoja1,C35,D35,203,undocumented,absent_from_inspected_Train_blocks,203,0
+3,Hop,Subject.3/Hop/HopS3.avi,train,Dataset details.xlsx,Hoja1,C26,D26,163,undocumented,absent_from_inspected_Train_blocks,163,0
+3,Kneel,Subject.3/Kneel/KneelS3.avi,train,Dataset details.xlsx,Hoja1,C27,D27,214,undocumented,absent_from_inspected_Train_blocks,214,0
+3,Pick up object,Subject.3/Pick up object/PickupobjectS3.avi,train,Dataset details.xlsx,Hoja1,C28,D28,187,undocumented,absent_from_inspected_Train_blocks,187,0
+3,Sit down,Subject.3/Sit down/SitDownS3.avi,train,Dataset details.xlsx,Hoja1,C29,D29,262,undocumented,absent_from_inspected_Train_blocks,262,0
+3,Walk,Subject.3/Walk/WalkS3.avi,train,Dataset details.xlsx,Hoja1,C30,D30,177,undocumented,absent_from_inspected_Train_blocks,177,0
+4,Fall backwards,Subject.4/Fall backwards/FallBackwardsS4.avi,train,Dataset details.xlsx,Hoja1,I31,J31,193,undocumented,absent_from_inspected_Train_blocks,193,0
+4,Fall forward,Subject.4/Fall forward/FallForwardS4.avi,train,Dataset details.xlsx,Hoja1,I32,J32,169,undocumented,absent_from_inspected_Train_blocks,169,0
+4,Fall left,Subject.4/Fall left/FallLeftS4.avi,train,Dataset details.xlsx,Hoja1,I33,J33,163,undocumented,absent_from_inspected_Train_blocks,163,0
+4,Fall right,Subject.4/Fall right/FallRightS4.avi,train,Dataset details.xlsx,Hoja1,I34,J34,151,undocumented,absent_from_inspected_Train_blocks,151,0
+4,Fall sitting,Subject.4/Fall sitting/FallSittingS4.avi,train,Dataset details.xlsx,Hoja1,I35,J35,199,undocumented,absent_from_inspected_Train_blocks,199,0
+4,Hop,Subject.4/Hop/HopS4.avi,train,Dataset details.xlsx,Hoja1,I26,J26,145,undocumented,absent_from_inspected_Train_blocks,145,0
+4,Kneel,Subject.4/Kneel/KneelS4.avi,train,Dataset details.xlsx,Hoja1,I27,J27,223,undocumented,absent_from_inspected_Train_blocks,223,0
+4,Pick up object,Subject.4/Pick up object/PickupobjectS4.avi,train,Dataset details.xlsx,Hoja1,I28,J28,180,undocumented,absent_from_inspected_Train_blocks,180,0
+4,Sit down,Subject.4/Sit down/SitDownS4.avi,train,Dataset details.xlsx,Hoja1,I29,J29,200,undocumented,absent_from_inspected_Train_blocks,200,0
+4,Walk,Subject.4/Walk/WalkS4.avi,train,Dataset details.xlsx,Hoja1,I30,J30,241,undocumented,absent_from_inspected_Train_blocks,241,0
+8,Fall backwards,Subject.8/Fall backwards/FallBackwardsS8.avi,train,Dataset details.xlsx,Hoja1,I61,J61,213,undocumented,absent_from_inspected_Train_blocks,213,0
+8,Fall forward,Subject.8/Fall forward/FallForwardS8.avi,train,Dataset details.xlsx,Hoja1,I62,J62,123,undocumented,absent_from_inspected_Train_blocks,123,0
+8,Fall left,Subject.8/Fall left/FallLeftS8.avi,train,Dataset details.xlsx,Hoja1,I63,J63,203,undocumented,absent_from_inspected_Train_blocks,203,0
+8,Fall right,Subject.8/Fall right/FallRightS8.avi,train,Dataset details.xlsx,Hoja1,I64,J64,230,undocumented,absent_from_inspected_Train_blocks,230,0
+8,Fall sitting,Subject.8/Fall sitting/FallSittingS8.avi,train,Dataset details.xlsx,Hoja1,I65,J65,235,undocumented,absent_from_inspected_Train_blocks,235,0
+8,Hop,Subject.8/Hop/HopS8.avi,train,Dataset details.xlsx,Hoja1,I56,J56,167,undocumented,absent_from_inspected_Train_blocks,167,0
+8,Kneel,Subject.8/Kneel/KneelS8.avi,train,Dataset details.xlsx,Hoja1,I57,J57,257,undocumented,absent_from_inspected_Train_blocks,257,0
+8,Pick up object,Subject.8/Pick up object/PickupobjectS8.avi,train,Dataset details.xlsx,Hoja1,I58,J58,267,undocumented,absent_from_inspected_Train_blocks,267,0
+8,Sit down,Subject.8/Sit down/SitDownS8.avi,train,Dataset details.xlsx,Hoja1,I59,J59,213,undocumented,absent_from_inspected_Train_blocks,213,0
+8,Walk,Subject.8/Walk/WalkS8.avi,train,Dataset details.xlsx,Hoja1,I60,J60,217,undocumented,absent_from_inspected_Train_blocks,217,0
+9,Fall backwards,Subject.9/Fall backwards/FallBackwardsS9.avi,train,Dataset details.xlsx,Hoja1,C76,D76,253,undocumented,absent_from_inspected_Train_blocks,253,0
+9,Fall forward,Subject.9/Fall forward/FallForwardS9.avi,train,Dataset details.xlsx,Hoja1,C77,D77,149,undocumented,absent_from_inspected_Train_blocks,149,0
+9,Fall left,Subject.9/Fall left/FallLeftS9.avi,train,Dataset details.xlsx,Hoja1,C78,D78,208,undocumented,absent_from_inspected_Train_blocks,208,0
+9,Fall right,Subject.9/Fall right/FallRightS9.avi,train,Dataset details.xlsx,Hoja1,C79,D79,190,undocumented,absent_from_inspected_Train_blocks,190,0
+9,Fall sitting,Subject.9/Fall sitting/FallSittingS9.avi,train,Dataset details.xlsx,Hoja1,C80,D80,217,undocumented,absent_from_inspected_Train_blocks,217,0
+9,Hop,Subject.9/Hop/HopS9.avi,train,Dataset details.xlsx,Hoja1,C71,D71,213,undocumented,absent_from_inspected_Train_blocks,213,0
+9,Kneel,Subject.9/Kneel/KneelS9.avi,train,Dataset details.xlsx,Hoja1,C72,D72,217,undocumented,absent_from_inspected_Train_blocks,217,0
+9,Pick up object,Subject.9/Pick up object/PickupobjectS9.avi,train,Dataset details.xlsx,Hoja1,C73,D73,221,undocumented,absent_from_inspected_Train_blocks,221,0
+9,Sit down,Subject.9/Sit down/SitDownS9.avi,train,Dataset details.xlsx,Hoja1,C74,D74,239,undocumented,absent_from_inspected_Train_blocks,239,0
+9,Walk,Subject.9/Walk/WalkS9.avi,train,Dataset details.xlsx,Hoja1,C75,D75,235,undocumented,absent_from_inspected_Train_blocks,235,0

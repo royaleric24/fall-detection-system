@@ -1,0 +1,10 @@
+source_path,content_inspected,sha256,notes,relevant_text
+data/raw/caucafall_v5/Dataset details.xlsx,True,71d2ab888da9ced9737fcc457e8c464c6923baaaccae36e63c9dcc99fddef75c,Workbook Train blocks inspected,[]
+data/raw/caucafall_v5/Figure1 fall recognition based on feature extraction.jpeg,False,88a1ca6c317f4bfd35bd1e456837d6c837fbdc52607f473bc34f6e0c0c6e172b,General illustration; not used as timing evidence,[]
+data/raw/caucafall_v5/Figure2 fall recognition based on openpose.jpeg,False,fde23045ccfe42bc15a39441c73b00e246b61260ddc296ce1687bcfee75b325d,General illustration; not used as timing evidence,[]
+data/raw/caucafall_v5/Figure3 fall recognition based on yolo detectors.jpeg,False,88bd1a545cf3a4a828b044bd93c901ee701fc08b4f923b3f329b0ecbe562e1ac,General illustration; not used as timing evidence,[]
+data/raw/caucafall_v5/Figure4 dimensions.jpeg,False,e597c3b2aea8691945456b6d625aae6f6f404a2fb040b1be695aa4f6a4348d57,General illustration; not used as timing evidence,[]
+data/raw/caucafall_v5/Figure5 folders for each subject and different activities of the dataset.jpeg,False,92c9c917927ef19715b502d4ae0681638cff33c06568e5480f77b1d004f36b08,General illustration; not used as timing evidence,[]
+data/raw/caucafall_v5/Figure6 content of the different txt files.jpeg,False,9efbbdf29880c23f667bd47a593936410795d6d7e2205adf1ef768f5f89ffb58,General illustration; not used as timing evidence,[]
+data/raw/caucafall_v5/Figure7 camera-Fall Distance.jpeg,False,5062b1eb08612556a4ed9a9c7cf2294bb542b590c9e7fa617efe4730232821f6,General illustration; not used as timing evidence,[]
+data/raw/caucafall_v5/Figure8 angle of fall.jpeg,False,0148a99d00fcadc5113224eb40f5855b649048840a8d70e1d188df4e75657b33,General illustration; not used as timing evidence,[]
