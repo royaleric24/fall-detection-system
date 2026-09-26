@@ -1,0 +1,39 @@
+{
+  "contract_version": 1,
+  "stage": "3.0",
+  "review_status": "pending_external_gate_review",
+  "build_enabled": false,
+  "source": {
+    "dataset_name": "CAUCAFall",
+    "dataset_version": "V5",
+    "schema_version": "pose_raw_v1",
+    "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "execution_commit": "4b7557a5b3a8a4b40906b57a01a264bdeef9edb6",
+    "evidence_commit": "a28e0289c53463b3676b6c9275d4ee18a840fdae",
+    "pose_root": "data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "evidence_root": "artifacts/pose_extraction/runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "run_sha256": "cb7c7cbadd93e597fd3095317e0a60865858a442e099ae4737754e4887aa63dd",
+    "manifest_sha256": "9f0e7ba39a4a67b954f27ae1f3e022c22908c4f470347f28bfeef293f4f92527",
+    "split_config": "configs/dataset_split.json",
+    "split_sha256": "c1de39a02dd1ca2fe6cb1bd06c594ed9149477b4bc65c8774de527bd53a140d3"
+  },
+  "decisions": {
+    "missing_pose_policy": "UNDECIDED",
+    "visibility_threshold": "UNDECIDED",
+    "interpolation_policy": "UNDECIDED",
+    "maximum_interpolation_gap_ms": "UNDECIDED",
+    "normalization_denominator": "UNDECIDED",
+    "invalid_normalization_scale_policy": "UNDECIDED",
+    "temporal_resampling_method": "UNDECIDED",
+    "target_model_fps": "UNDECIDED",
+    "window_duration_ms": "UNDECIDED",
+    "window_stride_ms": "UNDECIDED",
+    "minimum_pose_coverage": "UNDECIDED",
+    "temporal_supervision_protocol": "UNDECIDED",
+    "positive_window_overlap_threshold": "UNDECIDED",
+    "ambiguous_window_policy": "UNDECIDED",
+    "optional_motion_features": "UNDECIDED",
+    "transform_order": "UNDECIDED",
+    "derived_schema_version": "UNDECIDED"
+  }
+}

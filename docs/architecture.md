@@ -467,13 +467,23 @@ Questions to answer before training:
 - Can the dataset video be reliably converted using the same pose pipeline as the real camera?
 - What class labels should V1 use?
 
-### Stage 2.1 — active
+### Stage 2 — complete and frozen
 
-Pose Record Schema & Extraction Contract: documentation/schema definition only.
-The [raw pose extraction contract](pose_extraction_contract.md) specifies Stage 2
-storage, timestamps, missingness, failures and provenance under the frozen Stage 1
-protocol. Stage 2.2 extractor implementation and bulk extraction have not started.
-Normalization, temporal windows and training remain Stage 3 or later work.
+The [raw pose extraction contract](pose_extraction_contract.md) governs official
+run `4df7dd5f-fb38-4908-8233-1a81deb8dc05`, archived in evidence commit
+`a28e0289c53463b3676b6c9275d4ee18a840fdae`. Raw pose records and historical
+evidence remain immutable. Earlier status statements inside the frozen contract
+and dataset protocol describe their historical stages.
+
+### Stage 3.0 — pending external Gate Review
+
+The [preprocessing contract](stage3_preprocessing_contract.md) adds source identity,
+split/access guards and explicit unresolved decisions. The selector defaults to
+Train; Test exploration and non-Train statistics fitting are rejected. No
+preprocessing, window construction or training is implemented. The initial
+normalization outline and online timing targets above do not resolve the Stage 3
+formula, transform order, model FPS or supervision policy. Stage 3.1 requires
+separate authorization. Frozen architectural responsibilities are unchanged.
 
 ## 15. Architecture Change Policy
 

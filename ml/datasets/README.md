@@ -1,5 +1,14 @@
 # CAUCAFall V5 — Stage 1 inspection
 
+Current handoff: **Stage 2 complete/frozen; Stage 3.0 pending external Gate Review**.
+Earlier sections below retain their historical stage scope. The official raw-pose
+run is `4df7dd5f-fb38-4908-8233-1a81deb8dc05`; development NPZs are not substitutes.
+See the [Stage 3 contract](../../docs/stage3_preprocessing_contract.md) and
+[metadata/access guards](../preprocessing/contract.py). Future analysis must use
+`select_sources()` (Train by default), explicitly request Validation when permitted,
+and never bypass the Test guard. No preprocessing or training is authorized by
+this handoff. Stage 2 scripts and hashed protocol/configuration files are unchanged.
+
 Run from the repository root using uv and Python 3.12 or newer:
 
 ```sh

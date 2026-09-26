@@ -319,12 +319,16 @@ Expected containers later:
 
 ## 11. Current Status
 
-**Stage 2.1 — Pose Record Schema & Extraction Contract is active.** Stage 0 is
-complete; Stage 1 is complete and has passed Gate Review. This step defines the
-[raw pose extraction contract](docs/pose_extraction_contract.md) only. Stage 2.2
-extractor implementation and bulk extraction have not started. No model training
-has occurred; GRU is the initial baseline and TCN is the primary candidate, with
-deployment selection to follow measured comparison.
+**Stage 2 is complete/frozen. Stage 3.0 contract and leakage-firewall implementation
+is pending external Gate Review.** The official Stage 2 run is
+`4df7dd5f-fb38-4908-8233-1a81deb8dc05`, recorded in evidence commit
+`a28e0289c53463b3676b6c9275d4ee18a840fdae`. Its raw pose data and historical
+evidence are immutable inputs to the [Stage 3 contract](docs/stage3_preprocessing_contract.md).
+The new metadata selector defaults to Train and refuses Test exploration;
+preprocessing decisions remain `UNDECIDED`, and dataset construction is blocked.
+Stage 3.1, preprocessing operations, temporal windows and training have not started.
+GRU remains the initial baseline and TCN the primary candidate, with deployment
+selection to follow measured comparison.
 
 The local CAUCAFall V5 download passes structural and full sequential media validation:
 10 subjects × 10 activities = 100 AVI videos, all 19,877 frames decoded with metadata-count agreement at reported 20 FPS and 720 × 480 resolution. Six PNGs and four frame TXT
