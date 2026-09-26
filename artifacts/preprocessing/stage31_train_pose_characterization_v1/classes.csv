@@ -1,0 +1,3 @@
+video_label,videos,frames,detected_frames,missing_frames,pooled_pose_availability,mean_video_pose_availability,mean_video_missing_fraction,mean_video_longest_missing_run_ms,mean_video_missing_run_count,zero_detected_pose_videos
+fall,30,5127,4225,902,0.8240686561341916,0.8295346258631564,0.17046537413684337,1173.3333333333333,2.966666666666667,1
+non_fall,30,5988,5310,678,0.8867735470941884,0.8895278220574141,0.11047217794258585,793.3333333333334,2.7333333333333334,0

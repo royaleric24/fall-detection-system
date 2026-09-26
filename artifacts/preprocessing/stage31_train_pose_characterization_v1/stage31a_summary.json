@@ -1,0 +1,327 @@
+{
+  "analysis_version": "stage31a_missingness_addendum_v1",
+  "definitions": {
+    "anchor_gap_ms": "internal only: right_observed_timestamp_ms - left_observed_timestamp_ms; null otherwise",
+    "class_difference": "fall minus non_fall within each subject; equal-video means/medians, not frame-independent tests",
+    "missing_support_ms": "last_missing_timestamp_ms - first_missing_timestamp_ms + source frame period; N*50 ms at frozen 20 FPS",
+    "quantiles": "NumPy linear percentile, null for empty; sample count accompanies every distribution",
+    "sensitivity": "single predeclared exclusion of whole-video-missing videos, only in diagnostic view",
+    "topology": {
+      "internal": "observed pose before and after the run",
+      "leading": "run begins at frame zero and has an observed pose after",
+      "trailing": "run ends at final frame and has an observed pose before",
+      "whole_video": "every frame has pose_detected=false"
+    }
+  },
+  "interpretation": "Descriptive Train-only diagnostic; nested frames/videos, possible subject/activity/tracking confounding; no causal or predictive claim, no policy selection.",
+  "provenance": {
+    "code_sha256": "f8136c49282af62dcb46c153c6f276f159841b89902c84876a37bfde6c50595f",
+    "pose_arrays_loaded": false,
+    "source_stage31_file_sha256": {
+      "missing_runs.csv": "7a2cbe75a85d13eb78232df4711c69729b66b9bbe3a92cc16e2c92c85d2157d1",
+      "summary.json": "d6713e1bef192ee1746d02e3131c870a0d33814b464c8e21aeac741796037c1f",
+      "videos.csv": "53a564be804e0dc458a8fefc43698d28577e7a7d361268b7a5a2239b6c670123"
+    },
+    "source_stage31_version": "stage31_train_pose_characterization_v1",
+    "split": "train",
+    "stage2_manifest_sha256": "9f0e7ba39a4a67b954f27ae1f3e022c22908c4f470347f28bfeef293f4f92527",
+    "stage2_run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "stage30_baseline_commit": "9d1912cd4c1566438a60496d5d055a43189d3a66",
+    "stage30_config_sha256": "d7868a6c97de7c804a7a96306c6ab7f725fad5d9bc0c6fb7d9dee43cc6b63160",
+    "stage30_contract_code_sha256": "3ad4f2724c748945cc62a7c5c65954e50df83ff2e631e3dcfd6c092567bf2d2c",
+    "subject_ids": [
+      8,
+      4,
+      3,
+      9,
+      1,
+      2
+    ]
+  },
+  "sensitivity": {
+    "omitted_source_videos": [
+      "Subject.8/Fall forward/FallForwardS8.avi"
+    ],
+    "rows": [
+      {
+        "detected_frames": 4225,
+        "frames": 5127,
+        "mean_longest_missing_support_ms": 1173.3333333333333,
+        "mean_missing_run_count": 2.966666666666667,
+        "mean_video_missing_fraction": 0.17046537413684337,
+        "median_longest_missing_support_ms": 75.0,
+        "median_video_missing_fraction": 0.013598582080430265,
+        "missing_frames": 902,
+        "omitted_source_videos": [],
+        "pooled_pose_availability": 0.8240686561341916,
+        "video_label": "fall",
+        "videos": 30,
+        "view": "all_train"
+      },
+      {
+        "detected_frames": 5310,
+        "frames": 5988,
+        "mean_longest_missing_support_ms": 793.3333333333334,
+        "mean_missing_run_count": 2.7333333333333334,
+        "mean_video_missing_fraction": 0.11047217794258585,
+        "median_longest_missing_support_ms": 475.0,
+        "median_video_missing_fraction": 0.06137048192771084,
+        "missing_frames": 678,
+        "omitted_source_videos": [],
+        "pooled_pose_availability": 0.8867735470941884,
+        "video_label": "non_fall",
+        "videos": 30,
+        "view": "all_train"
+      },
+      {
+        "detected_frames": 4225,
+        "frames": 5005,
+        "mean_longest_missing_support_ms": 1003.448275862069,
+        "mean_missing_run_count": 3.0344827586206895,
+        "mean_video_missing_fraction": 0.14186073186570003,
+        "median_longest_missing_support_ms": 50.0,
+        "median_video_missing_fraction": 0.012345679012345678,
+        "missing_frames": 780,
+        "omitted_source_videos": [
+          "Subject.8/Fall forward/FallForwardS8.avi"
+        ],
+        "pooled_pose_availability": 0.8441558441558441,
+        "video_label": "fall",
+        "videos": 29,
+        "view": "excluding_whole_video_missing"
+      },
+      {
+        "detected_frames": 5310,
+        "frames": 5988,
+        "mean_longest_missing_support_ms": 793.3333333333334,
+        "mean_missing_run_count": 2.7333333333333334,
+        "mean_video_missing_fraction": 0.11047217794258585,
+        "median_longest_missing_support_ms": 475.0,
+        "median_video_missing_fraction": 0.06137048192771084,
+        "missing_frames": 678,
+        "omitted_source_videos": [
+          "Subject.8/Fall forward/FallForwardS8.avi"
+        ],
+        "pooled_pose_availability": 0.8867735470941884,
+        "video_label": "non_fall",
+        "videos": 30,
+        "view": "excluding_whole_video_missing"
+      }
+    ]
+  },
+  "status": "hold_addendum_pending_external_gate_review",
+  "subject_class_differences": [
+    {
+      "fall_minus_non_fall_mean_longest_missing_support_ms": 570.0,
+      "fall_minus_non_fall_mean_missing_run_count": 0.5999999999999999,
+      "fall_minus_non_fall_mean_video_missing_fraction": 0.035845430486578816,
+      "fall_minus_non_fall_median_longest_missing_support_ms": 50.0,
+      "fall_minus_non_fall_median_video_missing_fraction": 0.01098901098901099,
+      "subject_id": 1
+    },
+    {
+      "fall_minus_non_fall_mean_longest_missing_support_ms": -60.0,
+      "fall_minus_non_fall_mean_missing_run_count": -1.2000000000000002,
+      "fall_minus_non_fall_mean_video_missing_fraction": 0.003933394404164542,
+      "fall_minus_non_fall_median_longest_missing_support_ms": 0.0,
+      "fall_minus_non_fall_median_video_missing_fraction": 0.0,
+      "subject_id": 2
+    },
+    {
+      "fall_minus_non_fall_mean_longest_missing_support_ms": -920.0,
+      "fall_minus_non_fall_mean_missing_run_count": -6.6,
+      "fall_minus_non_fall_mean_video_missing_fraction": -0.1501147007450238,
+      "fall_minus_non_fall_median_longest_missing_support_ms": -950.0,
+      "fall_minus_non_fall_median_video_missing_fraction": -0.27547109549664645,
+      "subject_id": 3
+    },
+    {
+      "fall_minus_non_fall_mean_longest_missing_support_ms": -50.0,
+      "fall_minus_non_fall_mean_missing_run_count": 0.3999999999999999,
+      "fall_minus_non_fall_mean_video_missing_fraction": 0.004726052535642851,
+      "fall_minus_non_fall_median_longest_missing_support_ms": -50.0,
+      "fall_minus_non_fall_median_video_missing_fraction": -0.010000689702738121,
+      "subject_id": 4
+    },
+    {
+      "fall_minus_non_fall_mean_longest_missing_support_ms": 2950.0,
+      "fall_minus_non_fall_mean_missing_run_count": 0.3999999999999999,
+      "fall_minus_non_fall_mean_video_missing_fraction": 0.4048965005055978,
+      "fall_minus_non_fall_median_longest_missing_support_ms": 5050.0,
+      "fall_minus_non_fall_median_video_missing_fraction": 0.559666492965086,
+      "subject_id": 8
+    },
+    {
+      "fall_minus_non_fall_mean_longest_missing_support_ms": -210.0,
+      "fall_minus_non_fall_mean_missing_run_count": 7.800000000000001,
+      "fall_minus_non_fall_mean_video_missing_fraction": 0.06067249997858501,
+      "fall_minus_non_fall_median_longest_missing_support_ms": 50.0,
+      "fall_minus_non_fall_median_video_missing_fraction": -0.012566137566137565,
+      "subject_id": 9
+    }
+  ],
+  "topology": [
+    {
+      "anchor_gap_ms": {
+        "count": 135,
+        "max": 6500.0,
+        "mean": 298.8888888888889,
+        "min": 100.0,
+        "p10": 100.0,
+        "p25": 100.0,
+        "p5": 100.0,
+        "p50": 100.0,
+        "p75": 225.0,
+        "p90": 500.0,
+        "p95": 700.0,
+        "p99": 3411.9999999999977,
+        "std_population": 679.3370043153094
+      },
+      "fraction_of_all_missing_frames": 0.4253164556962025,
+      "missing_frames": 672,
+      "missing_support_ms": {
+        "count": 135,
+        "max": 6450.0,
+        "mean": 248.88888888888889,
+        "min": 50.0,
+        "p10": 50.0,
+        "p25": 50.0,
+        "p5": 50.0,
+        "p50": 50.0,
+        "p75": 175.0,
+        "p90": 450.0,
+        "p95": 650.0,
+        "p99": 3361.9999999999977,
+        "std_population": 679.3370043153094
+      },
+      "run_length_frames": {
+        "count": 135,
+        "max": 129.0,
+        "mean": 4.977777777777778,
+        "min": 1.0,
+        "p10": 1.0,
+        "p25": 1.0,
+        "p5": 1.0,
+        "p50": 1.0,
+        "p75": 3.5,
+        "p90": 9.0,
+        "p95": 13.0,
+        "p99": 67.23999999999995,
+        "std_population": 13.586740086306191
+      },
+      "runs": 135,
+      "topology": "internal"
+    },
+    {
+      "anchor_gap_ms": null,
+      "fraction_of_all_missing_frames": 0.4006329113924051,
+      "missing_frames": 633,
+      "missing_support_ms": {
+        "count": 33,
+        "max": 4600.0,
+        "mean": 959.0909090909091,
+        "min": 50.0,
+        "p10": 110.00000000000001,
+        "p25": 200.0,
+        "p5": 50.0,
+        "p50": 700.0,
+        "p75": 1100.0,
+        "p90": 2100.0,
+        "p95": 3199.9999999999995,
+        "p99": 4200.0,
+        "std_population": 1041.8845502155991
+      },
+      "run_length_frames": {
+        "count": 33,
+        "max": 92.0,
+        "mean": 19.181818181818183,
+        "min": 1.0,
+        "p10": 2.2,
+        "p25": 4.0,
+        "p5": 1.0,
+        "p50": 14.0,
+        "p75": 22.0,
+        "p90": 42.0,
+        "p95": 63.99999999999999,
+        "p99": 84.0,
+        "std_population": 20.837691004311985
+      },
+      "runs": 33,
+      "topology": "leading"
+    },
+    {
+      "anchor_gap_ms": null,
+      "fraction_of_all_missing_frames": 0.09683544303797469,
+      "missing_frames": 153,
+      "missing_support_ms": {
+        "count": 2,
+        "max": 7600.0,
+        "mean": 3825.0,
+        "min": 50.0,
+        "p10": 805.0,
+        "p25": 1937.5,
+        "p5": 427.5,
+        "p50": 3825.0,
+        "p75": 5712.5,
+        "p90": 6845.0,
+        "p95": 7222.5,
+        "p99": 7524.5,
+        "std_population": 3775.0
+      },
+      "run_length_frames": {
+        "count": 2,
+        "max": 152.0,
+        "mean": 76.5,
+        "min": 1.0,
+        "p10": 16.1,
+        "p25": 38.75,
+        "p5": 8.55,
+        "p50": 76.5,
+        "p75": 114.25,
+        "p90": 136.9,
+        "p95": 144.45,
+        "p99": 150.49,
+        "std_population": 75.5
+      },
+      "runs": 2,
+      "topology": "trailing"
+    },
+    {
+      "anchor_gap_ms": null,
+      "fraction_of_all_missing_frames": 0.07721518987341772,
+      "missing_frames": 122,
+      "missing_support_ms": {
+        "count": 1,
+        "max": 6100.0,
+        "mean": 6100.0,
+        "min": 6100.0,
+        "p10": 6100.0,
+        "p25": 6100.0,
+        "p5": 6100.0,
+        "p50": 6100.0,
+        "p75": 6100.0,
+        "p90": 6100.0,
+        "p95": 6100.0,
+        "p99": 6100.0,
+        "std_population": 0.0
+      },
+      "run_length_frames": {
+        "count": 1,
+        "max": 122.0,
+        "mean": 122.0,
+        "min": 122.0,
+        "p10": 122.0,
+        "p25": 122.0,
+        "p5": 122.0,
+        "p50": 122.0,
+        "p75": 122.0,
+        "p90": 122.0,
+        "p95": 122.0,
+        "p99": 122.0,
+        "std_population": 0.0
+      },
+      "runs": 1,
+      "topology": "whole_video"
+    }
+  ]
+}

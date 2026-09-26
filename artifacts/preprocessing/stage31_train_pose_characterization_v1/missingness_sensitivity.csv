@@ -1,0 +1,5 @@
+view,video_label,omitted_source_videos,videos,frames,detected_frames,missing_frames,pooled_pose_availability,mean_video_missing_fraction,median_video_missing_fraction,mean_longest_missing_support_ms,median_longest_missing_support_ms,mean_missing_run_count
+all_train,fall,[],30,5127,4225,902,0.8240686561341916,0.17046537413684337,0.013598582080430265,1173.3333333333333,75.0,2.966666666666667
+all_train,non_fall,[],30,5988,5310,678,0.8867735470941884,0.11047217794258585,0.06137048192771084,793.3333333333334,475.0,2.7333333333333334
+excluding_whole_video_missing,fall,"[""Subject.8/Fall forward/FallForwardS8.avi""]",29,5005,4225,780,0.8441558441558441,0.14186073186570003,0.012345679012345678,1003.448275862069,50.0,3.0344827586206895
+excluding_whole_video_missing,non_fall,"[""Subject.8/Fall forward/FallForwardS8.avi""]",30,5988,5310,678,0.8867735470941884,0.11047217794258585,0.06137048192771084,793.3333333333334,475.0,2.7333333333333334
