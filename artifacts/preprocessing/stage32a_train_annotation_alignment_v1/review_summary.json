@@ -1,0 +1,51 @@
+{
+  "status": "pending_external_gate_review_all_candidate_ranks_are_diagnostic",
+  "code_sha256": "91971f7f250121f31bab06ae6e3c48ecb5aec4c20ef60a0339d92de163ef8861",
+  "audit_summary_sha256": "03769361e6969989a1d68c9f5f999e67cd6b2e7c5713346b27d9e32340622d27",
+  "input_sha256": {
+    "per_video_annotation_inventory.csv": "44fd9db175458aa77955b8ba835c725d7ae2a5c3057d055d38689a46b4a0376e",
+    "local_alignment_diagnostics.csv": "bec55037776a7f84055daf3f0a6a930dc12d527136094a8a80e984b8b709bc4a",
+    "annotation_sequence_summary.csv": "da90ff7ea372166c54aa284ca552af10e0c70ab06a415a487cacf654da655bec",
+    "annotation_schema.csv": "d09ed29cab8c69140a58c976c1619f05a6e13c1175cc85ab61cd56d4ed8f8586",
+    "mismatch_cases.csv": "e8fca24ebbf4fad73c19091c68970e5418cd36c16b6609a78acb2c665447c6e0"
+  },
+  "split": "train",
+  "pose_or_media_read": false,
+  "candidate_ranking": {
+    "mae": {
+      "ranked_avi_frames": 11115,
+      "unique_minimum": 11036,
+      "tied_minimum": 79,
+      "ordinal_unique_minimum": 10086,
+      "ordinal_among_minima": 10164,
+      "unique_best_offset_counts": {
+        "-3": 247,
+        "-2": 113,
+        "-1": 332,
+        "0": 10086,
+        "1": 75,
+        "2": 29,
+        "3": 151,
+        "4": 2,
+        "5": 1
+      }
+    },
+    "mse": {
+      "ranked_avi_frames": 11115,
+      "unique_minimum": 11037,
+      "tied_minimum": 78,
+      "ordinal_unique_minimum": 10542,
+      "ordinal_among_minima": 10620,
+      "unique_best_offset_counts": {
+        "-3": 115,
+        "-2": 54,
+        "-1": 231,
+        "0": 10542,
+        "1": 50,
+        "2": 11,
+        "3": 34
+      }
+    }
+  },
+  "limitation": "Local minimum is not a temporal match. Compression, low motion, repeated frames and the bounded candidate set can make minima/ties misleading. No candidate rank changes frame_correspondence.csv."
+}

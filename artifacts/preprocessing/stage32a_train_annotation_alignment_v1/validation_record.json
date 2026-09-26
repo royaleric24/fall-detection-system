@@ -1,0 +1,75 @@
+{
+  "status": "verification_complete_pending_external_gate_review",
+  "parent_commit": "46f4e299e943db24f386787e30ab05f484949262",
+  "commands": [
+    {
+      "command": "UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with numpy==2.2.6 --with opencv-contrib-python==4.12.0.88 python -B -m unittest tests.test_stage32a_annotation_alignment tests.test_stage3_contract -v",
+      "executions": [
+        {
+          "tests": 41,
+          "seconds": 0.069,
+          "result": "OK",
+          "exit_code": 0
+        },
+        {
+          "tests": 43,
+          "seconds": 0.062,
+          "result": "OK",
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "command": "UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with numpy==2.2.6 --with opencv-contrib-python==4.12.0.88 python -B -m ml.preprocessing.audit_annotation_alignment",
+      "executions": 1,
+      "result": "10 artifacts published; exit 0"
+    },
+    {
+      "command": "UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with numpy==2.2.6 --with opencv-contrib-python==4.12.0.88 python -B -m ml.preprocessing.review_alignment_evidence",
+      "executions": 1,
+      "result": "4 artifact-only supplements published; exit 0"
+    },
+    {
+      "command": "git diff --check",
+      "result": "exit 0, no output"
+    }
+  ],
+  "mechanical_checks": {
+    "train_videos": 60,
+    "decoded_frames": 11115,
+    "png_files": 11176,
+    "annotation_txt_files": 11176,
+    "schema_valid": 11176,
+    "source_identity_rows": 22472,
+    "avi_rows_retained": 11115,
+    "unmapped_png_rows_retained": 11176,
+    "orphan_txt_rows_retained": 4,
+    "local_comparison_rows": 77329,
+    "frozen_stage2_hashes_unchanged": 21,
+    "tracked_files_modified": 0,
+    "pose_arrays_loaded": false,
+    "validation_test_content_accessed": false
+  },
+  "implementation_sha256": {
+    "ml/preprocessing/audit_annotation_alignment.py": "8838ca94029bc6fb63f5fcecc9a14a1e402ef5bf1937137a4f7f79a4510b2a3c",
+    "ml/preprocessing/review_alignment_evidence.py": "91971f7f250121f31bab06ae6e3c48ecb5aec4c20ef60a0339d92de163ef8861",
+    "tests/test_stage32a_annotation_alignment.py": "da4428ba2f7095545951aa6f19c292c331826dd42163c42e5bf1a03fa5159ab5",
+    "docs/stage32a_annotation_alignment.md": "d75e9400b8022c9ab43d4074c9a19bb02b13a8a6deffc8ad4abd176a3c0f39c7"
+  },
+  "artifact_sha256": {
+    "REPORT.md": "beb850d6eae3d889b5e0cd1431e0632d3c5871a33c5727eb6bc1ad16a6e78e35",
+    "REVIEW_NOTES.md": "b0cb8503cc672b0ef7deb85dc86aea0fe47d44c8eea43ac43d73d9a6da1e1ccf",
+    "annotation_schema.csv": "d09ed29cab8c69140a58c976c1619f05a6e13c1175cc85ab61cd56d4ed8f8586",
+    "annotation_sequence_summary.csv": "da90ff7ea372166c54aa284ca552af10e0c70ab06a415a487cacf654da655bec",
+    "candidate_rankings.csv": "8f34e97e41bebc9119874795aca47720b63d1fd7b3134b98deb8ee41531ac8bf",
+    "direct_ordinal_diagnostics.csv": "2aa47e4ca918611c4bfd1e67788df715e53ff29c3002258ced2f98b826338b45",
+    "frame_correspondence.csv": "ffd75e3efa8d7f20807d655fdc3b105fd412ff2757088acca07d962eaf96ab6a",
+    "local_alignment_diagnostics.csv": "bec55037776a7f84055daf3f0a6a930dc12d527136094a8a80e984b8b709bc4a",
+    "mismatch_cases.csv": "e8fca24ebbf4fad73c19091c68970e5418cd36c16b6609a78acb2c665447c6e0",
+    "offset_similarity_summary.csv": "b2603a5ab004851685d572bac74d856db3ef0648b16fefda3e27d37b74eb05cc",
+    "per_video_annotation_inventory.csv": "44fd9db175458aa77955b8ba835c725d7ae2a5c3057d055d38689a46b4a0376e",
+    "review_summary.json": "a45f0a6253b25f95dcb4511fb1aa9d59d87d2637f2bf84fc2d38ffae94012599",
+    "source_files.csv": "650fd528e8d3536cf18dddcfe53c35f1922597a63fa7fbb9cb70429611090d57",
+    "summary.json": "03769361e6969989a1d68c9f5f999e67cd6b2e7c5713346b27d9e32340622d27"
+  }
+}

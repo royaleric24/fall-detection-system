@@ -1,0 +1,61 @@
+subject_id,activity,source_video,split,video_label,class0_annotations,class1_annotations,invalid_annotations,sequence_order_unambiguous,first_class1_filename,last_class1_filename,first_class1_annotation_index,last_class1_annotation_index,transitions_0_to_1,transitions_1_to_0,class1_one_contiguous_interval,adl_contains_class1,fall_activity_contains_class1
+1,Fall backwards,Subject.1/Fall backwards/FallBackwardsS1.avi,train,fall,58,68,0,True,cas100059.txt,cas100126.txt,100059,100126,1,0,True,,True
+1,Fall forward,Subject.1/Fall forward/FallForwardS1.avi,train,fall,131,60,0,True,cfs1-00132.txt,cfs1-00191.txt,132,191,1,0,True,,True
+1,Fall left,Subject.1/Fall left/FallLeftS1.avi,train,fall,44,43,0,True,cis100045.txt,cis100087.txt,100045,100087,1,0,True,,True
+1,Fall right,Subject.1/Fall right/FallRightS1.avi,train,fall,56,59,0,True,cds100057.txt,cds100115.txt,100057,100115,1,0,True,,True
+1,Fall sitting,Subject.1/Fall sitting/FallSittingS1.avi,train,fall,98,85,0,True,css100099.txt,css100183.txt,100099,100183,1,0,True,,True
+1,Hop,Subject.1/Hop/HopS1.avi,train,non_fall,183,0,0,True,,,,,0,0,,False,
+1,Kneel,Subject.1/Kneel/KneelS1.avi,train,non_fall,220,0,0,True,,,,,0,0,,False,
+1,Pick up object,Subject.1/Pick up object/PickupobjectS1.avi,train,non_fall,118,0,0,True,,,,,0,0,,False,
+1,Sit down,Subject.1/Sit down/SitDownS1.avi,train,non_fall,188,0,0,True,,,,,0,0,,False,
+1,Walk,Subject.1/Walk/WalkS1.avi,train,non_fall,243,0,0,True,,,,,0,0,,False,
+2,Fall backwards,Subject.2/Fall backwards/FallBackwardsS2.avi,train,fall,63,58,0,True,cas200064.txt,cas200121.txt,200064,200121,1,0,True,,True
+2,Fall forward,Subject.2/Fall forward/FallForwardS2.avi,train,fall,24,83,0,True,cfs200025.txt,cfs200107.txt,200025,200107,1,0,True,,True
+2,Fall left,Subject.2/Fall left/FallLeftS2.avi,train,fall,32,78,0,True,cis200033.txt,cis200110.txt,200033,200110,1,0,True,,True
+2,Fall right,Subject.2/Fall right/FallRightS2.avi,train,fall,33,114,0,True,cds200034.txt,cds200147.txt,200034,200147,1,0,True,,True
+2,Fall sitting,Subject.2/Fall sitting/FallSittingS2.avi,train,fall,81,77,0,True,css200082.txt,css200158.txt,200082,200158,1,0,True,,True
+2,Hop,Subject.2/Hop/HopS2.avi,train,non_fall,172,0,0,True,,,,,0,0,,False,
+2,Kneel,Subject.2/Kneel/KneelS2.avi,train,non_fall,131,0,0,True,,,,,0,0,,False,
+2,Pick up object,Subject.2/Pick up object/PickupobjectS2.avi,train,non_fall,167,0,0,True,,,,,0,0,,False,
+2,Sit down,Subject.2/Sit down/SitDownS2.avi,train,non_fall,113,0,0,True,,,,,0,0,,False,
+2,Walk,Subject.2/Walk/WalkS2.avi,train,non_fall,245,0,0,True,,,,,0,0,,False,
+3,Fall backwards,Subject.3/Fall backwards/FallBackwardsS3.avi,train,fall,67,100,0,True,cas300068.txt,cas300167.txt,300068,300167,1,0,True,,True
+3,Fall forward,Subject.3/Fall forward/FallForwardS3.avi,train,fall,84,70,0,True,cfs300085.txt,cfs300154.txt,300085,300154,1,0,True,,True
+3,Fall left,Subject.3/Fall left/FallLeftS3.avi,train,fall,102,70,0,True,cis300103.txt,cis300172.txt,300103,300172,1,0,True,,True
+3,Fall right,Subject.3/Fall right/FallRightS3.avi,train,fall,53,168,0,True,cds300054.txt,cds300221.txt,300054,300221,1,0,True,,True
+3,Fall sitting,Subject.3/Fall sitting/FallSittingS3.avi,train,fall,51,152,0,True,css300052.txt,css300203.txt,300052,300203,1,0,True,,True
+3,Hop,Subject.3/Hop/HopS3.avi,train,non_fall,163,0,0,True,,,,,0,0,,False,
+3,Kneel,Subject.3/Kneel/KneelS3.avi,train,non_fall,214,0,0,True,,,,,0,0,,False,
+3,Pick up object,Subject.3/Pick up object/PickupobjectS3.avi,train,non_fall,187,0,0,True,,,,,0,0,,False,
+3,Sit down,Subject.3/Sit down/SitDownS3.avi,train,non_fall,262,0,0,True,,,,,0,0,,False,
+3,Walk,Subject.3/Walk/WalkS3.avi,train,non_fall,177,0,0,True,,,,,0,0,,False,
+4,Fall backwards,Subject.4/Fall backwards/FallBackwardsS4.avi,train,fall,70,123,0,True,cas400071.txt,cas400193.txt,400071,400193,1,0,True,,True
+4,Fall forward,Subject.4/Fall forward/FallForwardS4.avi,train,fall,25,144,0,True,cfs400026.txt,cfs400169.txt,400026,400169,1,0,True,,True
+4,Fall left,Subject.4/Fall left/FallLeftS4.avi,train,fall,61,102,0,True,cis400062.txt,cis400163.txt,400062,400163,1,0,True,,True
+4,Fall right,Subject.4/Fall right/FallRightS4.avi,train,fall,47,104,0,True,cds400048.txt,cds400151.txt,400048,400151,1,0,True,,True
+4,Fall sitting,Subject.4/Fall sitting/FallSittingS4.avi,train,fall,61,138,0,True,css400062.txt,css400199.txt,400062,400199,1,0,True,,True
+4,Hop,Subject.4/Hop/HopS4.avi,train,non_fall,145,0,0,True,,,,,0,0,,False,
+4,Kneel,Subject.4/Kneel/KneelS4.avi,train,non_fall,223,0,0,True,,,,,0,0,,False,
+4,Pick up object,Subject.4/Pick up object/PickupobjectS4.avi,train,non_fall,180,0,0,True,,,,,0,0,,False,
+4,Sit down,Subject.4/Sit down/SitDownS4.avi,train,non_fall,200,0,0,True,,,,,0,0,,False,
+4,Walk,Subject.4/Walk/WalkS4.avi,train,non_fall,241,0,0,True,,,,,0,0,,False,
+8,Fall backwards,Subject.8/Fall backwards/FallBackwardsS8.avi,train,fall,64,149,0,True,cas800065.txt,cas800213.txt,800065,800213,1,0,True,,True
+8,Fall forward,Subject.8/Fall forward/FallForwardS8.avi,train,fall,40,83,0,True,cfs800041.txt,cfs800123.txt,800041,800123,1,0,True,,True
+8,Fall left,Subject.8/Fall left/FallLeftS8.avi,train,fall,57,146,0,True,cis800058.txt,cis800203.txt,800058,800203,1,0,True,,True
+8,Fall right,Subject.8/Fall right/FallRightS8.avi,train,fall,59,171,0,True,cds800060.txt,cds800230.txt,800060,800230,1,0,True,,True
+8,Fall sitting,Subject.8/Fall sitting/FallSittingS8.avi,train,fall,80,155,0,True,css800081.txt,css800235.txt,800081,800235,1,0,True,,True
+8,Hop,Subject.8/Hop/HopS8.avi,train,non_fall,167,0,0,True,,,,,0,0,,False,
+8,Kneel,Subject.8/Kneel/KneelS8.avi,train,non_fall,257,0,0,True,,,,,0,0,,False,
+8,Pick up object,Subject.8/Pick up object/PickupobjectS8.avi,train,non_fall,267,0,0,True,,,,,0,0,,False,
+8,Sit down,Subject.8/Sit down/SitDownS8.avi,train,non_fall,213,0,0,True,,,,,0,0,,False,
+8,Walk,Subject.8/Walk/WalkS8.avi,train,non_fall,217,0,0,True,,,,,0,0,,False,
+9,Fall backwards,Subject.9/Fall backwards/FallBackwardsS9.avi,train,fall,65,188,0,True,cas900066.txt,cas900253.txt,900066,900253,1,0,True,,True
+9,Fall forward,Subject.9/Fall forward/FallForwardS9.avi,train,fall,102,47,0,True,cfs900057.txt,cfs900103.txt,900057,900103,1,1,True,,True
+9,Fall left,Subject.9/Fall left/FallLeftS9.avi,train,fall,55,153,0,True,cis900056.txt,cis900208.txt,900056,900208,1,0,True,,True
+9,Fall right,Subject.9/Fall right/FallRightS9.avi,train,fall,57,133,0,True,cds900058.txt,cds900190.txt,900058,900190,1,0,True,,True
+9,Fall sitting,Subject.9/Fall sitting/FallSittingS9.avi,train,fall,89,128,0,True,css900090.txt,css900217.txt,900090,900217,1,0,True,,True
+9,Hop,Subject.9/Hop/HopS9.avi,train,non_fall,213,0,0,True,,,,,0,0,,False,
+9,Kneel,Subject.9/Kneel/KneelS9.avi,train,non_fall,217,0,0,True,,,,,0,0,,False,
+9,Pick up object,Subject.9/Pick up object/PickupobjectS9.avi,train,non_fall,221,0,0,True,,,,,0,0,,False,
+9,Sit down,Subject.9/Sit down/SitDownS9.avi,train,non_fall,239,0,0,True,,,,,0,0,,False,
+9,Walk,Subject.9/Walk/WalkS9.avi,train,non_fall,235,0,0,True,,,,,0,0,,False,
