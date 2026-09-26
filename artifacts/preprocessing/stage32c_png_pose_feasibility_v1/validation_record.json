@@ -1,0 +1,15 @@
+{
+  "status": "mechanical_validation_complete",
+  "parent_commit": "8a43017170b1a9dff66476f83f95878a6c0945f8",
+  "selected_sequences": 10,
+  "identity_rows": 1788,
+  "pilot_npz_files": 10,
+  "pose_detected_frames": 1151,
+  "pose_missing_frames": 637,
+  "exact_duplicate_comparisons": 49,
+  "repeatability_comparisons": 8,
+  "frozen_stage32b_artifact_hashes_verified": 11,
+  "every_pose_has_one_frozen_png_txt_ordinal": true,
+  "no_timestamp_fps_or_label_in_npz": true,
+  "all_downstream_decisions_undecided": true
+}

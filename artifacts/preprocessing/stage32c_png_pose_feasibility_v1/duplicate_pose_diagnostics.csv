@@ -1,0 +1,50 @@
+source_video_identity,first_ordinal,second_ordinal,first_png_filename,second_png_filename,byte_identical,decoded_pixel_identical,first_pose_detected,second_pose_detected,finite_missing_structure_equal,exact_equal,max_abs_landmark_difference
+Subject.2/Fall backwards/FallBackwardsS2.avi,90,91,cas200091 - copia.png,cas200092.png,True,True,False,False,True,True,
+Subject.4/Fall forward/FallForwardS4.avi,0,1,cfs400001.png,cfs400002.png,True,True,False,False,True,True,
+Subject.4/Pick up object/PickupobjectS4.avi,169,170,res400170.png,res400171.png,True,True,True,True,True,True,0.0
+Subject.4/Pick up object/PickupobjectS4.avi,169,171,res400170.png,res400172.png,True,True,True,True,True,True,0.0
+Subject.4/Pick up object/PickupobjectS4.avi,169,172,res400170.png,res400173.png,True,True,True,True,True,True,0.0
+Subject.4/Pick up object/PickupobjectS4.avi,169,173,res400170.png,res400174.png,True,True,True,True,True,True,0.0
+Subject.4/Pick up object/PickupobjectS4.avi,169,174,res400170.png,res400175.png,True,True,True,True,True,True,0.0
+Subject.4/Pick up object/PickupobjectS4.avi,169,175,res400170.png,res400176.png,True,True,True,True,True,True,0.0
+Subject.4/Pick up object/PickupobjectS4.avi,169,176,res400170.png,res400177.png,True,True,True,True,True,True,0.0
+Subject.4/Pick up object/PickupobjectS4.avi,169,177,res400170.png,res400178.png,True,True,True,True,True,True,0.0
+Subject.4/Pick up object/PickupobjectS4.avi,169,178,res400170.png,res400179.png,True,True,True,True,True,True,0.0
+Subject.4/Pick up object/PickupobjectS4.avi,169,179,res400170.png,res400180.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,180,css900180.png,css900181.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,181,css900180.png,css900182.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,182,css900180.png,css900183.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,183,css900180.png,css900184.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,184,css900180.png,css900185.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,185,css900180.png,css900186.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,186,css900180.png,css900187.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,187,css900180.png,css900188.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,188,css900180.png,css900189.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,189,css900180.png,css900190.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,190,css900180.png,css900191.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,191,css900180.png,css900192.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,192,css900180.png,css900193.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,193,css900180.png,css900194.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,194,css900180.png,css900195.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,195,css900180.png,css900196.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,196,css900180.png,css900197.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,197,css900180.png,css900198.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,198,css900180.png,css900199.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,199,css900180.png,css900200.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,200,css900180.png,css900201.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,201,css900180.png,css900202.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,202,css900180.png,css900203.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,203,css900180.png,css900204.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,204,css900180.png,css900205.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,205,css900180.png,css900206.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,206,css900180.png,css900207.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,207,css900180.png,css900208.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,208,css900180.png,css900209.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,209,css900180.png,css900210.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,210,css900180.png,css900211.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,211,css900180.png,css900212.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,212,css900180.png,css900213.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,213,css900180.png,css900214.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,214,css900180.png,css900215.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,215,css900180.png,css900216.png,True,True,True,True,True,True,0.0
+Subject.9/Fall sitting/FallSittingS9.avi,179,216,css900180.png,css900217.png,True,True,True,True,True,True,0.0

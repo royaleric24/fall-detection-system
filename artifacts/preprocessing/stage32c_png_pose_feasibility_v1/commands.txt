@@ -1,0 +1,32 @@
+From /Users/eric/Developer/fall-detection-system:
+
+1. Focused tests plus Stage 3 contract regressions (run twice; the first run failed 2 synthetic temporary-path tests; after using canonical /private/tmp, 47/47 passed):
+
+MPLCONFIGDIR=/private/tmp/caucafall-mplconfig UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with mediapipe==0.10.35 --with opencv-contrib-python==4.12.0.88 --with numpy==2.2.6 python -B -m unittest tests.test_stage32c_png_pose tests.test_stage3_contract -v
+
+2. Freeze reviewed Train metadata/sample before any MediaPipe inference (exit 0):
+
+MPLCONFIGDIR=/private/tmp/caucafall-mplconfig UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with mediapipe==0.10.35 --with opencv-contrib-python==4.12.0.88 --with numpy==2.2.6 python -B -m ml.preprocessing.pilot_png_pose freeze
+
+3. Pilot run (first sandboxed invocation exit 134 during IMAGE graph initialization after raw-byte hash validation but before any pose inference; the second invocation with permitted macOS graphics access completed exit 0):
+
+MPLCONFIGDIR=/private/tmp/caucafall-mplconfig UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with mediapipe==0.10.35 --with opencv-contrib-python==4.12.0.88 --with numpy==2.2.6 python -B -m ml.preprocessing.pilot_png_pose run
+
+4. Between run invocations, graph-only diagnostic with permitted macOS graphics access (exit 0; no PNG read or pose inference):
+
+MPLCONFIGDIR=/private/tmp/caucafall-mplconfig UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with mediapipe==0.10.35 --with opencv-contrib-python==4.12.0.88 --with numpy==2.2.6 python -B - <<'PY'
+import mediapipe as mp
+from pathlib import Path
+model=Path('ml/checkpoints/pose_landmarker_full.task').resolve()
+options=mp.tasks.vision.PoseLandmarkerOptions(base_options=mp.tasks.BaseOptions(model_asset_path=str(model),delegate=mp.tasks.BaseOptions.Delegate.CPU),running_mode=mp.tasks.vision.RunningMode.IMAGE,num_poses=1,min_pose_detection_confidence=.5,min_pose_presence_confidence=.5,min_tracking_confidence=.5,output_segmentation_masks=False)
+with mp.tasks.vision.PoseLandmarker.create_from_options(options):
+ print('IMAGE mode graph initialization succeeded; no PNG read or inference performed')
+PY
+
+5. Saved-artifact validation without MediaPipe inference (exit 0):
+
+MPLCONFIGDIR=/private/tmp/caucafall-mplconfig UV_CACHE_DIR=/private/tmp/caucafall-stage26-cache uv run --offline --python 3.13.15 --no-project --with mediapipe==0.10.35 --with opencv-contrib-python==4.12.0.88 --with numpy==2.2.6 python -B -m ml.preprocessing.validate_pilot_png_pose
+
+6. Whitespace check:
+
+git diff --check

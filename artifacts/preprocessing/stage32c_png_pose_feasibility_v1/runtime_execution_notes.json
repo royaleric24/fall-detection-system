@@ -1,0 +1,33 @@
+{
+  "stage": "3.2c",
+  "sandboxed_run_attempt": {
+    "exit_code": 134,
+    "phase": "MediaPipe IMAGE graph initialization",
+    "selected_pngs_read_for_hash_verification": 1788,
+    "selected_annotation_TXTs_read_for_hash_verification": 1788,
+    "PNG_images_decoded_for_inference": 0,
+    "pose_inferences_performed": 0,
+    "pose_npz_files_created": 0,
+    "fatal_log": "graph_service.h:139 Check failed: service_ Service is unavailable.",
+    "stack_component": "DrishtiMetalHelper",
+    "interpretation": "The sandboxed process could not initialize the macOS graphics-dependent graph; this does not establish a PNG or model failure."
+  },
+  "unsandboxed_graph_diagnostic": {
+    "exit_code": 0,
+    "PNG_contents_read": false,
+    "inference_performed": false,
+    "result": "The same PoseLandmarker IMAGE/CPU graph initialized successfully."
+  },
+  "official_pilot_extraction": {
+    "exit_code": 0,
+    "successful_full_pilot_extractions": 1,
+    "selected_sequences": 10,
+    "selected_pngs": 1788,
+    "result": "Completed outside the sandbox with the frozen sample, code hash, model hash and IMAGE configuration unchanged.",
+    "warnings_observed": [
+      "MediaPipe feedback manager disabled support for feedback tensors because the model has multiple signatures.",
+      "MediaPipe landmark projection logged a NORM_RECT / IMAGE_DIMENSIONS warning."
+    ],
+    "per_image_inference_or_encoding_exception_records": 0
+  }
+}

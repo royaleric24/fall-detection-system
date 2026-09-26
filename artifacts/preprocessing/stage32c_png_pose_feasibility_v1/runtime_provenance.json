@@ -1,0 +1,106 @@
+{
+  "stage": "3.2c",
+  "parent_commit": "8a43017170b1a9dff66476f83f95878a6c0945f8",
+  "sample_freeze_sha256": "579e841a57825dc58c2834355a162e10bbb34cd2bbebb5135b961722293d4acf",
+  "source_stage32b_summary_sha256": "472daffd9dd5f7313409eb74ea614531acea12880381f9ff1e1669247c03c6c0",
+  "python": "3.13.15",
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "operating_system": "Darwin",
+  "architecture": "arm64",
+  "mediapipe_version": "0.10.35",
+  "numpy_version": "2.2.6",
+  "opencv_package_version": "4.12.0.88",
+  "opencv_runtime_version": "4.12.0",
+  "model_identity": "PoseLandmarker Full float16 v1",
+  "model_url": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/1/pose_landmarker_full.task",
+  "model_sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1",
+  "runtime_mode": "IMAGE",
+  "stateless_independent_images": true,
+  "physical_timestamp_required": false,
+  "delegate": "CPU",
+  "num_poses": 1,
+  "detection_confidence": 0.5,
+  "presence_confidence": 0.5,
+  "tracking_confidence_configured": 0.5,
+  "tracking_confidence_applicability": "not used for IMAGE temporal tracking",
+  "output_segmentation_masks": false,
+  "image_decoder": "OpenCV imdecode IMREAD_COLOR",
+  "decoded_channel_order": "BGR",
+  "before_mediapipe": "cv2.COLOR_BGR2RGB to SRGB mp.Image",
+  "image_dimensions_hw": {
+    "Subject.2/Fall backwards/FallBackwardsS2.avi": [
+      [
+        480,
+        720
+      ]
+    ],
+    "Subject.8/Hop/HopS8.avi": [
+      [
+        480,
+        720
+      ]
+    ],
+    "Subject.8/Pick up object/PickupobjectS8.avi": [
+      [
+        480,
+        720
+      ]
+    ],
+    "Subject.9/Walk/WalkS9.avi": [
+      [
+        480,
+        720
+      ]
+    ],
+    "Subject.4/Fall forward/FallForwardS4.avi": [
+      [
+        480,
+        720
+      ]
+    ],
+    "Subject.4/Pick up object/PickupobjectS4.avi": [
+      [
+        480,
+        720
+      ]
+    ],
+    "Subject.9/Fall sitting/FallSittingS9.avi": [
+      [
+        480,
+        720
+      ]
+    ],
+    "Subject.8/Fall forward/FallForwardS8.avi": [
+      [
+        480,
+        720
+      ]
+    ],
+    "Subject.1/Fall backwards/FallBackwardsS1.avi": [
+      [
+        480,
+        720
+      ]
+    ],
+    "Subject.1/Hop/HopS1.avi": [
+      [
+        480,
+        720
+      ]
+    ]
+  },
+  "input_policy": "Original resolution; no normalization, clipping, filtering, interpolation, smoothing, resampling or derived features",
+  "pilot_pose_schema": {
+    "annotation_ordinal": "int32[T]",
+    "pose_detected": "bool[T]",
+    "landmarks": "float32[T,33,4] x,y,z,visibility"
+  },
+  "forbidden_npz_fields": [
+    "timestamp_ms",
+    "fps",
+    "annotation_class_id",
+    "label"
+  ],
+  "repeatability_passes": 2,
+  "same_landmarker_configuration_all_passes": true
+}

@@ -1,0 +1,11 @@
+subject_id,activity,source_video_identity,split,video_label,pilot_role,png_count,txt_count,annotation_order_status,annotation_timebase_status,explicit_alias_pairs,exact_duplicate_groups,pose_npz_path
+2,Fall backwards,Subject.2/Fall backwards/FallBackwardsS2.avi,train,fall,required_stress,121,121,verified,unresolved,1,1,pose_npz/Subject.2/Fall backwards/FallBackwardsS2.npz
+8,Hop,Subject.8/Hop/HopS8.avi,train,non_fall,required_stress,167,167,verified,unresolved,1,0,pose_npz/Subject.8/Hop/HopS8.npz
+8,Pick up object,Subject.8/Pick up object/PickupobjectS8.avi,train,non_fall,required_stress,267,267,verified,unresolved,1,0,pose_npz/Subject.8/Pick up object/PickupobjectS8.npz
+9,Walk,Subject.9/Walk/WalkS9.avi,train,non_fall,required_stress,235,235,verified,unresolved,1,0,pose_npz/Subject.9/Walk/WalkS9.npz
+4,Fall forward,Subject.4/Fall forward/FallForwardS4.avi,train,fall,required_stress,169,169,verified,unresolved,0,1,pose_npz/Subject.4/Fall forward/FallForwardS4.npz
+4,Pick up object,Subject.4/Pick up object/PickupobjectS4.avi,train,non_fall,required_stress,180,180,verified,unresolved,0,1,pose_npz/Subject.4/Pick up object/PickupobjectS4.npz
+9,Fall sitting,Subject.9/Fall sitting/FallSittingS9.avi,train,fall,required_stress,217,217,verified,unresolved,0,1,pose_npz/Subject.9/Fall sitting/FallSittingS9.npz
+8,Fall forward,Subject.8/Fall forward/FallForwardS8.avi,train,fall,required_stress,123,123,verified,unresolved,0,0,pose_npz/Subject.8/Fall forward/FallForwardS8.npz
+1,Fall backwards,Subject.1/Fall backwards/FallBackwardsS1.avi,train,fall,clean_fall_control,126,126,verified,unresolved,0,0,pose_npz/Subject.1/Fall backwards/FallBackwardsS1.npz
+1,Hop,Subject.1/Hop/HopS1.avi,train,non_fall,clean_non_fall_control,183,183,verified,unresolved,0,0,pose_npz/Subject.1/Hop/HopS1.npz

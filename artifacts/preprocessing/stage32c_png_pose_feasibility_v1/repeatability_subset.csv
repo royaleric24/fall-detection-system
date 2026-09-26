@@ -1,0 +1,5 @@
+source_video_identity,annotation_ordinal,png_filename,png_sha256,annotation_class_id,annotation_semantic_label
+Subject.1/Fall backwards/FallBackwardsS1.avi,0,cas100001.png,42fe4e571ba58db31492566d465b0a7073f3b67d1ed111b35ffe4b07e1e8e4f8,0,nofall
+Subject.1/Fall backwards/FallBackwardsS1.avi,58,cas100059.png,9a0a27eae3565c7fe56c19eb2c8a094b56bbdb0f5a11024e4420b461abb47890,1,grounded_fall_state
+Subject.2/Fall backwards/FallBackwardsS2.avi,90,cas200091 - copia.png,9d4e8fc0c770d496b64362843fbfa629fa1d28246c4db3018a50b3282d5ed9d1,1,grounded_fall_state
+Subject.2/Fall backwards/FallBackwardsS2.avi,91,cas200092.png,9d4e8fc0c770d496b64362843fbfa629fa1d28246c4db3018a50b3282d5ed9d1,1,grounded_fall_state

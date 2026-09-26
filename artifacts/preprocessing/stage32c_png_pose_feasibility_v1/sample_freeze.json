@@ -1,0 +1,42 @@
+{
+  "stage": "3.2c",
+  "status": "sample_frozen_before_inference",
+  "parent_commit": "8a43017170b1a9dff66476f83f95878a6c0945f8",
+  "train_subjects": [
+    8,
+    4,
+    3,
+    9,
+    1,
+    2
+  ],
+  "selection_rule": "Eight specified stress sequences in task order, then lexicographically first eligible fall and non_fall Train controls without alias or exact duplicate groups and with verified annotation order",
+  "selected_sequences": [
+    "Subject.2/Fall backwards/FallBackwardsS2.avi",
+    "Subject.8/Hop/HopS8.avi",
+    "Subject.8/Pick up object/PickupobjectS8.avi",
+    "Subject.9/Walk/WalkS9.avi",
+    "Subject.4/Fall forward/FallForwardS4.avi",
+    "Subject.4/Pick up object/PickupobjectS4.avi",
+    "Subject.9/Fall sitting/FallSittingS9.avi",
+    "Subject.8/Fall forward/FallForwardS8.avi",
+    "Subject.1/Fall backwards/FallBackwardsS1.avi",
+    "Subject.1/Hop/HopS1.avi"
+  ],
+  "selected_frame_count": 1788,
+  "repeatability_subset_count": 4,
+  "source_hashes": {
+    "annotation_native_sequence_inventory.csv": "405a976956d6826b510d17ecb93ef3d7d091c946f0a54883ca86cd13ae67d4e8",
+    "annotation_native_frames.csv": "fbd5de355c03e2823bf125178aaba66fd4defdb8084a7a98075f70f1ef1fc053",
+    "png_duplicate_audit.csv": "8835f4fa2481228e903a2db96c8e7910bedb1521ce3b2cb9f24564175efe5556",
+    "summary.json": "472daffd9dd5f7313409eb74ea614531acea12880381f9ff1e1669247c03c6c0",
+    "validation_record.json": "76265ca4bac6b11ea52b478ea29ac2649547b3f2485caa4d328be3b86a2930b7"
+  },
+  "output_hashes": {
+    "pilot_sample_manifest.csv": "dc2eced831400dd279b599fea1cd480987d5eef81cc4e21e5fe94434ab506351",
+    "annotation_identity_manifest.csv": "c6998e0017cff2e7c02d8f031c32d5dd733d758b2b3dc5bb147196338e483f47",
+    "repeatability_subset.csv": "1f966c925897ec865d0b866736055704ed39708b123bbbca6101cc1acdcbef37"
+  },
+  "extractor_code_sha256": "e0841c6e17c29ba929b1723318bc4aaa77450b85f7b4459d339793b2c9fb41e2",
+  "model_sha256": "5134a3aad27a58b93da0088d431f366da362b44e3ccfbe3462b3827a839011b1"
+}
