@@ -1,0 +1,9 @@
+{
+  "pilot_frozen_before_decode": true,
+  "selected_count": 12,
+  "all_selected_AVI_hashes_match": true,
+  "all_sequential_counts_match": true,
+  "all_indices_contiguous_from_zero": true,
+  "frame_count_mismatches": 0,
+  "limitation": "OpenCV read termination cannot by itself distinguish EOF from decoder failure when count matches"
+}

@@ -1,0 +1,12 @@
+{
+  "run_id": "stage32f_train_pilot_v1",
+  "parent_commit": "59052bab724fa501bc2938c822388356399046ea",
+  "protocol_version": "stage32e_v1",
+  "metadata_source": "artifacts/pose_extraction/runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/manifest.csv",
+  "metadata_sha256": "9f0e7ba39a4a67b954f27ae1f3e022c22908c4f470347f28bfeef293f4f92527",
+  "eligible_scope": "frozen_Train_only_60_videos",
+  "selection_rule": "sort subjects numerically (1,2,3,4,8,9); for each class use canonical alphabetic activity order; assign first five subjects distinct activities and sixth the first activity; one video per subject/activity; no visual, pose, missingness, model or annotation inputs",
+  "presentation_rule": "sort by SHA-256 of domain presentation, run ID, parent and canonical source identity; if perfectly alternating classes, swap positions 2 and 3; freeze order",
+  "neutral_id_rule": "clip- plus first 16 SHA-256 hex characters of domain neutral-id, run ID, parent and canonical source identity",
+  "purpose": "protocol_and_tool_validation_pilot_not_statistically_representative"
+}

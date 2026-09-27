@@ -1,0 +1,10 @@
+{
+  "frozen_at_utc": "2026-09-27T07:02:21.597592+00:00",
+  "frozen_file_sha256": {
+    "pilot_private_manifest.json": "9df7208206036fc28f390c5ef3ccafcb9aaca967bd9439d207407ed8fccb61e8",
+    "pilot_annotator_manifest.json": "508bbb7aaaf1884dadc6d84287a4dba6cf24df05d63cc41f0aa7caac608f8891",
+    "pilot_selection_provenance.json": "df2cc25b9a4e03e3c40b1a61ef98008027a3ae47db04ae34351b711814ac42d0",
+    "presentation_order.json": "c10b2a5be2501db9a4e177ebfd514cf7e9935bdcc0c44539e89694b063172791"
+  },
+  "decode_verification_at_freeze": "NOT_RUN"
+}
