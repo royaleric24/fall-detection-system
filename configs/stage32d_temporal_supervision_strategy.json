@@ -1,0 +1,219 @@
+{
+  "contract_version": 1,
+  "stage": "3.2d",
+  "review_status": "pending_external_gate_review",
+  "parent_commit": "d99478c68f2bc1bcaa736ca610affc5a8135eee6",
+  "execution": {
+    "annotation_enabled": false,
+    "derived_data_build_enabled": false,
+    "window_construction_enabled": false,
+    "model_training_enabled": false,
+    "implementation_status": "strategy_record_only"
+  },
+  "decision_resolution": {
+    "historical_parent_decision": {
+      "contract": "configs/stage3_contract.json",
+      "field": "decisions.temporal_supervision_protocol",
+      "value_at_stage_3_0_gate": "UNDECIDED"
+    },
+    "precedence_rule": "latest_explicit_resolution_wins_only_within_declared_scope",
+    "authoritative_from_stage": "3.2d",
+    "broader_temporal_supervision_protocol": "NOT_FULLY_RESOLVED",
+    "resolved_subdecisions": {
+      "primary_temporal_supervision_strategy": {"status": "RESOLVED", "contract_field": "selected_primary_route"},
+      "canonical_temporal_source": {"status": "RESOLVED", "contract_field": "canonical_temporal_source.identity"},
+      "canonical_pose_source": {"status": "RESOLVED", "contract_field": "canonical_pose_source.identity"},
+      "authoritative_temporal_coordinate_system": {"status": "RESOLVED", "contract_field": "canonical_temporal_source.authoritative_manual_boundary_coordinate"},
+      "official_png_txt_annotation_role": {"status": "RESOLVED", "contract_field": "official_png_annotations.role"},
+      "png_to_avi_frame_label_join": {"status": "RESOLVED", "contract_field": "official_png_annotations.png_to_avi_frame_join"},
+      "video_level_weak_supervision_role": {"status": "RESOLVED", "contract_field": "video_level_weak_supervision.role"}
+    },
+    "remaining_unresolved_subdecisions": {
+      "manual_annotation_ontology": "UNDECIDED",
+      "state_definitions": "UNDECIDED",
+      "event_boundary_definitions": "UNDECIDED",
+      "uncertainty_ambiguity_representation": "UNDECIDED",
+      "annotation_schema_details": "UNDECIDED",
+      "annotator_agreement_threshold": "UNDECIDED",
+      "adjudication_protocol_details": "UNDECIDED",
+      "final_window_label_rule": "UNDECIDED"
+    }
+  },
+  "selected_primary_route": "B",
+  "canonical_temporal_source": {
+    "identity": "Stage 2 decoded AVI timeline",
+    "dataset": "CAUCAFall V5 local distributed AVI",
+    "source_fps": 20,
+    "source_fps_unit": "frames_per_second",
+    "source_fps_provenance": [
+      "artifacts/dataset_inspection/inventory.csv",
+      "docs/pose_extraction_contract.md",
+      "docs/stage3_preprocessing_contract.md"
+    ],
+    "authoritative_manual_boundary_coordinate": "frame_index",
+    "frame_index_origin": 0,
+    "derived_coordinate": "timestamp_ms",
+    "timestamp_method": "round(frame_index * 1000 / source_fps)",
+    "rounding": "Python round, ties to even",
+    "timestamp_scope": "clip_relative_not_unix_epoch",
+    "timestamp_entry_policy": "derived_from_frozen_AVI_timeline_not_hand_entered"
+  },
+  "canonical_pose_source": {
+    "identity": "Stage 2 pose_raw_v1",
+    "schema_version": "pose_raw_v1",
+    "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "pose_root": "data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "source_contract": "configs/stage3_contract.json"
+  },
+  "future_temporal_annotation": {
+    "source": "manual_review_of_original_AVI_visual_evidence",
+    "status": "NOT_IMPLEMENTED",
+    "required_record_fields": [
+      "source_video",
+      "subject_id",
+      "activity",
+      "frame_index",
+      "timestamp_ms",
+      "annotation_protocol_version",
+      "annotator_id_or_pseudonym",
+      "annotation_provenance"
+    ],
+    "manual_boundary_coordinate": "frame_index",
+    "timestamp_ms_rule": "deterministic_derivative_of_frozen_AVI_frame_index",
+    "ontology": "UNDECIDED",
+    "operational_boundary_definitions": "UNDECIDED",
+    "ambiguity_representation": "REQUIRED_DESIGN_IN_STAGE_3.2e",
+    "annotation_schema": "UNDECIDED"
+  },
+  "semantic_distinctions": {
+    "fall_activity_video": "video_level_activity_identity_only",
+    "fall_transition_or_falling_motion": "distinct_from_grounded_post_fall_state; operational_definition_UNDECIDED",
+    "grounded_post_fall_state": "official_PNG_class_1_semantic_reference_only",
+    "official_png_class_0": "nofall",
+    "official_png_class_1": "grounded_fall_state",
+    "automatic_class1_to_active_fall": "PROHIBITED",
+    "automatic_fall_video_to_positive_frames_or_windows": "PROHIBITED"
+  },
+  "official_png_annotations": {
+    "role": "semantic_and_annotation_native_reference_only",
+    "physical_timebase": "UNRESOLVED",
+    "avi_frame_level_ground_truth_role": "PROHIBITED",
+    "png_to_avi_frame_join": "PROHIBITED",
+    "permitted_use": "understand_authors_grounded_fall_state_semantics_without_AVI_boundary_transfer",
+    "protocol_design_semantic_reference": "PERMITTED_from_official_documentation_and_already_reviewed_evidence",
+    "same_video_png_txt_frame_labels_for_manual_avi_boundaries": "PROHIBITED"
+  },
+  "prohibited_mappings": [
+    "AVI_frame_index_equals_PNG_ordinal",
+    "AVI_frame_index_equals_parsed_PNG_filename_index",
+    "AVI_PNG_similarity_based_reconstruction",
+    "PNG_class_transition_used_as_hidden_AVI_boundary",
+    "PNG_ordinal_converted_to_seconds_using_unverified_FPS"
+  ],
+  "png_native_pose_pilot": {
+    "identity": "Stage 3.2c ten-sequence PNG pose feasibility pilot",
+    "source_commit": "d99478c68f2bc1bcaa736ca610affc5a8135eee6",
+    "role": "feasibility_evidence_non_primary_experimental_source",
+    "runtime_mode": "IMAGE_stateless",
+    "promotion_to_primary_training_source": "NOT_AUTHORIZED",
+    "full_Train_PNG_extraction": "NOT_AUTHORIZED",
+    "availability_comparison_as_source_superiority": "NOT_AUTHORIZED"
+  },
+  "video_level_weak_supervision": {
+    "role": "fallback_only",
+    "automatic_whole_fall_video_positive_labeling": "PROHIBITED",
+    "limitation": "fall_activity_video_does_not_locate_active_falling_motion_or_grounded_state"
+  },
+  "split_policy": {
+    "train": {
+      "subjects": [8, 4, 3, 9, 1, 2],
+      "use": "develop_and_pilot_manual_AVI_annotation_protocol"
+    },
+    "validation": {
+      "subjects": [10, 5],
+      "before_initial_Train_protocol": "PROHIBITED",
+      "later_use": "only_after_protocol_frozen_or_explicitly_versioned_under_Stage_3_validation_design_policy"
+    },
+    "test": {
+      "subjects": [6, 7],
+      "current_status": "SEALED",
+      "current_annotation": "PROHIBITED",
+      "current_video_pose_png_annotation_inspection": "PROHIBITED",
+      "future_policy": "only_after_temporal_protocol_frozen_and_preferably_after_model_preprocessing_threshold_decisions_frozen",
+      "future_annotator_blinding": "blind_to_model_outputs"
+    }
+  },
+  "annotation_quality_requirements": {
+    "visual_evidence_source": "original_source_AVI_visual_pixels_only",
+    "canonical_downstream_pose_source": "Stage_2_pose_raw_v1_not_annotation_evidence",
+    "prohibited_manual_boundary_inputs": {
+      "pose_raw_v1_landmarks": "PROHIBITED",
+      "pose_detected_state": "PROHIBITED",
+      "MediaPipe_missingness_patterns": "PROHIBITED",
+      "any_MediaPipe_derived_feature": "PROHIBITED",
+      "pose_raw_v1_skeleton_visualization": "PROHIBITED",
+      "model_predictions": "PROHIBITED",
+      "model_probabilities_or_confidence": "PROHIBITED",
+      "model_errors": "PROHIBITED",
+      "model_performance": "PROHIBITED",
+      "validation_performance": "PROHIBITED",
+      "future_alert_system_outputs": "PROHIBITED",
+      "same_video_official_PNG_TXT_frame_labels": "PROHIBITED"
+    },
+    "model_predictions_as_annotation_input": "PROHIBITED",
+    "future_Test_performance_as_annotation_input": "PROHIBITED",
+    "ambiguous_boundaries": "must_be_explicitly_representable",
+    "source_frame_index": "must_be_preserved",
+    "source_video_edit_or_reencode": "PROHIBITED",
+    "independent_multi_annotator_pilot": "frozen_subset_of_Train_fall_videos_before_full_Train_annotation",
+    "agreement_unit": "video_or_event_not_independent_frames",
+    "adjudication": "preserve_original_annotator_records",
+    "required_agreement_threshold": "UNDECIDED"
+  },
+  "routes": {
+    "A": {
+      "description": "PNG-native pose plus official PNG/TXT labels",
+      "status": "DEFERRED_NOT_PRIMARY",
+      "reason": "PNG order is verified but physical timebase is unresolved; Stage 3.2c used stateless IMAGE pose inference rather than the canonical AVI temporal runtime",
+      "future_research_status": "not_ruled_out"
+    },
+    "B": {
+      "description": "AVI timeline plus manually created temporal annotations",
+      "status": "SELECTED_PRIMARY",
+      "reason": "verified_local_20_FPS_AVI_timeline_direct_compatibility_with_Stage_2_pose_raw_v1_and_later_time_aware_processing"
+    },
+    "C": {
+      "description": "video-level weak supervision",
+      "status": "FALLBACK",
+      "reason": "avoids_temporal_annotation_but_fall_activity_video_does_not_make_every_frame_or_window_active_fall"
+    }
+  },
+  "unresolved_decisions": {
+    "manual_AVI_annotation_ontology": "UNDECIDED",
+    "manual_boundary_operational_definitions": "UNDECIDED",
+    "annotation_ambiguity_rules": "UNDECIDED",
+    "annotation_schema_version": "UNDECIDED",
+    "annotation_pilot_selection": "UNDECIDED",
+    "inter_annotator_agreement_threshold": "UNDECIDED",
+    "adjudication_protocol": "UNDECIDED",
+    "window_supervision_rule": "UNDECIDED",
+    "positive_window_overlap_threshold": "UNDECIDED"
+  },
+  "next_stage": {
+    "identity": "3.2e",
+    "status": "NOT_STARTED",
+    "required_design_topics": [
+      "manual_AVI_temporal_annotation_ontology",
+      "exact_boundary_and_state_operational_definitions",
+      "annotator_instructions",
+      "ambiguity_handling",
+      "frame_by_frame_annotation_workflow_and_tooling",
+      "annotator_agreement_protocol",
+      "adjudication_protocol_preserving_original_records",
+      "provenance_and_versioning",
+      "annotation_schema",
+      "pilot_selection",
+      "Gate_criteria"
+    ]
+  }
+}
