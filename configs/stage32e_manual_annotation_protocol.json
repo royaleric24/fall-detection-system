@@ -1,0 +1,153 @@
+{
+  "contract_version": 1,
+  "stage": "3.2e",
+  "review_status": "pending_external_gate_review",
+  "parent_commit": "5c420adc145767ca83a065da7e9bdbe0261bcc0d",
+  "strategy_contract": "configs/stage32d_temporal_supervision_strategy.json",
+  "decision_resolution": {
+    "precedence_rule": "latest_explicit_resolution_wins_only_within_declared_scope",
+    "authoritative_from_stage": "3.2e",
+    "stage32d_route_and_source_decisions": "UNCHANGED",
+    "resolved_subdecisions": {
+      "manual_event_presence_vocabulary": "event_presence.vocabulary",
+      "minimal_event_boundary_ontology": "boundaries.names",
+      "event_boundary_semantics_and_statuses": "boundaries.boundary_statuses",
+      "boundary_uncertainty_representation": "boundaries.observed_fields",
+      "annotation_record_schema": "record_schema.required_top_level",
+      "annotation_reason_vocabulary": "reason_flags",
+      "blinding_requirements": "future_tool_blinding",
+      "inter_annotator_agreement_methodology": "agreement",
+      "adjudication_record_separation": "inter_annotator_protocol.adjudication_output"
+    },
+    "remaining_unresolved_subdecisions": [
+      "full_state_ontology_beyond_recorded_event_boundaries",
+      "final_frame_class_semantics", "final_window_label_rule",
+      "window_overlap_threshold", "pilot_sample_size_and_selection",
+      "agreement_acceptance_threshold", "adjudication_acceptance_threshold",
+      "adjudication_decision_procedure"
+    ]
+  },
+  "execution": {
+    "real_annotation_enabled": false,
+    "pilot_selection_enabled": false,
+    "annotation_tool_enabled": false,
+    "window_label_build_enabled": false,
+    "model_ready_data_build_enabled": false
+  },
+  "evidence": {
+    "manual_boundary_source": "source_AVI_visual_pixels_only",
+    "canonical_downstream_pose_source": "Stage_2_pose_raw_v1_not_annotation_evidence",
+    "prohibited_boundary_inputs": [
+      "pose_raw_v1", "pose_detected", "MediaPipe_landmarks_missingness_or_features",
+      "pose_raw_v1_skeleton_visualizations", "model_predictions_or_confidence",
+      "model_errors_or_performance", "Validation_or_Test_performance",
+      "future_alert_outputs", "same_video_official_PNG_TXT_frame_labels"
+    ],
+    "official_semantic_reference_for_protocol_design": "PERMITTED_already_reviewed_grounded_fall_state_meaning_only",
+    "official_PNG_TXT_to_AVI_frame_coordinate_transfer": "PROHIBITED",
+    "activity_filename_or_dataset_label_as_event_presence": "PROHIBITED"
+  },
+  "event_presence": {
+    "vocabulary": ["fall_observed", "no_fall_observed", "uncertain"],
+    "source": "manual_visual_decision",
+    "uncertain_requires_reason_flag": true,
+    "no_fall_boundary_status": "not_applicable",
+    "uncertain_boundary_statuses": ["unjudgeable", "not_applicable"]
+  },
+  "boundaries": {
+    "names": ["fall_transition_start", "grounded_start", "recovery_start"],
+    "fall_transition_start": "beginning_of_continuous_fall_related_body_transition_leading_to_post_fall_ground_support",
+    "grounded_start": "beginning_of_post_fall_ground_supported_state_after_main_descent_substantially_completes",
+    "recovery_start": "optional_beginning_of_clear_sustained_transition_away_from_post_fall_grounded_state",
+    "coordinate": "source_AVI_zero_based_frame_index",
+    "observed_fields": ["earliest_plausible_frame", "preferred_frame", "latest_plausible_frame"],
+    "observed_order": "earliest_plausible_frame<=preferred_frame<=latest_plausible_frame",
+    "preferred_event_order": "fall_transition_start<=grounded_start<=recovery_start_when_jointly_observed",
+    "uncertainty_intervals_may_overlap": true,
+    "boundary_statuses": {
+      "observed": "visually_placeable_with_three_frame_coordinates",
+      "left_censored": "relevant_transition_began_before_first_available_AVI_frame",
+      "right_censored": "relevant_transition_or_state_onset_not_reached_before_last_available_AVI_frame",
+      "not_observed": "optional_event_does_not_occur_within_available_clip",
+      "unjudgeable": "conceptually_relevant_but_visual_evidence_insufficient_to_place",
+      "not_applicable": "boundary_does_not_apply_under_event_presence"
+    },
+    "non_observed_coordinates": "PROHIBITED",
+    "recovery_optional": true
+  },
+  "reason_flags": [
+    "occlusion", "subject_out_of_frame", "motion_blur",
+    "ambiguous_transition_start", "ambiguous_grounded_state",
+    "ambiguous_recovery", "insufficient_clip_context", "other"
+  ],
+  "record_schema": {
+    "required_top_level": [
+      "annotation_record_id", "protocol_version", "source", "annotator",
+      "event_presence", "event_presence_reason_flags", "boundaries", "creation"
+    ],
+    "optional_top_level": ["annotator_note"],
+    "source_required": [
+      "source_video", "neutral_clip_id", "subject_id", "split",
+      "source_avi_sha256", "frame_count", "source_fps",
+      "source_fps_provenance"
+    ],
+    "annotator_required": ["pseudonymous_id", "session_id"],
+    "creation_required": ["created_at_utc", "annotation_run_id", "tool_version"],
+    "protocol_version": "stage32e_v1",
+    "source_fps": 20,
+    "source_fps_provenance": "frozen_Stage_2_AVI_timeline",
+    "source_avi_sha256": "lowercase_sha256_if_available_otherwise_null",
+    "timestamp_policy": "optional_machine_derived_preferred_timestamp_ms_only",
+    "timestamp_formula": "round(preferred_frame * 1000 / 20)",
+    "timestamp_entry_by_annotator": "PROHIBITED",
+    "stored_provenance_vs_annotator_display": "SEPARATE"
+  },
+  "future_tool_blinding": {
+    "hide": [
+      "fall_nonfall_activity_metadata", "activity_name_where_practical",
+      "revealing_filename", "official_PNG_TXT_labels", "pose_or_skeleton_data",
+      "MediaPipe_missingness", "model_predictions", "model_scores", "model_errors",
+      "other_annotator_records"
+    ],
+    "may_display": [
+      "original_AVI_visual_frames", "neutral_clip_id", "frame_index",
+      "machine_derived_clip_relative_time", "playback_controls"
+    ]
+  },
+  "inter_annotator_protocol": {
+    "pilot_split": "train_only",
+    "annotators_minimum": 2,
+    "same_frozen_subset_and_protocol_version": true,
+    "independent_before_adjudication": true,
+    "blind_to_other_annotations_and_pose_model_evidence": true,
+    "original_records_after_adjudication": "IMMUTABLE",
+    "adjudication_output": "separate_record_referencing_original_record_ids",
+    "pilot_must_include": ["fall_source_videos", "non_fall_source_videos", "hard_negative_ADL", "multiple_subjects", "multiple_fall_activities"],
+    "pilot_selection_basis_excludes": ["model_predictions", "pose_missingness"],
+    "pilot_selected_videos": "UNDECIDED",
+    "pilot_sample_size": "UNDECIDED",
+    "validation_protocol_development": "PROHIBITED",
+    "test_protocol_development": "PROHIBITED",
+    "test_subjects": [6, 7],
+    "test_status": "SEALED"
+  },
+  "agreement": {
+    "unit": "clip_event_or_jointly_observed_boundary_not_independent_frames",
+    "event_presence": ["raw_agreement", "Cohens_kappa_where_defined"],
+    "boundary_preferred_frame_absolute_disagreement": "abs(preferred_frame_A-preferred_frame_B)",
+    "boundary_preferred_time_disagreement_ms": "abs(round(preferred_frame_A*1000/20)-round(preferred_frame_B*1000/20))",
+    "uncertainty_interval_overlap": "inclusive_intervals_overlap_if_max(earliest_A,earliest_B)<=min(latest_A,latest_B)",
+    "uncertainty_interval_gap_frames": "max(0,earliest_A-latest_B,earliest_B-latest_A)",
+    "required_agreement_threshold": "UNDECIDED"
+  },
+  "deferred": {
+    "full_state_ontology_beyond_recorded_event_boundaries": "UNDECIDED",
+    "final_frame_class_semantics": "UNDECIDED",
+    "final_window_label_rule": "UNDECIDED",
+    "window_overlap_threshold": "UNDECIDED",
+    "pilot_sample_size_and_selection": "UNDECIDED",
+    "agreement_acceptance_threshold": "UNDECIDED",
+    "adjudication_acceptance_threshold": "UNDECIDED",
+    "adjudication_decision_procedure": "UNDECIDED"
+  }
+}
