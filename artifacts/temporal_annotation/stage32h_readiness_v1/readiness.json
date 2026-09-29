@@ -1,0 +1,106 @@
+{
+  "agreement_state": "LOCKED",
+  "annotation_record_count": 0,
+  "created_at_utc": "2026-09-29T13:40:25.152187Z",
+  "expected_per_annotator": 12,
+  "finalized_counts": {
+    "A01": 0,
+    "A02": 0
+  },
+  "frozen": {
+    "execution_protocol_version": "stage32g_execution_v1",
+    "expected_annotators": [
+      "A01",
+      "A02"
+    ],
+    "expected_neutral_clip_ids_in_presentation_order": [
+      "clip-2fe2333384c17b31",
+      "clip-c078d142aa1f14a5",
+      "clip-aac4d92e41c40966",
+      "clip-dc1bb1ad88263cbc",
+      "clip-506093950302e9b0",
+      "clip-dcf816a1b5d3d985",
+      "clip-13bdba5b52e42f31",
+      "clip-0ef3ecac0ec52ae2",
+      "clip-2edc24e4f8f0a714",
+      "clip-1219a0bbbb10e630",
+      "clip-06e1706333722fd6",
+      "clip-2388955e194c95a8"
+    ],
+    "file_sha256": {
+      "artifacts/temporal_annotation/stage32f_train_pilot_v1/REPORT.md": "416018618d6772f180c3a00d2c5c8a3f18cc1c243cadd38b17235181579583b9",
+      "artifacts/temporal_annotation/stage32f_train_pilot_v1/decode_integrity.json": "c345383a82372d865e0091324292ea5e4ba67a682c432a13f6f547db5d45fc47",
+      "artifacts/temporal_annotation/stage32f_train_pilot_v1/freeze_record.json": "f646c22c59c78dd0719f9280d1983d223a54ae909039126bdf5b22aa3083d85b",
+      "artifacts/temporal_annotation/stage32f_train_pilot_v1/pilot_annotator_manifest.json": "508bbb7aaaf1884dadc6d84287a4dba6cf24df05d63cc41f0aa7caac608f8891",
+      "artifacts/temporal_annotation/stage32f_train_pilot_v1/pilot_private_manifest.json": "9df7208206036fc28f390c5ef3ccafcb9aaca967bd9439d207407ed8fccb61e8",
+      "artifacts/temporal_annotation/stage32f_train_pilot_v1/pilot_selection_provenance.json": "df2cc25b9a4e03e3c40b1a61ef98008027a3ae47db04ae34351b711814ac42d0",
+      "artifacts/temporal_annotation/stage32f_train_pilot_v1/presentation_order.json": "c10b2a5be2501db9a4e177ebfd514cf7e9935bdcc0c44539e89694b063172791",
+      "artifacts/temporal_annotation/stage32f_train_pilot_v1/tool_runtime_provenance.json": "bea8811926e608881cfc5922aa739782080ee5e16fdc17c21e007dc1c2b2c547",
+      "artifacts/temporal_annotation/stage32f_train_pilot_v1/validation_record.json": "0595ef32f6d5c38b9a045e296e44057b6aa4ca8435004574dd8c41f1d2cfe70e",
+      "artifacts/temporal_annotation/stage32g_execution_v1/REPORT.md": "1792a93946d889c92f9aff90f890b4741bc151d833a736aad734f4356e39f6ca",
+      "artifacts/temporal_annotation/stage32g_execution_v1/completion_gate_spec.json": "156576155b0bb1b53ee2cb078d5b55910ce8657f6373c2bbcf8c6324f89cfac6",
+      "artifacts/temporal_annotation/stage32g_execution_v1/execution_protocol.json": "0d65a0a6a5b2c88d8be262c440745e2ea1f6f89a75d4fc16d26a5f9f412172dc",
+      "artifacts/temporal_annotation/stage32g_execution_v1/synthetic_rehearsal_validation.json": "051d363ee0b09ed2d517f4f1a00dede5e960a339821fdfee4a8ea68fbe0b45eb",
+      "artifacts/temporal_annotation/stage32g_execution_v1/workspace_policy.json": "bf4010002fb4e25d260a516789c83d88ac4cbc958906e9af44061ad05285a3e1",
+      "configs/stage32e_manual_annotation_protocol.json": "1f5652b1e2dd42e72ecc3798dcee3aac87e1c7e0d917aa95f03ec84bd0fbfec1",
+      "docs/stage32e_manual_annotation_protocol.md": "5521df327c7a5bf9f97094fa7fce3e934d9c76b537042127735d1bdbfd531e53",
+      "ml/preprocessing/annotation_execution.py": "723fc42dd58723181149db151d1afd97723c8642e0256322930530c44ef356b9",
+      "ml/preprocessing/annotation_pilot.py": "a5a1e22cfffaec8e7343b269b8f11fd76ad904d32d836055519ade84c0cf3589",
+      "ml/preprocessing/annotation_tool.py": "0b45225feda3fd6818a8550ecffd4d9e4b4fb8ae5da16dae563d5203eb998032",
+      "ml/preprocessing/annotation_web.py": "01ad0d6059bf2b40c6185235cf1f3b23a10708f90f8b6677f3caac2ed2039e87",
+      "ml/preprocessing/manual_annotation_contract.py": "2769ebbf0467e52c163220083478285985f66d72c5d551152d3810c68fb3b140"
+    },
+    "pilot_version": "stage32f_train_pilot_v1",
+    "presentation_order_sha256": "c10b2a5be2501db9a4e177ebfd514cf7e9935bdcc0c44539e89694b063172791",
+    "protocol_version": "stage32e_v1",
+    "tool_code_commit": "44d1543747f96fc8056adf2f71cdd6db3bdb07af",
+    "tool_version": "stage32f_local_tk_v1"
+  },
+  "frozen_tool_code_commit_scope": "Stage 3.2e/f/g code only; excludes Stage 3.2h readiness/launcher",
+  "genuine_session_count": 0,
+  "genuine_workspaces": {
+    "A01": "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01",
+    "A02": "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02"
+  },
+  "parent_commit": "44d1543747f96fc8056adf2f71cdd6db3bdb07af",
+  "readiness_checks": {
+    "agreement_locked": "PASS",
+    "dataset_open_required": false,
+    "frozen_metadata_and_code": "PASS",
+    "genuine_workspaces_empty": "PASS",
+    "namespaces_separate": "PASS",
+    "public_manifest_strict_blinding": "PASS",
+    "train_only_identities": "PASS"
+  },
+  "record_annotation_run_id": "stage32f_train_pilot_v1",
+  "run_id": "stage32h-6747d0191488418d932955fda609ec0e",
+  "runtime_binding_policy": {
+    "commit_record_location": "Git-ignored runtime binding after the freeze commit exists",
+    "control_file": "data/annotation_runs/stage32f_train_pilot_v1/_control/run_initialization/runtime_binding.json",
+    "head_equals_bound_runtime_commit": true,
+    "no_self_commit_hash_stored_in_tracked_artifacts": true,
+    "required_before_genuine_launch": true,
+    "tracked_files_and_index_match_bound_commit": true,
+    "tracked_snapshot_state": "UNBOUND_BEFORE_FREEZE"
+  },
+  "runtime_commit_bound_after_freeze": null,
+  "runtime_requirements": {
+    "opencv_distribution": "opencv-contrib-python",
+    "opencv_distribution_version": "4.12.0.88",
+    "opencv_module_version": "4.12.0",
+    "python_version": "3.13.15"
+  },
+  "session_id_rule": "<run_id>-<annotator_id>-<uuid_hex>",
+  "synthetic_onboarding_root": "/Users/eric/Developer/fall-detection-system/data/annotation_onboarding_synthetic/synthetic_onboarding",
+  "tool_identity_audit": {
+    "active_Tk_UI": false,
+    "actual_implementation": "standard-library loopback HTTPServer browser UI",
+    "authoritative_identifier": "stage32f_local_tk_v1",
+    "case": "A",
+    "frozen_stage32f_commit": "6f0af44710121afd43a8f9e077a5bdd09bd8dec5",
+    "identifier_evidence": "ml/preprocessing/annotation_tool.py:20",
+    "identifier_is_historical": true,
+    "implementation_evidence": "artifacts/temporal_annotation/stage32f_train_pilot_v1/REPORT.md:49"
+  },
+  "version": "stage32h_readiness_v1"
+}
