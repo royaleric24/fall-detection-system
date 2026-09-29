@@ -1,0 +1,180 @@
+{
+  "baseline_commit": "6f0af44710121afd43a8f9e077a5bdd09bd8dec5",
+  "execution_source_sha256": "723fc42dd58723181149db151d1afd97723c8642e0256322930530c44ef356b9",
+  "gate_status": "HOLD_pending_external_gate_review",
+  "regression_suite": {
+    "command": "/private/tmp/caucafall-stage26-cache/archive-v0/j01PHKlaO3SeMqsD/bin/python -B -m unittest tests.test_stage32g_execution_protocol tests.test_stage32f_annotation_tool tests.test_stage32e_manual_annotation_protocol tests.test_stage32d_temporal_supervision_strategy tests.test_stage3_contract -v",
+    "elapsed_seconds": 0.382,
+    "localhost_test_runtime": "outside_sandbox",
+    "offline_uv_attempt": "dependency_resolution_failed_before_tests; cached exact runtime executed directly",
+    "opencv_distribution_version": "4.12.0.88",
+    "opencv_version": "4.12.0",
+    "python_version": "3.13.15",
+    "result": "OK",
+    "test_count": 100
+  },
+  "rehearsal": {
+    "agreement_access_guard": {
+      "after_completion_before_freeze": "DENY",
+      "after_matching_raw_freeze": "ALLOW_PREREQUISITES_ONLY",
+      "before_dual_completion": "DENY"
+    },
+    "completion_cases": {
+      "A": {
+        "complete": false,
+        "counts": {
+          "A01": 11,
+          "A02": 12
+        },
+        "integrity_errors": [
+          "incomplete_A01"
+        ]
+      },
+      "B": {
+        "complete": false,
+        "counts": {
+          "A01": 12,
+          "A02": 0
+        },
+        "integrity_errors": [
+          "incomplete_A02"
+        ]
+      },
+      "C": {
+        "complete": false,
+        "counts": {
+          "A01": 12,
+          "A02": 11
+        },
+        "integrity_errors": [
+          "incomplete_A02"
+        ]
+      },
+      "D": {
+        "complete": true,
+        "counts": {
+          "A01": 12,
+          "A02": 12
+        },
+        "integrity_errors": []
+      }
+    },
+    "dataset_content_access_guard_active": true,
+    "deterministic_schema_valid_distinct_decisions": true,
+    "finalized_counts": {
+      "A01": 12,
+      "A02": 12
+    },
+    "fixtures_retained": false,
+    "frozen_neutral_clip_ids": [
+      "clip-2fe2333384c17b31",
+      "clip-c078d142aa1f14a5",
+      "clip-aac4d92e41c40966",
+      "clip-dc1bb1ad88263cbc",
+      "clip-506093950302e9b0",
+      "clip-dcf816a1b5d3d985",
+      "clip-13bdba5b52e42f31",
+      "clip-0ef3ecac0ec52ae2",
+      "clip-2edc24e4f8f0a714",
+      "clip-1219a0bbbb10e630",
+      "clip-06e1706333722fd6",
+      "clip-2388955e194c95a8"
+    ],
+    "independent_control_logs": {
+      "annotation_semantics_unchanged": true,
+      "blocking_incident_rejected_finalization": true,
+      "frozen_protocol_unchanged": true
+    },
+    "integrity_rejections": {
+      "missing_expected_clip": true,
+      "presentation_order_hash_mismatch": true,
+      "presentation_order_mismatch": true,
+      "unexpected_extra_clip": true,
+      "wrong_neutral_clip_id": true,
+      "wrong_pilot_version": true,
+      "wrong_protocol_version": true
+    },
+    "namespace": "<temporary_directory>/synthetic_rehearsal",
+    "no_agreement_metric_computed": true,
+    "no_genuine_annotation_created": true,
+    "no_real_data_content_accessed": true,
+    "ownership_rejections": {
+      "A01_cannot_load_A02": true,
+      "A01_cannot_resume_A02_final": true,
+      "A02_cannot_load_A01": true,
+      "A02_cannot_resume_A01_final": true,
+      "duplicate_original_rejected": true,
+      "owner_change_after_finalization_rejected": true,
+      "third_annotator_rejected": true
+    },
+    "pilot_version": "stage32f_train_pilot_v1",
+    "presentation_order_sha256": "c10b2a5be2501db9a4e177ebfd514cf7e9935bdcc0c44539e89694b063172791",
+    "protocol_version": "stage32e_v1",
+    "raw_freeze_sha256": "c8ab78a49f06af74b321d4264b824385a7e55e9f5e0eb429c1f5a4a9b4889d01",
+    "raw_freeze_test_only": {
+      "annotator_ids": [
+        "A01",
+        "A02"
+      ],
+      "code_commit": "6f0af44710121afd43a8f9e077a5bdd09bd8dec5",
+      "completed_at_utc": "2026-09-29T00:00:00Z",
+      "expected_clip_ids": [
+        "clip-2fe2333384c17b31",
+        "clip-c078d142aa1f14a5",
+        "clip-aac4d92e41c40966",
+        "clip-dc1bb1ad88263cbc",
+        "clip-506093950302e9b0",
+        "clip-dcf816a1b5d3d985",
+        "clip-13bdba5b52e42f31",
+        "clip-0ef3ecac0ec52ae2",
+        "clip-2edc24e4f8f0a714",
+        "clip-1219a0bbbb10e630",
+        "clip-06e1706333722fd6",
+        "clip-2388955e194c95a8"
+      ],
+      "finalized_file_sha256": {
+        "A01/finalized/synthetic-rehearsal-A01-01.finalized.json": "a4ed63fec75548d44db26a53def6c6ee1f54e27b143187cbb616b0f23db722ca",
+        "A01/finalized/synthetic-rehearsal-A01-02.finalized.json": "f7871fa2a1f3ff9db11150e790bb3837e269e1bda7f84ffcb2560ca078a566b2",
+        "A01/finalized/synthetic-rehearsal-A01-03.finalized.json": "223120da64c7cc477fa83be75f22a419f376ec04fa123335e69c101121065719",
+        "A01/finalized/synthetic-rehearsal-A01-04.finalized.json": "83776b070bbc55789c038716f2600aafafc0f75f281edfd3d6af64a70c6edb71",
+        "A01/finalized/synthetic-rehearsal-A01-05.finalized.json": "5eb65086972422e3d2a78f8046466f094c1adbb2a02d9f526f2d39a6e7f1ae0f",
+        "A01/finalized/synthetic-rehearsal-A01-06.finalized.json": "ef37a636d1430f8249c9331a6a26d947617626daf8ee3e4b8fd8f3d7c798a96c",
+        "A01/finalized/synthetic-rehearsal-A01-07.finalized.json": "b7fd0b0dc29dbd48791dd69af807aede0708d9a660300959a2836d38399ad46c",
+        "A01/finalized/synthetic-rehearsal-A01-08.finalized.json": "b8ad0b00806750b496a2387c20092b2d316fbf1190b430e59a572991ce99b8a4",
+        "A01/finalized/synthetic-rehearsal-A01-09.finalized.json": "06894d085a806e804f2f4ec1175a8f77034a512f8f0ba6788aca32b75e00dcc1",
+        "A01/finalized/synthetic-rehearsal-A01-10.finalized.json": "b1ec0c08e1be9eb3c674b2e465d641ef8e51cf70b6d1297c43cc0bfd0e27e356",
+        "A01/finalized/synthetic-rehearsal-A01-11.finalized.json": "e2d000cc2f28589c2555f4377920323851e0fea7fb9634f921695be2e256f315",
+        "A01/finalized/synthetic-rehearsal-A01-12.finalized.json": "0aaba0803489c6dd3f9c904a922ca196b367d428223634669f86637ef0acaa21",
+        "A02/finalized/synthetic-rehearsal-A02-01.finalized.json": "54fecf68b4688c2a9888aa8cb0dab0fe65ade80d0a4e1380911397cc422fc571",
+        "A02/finalized/synthetic-rehearsal-A02-02.finalized.json": "5e2f5c2cab5734d29595f43912065c4d40d2f0d0fa136973378c665a6debe91d",
+        "A02/finalized/synthetic-rehearsal-A02-03.finalized.json": "a219883579284e641408bc501132bb1d8d261d24f7ef7e90cb8902475cefc381",
+        "A02/finalized/synthetic-rehearsal-A02-04.finalized.json": "ee05841f6ce6ee56979e6c91395376115ffe5d9dd138a3c6c78b903bbcd8fbe8",
+        "A02/finalized/synthetic-rehearsal-A02-05.finalized.json": "e793160a72420732f2c78a66136cee44e7713150b0f90c6dd19522325be6bdc8",
+        "A02/finalized/synthetic-rehearsal-A02-06.finalized.json": "b273f954bbb2bb9d3777b677cba5a1482fe28a780eff1fd0b650ab2d0aa0b326",
+        "A02/finalized/synthetic-rehearsal-A02-07.finalized.json": "e96e2597fa8d08458c18d61c4dd19a34efa98eda34efcf3484f875a8c0258429",
+        "A02/finalized/synthetic-rehearsal-A02-08.finalized.json": "2d892242e2d62a9c616a751c0093b0289158a5fec09f46312b9f6273a4d31736",
+        "A02/finalized/synthetic-rehearsal-A02-09.finalized.json": "51cb2bafbe51bf8410cb09ffcc0eaaa539e31b8f11753f48674c4abe3c1d5657",
+        "A02/finalized/synthetic-rehearsal-A02-10.finalized.json": "c897b9f57a9cd7b0cb034abeee50f42297e45ad935bcdb1190621dfb2dca8bbc",
+        "A02/finalized/synthetic-rehearsal-A02-11.finalized.json": "8ceda015201594ce004976c9c748c6bc92d3f4807a1d0a881b0be28c10aafdc3",
+        "A02/finalized/synthetic-rehearsal-A02-12.finalized.json": "e492973a816f193d694d6f22d317b2cfb259c96f475150eaedffc649d8bff44d"
+      },
+      "pilot_private_manifest_sha256": "9df7208206036fc28f390c5ef3ccafcb9aaca967bd9439d207407ed8fccb61e8",
+      "pilot_version": "stage32f_train_pilot_v1",
+      "presentation_order_sha256": "c10b2a5be2501db9a4e177ebfd514cf7e9935bdcc0c44539e89694b063172791",
+      "protocol_version": "stage32e_v1",
+      "tool_version": "stage32f_local_tk_v1"
+    },
+    "second_freeze_rejected_unchanged": true,
+    "synthetic_test_only": true,
+    "tamper_detection": {
+      "agreement_access_denied": true,
+      "freeze_validation_failed": true,
+      "isolated_copy_discarded": true,
+      "sha256_mismatch": true
+    }
+  },
+  "rehearsal_helper_sha256": "a380f009a2ed22d9fb888d8b21a9eb4c54fb05696a1b3ca15d98ee8ebbe65475",
+  "stage": "3.2g_integration_addendum",
+  "synthetic_test_only": true,
+  "validated_at_utc": "2026-09-29T12:46:35.495145Z"
+}

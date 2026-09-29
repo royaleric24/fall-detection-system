@@ -1,0 +1,51 @@
+{
+  "version": "stage32g_execution_v1",
+  "status": "pending_external_gate_review",
+  "parent_commit": "6f0af44710121afd43a8f9e077a5bdd09bd8dec5",
+  "pilot_version": "stage32f_train_pilot_v1",
+  "protocol_version": "stage32e_v1",
+  "tool_version": "stage32f_local_tk_v1",
+  "approved_annotator_ids": ["A01", "A02"],
+  "real_names_required_or_stored": false,
+  "independence": {
+    "same_frozen_12_clip_set": true,
+    "same_neutral_ids": true,
+    "same_frozen_presentation_order": true,
+    "same_protocol_and_tool_baseline": true,
+    "other_annotator_drafts_or_finals_visible": false,
+    "individual_clip_or_boundary_discussion_before_dual_freeze": "PROHIBITED",
+    "other_annotator_hints_or_answers": "PROHIBITED",
+    "pose_model_and_same_video_PNG_TXT_evidence": "PROHIBITED",
+    "interim_agreement_or_disagreement_analysis": "PROHIBITED",
+    "mid_pilot_adjudication": "PROHIBITED"
+  },
+  "onboarding": {
+    "only_synthetic_frames_and_mock_clips": true,
+    "real_pilot_clips_for_practice": "PROHIBITED",
+    "practice_storage": "data/annotation_onboarding_synthetic",
+    "real_annotation_storage": "data/annotation_runs/stage32f_train_pilot_v1",
+    "namespace_mixing": "PROHIBITED"
+  },
+  "draft_policy": "own_workspace_only; save_resume_revise_rewatch_allowed; excluded_from_final_research_records",
+  "final_policy": "one_valid_Stage_3.2e_FINALIZED_original_per_annotator_per_frozen_clip; exclusive_create; no_unlock_or_in_place_edit; later_adjudication_separate_record",
+  "protocol_questions": {
+    "log": "_control/protocol_questions",
+    "procedural_tool_question": "may_be_answered_during_pilot_without_semantic_change",
+    "semantic_protocol_question": "log_open; do_not_change_definitions_or_answer_during_active_pilot; review_after_raw_freeze",
+    "other_annotator_answer_or_record": "PROHIBITED"
+  },
+  "technical_incidents": {
+    "log": "_control/technical_incidents",
+    "separate_from_annotation_uncertainty": true,
+    "unresolved_blocking_incident": "affected_clip_cannot_finalize_until_resolved",
+    "silent_clip_skip": "PROHIBITED"
+  },
+  "raw_freeze_before_analysis": true,
+  "future_agreement_analysis": "blocked_until_both_12_of_12_finalized_and_raw_file_hash_freeze_matches",
+  "execution_in_this_stage": {
+    "real_annotation": false,
+    "real_clip_display": false,
+    "agreement_analysis": false,
+    "adjudication": false
+  }
+}

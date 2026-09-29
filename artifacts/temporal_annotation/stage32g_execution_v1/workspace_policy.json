@@ -1,0 +1,20 @@
+{
+  "version": "stage32g_workspace_v1",
+  "real_root": "data/annotation_runs/stage32f_train_pilot_v1",
+  "synthetic_onboarding_root": "data/annotation_onboarding_synthetic",
+  "annotator_ids": ["A01", "A02"],
+  "layout": {
+    "A01": ["drafts", "finalized", "logs"],
+    "A02": ["drafts", "finalized", "logs"],
+    "_control": ["protocol_questions", "technical_incidents", "raw_freezes"]
+  },
+  "ownership": "Each application session binds one approved pseudonym and one frozen neutral clip ID to its own store; no arbitrary workspace path is accepted by the Stage 3.2g launcher.",
+  "presentation_order_enforcement": "Real launcher accepts only the next unfinished clip in the one frozen order for that annotator; finalized clips must form an exact prefix.",
+  "isolation_level": "application_and_procedural_only_not_operating_system_or_cryptographic_security",
+  "draft_storage": "replaceable_in_owner_drafts_directory",
+  "final_storage": "exclusive_create_in_owner_finalized_directory; original records never unlocked",
+  "control_logs": "operator_controlled_separate_from_annotator_visible_state",
+  "session_log": "owner_logs_directory_with_pseudonym_session_protocol_pilot_tool_code_commit_start_and_runtime_metadata",
+  "data_versioning": "real_annotation_outputs_are_Git_ignored_under_data_and_not_automatically_committed; future_raw_freeze_records_hash_each_final_file_and_pin_code_commit",
+  "legacy_stage32f_direct_launcher": "not_the_controlled_dual_annotator_pilot_entry_point"
+}

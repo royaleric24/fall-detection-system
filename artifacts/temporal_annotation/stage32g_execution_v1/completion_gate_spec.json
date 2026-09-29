@@ -1,0 +1,31 @@
+{
+  "version": "stage32g_completion_v1",
+  "expected_annotators": ["A01", "A02"],
+  "expected_clips_per_annotator": 12,
+  "pilot_version": "stage32f_train_pilot_v1",
+  "protocol_version": "stage32e_v1",
+  "tool_version": "stage32f_local_tk_v1",
+  "expected_clip_set_source": "frozen_stage32f_presentation_order_json",
+  "require": [
+    "exactly_two_approved_annotators",
+    "exactly_one_FINALIZED_original_per_annotator_per_expected_clip",
+    "no_draft_substitution",
+    "no_unexpected_or_duplicate_clip",
+    "Stage_3.2e_validator_passes",
+    "record_annotator_protocol_pilot_tool_and_source_identity_match_frozen_values",
+    "exclusive_create_storage_for_final_originals",
+    "SHA256_of_each_finalized_file"
+  ],
+  "completion_checker_output": ["complete", "counts", "file_sha256", "integrity_error_codes"],
+  "completion_checker_excludes": [
+    "event_presence_agreement", "Cohens_kappa", "boundary_differences",
+    "uncertainty_overlap", "partial_agreement", "per_clip_disagreement"
+  ],
+  "raw_freeze_required_fields": [
+    "pilot_version", "protocol_version", "tool_version", "annotator_ids",
+    "expected_clip_ids", "presentation_order_sha256", "pilot_private_manifest_sha256",
+    "finalized_file_sha256", "completed_at_utc", "code_commit"
+  ],
+  "agreement_guard": "reject_unless_dual_completion_and_exact_matching_raw_freeze_record",
+  "historical_overwrite_limit": "current_file_hashes_cannot_prove_earlier_history; exclusive_create_prevents_application_overwrite_and_post_freeze_hash_check_detects_later_mutation"
+}
