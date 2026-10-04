@@ -1,0 +1,4 @@
+boundary_type,denominator,status_exact_agreement_count,status_exact_agreement_rate,both_observed,same_nonobserved_status,observed_vs_nonobserved,different_nonobserved_status
+fall_transition_start,12,12,1.0,7,5,0,0
+grounded_start,12,12,1.0,7,5,0,0
+recovery_start,12,11,0.9166666666666666,0,11,1,0

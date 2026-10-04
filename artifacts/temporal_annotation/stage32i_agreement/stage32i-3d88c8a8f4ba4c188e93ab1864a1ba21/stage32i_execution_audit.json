@@ -1,0 +1,219 @@
+{
+  "adjudication_performed": false,
+  "analysis_implementation_modified": false,
+  "analysis_run_id": "stage32i-3d88c8a8f4ba4c188e93ab1864a1ba21",
+  "artifact_kind": "derived_run_verification_metadata",
+  "artifact_sha256_excluding_this_audit": {
+    "boundary_interval_summary.csv": "8e5231d0335955d42ba7c616745e908896b4c33f6badf566ae13a8588212c036",
+    "boundary_status_confusion_fall_transition_start.csv": "4bcb54d464c0701763bf88be0f39ce3ff802fcfb043a4b472df0ad6243cf3330",
+    "boundary_status_confusion_fall_transition_start.png": "c474ecbfb16d21b35f70224d1f392cfbccd72aa64ce4aaace45ecede78e18e82",
+    "boundary_status_confusion_grounded_start.csv": "4bcb54d464c0701763bf88be0f39ce3ff802fcfb043a4b472df0ad6243cf3330",
+    "boundary_status_confusion_grounded_start.png": "0e7f9c8f3e7c073ccd90022c5697216781afe8b93744a0286811e8e9ba26e7e1",
+    "boundary_status_confusion_recovery_start.csv": "2afc14bc4a0048791efafa103b85b41991a8d6b70ac9fba5403660693357f321",
+    "boundary_status_confusion_recovery_start.png": "64c98edb7950b744bb488d6e444367c28824568755e8620e8c9c16626d95e636",
+    "boundary_status_metrics.csv": "cebb07a21b6403db3caf8beda5462efe6d61434c4ed4d562ff957967a20f9f8c",
+    "boundary_status_pairs.csv": "041d27ad3ac599c73d50c263d6694af2053c501be9feca3a9f6b2fa7a9c8eccc",
+    "boundary_temporal_comparable.csv": "e56da6de549bcbc701c2ebbc7a19193217e1c48e9d6852e721f754f17f5ea05e",
+    "boundary_temporal_summary.csv": "efb0f1a19a402858b89a6011eb83619f37fceff3ba4de1d668e2225f135a2202",
+    "discrepancy_inventory.csv": "4ec0e2bbe82d6ad0aeb487b9b1495de9705a543e948d53f0606ed691a9b57625",
+    "event_presence_confusion_matrix.csv": "3576cf8944094224e760f2fcece740e8304843fc842bf82a96a7b7703a47b105",
+    "event_presence_confusion_matrix.png": "42627750227ff39f4af99ee198bf3d1242ae695ba7e64e99743c85e0438ed873",
+    "event_presence_metrics.json": "8830a90510a43418b9be9e35af26e424515a69333e7eec551414c89feaeb6411",
+    "interval_agreement_fall_transition_start.png": "1fe0ec435313f741786e313eb33f0c516022c7295df6493ae785f96cd2bdd9f3",
+    "interval_agreement_grounded_start.png": "46403b10210537a64d487d8cbb5f730e4eae48c641b0110ef57ff13ab070b188",
+    "paired_annotations.csv": "d0a6f9e58e11da3c3e0164d67579cd81c3686ac6f394c953f5412de60ca8db70",
+    "preferred_frame_difference_fall_transition_start.png": "643ab2751d487d126c0317cad539f39a4625d68c18bd05c286c61639110170e1",
+    "preferred_frame_difference_grounded_start.png": "ec0b5da8cf10a83a19283f8d1c59cd4b114ff8abf455adce770b81da1fa076c8",
+    "stage32i_analysis_manifest.json": "324f32d1e8922787a708ecc456bac50fe7cc5cc80f85b2be05fb7bc49fc3282d",
+    "stage32i_input_validation.json": "877c1d200efb8702cba3ed67aa102894100f15e39fcad0845949b4e65c63226c",
+    "stage32i_report.md": "8ffe393ea8064ea287069927725b0eb102770b07e69138d55de62738bd3e5885"
+  },
+  "denominator_audit": {
+    "boundaries": {
+      "fall_transition_start": {
+        "availability_total": 12,
+        "both_observed": 7,
+        "containment_denominator": 7,
+        "gap_denominator": 1,
+        "interval_denominator": 7,
+        "preferred_denominator": 7,
+        "status_matrix_total": 12,
+        "temporal_rows": 7
+      },
+      "grounded_start": {
+        "availability_total": 12,
+        "both_observed": 7,
+        "containment_denominator": 7,
+        "gap_denominator": 1,
+        "interval_denominator": 7,
+        "preferred_denominator": 7,
+        "status_matrix_total": 12,
+        "temporal_rows": 7
+      },
+      "recovery_start": {
+        "availability_total": 12,
+        "both_observed": 0,
+        "containment_denominator": 0,
+        "gap_denominator": 0,
+        "interval_denominator": 0,
+        "preferred_denominator": 0,
+        "status_matrix_total": 12,
+        "temporal_rows": 0
+      }
+    },
+    "event_matrix_total": 12,
+    "status": "PASS"
+  },
+  "diagnostic_plot_count": 8,
+  "discrepancy_counts_from_exported_inventory": {
+    "event_presence_mismatch_count": 0,
+    "fall_transition_start": {
+      "BOUNDARY_STATUS_MISMATCH": 0,
+      "INTERVAL_DISJOINT": 1,
+      "PREFERRED_FRAME_MISMATCH": 5
+    },
+    "grounded_start": {
+      "BOUNDARY_STATUS_MISMATCH": 0,
+      "INTERVAL_DISJOINT": 1,
+      "PREFERRED_FRAME_MISMATCH": 6
+    },
+    "recovery_start": {
+      "BOUNDARY_STATUS_MISMATCH": 1,
+      "INTERVAL_DISJOINT": 0,
+      "PREFERRED_FRAME_MISMATCH": 0
+    }
+  },
+  "downstream_supervision_designed": false,
+  "execution": {
+    "allowed_input_directories_read": [
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/_control/run_initialization"
+    ],
+    "allowed_input_files_read": [
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-009e0bf1bafa4241a5efc408248197de.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-1eb93e7042244ce590ffdeb493613306.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-3fda3dfcc17148a4be8a26f3c4d12616.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-46d8004771cf42f58c895ea533fed7f5.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-53892ed1f9304596bf02cfaa7951b6c1.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-72b9032631ef47b2b335098f0aa5b58d.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-80c7d9df2c554a31ac35f62211302f93.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-8ac5d9e6436440f889083b8f2cd99fd9.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-a3616e31917248fcaff6834259c5f4f3.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-c1270aedb695436b9046dc33143548fc.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-ca37c836351e4c719eb8bf880018cf01.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A01/finalized/ann-fe5fa72c77644e689ba807f59d0a1a26.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-1457cb5215e540ff8d3ed8470f83df41.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-58628cf292964738a45265e8fd786791.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-70a1236bc3474a7f9ff26b9072032ec9.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-805559ea89b644c5bb972629be6d7664.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-a63cf0cca60840dcaad75f01933f7552.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-b130a90662494260bae6e37af30637d8.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-bd6e94243cfe4b2dbcc883685a792b37.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-c610d2679df342c28c780884adbe0aa7.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-d1bd756d3ea24638a140ff6c1a56e800.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-d7b586bb5c60483cbea3060cf4ebed86.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-d8c4db9d0f62460b88b6abf57fcee7fe.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/A02/finalized/ann-e862ecf3cd4a4ebeb0aa11a51d787b04.finalized.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/_control/raw_freezes/raw_annotation_freeze.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/_control/run_initialization/active_run.json",
+      "/Users/eric/Developer/fall-detection-system/data/annotation_runs/stage32f_train_pilot_v1/_control/run_initialization/runtime_binding.json"
+    ],
+    "analysis_code_commit": "340ff0ca129d7829f85bc8fe2e5ae6173692bc05",
+    "analysis_run_id": "stage32i-3d88c8a8f4ba4c188e93ab1864a1ba21",
+    "analysis_timestamp": "2026-10-04T10:20:54.709497Z",
+    "arguments": [
+      "run",
+      "--analysis-code-commit",
+      "340ff0ca129d7829f85bc8fe2e5ae6173692bc05",
+      "--analysis-run-id",
+      "stage32i-3d88c8a8f4ba4c188e93ab1864a1ba21",
+      "--analysis-timestamp",
+      "2026-10-04T10:20:54.709497Z",
+      "--plots"
+    ],
+    "completed_utc": "2026-10-04T10:20:56.529171Z",
+    "data_access_policy": "Only 24 frozen originals and three control files; read-only",
+    "genuine_invocation_counts": {
+      "analyze_pairs": 1,
+      "run_genuine": 1
+    },
+    "invocation": "Frozen stage32i_agreement.main(arguments), with --plots"
+  },
+  "frozen_file_sha256": {
+    "docs/stage3/stage32i_analysis_spec.md": "7c6d637e15309e4868dab01fa61ba2ed803dc7674fed71271719ecee93d29981",
+    "ml/preprocessing/stage32i_agreement.py": "2e23421c575c48fb466a778f90bb7da79fac8a5ba3556762b9af198c50f200cb",
+    "tests/test_stage32i_agreement.py": "63cbc1576e015398ad73b26e8022eee80d7b1a395912f635c1817b6b658ea57f"
+  },
+  "metadata_supplement": {
+    "manifest_aliases": {
+      "analysis_spec_commit": "analysis_spec_version",
+      "source_annotation_run_id": "source_genuine_run_id"
+    },
+    "original_generated_artifact_sha256": {
+      "boundary_interval_summary.csv": "8e5231d0335955d42ba7c616745e908896b4c33f6badf566ae13a8588212c036",
+      "boundary_status_confusion_fall_transition_start.csv": "4bcb54d464c0701763bf88be0f39ce3ff802fcfb043a4b472df0ad6243cf3330",
+      "boundary_status_confusion_fall_transition_start.png": "c474ecbfb16d21b35f70224d1f392cfbccd72aa64ce4aaace45ecede78e18e82",
+      "boundary_status_confusion_grounded_start.csv": "4bcb54d464c0701763bf88be0f39ce3ff802fcfb043a4b472df0ad6243cf3330",
+      "boundary_status_confusion_grounded_start.png": "0e7f9c8f3e7c073ccd90022c5697216781afe8b93744a0286811e8e9ba26e7e1",
+      "boundary_status_confusion_recovery_start.csv": "2afc14bc4a0048791efafa103b85b41991a8d6b70ac9fba5403660693357f321",
+      "boundary_status_confusion_recovery_start.png": "64c98edb7950b744bb488d6e444367c28824568755e8620e8c9c16626d95e636",
+      "boundary_status_metrics.csv": "cebb07a21b6403db3caf8beda5462efe6d61434c4ed4d562ff957967a20f9f8c",
+      "boundary_status_pairs.csv": "041d27ad3ac599c73d50c263d6694af2053c501be9feca3a9f6b2fa7a9c8eccc",
+      "boundary_temporal_comparable.csv": "e56da6de549bcbc701c2ebbc7a19193217e1c48e9d6852e721f754f17f5ea05e",
+      "boundary_temporal_summary.csv": "efb0f1a19a402858b89a6011eb83619f37fceff3ba4de1d668e2225f135a2202",
+      "discrepancy_inventory.csv": "4ec0e2bbe82d6ad0aeb487b9b1495de9705a543e948d53f0606ed691a9b57625",
+      "event_presence_confusion_matrix.csv": "3576cf8944094224e760f2fcece740e8304843fc842bf82a96a7b7703a47b105",
+      "event_presence_confusion_matrix.png": "42627750227ff39f4af99ee198bf3d1242ae695ba7e64e99743c85e0438ed873",
+      "event_presence_metrics.json": "8830a90510a43418b9be9e35af26e424515a69333e7eec551414c89feaeb6411",
+      "interval_agreement_fall_transition_start.png": "1fe0ec435313f741786e313eb33f0c516022c7295df6493ae785f96cd2bdd9f3",
+      "interval_agreement_grounded_start.png": "46403b10210537a64d487d8cbb5f730e4eae48c641b0110ef57ff13ab070b188",
+      "paired_annotations.csv": "d0a6f9e58e11da3c3e0164d67579cd81c3686ac6f394c953f5412de60ca8db70",
+      "preferred_frame_difference_fall_transition_start.png": "643ab2751d487d126c0317cad539f39a4625d68c18bd05c286c61639110170e1",
+      "preferred_frame_difference_grounded_start.png": "ec0b5da8cf10a83a19283f8d1c59cd4b114ff8abf455adce770b81da1fa076c8",
+      "stage32i_analysis_manifest.json": "96ba67eaacf903b31773c606d0524bfee75dbe4e89a292a96698d58207c5e3fc",
+      "stage32i_input_validation.json": "877c1d200efb8702cba3ed67aa102894100f15e39fcad0845949b4e65c63226c",
+      "stage32i_report.md": "d57a29a2dfc187d81fc65a2f762d384c9666c243d3de3136a8dd294187703eff"
+    },
+    "planned_before_genuine_execution": true,
+    "report_change": "Embedded provenance JSON synchronized only; numeric report body unchanged"
+  },
+  "methodology_modified": false,
+  "original_24_records_unchanged": true,
+  "post_analysis_raw_verification": "PASS",
+  "preflight": {
+    "agreement_calculated_by_preflight": false,
+    "canonical_pair_count": 12,
+    "duplicate_annotation_units": 0,
+    "finalized_counts": {
+      "A01": 12,
+      "A02": 12
+    },
+    "genuine_run_id": "stage32h-6747d0191488418d932955fda609ec0e",
+    "heldout_access": "NONE",
+    "input_integrity": "PASS",
+    "original_record_count": 24,
+    "pairing_source_field": "record.source.neutral_clip_id",
+    "raw_freeze_sha256": "750e46599836bafdf1644b48cd247a3a3ea16c3d99035f7c578682ea4d06fdb8",
+    "schema_validation": "PASS",
+    "unmatched_records": 0
+  },
+  "required_logical_outputs": 15,
+  "test_subject_6_7_access": "NONE",
+  "tests_after_genuine_execution": {
+    "regression": {
+      "status": "PASS",
+      "test_count": 48,
+      "transcript": "test_adjudication_has_separate_identity_and_preserves_originals (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_adjudication_has_separate_identity_and_preserves_originals) ... ok\ntest_agreement_is_event_level_with_descriptive_boundary_metrics (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_agreement_is_event_level_with_descriptive_boundary_metrics) ... ok\ntest_censored_and_unobserved_boundaries_have_no_fabricated_coordinates (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_censored_and_unobserved_boundaries_have_no_fabricated_coordinates) ... ok\ntest_event_presence_vocabulary_and_manual_source (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_event_presence_vocabulary_and_manual_source) ... ok\ntest_final_window_labels_and_thresholds_remain_undecided (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_final_window_labels_and_thresholds_remain_undecided) ... ok\ntest_frame_index_authoritative_timestamp_derived (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_frame_index_authoritative_timestamp_derived) ... ok\ntest_future_pilot_train_only_and_both_event_types (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_future_pilot_train_only_and_both_event_types) ... ok\ntest_no_fall_cannot_receive_fall_boundaries (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_no_fall_cannot_receive_fall_boundaries) ... ok\ntest_observed_boundary_requires_three_frame_coordinates (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_observed_boundary_requires_three_frame_coordinates) ... ok\ntest_observed_preferred_transition_precedes_grounded (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_observed_preferred_transition_precedes_grounded) ... ok\ntest_observed_recovery_follows_grounded (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_observed_recovery_follows_grounded) ... ok\ntest_optional_recovery_may_be_absent (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_optional_recovery_may_be_absent) ... ok\ntest_overlapping_uncertainty_intervals_are_allowed (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_overlapping_uncertainty_intervals_are_allowed) ... ok\ntest_parent_and_strategy_are_frozen (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_parent_and_strategy_are_frozen) ... ok\ntest_png_semantic_reference_is_not_per_video_boundary_evidence (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_png_semantic_reference_is_not_per_video_boundary_evidence) ... ok\ntest_pose_and_model_evidence_prohibited (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_pose_and_model_evidence_prohibited) ... ok\ntest_provenance_and_blinded_display_are_separate (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_provenance_and_blinded_display_are_separate) ... ok\ntest_resolution_is_explicitly_scoped_to_manual_protocol (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_resolution_is_explicitly_scoped_to_manual_protocol) ... ok\ntest_stage32e_cannot_generate_annotations_or_model_ready_data (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_stage32e_cannot_generate_annotations_or_model_ready_data) ... ok\ntest_status_and_reason_vocabularies_are_controlled (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_status_and_reason_vocabularies_are_controlled) ... ok\ntest_uncertain_requires_reason_and_explicit_boundary_statuses (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_uncertain_requires_reason_and_explicit_boundary_statuses) ... ok\ntest_uncertainty_triplet_order_is_checked (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_uncertainty_triplet_order_is_checked) ... ok\ntest_unjudgeable_requires_reason (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_unjudgeable_requires_reason) ... ok\ntest_validation_and_test_unavailable_for_protocol_development (tests.test_stage32e_manual_annotation_protocol.ManualAnnotationProtocolTests.test_validation_and_test_unavailable_for_protocol_development) ... ok\ntest_agreement_remains_locked_and_frozen_guard_denies_empty_streams (tests.test_stage32h_readiness.Stage32hReadinessTests.test_agreement_remains_locked_and_frozen_guard_denies_empty_streams) ... ok\ntest_blinded_public_projection_and_no_heldout_clip_selection (tests.test_stage32h_readiness.Stage32hReadinessTests.test_blinded_public_projection_and_no_heldout_clip_selection) ... ok\ntest_commit_guard_requires_committed_readiness_bytes_and_clean_index (tests.test_stage32h_readiness.Stage32hReadinessTests.test_commit_guard_requires_committed_readiness_bytes_and_clean_index) ... ok\ntest_existing_unbound_workspace_is_not_adopted (tests.test_stage32h_readiness.Stage32hReadinessTests.test_existing_unbound_workspace_is_not_adopted) ... ok\ntest_frozen_versions_order_and_code_match_parent (tests.test_stage32h_readiness.Stage32hReadinessTests.test_frozen_versions_order_and_code_match_parent) ... ok\ntest_genuine_launcher_requires_post_freeze_binding_before_any_video (tests.test_stage32h_readiness.Stage32hReadinessTests.test_genuine_launcher_requires_post_freeze_binding_before_any_video) ... ok\ntest_initialization_and_prepared_launch_need_no_dataset_or_avi_access (tests.test_stage32h_readiness.Stage32hReadinessTests.test_initialization_and_prepared_launch_need_no_dataset_or_avi_access) ... ok\ntest_initialization_creates_one_identity_empty_workspaces_and_zero_records (tests.test_stage32h_readiness.Stage32hReadinessTests.test_initialization_creates_one_identity_empty_workspaces_and_zero_records) ... ok\ntest_launch_is_run_owner_workspace_and_frozen_version_bound_without_execution (tests.test_stage32h_readiness.Stage32hReadinessTests.test_launch_is_run_owner_workspace_and_frozen_version_bound_without_execution) ... ok\ntest_namespace_alias_and_symlink_fail_before_initialization (tests.test_stage32h_readiness.Stage32hReadinessTests.test_namespace_alias_and_symlink_fail_before_initialization) ... ok\ntest_readiness_rejects_any_genuine_record_session_or_raw_freeze (tests.test_stage32h_readiness.Stage32hReadinessTests.test_readiness_rejects_any_genuine_record_session_or_raw_freeze) ... ok\ntest_runtime_binding_preserves_run_and_marker_and_is_not_replaceable (tests.test_stage32h_readiness.Stage32hReadinessTests.test_runtime_binding_preserves_run_and_marker_and_is_not_replaceable) ... ok\ntest_runtime_binding_rejects_run_or_marker_provenance_tampering (tests.test_stage32h_readiness.Stage32hReadinessTests.test_runtime_binding_rejects_run_or_marker_provenance_tampering) ... ok\ntest_runtime_requirements_fail_closed_independent_of_cache_path (tests.test_stage32h_readiness.Stage32hReadinessTests.test_runtime_requirements_fail_closed_independent_of_cache_path) ... ok\ntest_synthetic_onboarding_navigation_resume_boundaries_and_finalization_are_isolated (tests.test_stage32h_readiness.Stage32hReadinessTests.test_synthetic_onboarding_navigation_resume_boundaries_and_finalization_are_isolated) ... ok\ntest_tampered_active_run_or_additional_identity_fails_closed (tests.test_stage32h_readiness.Stage32hReadinessTests.test_tampered_active_run_or_additional_identity_fails_closed) ... ok\ntest_unknown_annotator_rejected_before_launch_or_onboarding (tests.test_stage32h_readiness.Stage32hReadinessTests.test_unknown_annotator_rejected_before_launch_or_onboarding) ... ok\ntest_wrong_head_rejected_by_genuine_launcher_before_video_or_child_process (tests.test_stage32h_readiness.Stage32hReadinessTests.test_wrong_head_rejected_by_genuine_launcher_before_video_or_child_process) ... ok\ntest_frozen_pilot_is_exactly_twelve_train_clips_in_pinned_order (tests.test_stage32g_execution_protocol.Stage32gExecutionTests.test_frozen_pilot_is_exactly_twelve_train_clips_in_pinned_order) ... ok\ntest_completion_rejects_partial_and_single_annotator (tests.test_stage32g_execution_protocol.Stage32gExecutionTests.test_completion_rejects_partial_and_single_annotator) ... ok\ntest_dual_12_of_12_passes_structural_completion_without_agreement (tests.test_stage32g_execution_protocol.Stage32gExecutionTests.test_dual_12_of_12_passes_structural_completion_without_agreement) ... ok\ntest_unexpected_duplicate_protocol_and_invalid_record_fail (tests.test_stage32g_execution_protocol.Stage32gExecutionTests.test_unexpected_duplicate_protocol_and_invalid_record_fail) ... ok\ntest_pilot_tool_source_owner_and_state_mismatch_fail (tests.test_stage32g_execution_protocol.Stage32gExecutionTests.test_pilot_tool_source_owner_and_state_mismatch_fail) ... ok\ntest_raw_freeze_and_agreement_guard_require_exact_current_hashes (tests.test_stage32g_execution_protocol.Stage32gExecutionTests.test_raw_freeze_and_agreement_guard_require_exact_current_hashes) ... ok\n\n----------------------------------------------------------------------\nRan 48 tests in 8.521s\n\nOK\n"
+    },
+    "synthetic": {
+      "status": "PASS",
+      "test_count": 51,
+      "transcript": "WARN `--no-project` was provided, but no project was found\ntest_asymmetric_marginals_and_manual_ac1 (tests.test_stage32i_agreement.EventTests.test_asymmetric_marginals_and_manual_ac1) ... ok\ntest_complete_disagreement (tests.test_stage32i_agreement.EventTests.test_complete_disagreement) ... ok\ntest_degenerate_kappa_is_na_with_reason (tests.test_stage32i_agreement.EventTests.test_degenerate_kappa_is_na_with_reason) ... ok\ntest_empty_event_denominator (tests.test_stage32i_agreement.EventTests.test_empty_event_denominator) ... ok\ntest_fixed_k_three_with_unused_category (tests.test_stage32i_agreement.EventTests.test_fixed_k_three_with_unused_category) ... ok\ntest_perfect_three_category_nominal_agreement (tests.test_stage32i_agreement.EventTests.test_perfect_three_category_nominal_agreement) ... ok\ntest_uncertain_has_no_partial_credit (tests.test_stage32i_agreement.EventTests.test_uncertain_has_no_partial_credit) ... ok\ntest_unknown_event_fails (tests.test_stage32i_agreement.EventTests.test_unknown_event_fails) ... ok\ntest_end_to_end_runner_uses_only_synthetic_loader_and_postverifies (tests.test_stage32i_agreement.LoaderRunnerTests.test_end_to_end_runner_uses_only_synthetic_loader_and_postverifies) ... ok\ntest_freeze_digest_rejected_before_record_collection (tests.test_stage32i_agreement.LoaderRunnerTests.test_freeze_digest_rejected_before_record_collection) ... ok\ntest_loader_has_no_arbitrary_input_root_argument (tests.test_stage32i_agreement.LoaderRunnerTests.test_loader_has_no_arbitrary_input_root_argument) ... ok\ntest_loader_preflight_cannot_invoke_metrics (tests.test_stage32i_agreement.LoaderRunnerTests.test_loader_preflight_cannot_invoke_metrics) ... ok\ntest_manifest_rejects_wrong_commit_and_non_utc_timestamp (tests.test_stage32i_agreement.LoaderRunnerTests.test_manifest_rejects_wrong_commit_and_non_utc_timestamp) ... ok\ntest_postcheck_failure_never_leaves_a_pass_claim (tests.test_stage32i_agreement.LoaderRunnerTests.test_postcheck_failure_never_leaves_a_pass_claim) ... ok\ntest_run_rejected_before_loader_when_commit_invalid (tests.test_stage32i_agreement.LoaderRunnerTests.test_run_rejected_before_loader_when_commit_invalid) ... ok\ntest_runtime_commit_cannot_be_analysis_commit (tests.test_stage32i_agreement.LoaderRunnerTests.test_runtime_commit_cannot_be_analysis_commit) ... ok\ntest_source_mutation_rejected (tests.test_stage32i_agreement.LoaderRunnerTests.test_source_mutation_rejected) ... ok\ntest_symlink_source_denied_before_collection (tests.test_stage32i_agreement.LoaderRunnerTests.test_symlink_source_denied_before_collection) ... ok\ntest_wrong_binding_rejected (tests.test_stage32i_agreement.LoaderRunnerTests.test_wrong_binding_rejected) ... ok\ntest_wrong_run_session_rejected_even_with_matching_fixture_hash (tests.test_stage32i_agreement.LoaderRunnerTests.test_wrong_run_session_rejected_even_with_matching_fixture_hash) ... ok\ntest_all_required_outputs_and_csv_na_zero (tests.test_stage32i_agreement.OutputTests.test_all_required_outputs_and_csv_na_zero) ... ok\ntest_dataset_output_namespace_rejected (tests.test_stage32i_agreement.OutputTests.test_dataset_output_namespace_rejected) ... ok\ntest_empty_comparable_csv_has_headers_and_empty_discrepancy (tests.test_stage32i_agreement.OutputTests.test_empty_comparable_csv_has_headers_and_empty_discrepancy) ... ok\ntest_empty_pure_sample_serializes_without_fake_rates (tests.test_stage32i_agreement.OutputTests.test_empty_pure_sample_serializes_without_fake_rates) ... ok\ntest_json_null_for_undefined_kappa (tests.test_stage32i_agreement.OutputTests.test_json_null_for_undefined_kappa) ... ok\ntest_output_symlink_rejected_before_write (tests.test_stage32i_agreement.OutputTests.test_output_symlink_rejected_before_write) ... ok\ntest_serialization_is_byte_deterministic (tests.test_stage32i_agreement.OutputTests.test_serialization_is_byte_deterministic) ... ok\ntest_synthetic_png_outputs_and_zero_comparable_boundary (tests.test_stage32i_agreement.OutputTests.test_synthetic_png_outputs_and_zero_comparable_boundary) ... ok\ntest_analysis_preserves_inputs_and_independent_boundary_denominators (tests.test_stage32i_agreement.StructureTests.test_analysis_preserves_inputs_and_independent_boundary_denominators) ... ok\ntest_denominator_audit_rejects_tampering (tests.test_stage32i_agreement.StructureTests.test_denominator_audit_rejects_tampering) ... ok\ntest_duplicate_direct_pair_and_bad_owner_rejected (tests.test_stage32i_agreement.StructureTests.test_duplicate_direct_pair_and_bad_owner_rejected) ... ok\ntest_missing_and_duplicate_pair_rejected (tests.test_stage32i_agreement.StructureTests.test_missing_and_duplicate_pair_rejected) ... ok\ntest_nonfinalized_unknown_vocabulary_and_source_rejected (tests.test_stage32i_agreement.StructureTests.test_nonfinalized_unknown_vocabulary_and_source_rejected) ... ok\ntest_objective_discrepancy_flags_only (tests.test_stage32i_agreement.StructureTests.test_objective_discrepancy_flags_only) ... ok\ntest_twelve_pairs_sorted_by_identity_not_filename_or_input_order (tests.test_stage32i_agreement.StructureTests.test_twelve_pairs_sorted_by_identity_not_filename_or_input_order) ... ok\ntest_adjacent_and_separated_blank_gaps (tests.test_stage32i_agreement.TemporalTests.test_adjacent_and_separated_blank_gaps) ... ok\ntest_all_statuses_and_availability_classes (tests.test_stage32i_agreement.TemporalTests.test_all_statuses_and_availability_classes) ... ok\ntest_boundary_pooling_rejected (tests.test_stage32i_agreement.TemporalTests.test_boundary_pooling_rejected) ... ok\ntest_exact_interval_equality (tests.test_stage32i_agreement.TemporalTests.test_exact_interval_equality) ... ok\ntest_full_containment (tests.test_stage32i_agreement.TemporalTests.test_full_containment) ... ok\ntest_invalid_order_types_bounds_and_status (tests.test_stage32i_agreement.TemporalTests.test_invalid_order_types_bounds_and_status) ... ok\ntest_noncomparable_reasons_and_all_metrics_na (tests.test_stage32i_agreement.TemporalTests.test_noncomparable_reasons_and_all_metrics_na) ... ok\ntest_nonobserved_fields_must_be_absent_even_null (tests.test_stage32i_agreement.TemporalTests.test_nonobserved_fields_must_be_absent_even_null) ... ok\ntest_one_direction_and_inclusive_containment (tests.test_stage32i_agreement.TemporalTests.test_one_direction_and_inclusive_containment) ... ok\ntest_partial_overlap_inclusive_off_by_one (tests.test_stage32i_agreement.TemporalTests.test_partial_overlap_inclusive_off_by_one) ... ok\ntest_positive_negative_zero_sign_and_ms (tests.test_stage32i_agreement.TemporalTests.test_positive_negative_zero_sign_and_ms) ... ok\ntest_preferred_summary_signed_and_absolute_distributions (tests.test_stage32i_agreement.TemporalTests.test_preferred_summary_signed_and_absolute_distributions) ... ok\ntest_single_frame_interval (tests.test_stage32i_agreement.TemporalTests.test_single_frame_interval) ... ok\ntest_summary_denominators_ignore_noncomparable_not_zero_gap (tests.test_stage32i_agreement.TemporalTests.test_summary_denominators_ignore_noncomparable_not_zero_gap) ... ok\ntest_type7_quartiles (tests.test_stage32i_agreement.TemporalTests.test_type7_quartiles) ... ok\ntest_zero_comparable_summary (tests.test_stage32i_agreement.TemporalTests.test_zero_comparable_summary) ... ok\n\n----------------------------------------------------------------------\nRan 51 tests in 1.225s\n\nOK\n"
+    }
+  },
+  "three_control_files_unchanged": true,
+  "validation_subject_access": "NONE",
+  "verification_utc": "2026-10-04T10:24:54.880548Z"
+}

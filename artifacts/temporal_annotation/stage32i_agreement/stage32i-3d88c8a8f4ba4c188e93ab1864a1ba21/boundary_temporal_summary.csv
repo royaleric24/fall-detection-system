@@ -1,0 +1,4 @@
+boundary_type,n_temporally_comparable,preferred_exact_match_denominator,preferred_exact_match_count,preferred_exact_match_rate,median_signed_difference_frames,median_signed_difference_ms,median_absolute_difference_frames,median_absolute_difference_ms,Q1_absolute_difference_frames,Q3_absolute_difference_frames,IQR_absolute_difference_frames,min_signed_difference_frames,max_signed_difference_frames,max_absolute_difference_frames
+fall_transition_start,7,7,2,0.2857142857142857,0.0,0.0,3.0,150.0,1.5,4.0,2.5,-4,10,10
+grounded_start,7,7,1,0.14285714285714285,6.0,300.0,6.0,300.0,1.0,12.5,11.5,-1,22,22
+recovery_start,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

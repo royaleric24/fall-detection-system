@@ -1,0 +1,19 @@
+{
+  "agreement_calculated_by_preflight": false,
+  "canonical_pair_count": 12,
+  "denominator_audit": "PASS",
+  "duplicate_annotation_units": 0,
+  "finalized_counts": {
+    "A01": 12,
+    "A02": 12
+  },
+  "genuine_run_id": "stage32h-6747d0191488418d932955fda609ec0e",
+  "heldout_access": "NONE",
+  "input_integrity": "PASS",
+  "original_record_count": 24,
+  "pairing_source_field": "record.source.neutral_clip_id",
+  "raw_freeze_sha256": "750e46599836bafdf1644b48cd247a3a3ea16c3d99035f7c578682ea4d06fdb8",
+  "raw_integrity_after_analysis": "PASS",
+  "schema_validation": "PASS",
+  "unmatched_records": 0
+}

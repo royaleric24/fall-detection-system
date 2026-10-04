@@ -1,0 +1,76 @@
+{
+  "annotator_marginals": {
+    "A01": {
+      "fall_observed": {
+        "count": 7,
+        "denominator": 12,
+        "rate": 0.5833333333333334
+      },
+      "no_fall_observed": {
+        "count": 5,
+        "denominator": 12,
+        "rate": 0.4166666666666667
+      },
+      "uncertain": {
+        "count": 0,
+        "denominator": 12,
+        "rate": 0.0
+      }
+    },
+    "A02": {
+      "fall_observed": {
+        "count": 7,
+        "denominator": 12,
+        "rate": 0.5833333333333334
+      },
+      "no_fall_observed": {
+        "count": 5,
+        "denominator": 12,
+        "rate": 0.4166666666666667
+      },
+      "uncertain": {
+        "count": 0,
+        "denominator": 12,
+        "rate": 0.0
+      }
+    }
+  },
+  "categories": [
+    "fall_observed",
+    "no_fall_observed",
+    "uncertain"
+  ],
+  "cohen_kappa": {
+    "chance_agreement": 0.5138888888888888,
+    "reason": null,
+    "value": 1.0
+  },
+  "columns": "A02",
+  "confusion_matrix": [
+    [
+      7,
+      0,
+      0
+    ],
+    [
+      0,
+      5,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "denominator": 12,
+  "exact_agreement_count": 12,
+  "exact_agreement_rate": 1.0,
+  "gwet_ac1": {
+    "K": 3,
+    "chance_agreement": 0.24305555555555555,
+    "reason": null,
+    "value": 1.0
+  },
+  "rows": "A01"
+}

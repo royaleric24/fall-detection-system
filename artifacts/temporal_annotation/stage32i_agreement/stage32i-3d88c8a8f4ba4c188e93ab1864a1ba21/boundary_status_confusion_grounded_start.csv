@@ -1,0 +1,7 @@
+A01\A02,observed,left_censored,right_censored,not_observed,unjudgeable,not_applicable
+observed,7,0,0,0,0,0
+left_censored,0,0,0,0,0,0
+right_censored,0,0,0,0,0,0
+not_observed,0,0,0,0,0,0
+unjudgeable,0,0,0,0,0,0
+not_applicable,0,0,0,0,0,5
