@@ -319,14 +319,18 @@ Expected containers later:
 
 ## 11. Current Status
 
-**Stage 3.3 is complete: minimal clip-level binary supervision and deterministic
-pose preprocessing are ready for the Stage 4 GRU baseline.** The verified Stage 2
+**Stage 4 is complete: the small GRU baseline trained successfully with the
+frozen Stage 3.3 dataset.** The verified Stage 2
 `pose_raw_v1` run remains immutable. The dataset retains the frozen subject split,
 excludes Test 6/7, uses causal forward-fill (up to 5 frames), hip-centered torso-scaled XYZ
 and visibility (132 features), and provides a PyTorch Dataset/DataLoader with
 full clips and padding/lengths. The normalization switch supports the later ablation. There
 are 59 usable Train clips and 20 Validation clips; one all-missing Train clip is
-explicitly excluded. No model training or held-out evaluation has started.
+explicitly excluded. One fixed seed-42 GRU run selected epoch 5 by Validation
+loss, achieving Validation Accuracy 0.90 and fall F1 0.8889 at threshold 0.5.
+These are Validation results; held-out evaluation and Stage 5/6 have not started.
+See [Stage 4 implementation, training and checkpoint usage](docs/stage4_gru_baseline.md)
+and [training summary](artifacts/training/stage4_gru_baseline/summary.json).
 
 The course-project sprint closes further Stage 3.2 temporal-annotation research;
 Stage 3.2j is retained at `63793aa50f91d1df3429ac081ae23b7dc6dd9d6c` without

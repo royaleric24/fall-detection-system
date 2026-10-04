@@ -483,9 +483,19 @@ contract](stage33_minimal_preprocessing.md) documents the implemented 132-featur
 XYZ/visibility transform, causal five-frame forward-fill, separate missingness
 masks, all-missing clip exclusions and PyTorch Dataset/DataLoader with packed
 sequence support. Train/Validation membership is unchanged; Test 6/7 stays
-sealed. Stage 4 training has not started. Historical Stage 3.0 files remain
+sealed. Stage 4 training is complete as documented below. Historical Stage 3.0 files remain
 unchanged for older workflows. Edge/cloud responsibilities and GRU/TCN choices
 above remain frozen.
+
+### Stage 4 — small GRU baseline complete
+
+The [Stage 4 baseline](stage4_gru_baseline.md) implements a 132-input, 64-hidden,
+one-layer unidirectional GRU and linear binary-logit head. It uses packed full-clip
+sequences and the frozen Stage 3.3 preprocessing. One seed-42 CPU training run
+selected epoch 5 by Validation loss; threshold remains 0.5. The local best
+checkpoint reload reproduces Validation outputs. Test 6/7 remains sealed. No
+architecture alternatives, ablation, Stage 5 or Stage 6 work has started. Full-clip
+training requires a later rolling sequence-buffer policy for online inference.
 
 ## 15. Architecture Change Policy
 
