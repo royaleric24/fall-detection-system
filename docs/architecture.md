@@ -475,15 +475,16 @@ run `4df7dd5f-fb38-4908-8233-1a81deb8dc05`, archived in evidence commit
 evidence remain immutable. Earlier status statements inside the frozen contract
 and dataset protocol describe their historical stages.
 
-### Stage 3.0 — pending external Gate Review
+### Stage 3.3 — minimal preprocessing complete
 
-The [preprocessing contract](stage3_preprocessing_contract.md) adds source identity,
-split/access guards and explicit unresolved decisions. The selector defaults to
-Train; Test exploration and non-Train statistics fitting are rejected. No
-preprocessing, window construction or training is implemented. The initial
-normalization outline and online timing targets above do not resolve the Stage 3
-formula, transform order, model FPS or supervision policy. Stage 3.1 requires
-separate authorization. Frozen architectural responsibilities are unchanged.
+The course-project sprint authorizes clip-level fall/non-fall supervision and
+closes further Stage 3.2 temporal-boundary work. The [Stage 3.3 feature and dataset
+contract](stage33_minimal_preprocessing.md) documents the implemented 132-feature
+image-plane transform, missingness masks, all-invalid clip exclusions and packed
+GRU batching recipe. Train/Validation membership is unchanged; Test 6/7 stays
+sealed. Stage 4 training has not started. Historical Stage 3.0 files remain
+unchanged for older workflows. Edge/cloud responsibilities and GRU/TCN choices
+above remain frozen.
 
 ## 15. Architecture Change Policy
 

@@ -319,16 +319,19 @@ Expected containers later:
 
 ## 11. Current Status
 
-**Stage 2 is complete/frozen. Stage 3.0 contract and leakage-firewall implementation
-is pending external Gate Review.** The official Stage 2 run is
-`4df7dd5f-fb38-4908-8233-1a81deb8dc05`, recorded in evidence commit
-`a28e0289c53463b3676b6c9275d4ee18a840fdae`. Its raw pose data and historical
-evidence are immutable inputs to the [Stage 3 contract](docs/stage3_preprocessing_contract.md).
-The new metadata selector defaults to Train and refuses Test exploration;
-preprocessing decisions remain `UNDECIDED`, and dataset construction is blocked.
-Stage 3.1, preprocessing operations, temporal windows and training have not started.
-GRU remains the initial baseline and TCN the primary candidate, with deployment
-selection to follow measured comparison.
+**Stage 3.3 is complete: minimal clip-level binary supervision and deterministic
+pose preprocessing are ready for the Stage 4 GRU baseline.** The verified Stage 2
+`pose_raw_v1` run remains immutable. The dataset retains the frozen subject split,
+excludes Test 6/7, uses hip-centered torso-scaled 2-D coordinates with visibility
+and validity (132 features), and returns full clips with padding/lengths. There
+are 59 usable Train clips and 20 Validation clips; one all-missing Train clip is
+explicitly excluded. No model training or held-out evaluation has started.
+
+The course-project sprint closes further Stage 3.2 temporal-annotation research;
+Stage 3.2j is retained at `63793aa50f91d1df3429ac081ae23b7dc6dd9d6c` without
+genuine review. Historical Stage 3.0 build guards remain unchanged. See the
+[Stage 3.3 usage, feature contract and validation](docs/stage33_minimal_preprocessing.md)
+and [executed readiness audit](artifacts/preprocessing/stage33_minimal/audit.json).
 
 The local CAUCAFall V5 download passes structural and full sequential media validation:
 10 subjects × 10 activities = 100 AVI videos, all 19,877 frames decoded with metadata-count agreement at reported 20 FPS and 720 × 480 resolution. Six PNGs and four frame TXT
