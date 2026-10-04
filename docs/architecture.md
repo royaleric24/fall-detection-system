@@ -480,8 +480,9 @@ and dataset protocol describe their historical stages.
 The course-project sprint authorizes clip-level fall/non-fall supervision and
 closes further Stage 3.2 temporal-boundary work. The [Stage 3.3 feature and dataset
 contract](stage33_minimal_preprocessing.md) documents the implemented 132-feature
-image-plane transform, missingness masks, all-invalid clip exclusions and packed
-GRU batching recipe. Train/Validation membership is unchanged; Test 6/7 stays
+XYZ/visibility transform, causal five-frame forward-fill, separate missingness
+masks, all-missing clip exclusions and PyTorch Dataset/DataLoader with packed
+sequence support. Train/Validation membership is unchanged; Test 6/7 stays
 sealed. Stage 4 training has not started. Historical Stage 3.0 files remain
 unchanged for older workflows. Edge/cloud responsibilities and GRU/TCN choices
 above remain frozen.

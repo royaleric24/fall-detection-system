@@ -1,106 +1,108 @@
-# Stage 3.3 — minimal clip supervision and preprocessing
+# Stage 3.3 — causal XYZ preprocessing and PyTorch dataset
 
-The course-project sprint authorizes this builder directly. Stage 3.2j review
-remains frozen at `63793aa50f91d1df3429ac081ae23b7dc6dd9d6c`; genuine review,
-3.2k adjudication and temporal-boundary research are closed. Historical Stage 3.0
-build-disabled files remain unchanged; their guards still protect old workflows.
-This new dataset uses the existing verified source selector and frozen split.
+This revision implements the final sprint request: clip-level binary labels,
+causal missing handling, original XYZ/visibility features, real PyTorch Dataset
+and DataLoader, and one normalization switch. It supersedes the 2-D zero-fill
+implementation in commit `2bc88a8cad4a3940df5c0e14944179a507446db4`.
+The old `stage33_minimal/audit.json` remains historical evidence; the current
+report and canonical sequence manifest are in `artifacts/preprocessing/stage33_causal/`.
+Stage 3.2 research records and Stage 3.0 guards remain unchanged. No genuine
+3.2j review, adjudication, model training or Stage 4 execution is performed.
 
-## Input and output
+## Representation and deterministic preprocessing
 
-Official immutable Stage 2 run: `4df7dd5f-fb38-4908-8233-1a81deb8dc05`,
-`pose_raw_v1` NPZ with frame_index int32 [T], timestamp_ms int64 [T],
-pose_detected bool [T], landmarks float32 [T,33,4] (x,y,z,visibility).
-Detected frames must be finite; missing frames are all NaN. T varies; frames
-retain original order and 20 FPS. Timestamps are clip-relative, derived from
-frame index, not Unix event timestamps. No videos, PNGs, temporal annotations,
-or held-out pose files are loaded.
+Immutable input is official Stage 2 run `4df7dd5f-fb38-4908-8233-1a81deb8dc05`:
+`pose_raw_v1` NPZ contains frame_index int32 [T], timestamp_ms int64 [T],
+pose_detected bool [T], landmarks float32 [T,33,4], ordered x/y/z/visibility.
+Detected poses are finite; missing poses are all NaN. Times are clip-relative,
+derived from frame index at source FPS (20), not Unix runtime event times.
 
-The dataset uses canonical clip labels `fall=1`, `non_fall=0`, never boundary
-annotations. Each sample contains float32 features [T,132], label, sequence_length,
-bool joint mask [T,33], clip_id, subject_id, split and missing_pose_frames.
-Identifiers are audit metadata only. Each joint contributes normalized x/y,
-original visibility and validity (0/1). z is omitted because it is not calibrated
-metric depth. This is the sole preprocessing variant.
+`PreprocessingConfig(normalize_pose=True, max_forward_fill_frames=5, epsilon=1e-6)`:
 
-## Deterministic transform
+1. Use the current detected pose. For a missing frame, copy the most recent
+   observed pose for at most five consecutive frames. Filled poses do not reset
+   the missing-run counter. Leading gaps and the sixth/subsequent missing frames
+   are zero. No future-frame interpolation, time compression or cropping.
+2. Use XYZ midpoint of hips 23/24 and shoulders 11/12, following the existing
+   MediaPipe landmark mapping. Subtract hip XYZ center and divide XYZ by
+   `max(norm(shoulder_center - hip_center), epsilon)`.
+3. If a caller has one unavailable hip/shoulder, use its available partner; if
+   neither hip or neither shoulder is available, mark the frame zero/invalid.
+   The official raw loader still enforces its original whole-frame schema.
+4. Keep visibility as a separate original feature, clipped to [0,1]. Low
+   visibility is not treated as missing. Spatial XYZ alone is normalized.
+5. For the later ablation, set `normalize_pose=False`: original XYZ coordinates
+   with exactly the same causal fill and visibility handling. No ablation is run now.
 
-1. Multiply image-relative x by width/height; y stays in image-height units.
-2. Hip center is midpoint of MediaPipe 23/24; shoulders are midpoint of 11/12,
-   matching the repository's existing landmark mapping.
-3. Subtract hip center and divide x/y by Euclidean shoulder-center to hip-center
-   distance. No rotation, fitted statistics or optional motion features.
-4. Scale below 0.001 image-height units is invalid. This fixed numerical floor
-   was chosen before loading Train/Validation and was not tuned.
-5. Missing joints use finite-coordinate/visibility availability, with no visibility
-   threshold: low-confidence returned coordinates remain observed and visibility
-   is exposed. A single available hip/shoulder substitutes for its pair midpoint;
-   absent hip or shoulder pair makes the frame invalid. The frozen raw schema
-   currently permits only whole-frame missingness; partial-joint fallback is
-   tested for future callers, not fabricated into the raw data.
-6. Invalid frames/joints have all-zero features and false validity. No interpolation,
-   carry-forward, smoothing or reconstruction. Missing internal frames preserve time.
-7. Exclude only clips with no valid normalized joint in any frame; record each
-   exclusion. This rule applies identically to Train/Validation and changes no
-   subject membership. Source inputs remain immutable.
+Coordinate axes and relative units are MediaPipe's canonical image x/y and
+relative z. The XYZ torso norm is a deterministic relative scale, not calibrated
+physical distance. No aspect conversion, angle, velocity or added input feature.
+Invalid joints become zeros with false masks; finite output is explicitly checked.
+Malformed archives, labels, identity mismatches and unauthorized splits raise errors.
 
-Malformed archives, schema/identity mismatches, invalid labels and unauthorized
-splits raise errors. Finite-output checks reject unexpected NaN/Inf. Both the
-selector and loader reject Test before pose I/O. No statistics are fitted.
+## Dataset, manifest and batching
 
-## Batching and next-stage use
+`FallSequenceDataset` subclasses `torch.utils.data.Dataset`, eagerly caching the
+small authorized split. Each sample returns CPU float32 features [T,132] (33 ×
+x/y/z/visibility), integer label, sequence_length, bool mask [T,33], bool
+observed_pose [T], clip_id, subject_id, split and missing/fill counts. mask includes
+usable filled poses; observed_pose distinguishes actual observations. IDs and masks
+are metadata and are not appended to model features. Returned tensors are cloned.
 
-The dataset eagerly caches the small authorized split and returns independent
-arrays. `collate_sequences` right-pads full clips to batch maximum, returning
-features [B,Tmax,132], int64 labels [B], int64 lengths [B], bool masks [B,Tmax,33]
-and audit IDs. Lengths include internal missing frames and exclude batch padding.
-Stage 4 must use packed sequences so padding cannot alter its final hidden state:
+Canonical labels come from the verified Stage 2 manifest: `fall=1`, `non_fall=0`.
+No temporal annotation is loaded. The minimal exported `sequences.csv` contains
+sequence_id, subject_id, activity, label, pose_path (repository-relative), n_frames,
+fps, split. It contains the 79 usable sequences. All-missing clips are excluded
+using original detection alone, identically for both normalization settings;
+exclusions stay in the audit. No subject is reassigned.
+
+`collate_sequences` uses PyTorch `pad_sequence`, returning float32 features
+[B,Tmax,132], int64 labels [B], int64 CPU lengths [B], bool masks, observed_pose,
+and IDs. Original sequence lengths include internal missing frames; only batch
+padding lies outside length. Stage 4 must pack before using a final hidden state:
 
 ```python
-import torch
+from torch.utils.data import DataLoader
 from torch.nn.utils.rnn import pack_padded_sequence
 from ml.datasets.fall_sequence_dataset import FallSequenceDataset, collate_sequences
+from ml.preprocessing.pose_sequence import PreprocessingConfig
 
-dataset = FallSequenceDataset("train")
-batch = collate_sequences([dataset[0], dataset[1]])
-x = torch.from_numpy(batch["features"])
-y = torch.from_numpy(batch["labels"]).float()  # Binary-logit loss targets.
-packed = pack_padded_sequence(x, torch.from_numpy(batch["lengths"]),
+dataset = FallSequenceDataset("train", config=PreprocessingConfig(normalize_pose=True))
+loader = DataLoader(dataset, batch_size=4, shuffle=False, collate_fn=collate_sequences)
+batch = next(iter(loader))
+packed = pack_padded_sequence(batch["features"], batch["lengths"],
                              batch_first=True, enforce_sorted=False)
-gru = torch.nn.GRU(input_size=132, hidden_size=32, batch_first=True)
-_, hidden = gru(packed)
-# Feed hidden[-1] into the binary classifier; keep IDs outside the model.
+# Stage 4: GRU(input_size=132); binary-logit loss uses batch["labels"].float().
 ```
 
-This torch example is a Stage 4 consumption recipe, not an executed GRU test.
-Stage 3.3 requires only NumPy (tested with Python 3.12.14 / NumPy 2.3.5).
-Reproduce with an environment containing NumPy 2.3.5:
+## Reproduction and executed checks
+
+Runtime tested: Python 3.12.14, NumPy 2.3.5, torch 2.8.0 (CPU). PEP 723 dependencies
+are pinned in the dataset script. From repository root:
 
 ```bash
-python -m unittest tests.test_stage33_pose_sequence tests.test_stage3_contract tests.test_dataset_split tests.test_pose_raw -q
-python -m ml.datasets.fall_sequence_dataset --output artifacts/preprocessing/stage33_recheck/audit.json
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache uv run --with numpy==2.3.5 --with torch==2.8.0 python -m unittest tests.test_stage33_pose_sequence tests.test_stage3_contract tests.test_dataset_split tests.test_pose_raw -q
+UV_CACHE_DIR=/private/tmp/caucafall-uv-cache uv run ml/datasets/fall_sequence_dataset.py --output artifacts/preprocessing/stage33_recheck
 ```
 
-The audit refuses existing destinations. It stores source identities/checksums,
-configuration, access log, counts and runtime NumPy version; no processed tensors
-are committed. Dataset construction is the reproducible preprocessing path.
+The output directory must be new. The audit verifies authorized NPZ fingerprints
+before/after processing, records source identity, config, runtime and accessed IDs,
+and exercises a real DataLoader plus `pack_padded_sequence` without a model.
+The guarded smoke check allows only read-only NPZ access and refuses Subject.6/7
+paths or AVI. All 80 authorized input NPZs were unchanged; 63 focused and related
+regression tests passed (13 Stage 3.3 tests).
 
-## Model-readiness result
+Train subjects: 8/4/3/9/1/2; Validation: 10/5; sealed Test: 6/7, never opened.
+60 Train inputs become 59 usable clips (29 fall / 30 non_fall); Validation is 20
+(10/10). All 122 frames of Subject.8/Fall forward/FallForwardS8.avi lack pose,
+so that clip remains explicitly excluded. Usable length min/median/max is Train
+86/189/266 and Validation 122/231.5/292. Input missing rates are 14.215%/14.934%.
+Among retained clips, Train fills 315 missing frames and leaves 1,143 zero frames;
+Validation fills 166 and leaves 532 zero frames. No NaN/Inf or unusable clips remain.
+First DataLoader shapes: Train [4,190,132], Validation [4,247,132].
 
-See `artifacts/preprocessing/stage33_minimal/audit.json` for executed results.
-Train subjects remain 8/4/3/9/1/2; Validation remains 10/5; Test 6/7 remains sealed.
-60 input Train clips become 59 usable clips (29 fall, 30 non_fall); 20 Validation
-clips remain usable (10/10). Train Subject.8/Fall forward/FallForwardS8.avi is
-excluded because all 122 frames lack pose. No invalid samples remain.
-Usable sequence min/median/max: Train 86/189/266, Validation 122/231.5/292.
-Pre-filter missing-pose rates: Train 14.215%, Validation 14.934%.
-All output values are finite. The guarded audit opened exactly 80 unique authorized
-NPZs and no Subject.6/7 data or AVI. Tests include synthetic transforms, masks,
-label mapping, split/access guards and actual authorized loader integration.
-
-Limitations: clip presence is weak supervision and provides no event timing;
-long pose gaps remain missing; image-plane normalization loses absolute hip
-translation and does not solve camera domain shift. Full clips differ from future
-30-frame online windows; Stage 4/5 must document the deployment aggregation choice
-without treating every window in a fall clip as positive. No model training,
-accuracy claim or test evaluation has been performed.
+Limitations: causal fill holds stale poses for at most 250 ms at source 20 FPS;
+long gaps remain zero. Clip labels give event presence, not timing. Relative XYZ
+normalization removes absolute hip translation and does not resolve camera domain
+shift. Online window aggregation remains a later-stage decision. The all-missing
+exclusion must be reported in future evaluation denominators.

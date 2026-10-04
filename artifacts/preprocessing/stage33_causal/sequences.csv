@@ -1,0 +1,80 @@
+sequence_id,subject_id,activity,label,pose_path,n_frames,fps,split
+Subject.1/Fall backwards/FallBackwardsS1.avi,1,Fall backwards,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Fall backwards/FallBackwardsS1.npz,125,20.0,train
+Subject.1/Fall forward/FallForwardS1.avi,1,Fall forward,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Fall forward/FallForwardS1.npz,190,20.0,train
+Subject.1/Fall left/FallLeftS1.avi,1,Fall left,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Fall left/FallLeftS1.npz,86,20.0,train
+Subject.1/Fall right/FallRightS1.avi,1,Fall right,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Fall right/FallRightS1.npz,114,20.0,train
+Subject.1/Fall sitting/FallSittingS1.avi,1,Fall sitting,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Fall sitting/FallSittingS1.npz,182,20.0,train
+Subject.1/Hop/HopS1.avi,1,Hop,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Hop/HopS1.npz,182,20.0,train
+Subject.1/Kneel/KneelS1.avi,1,Kneel,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Kneel/KneelS1.npz,219,20.0,train
+Subject.1/Pick up object/PickupobjectS1.avi,1,Pick up object,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Pick up object/PickupobjectS1.npz,117,20.0,train
+Subject.1/Sit down/SitDownS1.avi,1,Sit down,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Sit down/SitDownS1.npz,187,20.0,train
+Subject.1/Walk/WalkS1.avi,1,Walk,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.1/Walk/WalkS1.npz,242,20.0,train
+Subject.2/Fall backwards/FallBackwardsS2.avi,2,Fall backwards,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Fall backwards/FallBackwardsS2.npz,119,20.0,train
+Subject.2/Fall forward/FallForwardS2.avi,2,Fall forward,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Fall forward/FallForwardS2.npz,106,20.0,train
+Subject.2/Fall left/FallLeftS2.avi,2,Fall left,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Fall left/FallLeftS2.npz,109,20.0,train
+Subject.2/Fall right/FallRightS2.avi,2,Fall right,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Fall right/FallRightS2.npz,146,20.0,train
+Subject.2/Fall sitting/FallSittingS2.avi,2,Fall sitting,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Fall sitting/FallSittingS2.npz,157,20.0,train
+Subject.2/Hop/HopS2.avi,2,Hop,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Hop/HopS2.npz,171,20.0,train
+Subject.2/Kneel/KneelS2.avi,2,Kneel,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Kneel/KneelS2.npz,130,20.0,train
+Subject.2/Pick up object/PickupobjectS2.avi,2,Pick up object,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Pick up object/PickupobjectS2.npz,166,20.0,train
+Subject.2/Sit down/SitDownS2.avi,2,Sit down,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Sit down/SitDownS2.npz,112,20.0,train
+Subject.2/Walk/WalkS2.avi,2,Walk,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.2/Walk/WalkS2.npz,244,20.0,train
+Subject.3/Fall backwards/FallBackwardsS3.avi,3,Fall backwards,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Fall backwards/FallBackwardsS3.npz,166,20.0,train
+Subject.3/Fall forward/FallForwardS3.avi,3,Fall forward,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Fall forward/FallForwardS3.npz,153,20.0,train
+Subject.3/Fall left/FallLeftS3.avi,3,Fall left,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Fall left/FallLeftS3.npz,171,20.0,train
+Subject.3/Fall right/FallRightS3.avi,3,Fall right,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Fall right/FallRightS3.npz,220,20.0,train
+Subject.3/Fall sitting/FallSittingS3.avi,3,Fall sitting,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Fall sitting/FallSittingS3.npz,202,20.0,train
+Subject.3/Hop/HopS3.avi,3,Hop,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Hop/HopS3.npz,162,20.0,train
+Subject.3/Kneel/KneelS3.avi,3,Kneel,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Kneel/KneelS3.npz,213,20.0,train
+Subject.3/Pick up object/PickupobjectS3.avi,3,Pick up object,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Pick up object/PickupobjectS3.npz,186,20.0,train
+Subject.3/Sit down/SitDownS3.avi,3,Sit down,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Sit down/SitDownS3.npz,261,20.0,train
+Subject.3/Walk/WalkS3.avi,3,Walk,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.3/Walk/WalkS3.npz,176,20.0,train
+Subject.4/Fall backwards/FallBackwardsS4.avi,4,Fall backwards,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Fall backwards/FallBackwardsS4.npz,192,20.0,train
+Subject.4/Fall forward/FallForwardS4.avi,4,Fall forward,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Fall forward/FallForwardS4.npz,168,20.0,train
+Subject.4/Fall left/FallLeftS4.avi,4,Fall left,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Fall left/FallLeftS4.npz,162,20.0,train
+Subject.4/Fall right/FallRightS4.avi,4,Fall right,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Fall right/FallRightS4.npz,150,20.0,train
+Subject.4/Fall sitting/FallSittingS4.avi,4,Fall sitting,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Fall sitting/FallSittingS4.npz,198,20.0,train
+Subject.4/Hop/HopS4.avi,4,Hop,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Hop/HopS4.npz,144,20.0,train
+Subject.4/Kneel/KneelS4.avi,4,Kneel,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Kneel/KneelS4.npz,222,20.0,train
+Subject.4/Pick up object/PickupobjectS4.avi,4,Pick up object,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Pick up object/PickupobjectS4.npz,179,20.0,train
+Subject.4/Sit down/SitDownS4.avi,4,Sit down,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Sit down/SitDownS4.npz,199,20.0,train
+Subject.4/Walk/WalkS4.avi,4,Walk,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.4/Walk/WalkS4.npz,240,20.0,train
+Subject.8/Fall backwards/FallBackwardsS8.avi,8,Fall backwards,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.8/Fall backwards/FallBackwardsS8.npz,212,20.0,train
+Subject.8/Fall left/FallLeftS8.avi,8,Fall left,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.8/Fall left/FallLeftS8.npz,202,20.0,train
+Subject.8/Fall right/FallRightS8.avi,8,Fall right,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.8/Fall right/FallRightS8.npz,229,20.0,train
+Subject.8/Fall sitting/FallSittingS8.avi,8,Fall sitting,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.8/Fall sitting/FallSittingS8.npz,234,20.0,train
+Subject.8/Hop/HopS8.avi,8,Hop,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.8/Hop/HopS8.npz,166,20.0,train
+Subject.8/Kneel/KneelS8.avi,8,Kneel,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.8/Kneel/KneelS8.npz,256,20.0,train
+Subject.8/Pick up object/PickupobjectS8.avi,8,Pick up object,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.8/Pick up object/PickupobjectS8.npz,266,20.0,train
+Subject.8/Sit down/SitDownS8.avi,8,Sit down,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.8/Sit down/SitDownS8.npz,212,20.0,train
+Subject.8/Walk/WalkS8.avi,8,Walk,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.8/Walk/WalkS8.npz,216,20.0,train
+Subject.9/Fall backwards/FallBackwardsS9.avi,9,Fall backwards,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Fall backwards/FallBackwardsS9.npz,252,20.0,train
+Subject.9/Fall forward/FallForwardS9.avi,9,Fall forward,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Fall forward/FallForwardS9.npz,148,20.0,train
+Subject.9/Fall left/FallLeftS9.avi,9,Fall left,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Fall left/FallLeftS9.npz,207,20.0,train
+Subject.9/Fall right/FallRightS9.avi,9,Fall right,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Fall right/FallRightS9.npz,189,20.0,train
+Subject.9/Fall sitting/FallSittingS9.avi,9,Fall sitting,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Fall sitting/FallSittingS9.npz,216,20.0,train
+Subject.9/Hop/HopS9.avi,9,Hop,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Hop/HopS9.npz,212,20.0,train
+Subject.9/Kneel/KneelS9.avi,9,Kneel,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Kneel/KneelS9.npz,216,20.0,train
+Subject.9/Pick up object/PickupobjectS9.avi,9,Pick up object,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Pick up object/PickupobjectS9.npz,220,20.0,train
+Subject.9/Sit down/SitDownS9.avi,9,Sit down,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Sit down/SitDownS9.npz,238,20.0,train
+Subject.9/Walk/WalkS9.avi,9,Walk,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.9/Walk/WalkS9.npz,234,20.0,train
+Subject.5/Fall backwards/FallBackwardsS5.avi,5,Fall backwards,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Fall backwards/FallBackwardsS5.npz,214,20.0,validation
+Subject.5/Fall forward/FallForwardS5.avi,5,Fall forward,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Fall forward/FallForwardS5.npz,200,20.0,validation
+Subject.5/Fall left/FallLeftS5.avi,5,Fall left,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Fall left/FallLeftS5.npz,247,20.0,validation
+Subject.5/Fall right/FallRightS5.avi,5,Fall right,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Fall right/FallRightS5.npz,219,20.0,validation
+Subject.5/Fall sitting/FallSittingS5.avi,5,Fall sitting,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Fall sitting/FallSittingS5.npz,229,20.0,validation
+Subject.5/Hop/HopS5.avi,5,Hop,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Hop/HopS5.npz,122,20.0,validation
+Subject.5/Kneel/KneelS5.avi,5,Kneel,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Kneel/KneelS5.npz,208,20.0,validation
+Subject.5/Pick up object/PickupobjectS5.avi,5,Pick up object,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Pick up object/PickupobjectS5.npz,271,20.0,validation
+Subject.5/Sit down/SitDownS5.avi,5,Sit down,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Sit down/SitDownS5.npz,260,20.0,validation
+Subject.5/Walk/WalkS5.avi,5,Walk,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.5/Walk/WalkS5.npz,226,20.0,validation
+Subject.10/Fall backwards/FallBackwardsS10.avi,10,Fall backwards,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Fall backwards/FallBackwardsS10.npz,274,20.0,validation
+Subject.10/Fall forward/FallForwardS10.avi,10,Fall forward,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Fall forward/FallForwardS10.npz,243,20.0,validation
+Subject.10/Fall left/FallLeftS10.avi,10,Fall left,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Fall left/FallLeftS10.npz,212,20.0,validation
+Subject.10/Fall right/FallRightS10.avi,10,Fall right,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Fall right/FallRightS10.npz,202,20.0,validation
+Subject.10/Fall sitting/FallSittingS10.avi,10,Fall sitting,1,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Fall sitting/FallSittingS10.npz,288,20.0,validation
+Subject.10/Hop/HopS10.avi,10,Hop,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Hop/HopS10.npz,248,20.0,validation
+Subject.10/Kneel/KneelS10.avi,10,Kneel,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Kneel/KneelS10.npz,261,20.0,validation
+Subject.10/Pick up object/PickupobjectS10.avi,10,Pick up object,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Pick up object/PickupobjectS10.npz,292,20.0,validation
+Subject.10/Sit down/SitDownS10.avi,10,Sit down,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Sit down/SitDownS10.npz,234,20.0,validation
+Subject.10/Walk/WalkS10.avi,10,Walk,0,data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05/Subject.10/Walk/WalkS10.npz,224,20.0,validation

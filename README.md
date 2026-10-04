@@ -322,8 +322,9 @@ Expected containers later:
 **Stage 3.3 is complete: minimal clip-level binary supervision and deterministic
 pose preprocessing are ready for the Stage 4 GRU baseline.** The verified Stage 2
 `pose_raw_v1` run remains immutable. The dataset retains the frozen subject split,
-excludes Test 6/7, uses hip-centered torso-scaled 2-D coordinates with visibility
-and validity (132 features), and returns full clips with padding/lengths. There
+excludes Test 6/7, uses causal forward-fill (up to 5 frames), hip-centered torso-scaled XYZ
+and visibility (132 features), and provides a PyTorch Dataset/DataLoader with
+full clips and padding/lengths. The normalization switch supports the later ablation. There
 are 59 usable Train clips and 20 Validation clips; one all-missing Train clip is
 explicitly excluded. No model training or held-out evaluation has started.
 
@@ -331,7 +332,7 @@ The course-project sprint closes further Stage 3.2 temporal-annotation research;
 Stage 3.2j is retained at `63793aa50f91d1df3429ac081ae23b7dc6dd9d6c` without
 genuine review. Historical Stage 3.0 build guards remain unchanged. See the
 [Stage 3.3 usage, feature contract and validation](docs/stage33_minimal_preprocessing.md)
-and [executed readiness audit](artifacts/preprocessing/stage33_minimal/audit.json).
+and [executed readiness audit](artifacts/preprocessing/stage33_causal/audit.json).
 
 The local CAUCAFall V5 download passes structural and full sequential media validation:
 10 subjects × 10 activities = 100 AVI videos, all 19,877 frames decoded with metadata-count agreement at reported 20 FPS and 720 × 480 resolution. Six PNGs and four frame TXT
