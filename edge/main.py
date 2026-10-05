@@ -62,18 +62,54 @@ class LatestPrediction:
             return self._value
 
 
-def preview_frame(frame: Any, prediction: tuple[float, str, int] | None, cv2: Any) -> bool:
+def preview_frame(frame: Any, prediction: tuple[float, str, int] | None, cv2: Any,
+                  *, pose_detected: bool) -> bool:
     """Draw only after pose publication; return True when the user presses q."""
-    lines = ["Cloud Fall Detection", "Probability: waiting...", "Label: waiting...", "Buffer: waiting..."]
-    if prediction is not None:
-        probability, label, length = prediction
-        lines[1:] = [f"Probability: {probability:.3f}", f"Label: {label.replace('_', '-').upper()}",
-                     f"Buffer: {length}"]
-    lines.append("Press q to quit")
-    for index, line in enumerate(lines):
-        position = (12, 30 + index * 30)
-        cv2.putText(frame, line, position, cv2.FONT_HERSHEY_SIMPLEX, .7, (0, 0, 0), 3, cv2.LINE_AA)
-        cv2.putText(frame, line, position, cv2.FONT_HERSHEY_SIMPLEX, .7, (255, 255, 255), 1, cv2.LINE_AA)
+    height, width = frame.shape[:2]
+    scale = min(width / 640, height / 480)
+    bottom = height / scale
+    panel_top = bottom - 262
+    white, muted = (242, 244, 246), (173, 184, 193)
+    green, red, amber = (105, 218, 105), (82, 82, 245), (90, 202, 245)
+    connected = prediction is not None  # Received a prediction this sequence; no heartbeat semantics.
+    status_color = amber if not connected else (green if prediction[1] == "non_fall" else red)
+
+    def point(x: float, y: float) -> tuple[int, int]:
+        return round(x * scale), round(y * scale)
+
+    def text(value: str, x: float, y: float, size: float = .5,
+             color: tuple[int, int, int] = white, thickness: int = 1) -> None:
+        cv2.putText(frame, value, point(x, y), cv2.FONT_HERSHEY_SIMPLEX, size * scale,
+                    color, max(1, round(thickness * scale)), cv2.LINE_AA)
+
+    overlay = frame.copy()
+    background = (22, 28, 34)
+    cv2.rectangle(overlay, (0, 0), (width - 1, round(48 * scale)), background, -1)
+    cv2.rectangle(overlay, point(16, panel_top), point(382, panel_top + 224), background, -1)
+    cv2.rectangle(overlay, (0, round((bottom - 34) * scale)), (width - 1, height - 1), background, -1)
+    cv2.addWeighted(overlay, .72, frame, .28, 0, dst=frame)
+    text("FALL DETECTION SYSTEM", 16, 31, .65, thickness=2)
+    text("CLOUD", width / scale - 94, 31, .5)
+    cv2.circle(frame, point(width / scale - 112, 26), max(1, round(5 * scale)), green if connected else amber, -1)
+    cv2.rectangle(frame, point(16, panel_top), point(20, panel_top + 224), status_color, -1)
+    if connected:
+        text("STATUS", 32, panel_top + 31, .42, muted)
+        text("NORMAL" if prediction[1] == "non_fall" else "FALL", 169, panel_top + 35, .85, status_color, 2)
+    else:
+        text("INITIALIZING CLOUD MODEL...", 32, panel_top + 32, .5, amber, 2)
+    text("Fall Probability:", 32, panel_top + 73, color=muted)
+    text(f"{prediction[0]:.1%}" if connected else "--", 265, panel_top + 73, .6, thickness=2)
+    cv2.rectangle(frame, point(32, panel_top + 89), point(366, panel_top + 101), (52, 63, 74), -1)
+    fill_width = round(334 * prediction[0]) if connected else 0
+    if fill_width > 0:
+        cv2.rectangle(frame, point(32, panel_top + 89), point(32 + fill_width, panel_top + 101), status_color, -1)
+    text("Buffer:", 32, panel_top + 133, color=muted)
+    text(f"{prediction[2]} frames" if connected else "--", 170, panel_top + 133)
+    text("Pose:", 32, panel_top + 164, color=muted)
+    text("DETECTED" if pose_detected else "MISSING", 170, panel_top + 164, color=green if pose_detected else amber)
+    text("Cloud:", 32, panel_top + 195, color=muted)
+    text("CONNECTED" if connected else "WAITING", 170, panel_top + 195, color=green if connected else amber)
+    text("Press Q to exit", 16, bottom - 12)
     cv2.imshow("Cloud Fall Detection", frame)
     return cv2.waitKey(1) & 0xFF == ord("q")
 
@@ -151,7 +187,7 @@ def main() -> None:
                 connection.publish(topic, validate_pose(message))
                 frames += 1
                 detected_frames += int(detected)
-                if args.preview and preview_frame(frame, latest.snapshot(), cv2):
+                if args.preview and preview_frame(frame, latest.snapshot(), cv2, pose_detected=detected):
                     break
                 if not camera and not args.unpaced:
                     time.sleep(max(0, started + frames/fps - time.monotonic()))

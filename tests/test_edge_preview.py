@@ -48,18 +48,38 @@ class PredictionTests(unittest.TestCase):
         self.assertEqual(latest.snapshot(), (.9, "fall", 86))
 
     def test_waiting_overlay_prediction_overlay_and_q(self):
-        cv2, frame = MagicMock(), object()
+        cv2, frame = MagicMock(), np.zeros((480, 640, 3), dtype=np.uint8)
         cv2.waitKey.return_value = -1
-        self.assertFalse(edge.preview_frame(frame, None, cv2))
-        lines = [call.args[1] for call in cv2.putText.call_args_list[::2]]
-        self.assertEqual(lines[1:4], ["Probability: waiting...", "Label: waiting...", "Buffer: waiting..."])
+        self.assertFalse(edge.preview_frame(frame, None, cv2, pose_detected=False))
+        lines = [call.args[1] for call in cv2.putText.call_args_list]
+        for expected in ("INITIALIZING CLOUD MODEL...", "--", "MISSING", "WAITING", "Press Q to exit"):
+            self.assertIn(expected, lines)
+        self.assertFalse(any("%" in line for line in lines))
         cv2.putText.reset_mock()
         cv2.waitKey.return_value = ord("q")
-        self.assertTrue(edge.preview_frame(frame, (.014, "non_fall", 200), cv2))
-        lines = [call.args[1] for call in cv2.putText.call_args_list[::2]]
-        self.assertEqual(lines[:4], ["Cloud Fall Detection", "Probability: 0.014", "Label: NON-FALL", "Buffer: 200"])
+        self.assertTrue(edge.preview_frame(frame, (.014, "non_fall", 200), cv2, pose_detected=True))
+        lines = [call.args[1] for call in cv2.putText.call_args_list]
+        for expected in ("FALL DETECTION SYSTEM", "NORMAL", "1.4%", "200 frames", "DETECTED", "CONNECTED"):
+            self.assertIn(expected, lines)
         cv2.imshow.assert_called_with("Cloud Fall Detection", frame)
         cv2.waitKey.assert_called_with(1)
+
+    def test_status_uses_cloud_label_and_bar_spans_zero_to_one(self):
+        # Deliberately differing probabilities/labels ensure the UI does not reclassify.
+        for probability, label, status, color in ((0., "fall", "FALL", (82, 82, 245)),
+                                                  (1., "non_fall", "NORMAL", (105, 218, 105)),
+                                                  (.014, "non_fall", "NORMAL", (105, 218, 105))):
+            with self.subTest(probability=probability, label=label):
+                cv2 = MagicMock()
+                cv2.waitKey.return_value = -1
+                edge.preview_frame(np.zeros((480, 640, 3), dtype=np.uint8),
+                                   (probability, label, 200), cv2, pose_detected=True)
+                status_call = next(call for call in cv2.putText.call_args_list if call.args[1] == status)
+                self.assertEqual(status_call.args[5], color)
+                bars = [call for call in cv2.rectangle.call_args_list if call.args[1] == (32, 307)]
+                self.assertEqual(len(bars), 2 if probability > 0 else 1)
+                if probability > 0:
+                    self.assertEqual(bars[-1].args[2:4], ((32 + round(334 * probability), 319), color))
 
     def test_preview_cli_help(self):
         output = io.StringIO()
@@ -123,9 +143,22 @@ class EdgeExitTests(unittest.TestCase):
         self.assertEqual((message["frame_index"], message["fps"], message["timestamp_kind"]), (0, 20., "unix_epoch"))
         self.assertTrue(message["pose_detected"])
         lines = [call.args[1] for call in self.cv2.putText.call_args_list]
-        self.assertIn("Probability: 0.014", lines)
-        self.assertIn("Label: NON-FALL", lines)
-        self.assertIn("Buffer: 200", lines)
+        for expected in ("1.4%", "NORMAL", "200 frames", "DETECTED", "CONNECTED"):
+            self.assertIn(expected, lines)
+        tracker = self.mp.tasks.vision.PoseLandmarker.create_from_options.return_value.__enter__.return_value
+        tracker.detect_for_video.assert_called_once()
+        self.assert_released()
+
+    def test_missing_pose_is_displayed_without_changing_payload(self):
+        with patch.object(edge, "encode_pose", return_value=(False, np.full((33, 4), np.nan, dtype=np.float32))):
+            edge.main()
+        message = self.published[1][1]
+        self.assertFalse(message["pose_detected"])
+        self.assertEqual(message["features"], [0.] * 132)
+        lines = [call.args[1] for call in self.cv2.putText.call_args_list]
+        self.assertIn("MISSING", lines)
+        self.assertIn("INITIALIZING CLOUD MODEL...", lines)
+        self.assertIn("WAITING", lines)
         self.assert_released()
 
     def test_ctrl_c_sends_sequence_end_and_returns_without_exception(self):
