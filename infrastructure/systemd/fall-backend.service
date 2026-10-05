@@ -1,0 +1,16 @@
+[Unit]
+Description=Fall detection MQTT GRU backend
+After=network-online.target mosquitto.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=fall
+WorkingDirectory=/opt/fall-detection
+EnvironmentFile=/etc/fall-detection.env
+ExecStart=/opt/fall-detection/.venv/bin/python -m backend.app.main
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

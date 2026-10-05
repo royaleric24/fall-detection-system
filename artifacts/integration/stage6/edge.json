@@ -1,0 +1,11 @@
+{
+  "source_id": "smoke-edge",
+  "sequence_id": "stage6-avi-smoke",
+  "frames_published": 125,
+  "pose_detected_frames": 125,
+  "missing_pose_frames": 0,
+  "source_fps": 20.0,
+  "timestamp_kind": "clip_relative",
+  "authorized_source": "Subject.1/Fall backwards/FallBackwardsS1.avi",
+  "errors": 0
+}

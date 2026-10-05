@@ -40,24 +40,52 @@ def handle_missing_pose(landmarks: np.ndarray, pose_detected: np.ndarray, *,
         raise ValueError("Expected nonempty [T,33,4] landmarks and bool [T] detected")
     if type(max_forward_fill_frames) is not int or max_forward_fill_frames < 0:
         raise ValueError("Forward-fill limit must be a nonnegative integer")
+    filler = CausalPoseFill(max_forward_fill_frames)
     handled = np.zeros(raw.shape, dtype=np.float64)
     available = np.zeros(len(raw), dtype=bool)
     imputed = np.zeros(len(raw), dtype=bool)
-    last = None
-    gap = 0
     for t in range(len(raw)):
-        if detected[t]:
-            handled[t] = raw[t]
-            available[t] = True
-            last = raw[t].copy()
-            gap = 0
-        else:
-            gap += 1
-            if last is not None and gap <= max_forward_fill_frames:
-                handled[t] = last
-                available[t] = True
-                imputed[t] = True
+        handled[t], available[t], imputed[t] = filler.step(raw[t], bool(detected[t]))
     return handled, available, imputed
+
+
+class CausalPoseFill:
+    """The same bounded state for offline sequences and a frame-by-frame stream."""
+
+    def __init__(self, max_forward_fill_frames: int = 5) -> None:
+        if type(max_forward_fill_frames) is not int or max_forward_fill_frames < 0:
+            raise ValueError("Forward-fill limit must be a nonnegative integer")
+        self.limit = max_forward_fill_frames
+        self.last: np.ndarray | None = None
+        self.gap = 0
+
+    def step(self, landmarks: np.ndarray, detected: bool) -> tuple[np.ndarray, bool, bool]:
+        if np.asarray(landmarks).shape != (33, 4) or type(detected) is not bool:
+            raise ValueError("Expected [33,4] landmarks and boolean detected")
+        if detected:
+            self.last = np.asarray(landmarks).copy()
+            self.gap = 0
+            return self.last.astype(np.float64), True, False
+        self.gap += 1
+        if self.last is not None and self.gap <= self.limit:
+            return self.last.astype(np.float64), True, True
+        return np.zeros((33, 4), dtype=np.float64), False, False
+
+
+class StreamingPreprocessor:
+    """Sequence-owned causal state; reset by constructing a fresh instance."""
+
+    def __init__(self, config: PreprocessingConfig) -> None:
+        self.config = config
+        self.filler = CausalPoseFill(config.max_forward_fill_frames)
+
+    def step(self, landmarks: np.ndarray, detected: bool) -> tuple[np.ndarray, np.ndarray]:
+        filled, available, _ = self.filler.step(landmarks, detected)
+        # Already-filled current frame is passed through the original feature transform.
+        features, mask = normalize_pose_sequence(filled[None], np.array([available], dtype=bool),
+                                                 config=self.config)
+        return features[0], mask[0]
+
 
 
 def normalize_pose_sequence(landmarks: np.ndarray, pose_detected: np.ndarray, *,

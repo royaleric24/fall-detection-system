@@ -1,0 +1,99 @@
+{
+  "stage": 6,
+  "local_end_to_end": "PASS",
+  "source": "Subject.1/Fall backwards/FallBackwardsS1.avi",
+  "subject_id": 1,
+  "test_subjects_accessed": [],
+  "broker": "Mosquitto 2.0.22",
+  "separate_processes": true,
+  "source_avi_and_checkpoint_unchanged": true,
+  "input_sha256": {
+    "avi": "c314121952a73a157bfb06b8434a653dcdcb0e98eb97d77492419e64965246a9",
+    "checkpoint": "3c1fbf4be59f705f003c06f0e1b5698dec5c3d81e19c3345ab35231a237132f6"
+  },
+  "frames_published": 125,
+  "pose_frames_received": 125,
+  "first_inference_frame": 85,
+  "predictions": 4,
+  "example_prediction": {
+    "schema_version": 1,
+    "source_id": "smoke-edge",
+    "sequence_id": "stage6-avi-smoke",
+    "frame_index": 85,
+    "timestamp_ms": 4250,
+    "timestamp_kind": "clip_relative",
+    "buffer_length": 86,
+    "fall_probability": 0.9752359390258789,
+    "threshold": 0.5,
+    "predicted_label": "fall"
+  },
+  "edge_errors": 0,
+  "unexpected_backend_errors": 0,
+  "intentionally_rejected_payloads": 1,
+  "edge_python": "/private/tmp/fall-stage6-edge-venv/bin/python",
+  "backend_python": "/private/tmp/fall-stage33-torch-venv/bin/python",
+  "remote_deployment": "PENDING_INFRASTRUCTURE_ACCESS",
+  "prediction_records": [
+    {
+      "schema_version": 1,
+      "source_id": "smoke-edge",
+      "sequence_id": "stage6-avi-smoke",
+      "frame_index": 85,
+      "timestamp_ms": 4250,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 86,
+      "fall_probability": 0.9752359390258789,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    },
+    {
+      "schema_version": 1,
+      "source_id": "smoke-edge",
+      "sequence_id": "stage6-avi-smoke",
+      "frame_index": 95,
+      "timestamp_ms": 4750,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 96,
+      "fall_probability": 0.979455828666687,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    },
+    {
+      "schema_version": 1,
+      "source_id": "smoke-edge",
+      "sequence_id": "stage6-avi-smoke",
+      "frame_index": 105,
+      "timestamp_ms": 5250,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 106,
+      "fall_probability": 0.9814003705978394,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    },
+    {
+      "schema_version": 1,
+      "source_id": "smoke-edge",
+      "sequence_id": "stage6-avi-smoke",
+      "frame_index": 115,
+      "timestamp_ms": 5750,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 116,
+      "fall_probability": 0.9820027351379395,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    }
+  ],
+  "implementation_sha256": {
+    "edge/main.py": "743b421cf4108dba620826db1f42a3b41ec722f090f5076dab9092bc793b08b3",
+    "backend/app/main.py": "6f4732ded46356ecd50d8b59241f85114820f1a368e9824bb35cc52bc88275d1",
+    "backend/app/inference.py": "4a663a9b5dab916b085fa23644daf6ad1d75de928d8a689dccd87f8066554f66",
+    "common/mqtt.py": "336640f0b9cbac5c9f742e942d4d74ff313e4262c5767cd163f9eaefc480b2c5",
+    "ml/preprocessing/pose_sequence.py": "103cf8fd57eab402c74641ee646d5ad394201cd8a3235ecb34053040a1de550e",
+    "scripts/stage6_smoke.py": "b405d6f0c3743c333e94b8d31c3b6fc08dcdf42046d5e89e5f227b69fb5d52fc"
+  },
+  "tests": {
+    "stage6_new": 9,
+    "focused_and_related_total": 84,
+    "result": "PASS"
+  }
+}

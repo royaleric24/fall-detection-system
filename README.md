@@ -319,21 +319,20 @@ Expected containers later:
 
 ## 11. Current Status
 
-**Stage 5 is complete: one normalization ablation and one fixed-seed pose-frame
-dropout evaluation are frozen.** The unnormalized GRU is selected for subsequent
-integration: Validation Accuracy/F1 1.0000 on 20 clips, compared with normalized
-Stage 4 Accuracy 0.9000 / F1 0.8889. This is a small course-project Validation
-comparison, not a held-out result. The normalized Stage 4 checkpoint remains
-unchanged; its 0/10/20% dropout classification metrics were unchanged. That
-robustness result does not apply to the newly selected unnormalized model.
+**Stage 6 local MQTT integration is complete.** A real Mosquitto broker and separate
+edge/backend processes passed the authorized AVI → OpenCV/MediaPipe → streaming
+preprocessing → MQTT → rolling GRU → MQTT prediction smoke test (125 frames,
+4 predictions). The frozen Stage 5 unnormalized checkpoint remains selected;
+its SHA256 is enforced at backend startup. Test 6/7 remains sealed.
 
-The frozen final model uses causal fill up to five frames, then zero, raw
-XYZ/visibility (132 features), single-layer unidirectional GRU hidden 64, and
-threshold 0.5. Train has 59 usable clips and Validation 20; the same all-missing
-Train clip remains excluded. Test 6/7 remains sealed; Stage 6 has not started.
-See the [Stage 5 results](artifacts/evaluation/stage5/REPORT.md),
-[final ML configuration](artifacts/evaluation/stage5/final_ml_config.json), and
-[Stage 4 baseline](docs/stage4_gru_baseline.md).
+The online policy collects 86 frames, predicts every 10 new frames and retains
+the latest 200, using true lengths. Full-clip training versus rolling inference
+remains a known limitation. Camera CLI support exists but was not hardware-tested.
+Ubuntu Mosquitto + venv/systemd deployment configuration is provided; **actual
+remote VPS deployment is pending infrastructure access**. Stage 7 has not started.
+See [runtime commands, protocol and cloud deployment](docs/stage6_mqtt_runtime.md),
+[executed local smoke evidence](artifacts/integration/stage6/smoke.json), and
+[final ML configuration](artifacts/evaluation/stage5/final_ml_config.json).
 
 The course-project sprint closes further Stage 3.2 temporal-annotation research;
 Stage 3.2j is retained at `63793aa50f91d1df3429ac081ae23b7dc6dd9d6c` without

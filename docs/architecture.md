@@ -505,7 +505,19 @@ selects normalize_pose=False after its higher clean Validation F1/Recall on this
 small split. Architecture, feature order, causal fill, full-clip batching and
 threshold are unchanged. The requested pose-frame dropout evaluation used only
 the normalized Stage 4 checkpoint; see the [report](../artifacts/evaluation/stage5/REPORT.md).
-Test 6/7 remains sealed. Stage 6 integration and rolling-buffer policy remain pending.
+Test 6/7 remains sealed. Stage 6 local integration is documented below.
+
+### Stage 6 — local edge/MQTT/backend integration complete
+
+The [Stage 6 runtime contract](stage6_mqtt_runtime.md) defines QoS1 JSON pose/control
+and prediction messages, timestamp conventions, shared offline/streaming causal
+fill, per-source rolling buffers (86 minimum / 200 maximum / stride 10) and the
+selected Stage 5 checkpoint identity. Separate edge/backend processes communicated
+through a real local Mosquitto broker and published actual CPU GRU probabilities.
+Ubuntu package/venv/systemd deployment files exist; real VPS deployment is pending
+infrastructure access. No dashboard, alert engine, database or REST/WebSocket work
+is part of Stage 6. Test 6/7 remains sealed; full-clip vs rolling-serving mismatch
+is explicit. Stage 7 has not started.
 
 ## 15. Architecture Change Policy
 

@@ -1,0 +1,53 @@
+{
+  "frames_received": 125,
+  "predictions": 4,
+  "ignored": 0,
+  "gap_resets": 0,
+  "malformed": 1,
+  "queue_overflow": 0,
+  "reconnect_resets": 0,
+  "examples": [
+    {
+      "schema_version": 1,
+      "source_id": "smoke-edge",
+      "sequence_id": "stage6-avi-smoke",
+      "frame_index": 85,
+      "timestamp_ms": 4250,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 86,
+      "fall_probability": 0.9752359390258789,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    },
+    {
+      "schema_version": 1,
+      "source_id": "smoke-edge",
+      "sequence_id": "stage6-avi-smoke",
+      "frame_index": 95,
+      "timestamp_ms": 4750,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 96,
+      "fall_probability": 0.979455828666687,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    },
+    {
+      "schema_version": 1,
+      "source_id": "smoke-edge",
+      "sequence_id": "stage6-avi-smoke",
+      "frame_index": 105,
+      "timestamp_ms": 5250,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 106,
+      "fall_probability": 0.9814003705978394,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    }
+  ],
+  "checkpoint": {
+    "path": "ml/checkpoints/stage5_no_normalization_best.pt",
+    "sha256": "3c1fbf4be59f705f003c06f0e1b5698dec5c3d81e19c3345ab35231a237132f6",
+    "bytes": 156309,
+    "reload_validation_match": true
+  }
+}
