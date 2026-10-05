@@ -1,0 +1,102 @@
+{
+  "schema_version": "final_ml_config_v1",
+  "status": "frozen_for_system_integration_and_final_heldout_evaluation",
+  "selection": "stage5_without_normalization",
+  "selection_reason": "Higher clean Validation fall F1 (1.0 vs 0.8888888888888888) and Recall (1.0 vs 0.8), with identical controlled training configuration; evidence limited to 20 Validation clips.",
+  "preprocessing": {
+    "normalize_pose": false,
+    "max_forward_fill_frames": 5,
+    "epsilon": 1e-06,
+    "causal_missing_pose_handling": true,
+    "feature_order": [
+      "x",
+      "y",
+      "z",
+      "visibility"
+    ],
+    "landmarks": 33
+  },
+  "model": {
+    "type": "GRU",
+    "input_size": 132,
+    "hidden_size": 64,
+    "num_layers": 1,
+    "bidirectional": false
+  },
+  "classification_threshold": 0.5,
+  "label_mapping": {
+    "non_fall": 0,
+    "fall": 1
+  },
+  "checkpoint": {
+    "path": "ml/checkpoints/stage5_no_normalization_best.pt",
+    "sha256": "3c1fbf4be59f705f003c06f0e1b5698dec5c3d81e19c3345ab35231a237132f6",
+    "bytes": 156309,
+    "reload_validation_match": true
+  },
+  "reference_stage4_checkpoint": {
+    "path": "ml/checkpoints/stage4_gru_best.pt",
+    "sha256": "611693fd32d527fd9e84b293158cfa193fd24a9aa7593a83397c553f640ad9c0",
+    "bytes": 156309,
+    "reload_validation_match": true
+  },
+  "stage4_commit": "a5fb6f23aa7965fa5b6519f0900642b4eedf40fb",
+  "training_config": {
+    "seed": 42,
+    "input_size": 132,
+    "hidden_size": 64,
+    "num_layers": 1,
+    "batch_size": 8,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "loss": "BCEWithLogitsLoss",
+    "max_epochs": 50,
+    "early_stopping_patience": 8,
+    "selection_criterion": "validation_loss",
+    "classification_threshold": 0.5,
+    "preprocessing": {
+      "normalize_pose": false,
+      "max_forward_fill_frames": 5,
+      "epsilon": 1e-06
+    }
+  },
+  "training_summary": "artifacts/training/stage5_no_normalization/summary.json",
+  "evaluation_results": "artifacts/evaluation/stage5/results.json",
+  "dataset_source": {
+    "dataset_name": "CAUCAFall",
+    "dataset_version": "V5",
+    "schema_version": "pose_raw_v1",
+    "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "execution_commit": "4b7557a5b3a8a4b40906b57a01a264bdeef9edb6",
+    "evidence_commit": "a28e0289c53463b3676b6c9275d4ee18a840fdae",
+    "pose_root": "data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "evidence_root": "artifacts/pose_extraction/runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "run_sha256": "cb7c7cbadd93e597fd3095317e0a60865858a442e099ae4737754e4887aa63dd",
+    "manifest_sha256": "9f0e7ba39a4a67b954f27ae1f3e022c22908c4f470347f28bfeef293f4f92527",
+    "split_config": "configs/dataset_split.json",
+    "split_sha256": "c1de39a02dd1ca2fe6cb1bd06c594ed9149477b4bc65c8774de527bd53a140d3"
+  },
+  "source_pose_fingerprint": "beb7fa20f9afcc0cccfec0138c40a56f2c990527f95107cdc9b71bb0fd61b0a7",
+  "subjects": {
+    "train": [
+      1,
+      2,
+      3,
+      4,
+      8,
+      9
+    ],
+    "validation": [
+      5,
+      10
+    ],
+    "sealed_test": [
+      6,
+      7
+    ]
+  },
+  "robustness_scope": "The requested 0/10/20% dropout experiment evaluated the normalized Stage 4 checkpoint only. No robustness result is claimed for the selected unnormalized model.",
+  "heldout_evaluation_performed": false,
+  "online_policy": "Full-clip training; rolling sequence-buffer policy remains Stage 6 work."
+}

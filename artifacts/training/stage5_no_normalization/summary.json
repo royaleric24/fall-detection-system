@@ -1,0 +1,1095 @@
+{
+  "stage": 5,
+  "config": {
+    "seed": 42,
+    "input_size": 132,
+    "hidden_size": 64,
+    "num_layers": 1,
+    "batch_size": 8,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "loss": "BCEWithLogitsLoss",
+    "max_epochs": 50,
+    "early_stopping_patience": 8,
+    "selection_criterion": "validation_loss",
+    "classification_threshold": 0.5,
+    "preprocessing": {
+      "normalize_pose": false,
+      "max_forward_fill_frames": 5,
+      "epsilon": 1e-06
+    }
+  },
+  "stage33_commit": "729b1d26c8935f8550e2bedef68e6e4ee034730d",
+  "training_base_commit": "a5fb6f23aa7965fa5b6519f0900642b4eedf40fb",
+  "implementation_sha256": {
+    "ml/models/gru.py": "60ba82f8cba9c365a8040a51a96e6d505751805acb65de35bf57f922b1c16280",
+    "ml/training/train_gru.py": "9ae1caf0b924c8ccf2abc1758e89176efc8666b5cf641634b782af2c2f8628be",
+    "ml/datasets/fall_sequence_dataset.py": "ccff0c0bac37bdff2b356cdbfd9bef912b246b9b9dfb352ee2061b118a1c9e93",
+    "ml/preprocessing/pose_sequence.py": "4c8878ca397dd7d97fe44d5490a1996c0efa06051988850877c807882209f47e"
+  },
+  "config_sha256": "14baa24a88b2b5a188f708c231c02c36daf4c1dfcfb6f61080232f6206761313",
+  "source_identity": {
+    "dataset_name": "CAUCAFall",
+    "dataset_version": "V5",
+    "schema_version": "pose_raw_v1",
+    "run_id": "4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "execution_commit": "4b7557a5b3a8a4b40906b57a01a264bdeef9edb6",
+    "evidence_commit": "a28e0289c53463b3676b6c9275d4ee18a840fdae",
+    "pose_root": "data/interim/caucafall_v5/pose_raw_v1_runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "evidence_root": "artifacts/pose_extraction/runs/4df7dd5f-fb38-4908-8233-1a81deb8dc05",
+    "run_sha256": "cb7c7cbadd93e597fd3095317e0a60865858a442e099ae4737754e4887aa63dd",
+    "manifest_sha256": "9f0e7ba39a4a67b954f27ae1f3e022c22908c4f470347f28bfeef293f4f92527",
+    "split_config": "configs/dataset_split.json",
+    "split_sha256": "c1de39a02dd1ca2fe6cb1bd06c594ed9149477b4bc65c8774de527bd53a140d3"
+  },
+  "source_pose_fingerprint_before": "beb7fa20f9afcc0cccfec0138c40a56f2c990527f95107cdc9b71bb0fd61b0a7",
+  "source_pose_fingerprint_after": "beb7fa20f9afcc0cccfec0138c40a56f2c990527f95107cdc9b71bb0fd61b0a7",
+  "raw_pose_unchanged": true,
+  "test_subjects_accessed": [],
+  "access_log": [
+    {
+      "sequence_id": "Subject.1/Fall backwards/FallBackwardsS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Fall forward/FallForwardS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Fall left/FallLeftS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Fall right/FallRightS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Fall sitting/FallSittingS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Hop/HopS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Kneel/KneelS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Pick up object/PickupobjectS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Sit down/SitDownS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Walk/WalkS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall backwards/FallBackwardsS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall forward/FallForwardS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall left/FallLeftS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall right/FallRightS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall sitting/FallSittingS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Hop/HopS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Kneel/KneelS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Pick up object/PickupobjectS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Sit down/SitDownS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Walk/WalkS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall backwards/FallBackwardsS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall forward/FallForwardS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall left/FallLeftS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall right/FallRightS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall sitting/FallSittingS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Hop/HopS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Kneel/KneelS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Pick up object/PickupobjectS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Sit down/SitDownS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Walk/WalkS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall backwards/FallBackwardsS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall forward/FallForwardS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall left/FallLeftS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall right/FallRightS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall sitting/FallSittingS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Hop/HopS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Kneel/KneelS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Pick up object/PickupobjectS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Sit down/SitDownS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Walk/WalkS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.5/Fall backwards/FallBackwardsS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Fall forward/FallForwardS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Fall left/FallLeftS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Fall right/FallRightS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Fall sitting/FallSittingS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Hop/HopS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Kneel/KneelS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Pick up object/PickupobjectS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Sit down/SitDownS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Walk/WalkS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.8/Fall backwards/FallBackwardsS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Fall forward/FallForwardS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Fall left/FallLeftS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Fall right/FallRightS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Fall sitting/FallSittingS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Hop/HopS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Kneel/KneelS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Pick up object/PickupobjectS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Sit down/SitDownS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Walk/WalkS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall backwards/FallBackwardsS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall forward/FallForwardS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall left/FallLeftS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall right/FallRightS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall sitting/FallSittingS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Hop/HopS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Kneel/KneelS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Pick up object/PickupobjectS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Sit down/SitDownS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Walk/WalkS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.10/Fall backwards/FallBackwardsS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Fall forward/FallForwardS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Fall left/FallLeftS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Fall right/FallRightS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Fall sitting/FallSittingS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Hop/HopS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Kneel/KneelS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Pick up object/PickupobjectS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Sit down/SitDownS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Walk/WalkS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    }
+  ],
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "torch": "2.8.0",
+    "device": "cpu",
+    "threads": 1,
+    "deterministic_algorithms": true
+  },
+  "datasets": {
+    "train": {
+      "input_sequences": 60,
+      "sequences": 59,
+      "subjects": [
+        1,
+        2,
+        3,
+        4,
+        8,
+        9
+      ],
+      "class_counts": {
+        "fall": 29,
+        "non_fall": 30
+      },
+      "excluded": [
+        {
+          "sequence_id": "Subject.8/Fall forward/FallForwardS8.avi",
+          "subject_id": 8,
+          "split": "train",
+          "label": 1,
+          "reason": "all_frames_pose_missing"
+        }
+      ]
+    },
+    "validation": {
+      "input_sequences": 20,
+      "sequences": 20,
+      "subjects": [
+        5,
+        10
+      ],
+      "class_counts": {
+        "fall": 10,
+        "non_fall": 10
+      },
+      "excluded": []
+    }
+  },
+  "epochs_completed": 24,
+  "best_epoch": 16,
+  "stopping_reason": "patience",
+  "best_checkpoint_metrics": {
+    "train": {
+      "positive_class": "fall",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "confusion_matrix": [
+        [
+          30,
+          0
+        ],
+        [
+          0,
+          29
+        ]
+      ],
+      "loss": 0.02525161408771903
+    },
+    "validation": {
+      "positive_class": "fall",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "confusion_matrix": [
+        [
+          10,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "loss": 0.019669069349765776
+    }
+  },
+  "last_epoch_validation_metrics": {
+    "positive_class": "fall",
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "confusion_matrix": [
+      [
+        10,
+        0
+      ],
+      [
+        0,
+        10
+      ]
+    ],
+    "loss": 0.0753700315952301
+  },
+  "checkpoint": {
+    "path": "ml/checkpoints/stage5_no_normalization_best.pt",
+    "sha256": "3c1fbf4be59f705f003c06f0e1b5698dec5c3d81e19c3345ab35231a237132f6",
+    "bytes": 156309,
+    "reload_validation_match": true
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_optimization_loss": 0.675755337133246,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.6134721636772156
+      }
+    },
+    {
+      "epoch": 2,
+      "train_optimization_loss": 0.5694206801511473,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.85,
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1": 0.8235294117647058,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "loss": 0.5407753348350525
+      }
+    },
+    {
+      "epoch": 3,
+      "train_optimization_loss": 0.46682856244555976,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.40312735438346864
+      }
+    },
+    {
+      "epoch": 4,
+      "train_optimization_loss": 0.3228549245050398,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.85,
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1": 0.8235294117647058,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "loss": 0.34144631028175354
+      }
+    },
+    {
+      "epoch": 5,
+      "train_optimization_loss": 0.16961713703507084,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.07127809226512909
+      }
+    },
+    {
+      "epoch": 6,
+      "train_optimization_loss": 0.11169273617787887,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.95,
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1": 0.9473684210526315,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            1,
+            9
+          ]
+        ],
+        "loss": 0.07863581031560898
+      }
+    },
+    {
+      "epoch": 7,
+      "train_optimization_loss": 0.13450750746464324,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.02990908846259117
+      }
+    },
+    {
+      "epoch": 8,
+      "train_optimization_loss": 0.1431201261989141,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.030866941809654234
+      }
+    },
+    {
+      "epoch": 9,
+      "train_optimization_loss": 0.08937638792824948,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.03231345415115357
+      }
+    },
+    {
+      "epoch": 10,
+      "train_optimization_loss": 0.08404075164916151,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.02787715569138527
+      }
+    },
+    {
+      "epoch": 11,
+      "train_optimization_loss": 0.1336773677681715,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.023597152531147005
+      }
+    },
+    {
+      "epoch": 12,
+      "train_optimization_loss": 0.07037254546027062,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.0254120834171772
+      }
+    },
+    {
+      "epoch": 13,
+      "train_optimization_loss": 0.15637083749397326,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.85,
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1": 0.8235294117647058,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "loss": 0.3127105593681335
+      }
+    },
+    {
+      "epoch": 14,
+      "train_optimization_loss": 0.09547163012548018,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.95,
+        "precision": 1.0,
+        "recall": 0.9,
+        "f1": 0.9473684210526315,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            1,
+            9
+          ]
+        ],
+        "loss": 0.10375430285930634
+      }
+    },
+    {
+      "epoch": 15,
+      "train_optimization_loss": 0.06555855078464848,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.022240683436393738
+      }
+    },
+    {
+      "epoch": 16,
+      "train_optimization_loss": 0.08031781687069747,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.019669069349765776
+      }
+    },
+    {
+      "epoch": 17,
+      "train_optimization_loss": 0.02208584092431149,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.022308988496661186
+      }
+    },
+    {
+      "epoch": 18,
+      "train_optimization_loss": 0.014758634822979823,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.03754105418920517
+      }
+    },
+    {
+      "epoch": 19,
+      "train_optimization_loss": 0.010133652671603328,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.95,
+        "precision": 0.9090909090909091,
+        "recall": 1.0,
+        "f1": 0.9523809523809523,
+        "confusion_matrix": [
+          [
+            9,
+            1
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.07499716989696026
+      }
+    },
+    {
+      "epoch": 20,
+      "train_optimization_loss": 0.008118445527250483,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.95,
+        "precision": 0.9090909090909091,
+        "recall": 1.0,
+        "f1": 0.9523809523809523,
+        "confusion_matrix": [
+          [
+            9,
+            1
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.11661438345909118
+      }
+    },
+    {
+      "epoch": 21,
+      "train_optimization_loss": 0.006716385523204581,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.95,
+        "precision": 0.9090909090909091,
+        "recall": 1.0,
+        "f1": 0.9523809523809523,
+        "confusion_matrix": [
+          [
+            9,
+            1
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.13919065240770578
+      }
+    },
+    {
+      "epoch": 22,
+      "train_optimization_loss": 0.07365108843324548,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.95,
+        "precision": 0.9090909090909091,
+        "recall": 1.0,
+        "f1": 0.9523809523809523,
+        "confusion_matrix": [
+          [
+            9,
+            1
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.18982600495219232
+      }
+    },
+    {
+      "epoch": 23,
+      "train_optimization_loss": 0.23920001746234248,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 0.85,
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1": 0.8235294117647058,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "loss": 0.5112264394760132
+      }
+    },
+    {
+      "epoch": 24,
+      "train_optimization_loss": 0.2143187520362563,
+      "validation": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.0753700315952301
+      }
+    }
+  ]
+}

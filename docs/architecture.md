@@ -497,6 +497,16 @@ checkpoint reload reproduces Validation outputs. Test 6/7 remains sealed. No
 architecture alternatives, ablation, Stage 5 or Stage 6 work has started. Full-clip
 training requires a later rolling sequence-buffer policy for online inference.
 
+### Stage 5 — controlled evaluation and final ML configuration complete
+
+One unnormalized GRU training run was compared with the existing normalized
+Stage 4 checkpoint under identical training settings. The [final ML configuration](../artifacts/evaluation/stage5/final_ml_config.json)
+selects normalize_pose=False after its higher clean Validation F1/Recall on this
+small split. Architecture, feature order, causal fill, full-clip batching and
+threshold are unchanged. The requested pose-frame dropout evaluation used only
+the normalized Stage 4 checkpoint; see the [report](../artifacts/evaluation/stage5/REPORT.md).
+Test 6/7 remains sealed. Stage 6 integration and rolling-buffer policy remain pending.
+
 ## 15. Architecture Change Policy
 
 An architectural decision should change only when at least one of the following applies:

@@ -1,0 +1,561 @@
+{
+  "stage": 5,
+  "stage4_commit": "a5fb6f23aa7965fa5b6519f0900642b4eedf40fb",
+  "comparison_changed_field": "preprocessing.normalize_pose",
+  "normalized_checkpoint": {
+    "path": "ml/checkpoints/stage4_gru_best.pt",
+    "sha256": "611693fd32d527fd9e84b293158cfa193fd24a9aa7593a83397c553f640ad9c0",
+    "bytes": 156309,
+    "reload_validation_match": true
+  },
+  "ablation_summary": "artifacts/training/stage5_no_normalization/summary.json",
+  "ablation": {
+    "without_normalization": {
+      "best_epoch": 16,
+      "metrics": {
+        "positive_class": "fall",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            10
+          ]
+        ],
+        "loss": 0.019669069349765776
+      }
+    },
+    "normalization": {
+      "best_epoch": 5,
+      "metrics": {
+        "positive_class": "fall",
+        "accuracy": 0.9,
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.8888888888888888,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "loss": 0.29209915101528167
+      }
+    },
+    "delta_f1_normalized_minus_unnormalized": -0.11111111111111116
+  },
+  "robustness": [
+    {
+      "dropout": {
+        "seed": 42,
+        "nominal_rate": 0.0,
+        "frames": 4674,
+        "selected_frames": 0,
+        "newly_missing_frames": 0,
+        "selected_fraction": 0.0,
+        "selected_indices_sha256": "284fdc6f33fe4c6678bce37512f188c82cdad630fce4e688ed477a65a4600f8c"
+      },
+      "metrics": {
+        "positive_class": "fall",
+        "accuracy": 0.9,
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.8888888888888888,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "loss": 0.29209915101528167
+      },
+      "delta_f1": 0.0,
+      "delta_recall": 0.0
+    },
+    {
+      "dropout": {
+        "seed": 42,
+        "nominal_rate": 0.1,
+        "frames": 4674,
+        "selected_frames": 459,
+        "newly_missing_frames": 398,
+        "selected_fraction": 0.0982028241335045,
+        "selected_indices_sha256": "c6621a62c9d4c5514e55dbb4172ee0455638c1777832374cd60f7f7809179ff0"
+      },
+      "metrics": {
+        "positive_class": "fall",
+        "accuracy": 0.9,
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.8888888888888888,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "loss": 0.289844411611557
+      },
+      "delta_f1": 0.0,
+      "delta_recall": 0.0
+    },
+    {
+      "dropout": {
+        "seed": 42,
+        "nominal_rate": 0.2,
+        "frames": 4674,
+        "selected_frames": 925,
+        "newly_missing_frames": 799,
+        "selected_fraction": 0.19790329482242192,
+        "selected_indices_sha256": "2aa37277cff51751195f3b9b9533fbde8abddea17073634f4f21e1b03b85ff09"
+      },
+      "metrics": {
+        "positive_class": "fall",
+        "accuracy": 0.9,
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.8888888888888888,
+        "confusion_matrix": [
+          [
+            10,
+            0
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "loss": 0.28819343745708464
+      },
+      "delta_f1": 0.0,
+      "delta_recall": 0.0
+    }
+  ],
+  "clean_matches_stage4": true,
+  "raw_pose_fingerprint_before": "beb7fa20f9afcc0cccfec0138c40a56f2c990527f95107cdc9b71bb0fd61b0a7",
+  "raw_pose_fingerprint_after": "beb7fa20f9afcc0cccfec0138c40a56f2c990527f95107cdc9b71bb0fd61b0a7",
+  "raw_pose_unchanged": true,
+  "normalized_checkpoint_unchanged": true,
+  "test_subjects_accessed": [],
+  "evaluation_script_sha256": "7efa62d4c91badb98dc3cff10d636750508d6e2d6281c5168aa4e19565cdf1d6",
+  "access_log": [
+    {
+      "sequence_id": "Subject.1/Fall backwards/FallBackwardsS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Fall forward/FallForwardS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Fall left/FallLeftS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Fall right/FallRightS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Fall sitting/FallSittingS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Hop/HopS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Kneel/KneelS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Pick up object/PickupobjectS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Sit down/SitDownS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.1/Walk/WalkS1.avi",
+      "subject_id": 1,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall backwards/FallBackwardsS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall forward/FallForwardS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall left/FallLeftS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall right/FallRightS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Fall sitting/FallSittingS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Hop/HopS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Kneel/KneelS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Pick up object/PickupobjectS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Sit down/SitDownS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.2/Walk/WalkS2.avi",
+      "subject_id": 2,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall backwards/FallBackwardsS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall forward/FallForwardS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall left/FallLeftS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall right/FallRightS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Fall sitting/FallSittingS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Hop/HopS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Kneel/KneelS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Pick up object/PickupobjectS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Sit down/SitDownS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.3/Walk/WalkS3.avi",
+      "subject_id": 3,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall backwards/FallBackwardsS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall forward/FallForwardS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall left/FallLeftS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall right/FallRightS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Fall sitting/FallSittingS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Hop/HopS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Kneel/KneelS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Pick up object/PickupobjectS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Sit down/SitDownS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.4/Walk/WalkS4.avi",
+      "subject_id": 4,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.5/Fall backwards/FallBackwardsS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Fall forward/FallForwardS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Fall left/FallLeftS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Fall right/FallRightS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Fall sitting/FallSittingS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Hop/HopS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Kneel/KneelS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Pick up object/PickupobjectS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Sit down/SitDownS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.5/Walk/WalkS5.avi",
+      "subject_id": 5,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.8/Fall backwards/FallBackwardsS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Fall forward/FallForwardS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Fall left/FallLeftS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Fall right/FallRightS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Fall sitting/FallSittingS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Hop/HopS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Kneel/KneelS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Pick up object/PickupobjectS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Sit down/SitDownS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.8/Walk/WalkS8.avi",
+      "subject_id": 8,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall backwards/FallBackwardsS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall forward/FallForwardS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall left/FallLeftS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall right/FallRightS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Fall sitting/FallSittingS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Hop/HopS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Kneel/KneelS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Pick up object/PickupobjectS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Sit down/SitDownS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.9/Walk/WalkS9.avi",
+      "subject_id": 9,
+      "split": "train"
+    },
+    {
+      "sequence_id": "Subject.10/Fall backwards/FallBackwardsS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Fall forward/FallForwardS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Fall left/FallLeftS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Fall right/FallRightS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Fall sitting/FallSittingS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Hop/HopS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Kneel/KneelS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Pick up object/PickupobjectS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Sit down/SitDownS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    },
+    {
+      "sequence_id": "Subject.10/Walk/WalkS10.avi",
+      "subject_id": 10,
+      "split": "validation"
+    }
+  ]
+}

@@ -74,11 +74,12 @@ def binary_metrics(labels: list[int], predictions: list[int]) -> dict[str, Any]:
                 confusion_matrix=[[tn, fp], [fn, tp]])
 
 
-def load_datasets(config: dict[str, Any]) -> tuple[FallSequenceDataset, FallSequenceDataset]:
+def load_datasets(config: dict[str, Any], *, normalization_ablation: bool = False
+                  ) -> tuple[FallSequenceDataset, FallSequenceDataset]:
     """Hard-coded split scope prevents a caller from requesting Test training."""
     preprocessing = PreprocessingConfig(**config["preprocessing"])
-    if not preprocessing.normalize_pose:
-        raise ValueError("Stage 4 baseline requires normalize_pose=True")
+    if preprocessing.normalize_pose == normalization_ablation:
+        raise ValueError("Normalization mode does not match baseline/ablation request")
     train = FallSequenceDataset("train", config=preprocessing)
     validation = FallSequenceDataset("validation", config=preprocessing)
     validate_sources(train.input_sources + validation.input_sources)
@@ -125,7 +126,8 @@ def _dataset_summary(dataset: FallSequenceDataset) -> dict[str, Any]:
                 excluded=dataset.excluded)
 
 
-def train_baseline(config_path: Path, output: Path, checkpoint_path: Path) -> dict[str, Any]:
+def train_baseline(config_path: Path, output: Path, checkpoint_path: Path, *,
+                   normalization_ablation: bool = False) -> dict[str, Any]:
     """Write one canonical best checkpoint plus a small summary/history/predictions."""
     training_base_commit = git_preflight()
     config = json.loads(config_path.read_text())
@@ -143,7 +145,7 @@ def train_baseline(config_path: Path, output: Path, checkpoint_path: Path) -> di
     set_seed(config["seed"])
     sources = select_sources(("train", "validation"))
     before = source_fingerprint(sources)
-    train, validation = load_datasets(config)
+    train, validation = load_datasets(config, normalization_ablation=normalization_ablation)
     generator = torch.Generator().manual_seed(config["seed"])
     train_loader = DataLoader(train, batch_size=config["batch_size"], shuffle=True,
                               generator=generator, num_workers=0, collate_fn=collate_sequences)
@@ -212,7 +214,7 @@ def train_baseline(config_path: Path, output: Path, checkpoint_path: Path) -> di
     reload_metrics, reload_predictions = evaluate(reloaded, validation_loader, config["classification_threshold"])
     if reload_metrics != validation_metrics or reload_predictions != predictions:
         raise ValueError("Checkpoint reload changed validation outputs")
-    summary = dict(stage=4, config=config, stage33_commit=STAGE33_COMMIT,
+    summary = dict(stage=5 if normalization_ablation else 4, config=config, stage33_commit=STAGE33_COMMIT,
                    training_base_commit=training_base_commit, implementation_sha256=implementation_sha256,
                    config_sha256=_sha256(config_path), source_identity=read_contract()["source"],
                    source_pose_fingerprint_before=before, source_pose_fingerprint_after=after,

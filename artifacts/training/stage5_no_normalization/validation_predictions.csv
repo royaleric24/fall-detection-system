@@ -1,0 +1,21 @@
+sequence_id,subject_id,label,probability,prediction,n_frames
+Subject.5/Fall backwards/FallBackwardsS5.avi,5,1,0.9839020371437073,1,214
+Subject.5/Fall forward/FallForwardS5.avi,5,1,0.987288236618042,1,200
+Subject.5/Fall left/FallLeftS5.avi,5,1,0.9527900815010071,1,247
+Subject.5/Fall right/FallRightS5.avi,5,1,0.977391242980957,1,219
+Subject.5/Fall sitting/FallSittingS5.avi,5,1,0.9801914691925049,1,229
+Subject.5/Hop/HopS5.avi,5,0,0.016501905396580696,0,122
+Subject.5/Kneel/KneelS5.avi,5,0,0.011207589879631996,0,208
+Subject.5/Pick up object/PickupobjectS5.avi,5,0,0.01210768986493349,0,271
+Subject.5/Sit down/SitDownS5.avi,5,0,0.014103571884334087,0,260
+Subject.5/Walk/WalkS5.avi,5,0,0.010303417220711708,0,226
+Subject.10/Fall backwards/FallBackwardsS10.avi,10,1,0.9392321109771729,1,274
+Subject.10/Fall forward/FallForwardS10.avi,10,1,0.9866663813591003,1,243
+Subject.10/Fall left/FallLeftS10.avi,10,1,0.9874991774559021,1,212
+Subject.10/Fall right/FallRightS10.avi,10,1,0.9911655783653259,1,202
+Subject.10/Fall sitting/FallSittingS10.avi,10,1,0.9788594245910645,1,288
+Subject.10/Hop/HopS10.avi,10,0,0.013162885792553425,0,248
+Subject.10/Kneel/KneelS10.avi,10,0,0.03994346782565117,0,261
+Subject.10/Pick up object/PickupobjectS10.avi,10,0,0.013942422345280647,0,292
+Subject.10/Sit down/SitDownS10.avi,10,0,0.01120368018746376,0,234
+Subject.10/Walk/WalkS10.avi,10,0,0.010160478763282299,0,224
