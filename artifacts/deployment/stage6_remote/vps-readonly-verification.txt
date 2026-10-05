@@ -1,0 +1,28 @@
+2026-10-05T13:52:15Z
+PRETTY_NAME="Ubuntu 22.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+x86_64
+6272c58b09f77f834c3fc1e755ad0c90b4955032
+MainPID=6274
+NRestarts=0
+ExecStart={ path=/opt/fall-detection/.venv/bin/python ; argv[]=/opt/fall-detection/.venv/bin/python -m backend.app.main ; ignore_errors=no ; start_time=[Mon 2026-10-05 21:37:13 CST] ; stop_time=[n/a] ; pid=6274 ; code=(null) ; status=0/0 }
+EnvironmentFiles=/etc/fall-detection.env (ignore_errors=no)
+WorkingDirectory=/opt/fall-detection
+User=fall
+ActiveState=active
+SubState=running
+UnitFileState=enabled
+InvocationID=3f8b2bff05bb4d8087372f51eb87fc90
+active
+mosquitto	2.0.11-1ubuntu1.2
+Python 3.12.14

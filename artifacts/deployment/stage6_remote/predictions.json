@@ -1,0 +1,70 @@
+[
+  {
+    "topic": "fall/prediction/remote-smoke-065f410b15bd",
+    "qos": 1,
+    "retained": false,
+    "payload": {
+      "schema_version": 1,
+      "source_id": "remote-smoke-065f410b15bd",
+      "sequence_id": "3d13427b25d548ae89fab8cc040dd89e",
+      "frame_index": 85,
+      "timestamp_ms": 4250,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 86,
+      "fall_probability": 0.9752359390258789,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    }
+  },
+  {
+    "topic": "fall/prediction/remote-smoke-065f410b15bd",
+    "qos": 1,
+    "retained": false,
+    "payload": {
+      "schema_version": 1,
+      "source_id": "remote-smoke-065f410b15bd",
+      "sequence_id": "3d13427b25d548ae89fab8cc040dd89e",
+      "frame_index": 95,
+      "timestamp_ms": 4750,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 96,
+      "fall_probability": 0.979455828666687,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    }
+  },
+  {
+    "topic": "fall/prediction/remote-smoke-065f410b15bd",
+    "qos": 1,
+    "retained": false,
+    "payload": {
+      "schema_version": 1,
+      "source_id": "remote-smoke-065f410b15bd",
+      "sequence_id": "3d13427b25d548ae89fab8cc040dd89e",
+      "frame_index": 105,
+      "timestamp_ms": 5250,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 106,
+      "fall_probability": 0.9814003705978394,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    }
+  },
+  {
+    "topic": "fall/prediction/remote-smoke-065f410b15bd",
+    "qos": 1,
+    "retained": false,
+    "payload": {
+      "schema_version": 1,
+      "source_id": "remote-smoke-065f410b15bd",
+      "sequence_id": "3d13427b25d548ae89fab8cc040dd89e",
+      "frame_index": 115,
+      "timestamp_ms": 5750,
+      "timestamp_kind": "clip_relative",
+      "buffer_length": 116,
+      "fall_probability": 0.9820027351379395,
+      "threshold": 0.5,
+      "predicted_label": "fall"
+    }
+  }
+]

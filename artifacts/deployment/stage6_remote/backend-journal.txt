@@ -1,0 +1,4 @@
+prediction source=remote-smoke-065f410b15bd frame=85 length=86 probability=0.975236
+prediction source=remote-smoke-065f410b15bd frame=95 length=96 probability=0.979456
+prediction source=remote-smoke-065f410b15bd frame=105 length=106 probability=0.981400
+prediction source=remote-smoke-065f410b15bd frame=115 length=116 probability=0.982003
