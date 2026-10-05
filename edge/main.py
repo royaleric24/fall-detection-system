@@ -2,7 +2,7 @@
 # requires-python = ">=3.12"
 # dependencies = ["numpy==2.2.6", "mediapipe==0.10.35", "opencv-contrib-python==4.12.0.88", "paho-mqtt==2.1.0"]
 # ///
-"""Stage 6 OpenCV/MediaPipe edge publisher, camera index or authorized CAUCAFall AVI."""
+"""OpenCV/MediaPipe edge publisher with optional cloud prediction preview."""
 
 import argparse
 import hashlib
@@ -14,6 +14,8 @@ import sys
 import time
 import uuid
 from pathlib import Path
+from threading import Lock
+from typing import Any
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -28,6 +30,54 @@ REPO = Path(__file__).resolve().parents[1]
 LOGGER = logging.getLogger(__name__)
 
 
+class LatestPrediction:
+    """MQTT callback stores an immutable snapshot; OpenCV stays on the main thread."""
+
+    def __init__(self, source_id: str, sequence_id: str) -> None:
+        self.source_id, self.sequence_id = source_id, sequence_id
+        self._lock = Lock()
+        self._value: tuple[float, str, int] | None = None
+
+    def on_message(self, client: Any, userdata: Any, message: Any) -> None:
+        try:
+            prediction = json.loads(message.payload)
+            if not isinstance(prediction, dict):
+                raise ValueError("Expected prediction object")
+            if (prediction.get("source_id") != self.source_id
+                    or prediction.get("sequence_id") != self.sequence_id):
+                return
+            probability = prediction.get("fall_probability")
+            label, length = prediction.get("predicted_label"), prediction.get("buffer_length")
+            if (type(prediction.get("schema_version")) is not int or prediction["schema_version"] != 1
+                    or type(probability) not in (int, float) or not 0 <= probability <= 1
+                    or label not in ("fall", "non_fall") or type(length) is not int or length <= 0):
+                raise ValueError("Invalid prediction display fields")
+            with self._lock:
+                self._value = (float(probability), label, length)
+        except (ValueError, TypeError, UnicodeError) as exc:
+            LOGGER.warning("Ignored malformed prediction: %s", exc)
+
+    def snapshot(self) -> tuple[float, str, int] | None:
+        with self._lock:
+            return self._value
+
+
+def preview_frame(frame: Any, prediction: tuple[float, str, int] | None, cv2: Any) -> bool:
+    """Draw only after pose publication; return True when the user presses q."""
+    lines = ["Cloud Fall Detection", "Probability: waiting...", "Label: waiting...", "Buffer: waiting..."]
+    if prediction is not None:
+        probability, label, length = prediction
+        lines[1:] = [f"Probability: {probability:.3f}", f"Label: {label.replace('_', '-').upper()}",
+                     f"Buffer: {length}"]
+    lines.append("Press q to quit")
+    for index, line in enumerate(lines):
+        position = (12, 30 + index * 30)
+        cv2.putText(frame, line, position, cv2.FONT_HERSHEY_SIMPLEX, .7, (0, 0, 0), 3, cv2.LINE_AA)
+        cv2.putText(frame, line, position, cv2.FONT_HERSHEY_SIMPLEX, .7, (255, 255, 255), 1, cv2.LINE_AA)
+    cv2.imshow("Cloud Fall Detection", frame)
+    return cv2.waitKey(1) & 0xFF == ord("q")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", required=True, help="Nonnegative camera index or canonical non-test AVI path")
@@ -37,6 +87,7 @@ def main() -> None:
                         default=Path(os.getenv("POSE_MODEL_PATH", str(REPO / "ml/checkpoints/pose_landmarker_full.task"))))
     parser.add_argument("--camera-fps", type=float, default=float(os.getenv("CAMERA_FPS", "20")))
     parser.add_argument("--unpaced", action="store_true", help="Decode AVI as fast as possible for smoke tests")
+    parser.add_argument("--preview", action="store_true", help="Show video with latest cloud prediction; q to quit")
     parser.add_argument("--summary", type=Path)
     args = parser.parse_args()
     source_id, sequence_id = identifier(args.source_id), identifier(args.sequence_id)
@@ -53,24 +104,30 @@ def main() -> None:
             raise ValueError("PoseLandmarker model identity mismatch")
     import cv2
     import mediapipe as mp
-    capture = cv2.VideoCapture(source)
-    if not camera:
-        verify_capture(capture, metadata, cv2)
-    elif not capture.isOpened():
-        raise ValueError("Camera unavailable")
     fps = metadata["source_fps"] if metadata else args.camera_fps
     if not math.isfinite(fps) or fps <= 0:
         raise ValueError("Invalid source/camera FPS")
-    connection = MQTTConnection()
+    latest = LatestPrediction(source_id, sequence_id)
+    connection = None
+    sequence_started = completed = False
     frames = detected_frames = 0
     preprocessor = StreamingPreprocessor(config)
     common = dict(schema_version=1, source_id=source_id, sequence_id=sequence_id)
-    started = time.monotonic()
     last_mp_time = last_epoch_time = -1
-    connection.start()
-    topic = f"{connection.prefix}/pose/{source_id}"
+    capture = cv2.VideoCapture(source)
     try:
+        if not camera:
+            verify_capture(capture, metadata, cv2)
+        elif not capture.isOpened():
+            raise ValueError("Camera unavailable")
+        connection = MQTTConnection(on_message=latest.on_message if args.preview else None)
+        if args.preview:
+            connection.subscription = f"{connection.prefix}/prediction/{source_id}"
+        started = time.monotonic()
+        connection.start()
+        topic = f"{connection.prefix}/pose/{source_id}"
         connection.publish(topic, dict(common, message_type="sequence_start"))
+        sequence_started = True
         with mp.tasks.vision.PoseLandmarker.create_from_options(pose_options(args.pose_model, mp)) as tracker:
             while True:
                 ok, frame = capture.read()
@@ -94,12 +151,28 @@ def main() -> None:
                 connection.publish(topic, validate_pose(message))
                 frames += 1
                 detected_frames += int(detected)
+                if args.preview and preview_frame(frame, latest.snapshot(), cv2):
+                    break
                 if not camera and not args.unpaced:
                     time.sleep(max(0, started + frames/fps - time.monotonic()))
-        connection.publish(topic, dict(common, message_type="sequence_end"))
+        completed = True
+    except KeyboardInterrupt:
+        completed = True
+        LOGGER.info("Edge interrupted; stopping")
     finally:
-        capture.release()
-        connection.close()
+        try:
+            if completed and sequence_started:
+                connection.publish(topic, dict(common, message_type="sequence_end"))
+        finally:
+            try:
+                capture.release()
+            finally:
+                try:
+                    if connection is not None:
+                        connection.close()
+                finally:
+                    if args.preview:
+                        cv2.destroyAllWindows()
     summary = dict(source_id=source_id, sequence_id=sequence_id, frames_published=frames,
                    pose_detected_frames=detected_frames, missing_pose_frames=frames-detected_frames,
                    source_fps=fps, timestamp_kind="unix_epoch" if camera else "clip_relative",
@@ -114,4 +187,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(message)s")
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        LOGGER.info("Edge interrupted; stopped")
