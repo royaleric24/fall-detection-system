@@ -1,6 +1,7 @@
 """Loopback Dashboard reads copies of authoritative Edge state, never decides falls."""
 
 import time
+from collections import deque
 from threading import Event, Lock, Thread
 from typing import Any, Callable, Protocol
 
@@ -9,6 +10,7 @@ from werkzeug.serving import BaseWSGIServer, make_server
 
 DEFAULT_PORT = 8767
 PREDICTION_STALE_SECONDS = 5.0  # UI health only; never changes the application gate.
+PROBABILITY_HISTORY_LIMIT = 60
 
 
 class PredictionView(Protocol):
@@ -34,6 +36,8 @@ class DashboardState:
         self._connected = connected
         self._clock = clock
         self._prediction_received_at: float | None = None
+        self._probability_history: deque[dict[str, int | float]] = deque(maxlen=PROBABILITY_HISTORY_LIMIT)
+        self._last_history_frame: int | None = None
         self._value: dict[str, Any] = dict(
             source_id=source_id, sequence_id=sequence_id, frame_index=None,
             pose_detected=None, application_status="INITIALIZING",
@@ -55,6 +59,11 @@ class DashboardState:
                        buffer_length=prediction.buffer_length,
                        frame_index=prediction.frame_index)
         with self._lock:
+            if (prediction is not None
+                    and (self._last_history_frame is None or prediction.frame_index > self._last_history_frame)):
+                self._probability_history.append(dict(frame_index=prediction.frame_index,
+                                                     fall_probability=prediction.fall_probability))
+                self._last_history_frame = prediction.frame_index
             self._value.update(
                 frame_index=frame_index, pose_detected=pose_detected,
                 application_status=application.application_status,
@@ -68,6 +77,7 @@ class DashboardState:
     def snapshot(self) -> dict[str, Any]:
         with self._lock:
             value = dict(self._value, raw_prediction=dict(self._value["raw_prediction"]))
+            value["probability_history"] = [dict(point) for point in self._probability_history]
             received_at = self._prediction_received_at
         age = None if received_at is None else max(0.0, self._clock() - received_at)
         value.update(

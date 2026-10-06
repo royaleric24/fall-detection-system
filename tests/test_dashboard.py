@@ -1,11 +1,12 @@
 """Synthetic authority, freshness, HTTP and concurrency checks; no external services."""
 
 import unittest
+import json
 from threading import Event, Thread
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
-from frontend.dashboard import DashboardServer, DashboardState, create_app
+from frontend.dashboard import PROBABILITY_HISTORY_LIMIT, DashboardServer, DashboardState, create_app
 
 
 def application(status="INITIALIZING", actionable=False, missing=0, recovery=None):
@@ -39,6 +40,7 @@ class DashboardTests(unittest.TestCase):
         self.assertTrue(all(v is None for v in value["raw_prediction"].values()))
         self.assertEqual(value["cloud_prediction_status"], "WARMING_UP")
         self.assertIsNone(value["prediction_age_seconds"])
+        self.assertEqual(value["probability_history"], [])
 
     def test_copies_all_application_states_without_recomputing(self):
         for status in ("INITIALIZING", "NORMAL", "FALL", "POSE_LOST", "RECOVERING"):
@@ -89,6 +91,7 @@ class DashboardTests(unittest.TestCase):
             "application_status", "prediction_actionable", "consecutive_missing_frames",
             "recovery_frame_index", "raw_prediction", "mqtt_connected",
             "cloud_prediction_status", "prediction_age_seconds", "prediction_stale_after_seconds",
+            "probability_history",
         })
         self.assertEqual(set(value["raw_prediction"]), {
             "fall_probability", "predicted_label", "buffer_length", "frame_index",
@@ -180,6 +183,79 @@ class DashboardTests(unittest.TestCase):
                 server.start()
             server.close()
         mock_server.server_close.assert_called_once()
+
+    def test_history_deduplicates_new_indices_and_rejects_old_indices(self):
+        gate = application("FALL", True)
+        for _ in range(3):
+            self.update(gate, prediction(85), 100.)
+        self.update(gate, prediction(75), 100.)
+        new = prediction(95)
+        new.fall_probability = .18
+        self.update(gate, new, 100.)
+        self.assertEqual(self.state.snapshot()["probability_history"], [
+            dict(frame_index=85, fall_probability=.72),
+            dict(frame_index=95, fall_probability=.18),
+        ])
+
+    def test_history_is_bounded_and_api_remains_small(self):
+        gate = application("NORMAL", True)
+        for index in range(PROBABILITY_HISTORY_LIMIT + 5):
+            self.update(gate, prediction(85 + index * 10), 100.)
+        value = self.client.get("/api/state").get_json()
+        history = value["probability_history"]
+        self.assertEqual(len(history), PROBABILITY_HISTORY_LIMIT)
+        self.assertEqual(history[0]["frame_index"], 135)
+        self.assertEqual(history[-1]["frame_index"], 85 + (PROBABILITY_HISTORY_LIMIT + 4) * 10)
+        self.assertLess(len(json.dumps(value).encode()), 8192)
+
+    def test_polling_or_same_index_updates_cannot_add_or_replace_points(self):
+        gate = application("NORMAL", True)
+        raw = prediction()
+        self.update(gate, raw, 100.)
+        expected = [dict(frame_index=85, fall_probability=.72)]
+        for _ in range(5):
+            value = self.client.get("/api/state").get_json()
+            self.assertEqual(value["probability_history"], expected)
+        raw.fall_probability = .81
+        self.update(gate, raw, 100.)
+        self.assertEqual(self.state.snapshot()["probability_history"], expected)
+
+    def test_history_survives_browser_reload_and_returns_independent_copies(self):
+        self.update(application("FALL", True), prediction(), 100.)
+        history = self.state.snapshot()["probability_history"]
+        history[0]["fall_probability"] = 0.
+        history.append(dict(frame_index=95, fall_probability=1.))
+        refreshed_client = create_app(self.state).test_client()
+        refreshed_client.get("/")
+        self.assertEqual(refreshed_client.get("/api/state").get_json()["probability_history"], [
+            dict(frame_index=85, fall_probability=.72),
+        ])
+
+    def test_history_retains_suppressed_fall(self):
+        self.update(application("POSE_LOST", missing=6), prediction(), 100.)
+        value = self.client.get("/api/state").get_json()
+        self.assertEqual(value["application_status"], "POSE_LOST")
+        self.assertFalse(value["prediction_actionable"])
+        self.assertEqual(value["raw_prediction"]["predicted_label"], "fall")
+        self.assertEqual(value["probability_history"], [dict(frame_index=85, fall_probability=.72)])
+
+    def test_probability_is_not_reclassified_and_threshold_is_only_a_chart_reference(self):
+        raw = prediction()
+        raw.fall_probability = 0.
+        self.update(application("NORMAL", False), raw, 100.)
+        value = self.client.get("/api/state").get_json()
+        self.assertEqual(value["application_status"], "NORMAL")
+        self.assertEqual(value["raw_prediction"]["predicted_label"], "fall")
+        self.assertEqual(value["probability_history"][0]["fall_probability"], 0.)
+        self.assertIn(b"50% reference", self.client.get("/").data)
+        with self.client.get("/static/dashboard.js") as response:
+            js = response.data.decode()
+        self.assertIn("const THRESHOLD_REFERENCE = 0.5", js)
+        self.assertIn("statusNode.dataset.status = state.application_status", js)
+        self.assertIn("raw.predicted_label.replace", js)
+        self.assertIn("probabilityHistory = state.probability_history", js)
+        self.assertNotRegex(js, r"fall_probability\s*(?:>=|>)")
+        self.assertNotRegex(js, r"probabilityHistory\.(?:push|unshift)")
 
 
 if __name__ == "__main__":

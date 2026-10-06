@@ -1,4 +1,4 @@
-# Stage 8.1 local Dashboard
+# Stage 8.1 / 8.2 local Dashboard
 
 The existing Edge main thread owns capture, pose extraction, frozen preprocessing,
 MQTT publication and the single authoritative `PoseValidityGate`. Immediately after
@@ -47,6 +47,28 @@ No credentials or pose feature arrays enter the HTTP snapshot.
 - `prediction_stale_after_seconds`: the UI-only constant 5.0. This is deliberately
   conservative relative to the nominal inference cadence. It changes no gate, raw
   prediction, threshold, sequence, telemetry or MQTT behaviour.
+- `probability_history`: at most 60 pairs of `frame_index` / `fall_probability`,
+  stored in a locked in-memory deque in `DashboardState`. Only a strictly newer
+  prediction frame index observed by the Edge state bridge appends a point. Equal
+  indices, old indices, repeated Edge copies and HTTP polling never append points.
+  Browser refresh retains history; a new Edge runtime creates an empty history.
+
+## Layout and trend
+
+The dark desktop page separates the authoritative application decision from the
+raw cloud model output. NORMAL is green, FALL has a strong red panel and visible
+FALL DETECTED text, POSE_LOST/RECOVERING are amber, and INITIALIZING is neutral.
+Actionable is YES/NO. When raw output exists but actionable is false, a suppression
+note explains the pose-validity gate while retaining the raw label and probability.
+
+The Canvas chart uses only server-owned history, with frame index on X and 0–100%
+probability on Y. The dashed 50% reference line is display-only; neither the chart
+nor the page derives labels or application decisions from this line. Classification
+still uses the existing Backend label. These are cloud inference samples, not
+camera frames or samples generated at browser polling frequency. There is no fake
+0% point before the first prediction, and no interpolation that adds stored points.
+The history follows the existing latest-prediction bridge: it does not recover
+predictions overwritten between Edge updates, or fill in missing samples.
 
 ## Limits
 
@@ -57,6 +79,6 @@ If HTTP becomes unavailable, the page dims and labels its values as the last sna
 The existing MQTT reconnect/sequence restart policy is unchanged. Backend readiness
 is not a heartbeat, and this Dashboard makes no claim about systemd liveness.
 
-The server is for a single local course demo, not public hosting. No charts, event
+The server is for a single local course demo, not public hosting. No event
 history, database, browser MQTT or CDN are included. Application FALL is the existing
 gate output; this change adds no consecutive-prediction confirmation logic.

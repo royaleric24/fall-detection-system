@@ -2,45 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Fall Detection Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fall Detection Monitor</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
   <script defer src="{{ url_for('static', filename='dashboard.js') }}"></script>
 </head>
 <body>
   <main>
-    <h1>Fall Detection Dashboard</h1>
-    <p id="http-status" role="status">Connecting to local Edge Dashboard…</p>
-    <p>Source: <span id="source-id">—</span> · Sequence: <span id="sequence-id">—</span></p>
-    <section aria-labelledby="application-heading">
-      <h2 id="application-heading">APPLICATION STATUS</h2>
-      <p id="application-status" data-status="INITIALIZING">INITIALIZING</p>
-      <dl>
-        <dt>Actionable</dt><dd id="actionable">—</dd>
-        <dt>Pose Status</dt><dd id="pose-status">—</dd>
-        <dt>Edge Frame</dt><dd id="edge-frame">—</dd>
-        <dt>Consecutive Missing Frames</dt><dd id="missing-frames">—</dd>
-        <dt>Recovery Frame</dt><dd id="recovery-frame">—</dd>
-      </dl>
+    <header class="monitor-header">
+      <div>
+        <h1>FALL DETECTION MONITOR</h1>
+        <p class="subtitle">Edge–Cloud AI Monitoring System</p>
+      </div>
+      <div class="header-health">
+        <span class="transport-badge" id="mqtt-badge" data-tone="neutral">
+          <span class="status-dot" aria-hidden="true"></span>
+          MQTT <span id="header-mqtt-status">--</span>
+        </span>
+        <p id="http-status" role="status">Connecting to local Dashboard…</p>
+      </div>
+    </header>
+
+    <div id="connection-warning" role="alert" hidden>
+      Dashboard connection lost. Displayed values are the last valid snapshot.
+    </div>
+
+    <div class="primary-grid">
+      <section class="card application-card" id="application-card" data-status="INITIALIZING" aria-labelledby="application-heading">
+        <h2 id="application-heading">APPLICATION STATUS</h2>
+        <p class="application-value" id="application-status">INITIALIZING</p>
+        <p class="decision-note" id="decision-note">Waiting for the first cloud prediction.</p>
+        <dl class="decision-details">
+          <div><dt>PREDICTION ACTIONABLE</dt><dd id="actionable">NO</dd></div>
+          <div><dt>POSE STATUS</dt><dd id="pose-status">--</dd></div>
+        </dl>
+      </section>
+
+      <section class="card raw-card" aria-labelledby="raw-heading">
+        <h2 id="raw-heading">RAW CLOUD MODEL</h2>
+        <p class="probability-caption">Raw Fall Probability</p>
+        <p class="probability-value" id="probability">--</p>
+        <dl class="raw-details">
+          <div><dt>Raw Label</dt><dd id="raw-label" data-label="">--</dd></div>
+          <div><dt>Latest Inference Context</dt><dd id="context">--</dd></div>
+          <div><dt>Prediction Frame</dt><dd id="prediction-frame">--</dd></div>
+        </dl>
+        <p class="raw-note">Raw output stays visible when the application gate suppresses it.</p>
+      </section>
+    </div>
+
+    <section class="card trend-card" aria-labelledby="trend-heading">
+      <div class="trend-heading">
+        <div><h2 id="trend-heading">FALL PROBABILITY TREND</h2><p>Cloud inference samples · frame index</p></div>
+        <span class="threshold-legend"><span aria-hidden="true"></span>50% reference · display only</span>
+      </div>
+      <canvas id="probability-chart" role="img" aria-label="Fall probability trend. Waiting for cloud inference samples."></canvas>
+      <div class="chart-caption"><span id="sample-count">No prediction samples yet</span><span>Latest 60 predictions</span></div>
     </section>
-    <section aria-labelledby="raw-heading">
-      <h2 id="raw-heading">RAW CLOUD MODEL</h2>
-      <p>Raw values remain visible when application output is suppressed.</p>
-      <dl>
-        <dt>Raw Fall Probability</dt><dd id="probability">—</dd>
-        <dt>Raw Label</dt><dd id="raw-label">—</dd>
-        <dt>Latest Inference Context</dt><dd id="context">—</dd>
-        <dt>Prediction Frame</dt><dd id="prediction-frame">—</dd>
-      </dl>
-    </section>
-    <section aria-labelledby="health-heading">
-      <h2 id="health-heading">RUNTIME HEALTH</h2>
-      <dl>
-        <dt>MQTT Status</dt><dd id="mqtt-status">—</dd>
-        <dt>Cloud Prediction Status</dt><dd id="prediction-status">—</dd>
-        <dt>Last New Prediction Age</dt><dd id="prediction-age">—</dd>
-      </dl>
-      <p>Prediction freshness is display metadata; it does not change application status or actionable.</p>
-    </section>
+
+    <div class="health-grid" aria-label="Runtime health">
+      <section class="card health-card" aria-labelledby="pose-heading">
+        <h2 id="pose-heading">POSE</h2><p id="health-pose-status" data-tone="neutral">--</p>
+        <span>Current camera observation</span>
+      </section>
+      <section class="card health-card" aria-labelledby="mqtt-heading">
+        <h2 id="mqtt-heading">MQTT TRANSPORT</h2><p id="mqtt-status" data-tone="neutral">--</p>
+        <span>Edge connection to the broker</span>
+      </section>
+      <section class="card health-card" aria-labelledby="cloud-heading">
+        <h2 id="cloud-heading">CLOUD PREDICTION</h2><p id="prediction-status" data-tone="neutral">WARMING UP</p>
+        <span id="prediction-age">Waiting for a prediction</span>
+      </section>
+    </div>
+
+    <footer>
+      <div>Source <span id="source-id">--</span> · Sequence <span id="sequence-id">--</span></div>
+      <div>Edge frame <span id="edge-frame">--</span> · Missing <span id="missing-frames">0</span> · Recovery frame <span id="recovery-frame">--</span></div>
+      <p>Prediction freshness is health metadata; it does not change the application decision.</p>
+    </footer>
   </main>
 </body>
 </html>
