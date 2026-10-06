@@ -1,4 +1,4 @@
-# Stage 8.1 / 8.2 local Dashboard
+# Stage 8.1 / 8.2 / 8.3 local Dashboard
 
 The existing Edge main thread owns capture, pose extraction, frozen preprocessing,
 MQTT publication and the single authoritative `PoseValidityGate`. Immediately after
@@ -70,6 +70,29 @@ camera frames or samples generated at browser polling frequency. There is no fak
 The history follows the existing latest-prediction bridge: it does not recover
 predictions overwritten between Edge updates, or fill in missing samples.
 
+## Recent Events and FALL banner
+
+`recent_events` in `/api/state` is a newest-first copy of a locked in-memory deque
+of at most 20 events; the page renders the latest 8. Only changed application states
+observed during the Edge's existing `DashboardState.update()` create events. The
+first update establishes the baseline without an event; repeated states, browser
+refreshes, API reads and freshness changes do not create events. Initializing
+transitions are not recorded. NORMAL does not clear earlier FALL events.
+
+Events describe entry into FALL, POSE_LOST, RECOVERING and NORMAL. Returning to
+NORMAL from POSE_LOST/RECOVERING is labelled RECOVERED. RECOVERING -> FALL is a FALL
+event with "Fresh cloud prediction restored FALL state", never RECOVERED.
+`observed_at_ms` is Dashboard wall-clock observation time in Unix milliseconds,
+not camera or cloud inference time; the browser formats it as local HH:MM:SS.
+Events clear on Edge restart and are never written to files or browser storage.
+
+The red FALL DETECTED strip appears only when the copied `application_status` is
+FALL. Raw FALL or probability >=0.5 alone cannot trigger it. POSE_LOST/RECOVERING
+retain amber state cards, suppression text and visible raw output. No audio,
+notifications, modal, acknowledgement workflow or extra fall decision is added.
+MQTT status is read live at snapshot time, not copied by each Edge update; this
+Gate adds no MQTT events or observer, and no ACTIVE/STALE events.
+
 ## Limits
 
 Snapshots of application/raw state update after each Edge gate step. HTTP cannot
@@ -79,6 +102,6 @@ If HTTP becomes unavailable, the page dims and labels its values as the last sna
 The existing MQTT reconnect/sequence restart policy is unchanged. Backend readiness
 is not a heartbeat, and this Dashboard makes no claim about systemd liveness.
 
-The server is for a single local course demo, not public hosting. No event
-history, database, browser MQTT or CDN are included. Application FALL is the existing
+The server is for a single local course demo, not public hosting. No persistent
+event history, database, browser MQTT or CDN are included. Application FALL is the existing
 gate output; this change adds no consecutive-prediction confirmation logic.

@@ -70,6 +70,29 @@ function drawProbabilityTrend(history) {
   canvas.setAttribute('aria-label', `Fall probability trend. ${history.length} cloud inference samples. Latest ${(last.fall_probability * 100).toFixed(1)} percent at frame ${last.frame_index}.`);
 }
 
+function renderRecentEvents(events) {
+  const fragment = document.createDocumentFragment();
+  for (const event of events.slice(0, 8)) {
+    const row = document.createElement('li');
+    row.className = 'event-row';
+    row.dataset.type = event.type;
+    const observed = new Date(event.observed_at_ms);
+    const time = document.createElement('time');
+    time.dateTime = observed.toISOString();
+    time.textContent = observed.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false});
+    const label = document.createElement('span');
+    label.className = 'event-label';
+    label.textContent = event.label;
+    const message = document.createElement('span');
+    message.className = 'event-message';
+    message.textContent = event.message;
+    row.append(time, label, message);
+    fragment.append(row);
+  }
+  document.getElementById('recent-events').replaceChildren(fragment);
+  document.getElementById('events-empty').hidden = events.length !== 0;
+}
+
 function renderState(state) {
   const raw = state.raw_prediction;
   show('source-id', state.source_id);
@@ -81,6 +104,7 @@ function renderState(state) {
   show('application-status', statusText[state.application_status] ?? state.application_status);
   const statusNode = document.getElementById('application-card');
   statusNode.dataset.status = state.application_status;
+  document.getElementById('fall-alert').hidden = state.application_status !== 'FALL';
   show('actionable', state.prediction_actionable ? 'YES' : 'NO');
   show('decision-note', raw.predicted_label === null ? 'Waiting for the first cloud prediction.' :
     state.prediction_actionable ? 'Current cloud prediction is actionable.' :
@@ -108,6 +132,7 @@ function renderState(state) {
   // Replace with server-owned history. Polling never appends a probability sample.
   probabilityHistory = state.probability_history;
   drawProbabilityTrend(probabilityHistory);
+  renderRecentEvents(state.recent_events);
   show('http-status', 'Local Dashboard connected');
   document.getElementById('connection-warning').hidden = true;
   document.body.dataset.unavailable = 'false';

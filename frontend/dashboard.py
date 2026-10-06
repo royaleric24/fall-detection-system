@@ -11,6 +11,7 @@ from werkzeug.serving import BaseWSGIServer, make_server
 DEFAULT_PORT = 8767
 PREDICTION_STALE_SECONDS = 5.0  # UI health only; never changes the application gate.
 PROBABILITY_HISTORY_LIMIT = 60
+RECENT_EVENT_LIMIT = 20
 
 
 class PredictionView(Protocol):
@@ -31,10 +32,14 @@ class DashboardState:
     """One Edge writer copies scalar fields; HTTP readers get independent snapshots."""
 
     def __init__(self, source_id: str, sequence_id: str, connected: Event,
-                 *, clock: Callable[[], float] = time.monotonic) -> None:
+                 *, clock: Callable[[], float] = time.monotonic,
+                 wall_clock: Callable[[], float] = time.time) -> None:
         self._lock = Lock()
         self._connected = connected
         self._clock = clock
+        self._wall_clock = wall_clock
+        self._recent_events: deque[dict[str, str | int]] = deque(maxlen=RECENT_EVENT_LIMIT)
+        self._last_event_status: str | None = None
         self._prediction_received_at: float | None = None
         self._probability_history: deque[dict[str, int | float]] = deque(maxlen=PROBABILITY_HISTORY_LIMIT)
         self._last_history_frame: int | None = None
@@ -59,6 +64,10 @@ class DashboardState:
                        buffer_length=prediction.buffer_length,
                        frame_index=prediction.frame_index)
         with self._lock:
+            status = application.application_status
+            if self._last_event_status is not None and status != self._last_event_status:
+                self._record_application_transition(self._last_event_status, status)
+            self._last_event_status = status
             if (prediction is not None
                     and (self._last_history_frame is None or prediction.frame_index > self._last_history_frame)):
                 self._probability_history.append(dict(frame_index=prediction.frame_index,
@@ -74,10 +83,27 @@ class DashboardState:
             )
             self._prediction_received_at = prediction_received_at
 
+    def _record_application_transition(self, previous: str, current: str) -> None:
+        """Called under the state lock; describes copied states, never decides them."""
+        descriptions = {
+            "FALL": ("fall", "FALL", "Fresh cloud prediction restored FALL state" if previous == "RECOVERING"
+                     else "Application entered FALL"),
+            "POSE_LOST": ("pose_lost", "POSE LOST", "Pose unavailable; prediction suppressed"),
+            "RECOVERING": ("recovering", "RECOVERING", "Pose restored; waiting for fresh cloud prediction"),
+            "NORMAL": ("recovered" if previous in ("POSE_LOST", "RECOVERING") else "normal",
+                       "RECOVERED" if previous in ("POSE_LOST", "RECOVERING") else "NORMAL",
+                       "Application returned to NORMAL"),
+        }
+        if current in descriptions:
+            kind, label, message = descriptions[current]
+            self._recent_events.append(dict(type=kind, label=label, message=message,
+                                           observed_at_ms=int(self._wall_clock() * 1000)))
+
     def snapshot(self) -> dict[str, Any]:
         with self._lock:
             value = dict(self._value, raw_prediction=dict(self._value["raw_prediction"]))
             value["probability_history"] = [dict(point) for point in self._probability_history]
+            value["recent_events"] = [dict(event) for event in reversed(self._recent_events)]
             received_at = self._prediction_received_at
         age = None if received_at is None else max(0.0, self._clock() - received_at)
         value.update(

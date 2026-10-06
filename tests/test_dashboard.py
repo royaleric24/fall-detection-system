@@ -6,7 +6,7 @@ from threading import Event, Thread
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
-from frontend.dashboard import PROBABILITY_HISTORY_LIMIT, DashboardServer, DashboardState, create_app
+from frontend.dashboard import PROBABILITY_HISTORY_LIMIT, RECENT_EVENT_LIMIT, DashboardServer, DashboardState, create_app
 
 
 def application(status="INITIALIZING", actionable=False, missing=0, recovery=None):
@@ -22,9 +22,10 @@ def prediction(index=85):
 class DashboardTests(unittest.TestCase):
     def setUp(self):
         self.now = 100.0
+        self.wall_now = 1791291200.0
         self.connected = Event()
         self.state = DashboardState("synthetic-edge", "synthetic-sequence", self.connected,
-                                    clock=lambda: self.now)
+                                    clock=lambda: self.now, wall_clock=lambda: self.wall_now)
         self.client = create_app(self.state).test_client()
 
     def update(self, gate, raw=None, received_at=None, index=90):
@@ -41,6 +42,7 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(value["cloud_prediction_status"], "WARMING_UP")
         self.assertIsNone(value["prediction_age_seconds"])
         self.assertEqual(value["probability_history"], [])
+        self.assertEqual(value["recent_events"], [])
 
     def test_copies_all_application_states_without_recomputing(self):
         for status in ("INITIALIZING", "NORMAL", "FALL", "POSE_LOST", "RECOVERING"):
@@ -92,6 +94,7 @@ class DashboardTests(unittest.TestCase):
             "recovery_frame_index", "raw_prediction", "mqtt_connected",
             "cloud_prediction_status", "prediction_age_seconds", "prediction_stale_after_seconds",
             "probability_history",
+            "recent_events",
         })
         self.assertEqual(set(value["raw_prediction"]), {
             "fall_probability", "predicted_label", "buffer_length", "frame_index",
@@ -256,6 +259,101 @@ class DashboardTests(unittest.TestCase):
         self.assertIn("probabilityHistory = state.probability_history", js)
         self.assertNotRegex(js, r"fall_probability\s*(?:>=|>)")
         self.assertNotRegex(js, r"probabilityHistory\.(?:push|unshift)")
+
+    def test_application_transition_events_are_deduplicated(self):
+        for status in ("NORMAL", "NORMAL", "FALL", "FALL", "FALL"):
+            self.update(application(status), prediction(), 100.)
+        events = self.state.snapshot()["recent_events"]
+        self.assertEqual(events, [dict(type="fall", label="FALL", message="Application entered FALL",
+                                      observed_at_ms=1791291200000)])
+
+    def test_pose_lost_event_does_not_change_raw_fall(self):
+        self.update(application("FALL", True), prediction(), 100.)
+        for _ in range(100):
+            self.update(application("POSE_LOST", missing=6), prediction(), 100.)
+        value = self.client.get("/api/state").get_json()
+        self.assertEqual(len(value["recent_events"]), 1)
+        self.assertEqual(value["recent_events"][0]["type"], "pose_lost")
+        self.assertEqual(value["recent_events"][0]["label"], "POSE LOST")
+        self.assertEqual(value["raw_prediction"]["predicted_label"], "fall")
+        self.assertEqual(value["raw_prediction"]["fall_probability"], .72)
+        self.assertFalse(value["prediction_actionable"])
+
+    def test_recovery_events_distinguish_normal_from_fall(self):
+        for final in ("NORMAL", "FALL"):
+            with self.subTest(final=final):
+                state = DashboardState("synthetic", "sequence", Event(), wall_clock=lambda: self.wall_now)
+                for status in ("POSE_LOST", "RECOVERING", final):
+                    state.update(frame_index=90, pose_detected=True, prediction=prediction(),
+                                 application=application(status), prediction_received_at=100.)
+                events = state.snapshot()["recent_events"]
+                self.assertEqual(events[1]["type"], "recovering")
+                self.assertEqual(events[0]["type"], "recovered" if final == "NORMAL" else "fall")
+                self.assertEqual(events[0]["message"], "Application returned to NORMAL" if final == "NORMAL"
+                                 else "Fresh cloud prediction restored FALL state")
+                self.assertEqual(len(events), 2)
+
+    def test_first_observed_state_is_only_a_baseline(self):
+        self.client.get("/api/state")
+        self.update(application("NORMAL", True), prediction(), 100.)
+        self.assertEqual(self.state.snapshot()["recent_events"], [])
+
+    def test_recent_events_are_bounded_and_newest_first(self):
+        self.update(application("NORMAL"))
+        for index in range(RECENT_EVENT_LIMIT + 5):
+            self.wall_now += 1.
+            self.update(application("FALL" if index % 2 == 0 else "NORMAL"))
+        events = self.state.snapshot()["recent_events"]
+        self.assertEqual(len(events), RECENT_EVENT_LIMIT)
+        self.assertEqual(events[0]["observed_at_ms"], 1791291225000)
+        self.assertEqual(events[-1]["observed_at_ms"], 1791291206000)
+        self.assertTrue(all(a["observed_at_ms"] > b["observed_at_ms"] for a, b in zip(events, events[1:])))
+
+    def test_api_reads_and_browser_refresh_do_not_create_events(self):
+        self.update(application("NORMAL"))
+        self.update(application("FALL"))
+        expected = self.state.snapshot()["recent_events"]
+        refreshed = create_app(self.state).test_client()
+        for _ in range(10):
+            refreshed.get("/")
+            self.assertEqual(refreshed.get("/api/state").get_json()["recent_events"], expected)
+
+    def test_event_snapshots_are_independent_and_use_wall_clock(self):
+        self.update(application("NORMAL"))
+        self.now += 500.
+        self.wall_now += 2.
+        self.update(application("FALL"))
+        value = self.state.snapshot()
+        self.assertEqual(value["recent_events"][0]["observed_at_ms"], 1791291202000)
+        value["recent_events"][0]["type"] = "normal"
+        value["recent_events"].clear()
+        self.assertEqual(self.state.snapshot()["recent_events"][0]["type"], "fall")
+
+    def test_initializing_transport_and_freshness_do_not_create_events(self):
+        self.update(application("NORMAL"), prediction(), 100.)
+        self.update(application("INITIALIZING"))
+        self.connected.set()
+        self.now = 110.
+        self.state.snapshot()
+        self.connected.clear()
+        self.state.snapshot()
+        self.assertEqual(self.state.snapshot()["recent_events"], [])
+
+    def test_alert_strip_is_hidden_by_default_and_uses_only_application_state(self):
+        page = self.client.get("/").data.decode()
+        self.assertIn('<div id="fall-alert" role="alert" hidden>', page)
+        self.assertIn('<strong>FALL DETECTED</strong>', page)
+        with self.client.get("/static/dashboard.js") as response:
+            js = response.data.decode()
+        self.assertEqual(js.count("document.getElementById('fall-alert')"), 1)
+        self.assertIn("document.getElementById('fall-alert').hidden = state.application_status !== 'FALL';", js)
+        self.assertIn("renderRecentEvents(state.recent_events)", js)
+        self.update(application("POSE_LOST"), prediction(), 100.)
+        value = self.client.get("/api/state").get_json()
+        self.assertEqual(value["application_status"], "POSE_LOST")
+        self.assertEqual(value["raw_prediction"]["predicted_label"], "fall")
+        self.update(application("FALL", True), prediction(), 100.)
+        self.assertEqual(self.client.get("/api/state").get_json()["application_status"], "FALL")
 
 
 if __name__ == "__main__":

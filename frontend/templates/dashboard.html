@@ -27,6 +27,10 @@
       Dashboard connection lost. Displayed values are the last valid snapshot.
     </div>
 
+    <div id="fall-alert" role="alert" hidden>
+      <strong>FALL DETECTED</strong><span>Check the person immediately.</span>
+    </div>
+
     <div class="primary-grid">
       <section class="card application-card" id="application-card" data-status="INITIALIZING" aria-labelledby="application-heading">
         <h2 id="application-heading">APPLICATION STATUS</h2>
@@ -58,6 +62,14 @@
       </div>
       <canvas id="probability-chart" role="img" aria-label="Fall probability trend. Waiting for cloud inference samples."></canvas>
       <div class="chart-caption"><span id="sample-count">No prediction samples yet</span><span>Latest 60 predictions</span></div>
+    </section>
+
+    <section class="card events-card" aria-labelledby="events-heading">
+      <div class="events-heading">
+        <h2 id="events-heading">RECENT EVENTS</h2><span>Observed locally · newest first</span>
+      </div>
+      <p id="events-empty">No application transitions observed yet.</p>
+      <ol id="recent-events" aria-label="Recent application transitions"></ol>
     </section>
 
     <div class="health-grid" aria-label="Runtime health">
