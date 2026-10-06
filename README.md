@@ -1,245 +1,476 @@
 # Fall Detection System
 
-A real-time edge-cloud fall detection system based on temporal human-pose modeling, robust multi-stage alert handling, and optional vision-IMU fusion.
+A real-time edge-cloud fall detection system for **COMP6131 – Internet of Things Essentials**.
 
-## 1. Project Goal
+The current course V1 uses a camera-only pipeline: RGB frames are processed locally with OpenCV and MediaPipe, only pose features are transmitted over MQTT, a real Ubuntu VPS performs rolling GRU inference, and the Mac edge application applies a pose-validity safety gate before presenting the result in a local web dashboard.
 
-The project aims to build a complete real-time fall detection pipeline rather than an isolated offline classifier.
+## 1. Current V1 Status
 
-The core system must support:
-
-- real-time camera input;
-- edge-side human-pose extraction and preprocessing;
-- skeleton time-series transmission through MQTT;
-- cloud-side temporal inference;
-- multi-stage false-alarm suppression;
-- persistent event storage;
-- REST API and WebSocket services;
-- a real-time web dashboard;
-- latency, ablation, and robustness evaluation.
-
-The first production-capable version must work with **camera-only input**. IMU sensing is an optional enhancement and must not be a hard dependency of the core system.
-
-## 2. Frozen V1 Architecture
+The implemented end-to-end path is:
 
 ```text
-Camera
-  ↓
+Mac camera / authorized AVI
+        ↓
 OpenCV
-  ↓
-MediaPipe Pose
-  ↓
-Skeleton Normalization
-  ↓
-MQTT
-  ↓
-Cloud Sequence Buffer
-  ↓
-Temporal Model (GRU initial baseline; TCN primary candidate)
-  ↓
-Fall Probability
-  ↓
-Robust Alert State Machine
-  ↓
-PostgreSQL
-  ↓
-FastAPI REST + WebSocket
-  ↓
-React Dashboard
+        ↓
+MediaPipe Pose (33 landmarks)
+        ↓
+Causal pose preprocessing
+        ↓
+132-D pose feature vector
+        ↓
+MQTT over the Internet
+        ↓
+Ubuntu VPS
+  Mosquitto broker
+        ↓
+Rolling GRU backend
+        ↓
+MQTT prediction
+        ↓
+Mac Edge application
+        ↓
+PoseValidityGate
+        ↓
+DashboardState
+        ↓
+Local Flask dashboard
+        ↓
+Browser
 ```
 
-### Edge responsibilities
+Current V1 achievements:
 
-- capture camera frames;
-- run pose estimation;
-- normalize skeleton coordinates;
-- attach timestamps and device metadata;
-- publish telemetry through MQTT;
-- maintain heartbeat/device status;
-- later: provide a lightweight local fallback rule.
+- [x] Real webcam input on macOS
+- [x] MediaPipe Pose extraction
+- [x] Causal missing-pose preprocessing
+- [x] Subject-independent CAUCAFall train/validation split
+- [x] GRU temporal classifier
+- [x] Controlled normalization ablation
+- [x] MQTT edge-cloud transport
+- [x] Real Ubuntu VPS deployment
+- [x] Mosquitto authentication
+- [x] systemd-managed cloud inference backend
+- [x] Real webcam → Internet MQTT → VPS GRU → MQTT prediction
+- [x] Application-level pose-validity false-alarm suppression
+- [x] Local real-time Flask dashboard
+- [x] Probability trend, health status, recent events and FALL alert UX
+- [x] Real prerecorded FALL positive-control E2E validation
 
-### Cloud responsibilities
+The following originally planned components are **not part of the current V1 implementation**:
 
-- receive MQTT telemetry;
-- maintain per-device temporal buffers;
-- run temporal fall inference;
-- execute the event/alert state machine;
-- store devices, telemetry summaries, and fall events;
-- expose REST and WebSocket interfaces;
-- provide the backend used by the dashboard.
+- FastAPI REST backend
+- WebSocket transport
+- PostgreSQL
+- React / Node frontend
+- persistent event storage
+- IMU / vision-IMU fusion
+- public web hosting
 
-### Web responsibilities
+They were intentionally deferred because they are not required for the working course-demo path.
 
-- device/system status;
-- current fall probability;
-- current event state;
-- live pose/camera preview where enabled;
-- latency/FPS metrics;
-- event history and acknowledgement.
+## 2. Implemented Architecture
 
-## 3. Scope
+### Edge: Mac
 
-### Must-have
+`edge/main.py` owns the real-time edge loop:
 
-- [ ] Real-time camera input
-- [ ] MediaPipe-based pose extraction
-- [ ] Skeleton normalization
-- [ ] Skeleton temporal modeling
-- [ ] MQTT edge-cloud transport
-- [ ] Cloud inference
-- [ ] FastAPI backend
-- [ ] PostgreSQL database
-- [ ] WebSocket real-time updates
-- [ ] React dashboard
-- [ ] Multi-stage alert logic
-- [ ] Precision / Recall / F1 evaluation
-- [ ] Detection-latency evaluation
-- [ ] False-alarm evaluation
-- [ ] Ablation study
-- [ ] Robustness testing
+1. Capture webcam frames or an authorized CAUCAFall AVI.
+2. Run MediaPipe Pose.
+3. Convert each frame into 33 landmarks × `x/y/z/visibility` = **132 features**.
+4. Apply the frozen causal missing-pose preprocessing.
+5. Publish the feature frame through MQTT.
+6. Receive cloud predictions.
+7. Apply the authoritative `PoseValidityGate`.
+8. Optionally render the OpenCV preview and local dashboard.
 
-### Enhancement
+Raw video is **not uploaded to the VPS**.
 
-- [ ] IMU input: accelerometer + gyroscope
-- [ ] 1D CNN IMU encoder
-- [ ] Vision-IMU feature fusion
-- [ ] Modality dropout
-- [ ] Sensor-missing fallback
-- [ ] WebRTC full live-video streaming
+### Cloud: Ubuntu VPS
 
-### Explicitly out of scope for V1
-
-- multiple-camera tracking;
-- multi-person fall reasoning;
-- face recognition;
-- mobile application;
-- Kubernetes / Kafka;
-- GPU cloud requirement;
-- continuous raw 1080p video upload;
-- medical diagnosis or medical-grade claims.
-
-The V1 target scenario is **one camera, one monitored person, indoor environment**.
-
-## 4. Main Data Flow
-
-At approximately 15 FPS, the edge device converts each RGB frame into 33 human pose landmarks. Coordinates are normalized to reduce dependence on image resolution, subject position, and subject-camera distance.
-
-Example MQTT topic:
+The real VPS runs:
 
 ```text
-fall/edge-001/pose
+Mosquitto
++
+backend/app/main.py
++
+backend/app/inference.py
 ```
 
-Example payload shape:
+The backend:
+
+- subscribes to pose telemetry;
+- maintains independent per-source rolling buffers;
+- runs the frozen GRU on CPU;
+- publishes fall probability and raw label through MQTT.
+
+The current backend is a long-running MQTT inference process, **not** a FastAPI/Uvicorn service.
+
+### Dashboard: Mac localhost
+
+The dashboard runs in the same Edge process as a background Flask service:
+
+```text
+http://127.0.0.1:8767/
+```
+
+It reads a locked snapshot of the already-computed application state. It does **not** create a second fall-decision state machine.
+
+The browser uses HTML/CSS/vanilla JavaScript and polls `GET /api/state`. No browser MQTT credentials, CDN, WebSocket, database or external frontend framework are required.
+
+See [Dashboard runtime and semantics](docs/stage8_dashboard.md).
+
+## 3. Frozen ML Configuration
+
+The selected model is:
+
+```text
+Model:                  GRU
+Input size:             132
+Hidden size:            64
+Layers:                 1
+Bidirectional:          false
+Classification threshold: 0.5
+```
+
+Frozen preprocessing:
+
+```text
+normalize_pose:              false
+max_forward_fill_frames:     5
+causal_missing_pose_handling: true
+feature_order:               x, y, z, visibility
+landmarks:                   33
+```
+
+Selected checkpoint:
+
+```text
+ml/checkpoints/stage5_no_normalization_best.pt
+SHA-256:
+3c1fbf4be59f705f003c06f0e1b5698dec5c3d81e19c3345ab35231a237132f6
+```
+
+The backend verifies the checkpoint and frozen preprocessing/model metadata at startup.
+
+### Validation-only model selection result
+
+On the fixed 20-clip Validation split (Subjects 5 and 10):
+
+| Variant | Accuracy | Precision | Recall | F1 |
+| --- | ---: | ---: | ---: | ---: |
+| No normalization — selected | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| Normalized Stage 4 baseline | 0.9000 | 1.0000 | 0.8000 | 0.8889 |
+
+This is a small Validation-set course-project result, **not** a statistical generalization claim. Subjects 6 and 7 remain the sealed held-out Test split in the frozen configuration.
+
+See [Stage 5 report](artifacts/evaluation/stage5/REPORT.md) and [final ML configuration](artifacts/evaluation/stage5/final_ml_config.json).
+
+## 4. Online Inference Policy
+
+The cloud backend uses a rolling sequence buffer:
+
+```text
+Minimum context: 86 consecutive frames
+Inference stride: 10 new frames
+Maximum context: 200 frames
+```
+
+At the nominal camera declaration of 20 FPS:
+
+- first prediction is available after 86 frames (about 4.3 s);
+- new predictions are produced every 10 new frames (about 0.5 s);
+- the latest 200 feature frames are retained.
+
+A frame-index gap resets the rolling context. Duplicate or late messages do not enter the inference history.
+
+Training uses full labeled clips while runtime uses rolling context; this remains a known system limitation.
+
+## 5. MQTT Protocol
+
+Default topic prefix:
+
+```text
+fall
+```
+
+Topics:
+
+```text
+fall/pose/<source_id>
+fall/prediction/<source_id>
+fall/status/backend
+```
+
+All current publications use QoS 1 and `retain=False`.
+
+### Pose frame
 
 ```json
 {
-  "device_id": "edge-001",
-  "timestamp": 0,
-  "frame_id": 0,
+  "schema_version": 1,
+  "message_type": "frame",
+  "source_id": "edge-01",
+  "sequence_id": "demo-001",
+  "frame_index": 123,
+  "timestamp_ms": 6150,
+  "timestamp_kind": "clip_relative",
+  "fps": 20.0,
   "pose_detected": true,
-  "pose_confidence": 0.0,
-  "landmarks": []
+  "features": ["132 finite numeric values"]
 }
 ```
 
-The cloud buffers consecutive poses into a temporal window. The initial target is:
+For webcam input, `timestamp_kind` is `unix_epoch`. `pose_detected` refers to the raw observation; short missing runs can still have causally forward-filled features.
 
-```text
-15 FPS × 2 s = 30 frames
+### Cloud prediction
+
+```json
+{
+  "schema_version": 1,
+  "source_id": "edge-01",
+  "sequence_id": "demo-001",
+  "frame_index": 85,
+  "timestamp_ms": 4250,
+  "timestamp_kind": "clip_relative",
+  "buffer_length": 86,
+  "fall_probability": 0.975236,
+  "threshold": 0.5,
+  "predicted_label": "fall"
+}
 ```
 
-A temporal model receives approximately:
+`buffer_length` is the context length used for that prediction, not a live query of the current server buffer.
+
+## 6. Application-Level Pose Validity Gate
+
+The cloud model produces a **raw** fall probability and raw label. The Mac edge application then applies a pose-validity gate without modifying the model output.
+
+Application states:
 
 ```text
-[time, joints, features]
-= [30, 33, F]
-```
-
-and outputs a fall probability.
-
-## 5. Alert State Machine
-
-The classifier must not trigger an alarm directly from a single threshold crossing.
-
-```text
+INITIALIZING
 NORMAL
-  ↓
-SUSPECTED
-  ↓
-CONFIRMED
-  ↓
-ALERT
-  ↓
-ACKNOWLEDGED / RECOVERED
+FALL
+POSE_LOST
+RECOVERING
 ```
 
-The final decision may combine:
+Rules:
 
-- model probability;
-- temporal persistence;
-- body vertical velocity;
-- body orientation;
-- pose confidence;
-- post-fall inactivity.
+- Missing pose for frames 1–5 uses the existing causal preprocessing policy.
+- When consecutive missing pose exceeds 5 frames:
+  - application state becomes `POSE_LOST`;
+  - `prediction_actionable = false`.
+- When pose returns after prolonged loss:
+  - state becomes `RECOVERING`;
+  - the application waits for a fresh cloud prediction whose frame index covers the recovery frame.
+- After that fresh prediction:
+  - the application returns to `NORMAL` or `FALL` according to the raw cloud label;
+  - `prediction_actionable = true`.
 
-Thresholds and timing parameters must be configurable and evaluated rather than hard-coded without evidence.
+A raw cloud `FALL` remains visible during `POSE_LOST` or `RECOVERING`, but it does not trigger the application FALL alert while the prediction is suppressed.
 
-## 6. Evaluation
+This behavior is designed to prevent the known prolonged-pose-loss false alarm from being presented as an actionable fall.
 
-### Classification
+## 7. Dashboard
 
-- Precision
-- Recall
-- F1 score
-- Confusion matrix
+The local dashboard shows:
 
-### System performance
+- authoritative application status;
+- raw cloud fall probability;
+- raw cloud label;
+- actionable YES/NO;
+- current pose status;
+- MQTT transport status;
+- cloud prediction freshness (`WARMING_UP`, `ACTIVE`, `STALE`);
+- latest inference context and prediction frame;
+- up to 60 real cloud probability samples;
+- up to 20 in-memory application transition events;
+- a prominent FALL banner only when `application_status == "FALL"`.
 
-- edge preprocessing latency;
-- network latency;
-- cloud inference latency;
-- end-to-end pipeline latency;
-- effective FPS;
-- alert-confirmation delay reported separately.
+Probability history is de-duplicated by prediction `frame_index`; browser polling does not create fake model samples.
 
-### Robustness
+Recent Events are generated from real application-state transitions, not from HTTP polling. They are in-memory only and clear when the Edge process restarts.
 
-The V1 evaluation should include controlled degradation of:
+## 8. Quick Start
 
-- lighting;
-- occlusion;
-- camera FPS;
-- network delay;
-- packet loss;
-- missing/unreliable pose frames.
+### Requirements
 
-### Ablation
+- Python 3.12
+- `uv`
+- MediaPipe PoseLandmarker model at the configured `POSE_MODEL_PATH`
+- selected GRU checkpoint at the configured `CHECKPOINT_PATH`
+- access to the deployed MQTT broker/backend
 
-Minimum planned comparison:
+The Edge and Backend scripts use PEP 723 dependency declarations. Python does not automatically load `.env`.
 
-1. temporal model only;
-2. + temporal smoothing;
-3. + physical/motion features;
-4. + complete alert state machine.
+### Configure the current Terminal
 
-If IMU is implemented, add:
+From the repository root:
 
-- vision only;
-- IMU only;
-- vision + IMU;
-- missing-modality tests.
+```bash
+export MQTT_HOST=<vps-host>
+export MQTT_PORT=1883
+export MQTT_USERNAME=<mqtt-username>
+export MQTT_TOPIC_PREFIX=fall
+export POSE_MODEL_PATH="$PWD/ml/checkpoints/pose_landmarker_full.task"
 
-## 7. Repository Structure
+read -rs 'MQTT_PASSWORD?MQTT password: '
+echo
+export MQTT_PASSWORD
+```
+
+Do not commit credentials. The password exists only in the current shell environment and child processes unless you deliberately persist it elsewhere.
+
+### Check the VPS
+
+Using your configured SSH target:
+
+```bash
+ssh <vps-alias> 'printf "Mosquitto: "; systemctl is-active mosquitto; printf "Backend: "; systemctl is-active fall-backend'
+```
+
+Expected:
+
+```text
+Mosquitto: active
+Backend: active
+```
+
+To watch real backend inference:
+
+```bash
+ssh <vps-alias>
+sudo journalctl -u fall-backend -f
+```
+
+Pressing `Ctrl+C` stops log following; it does not stop the backend service.
+
+### Run the real webcam demo
+
+```bash
+uv run --python 3.12 --script edge/main.py \
+  --source 0 \
+  --source-id webcam-demo \
+  --preview \
+  --dashboard
+```
+
+Open:
+
+```text
+http://127.0.0.1:8767/
+```
+
+The initial state may be `INITIALIZING / WARMING_UP` until the rolling buffer reaches 86 consecutive frames.
+
+### Run the prerecorded FALL positive control
+
+If the local CAUCAFall V5 data is available:
+
+```bash
+uv run --python 3.12 --script edge/main.py \
+  --source "data/raw/caucafall_v5/CAUCAFall/Subject.1/Fall backwards/FallBackwardsS1.avi" \
+  --source-id fall-control \
+  --preview \
+  --dashboard
+```
+
+This uses a Train subject, not the sealed held-out Test subjects.
+
+Do not ask a person to physically fall for the demo.
+
+## 9. Real E2E Validation
+
+The final demo path was validated with a real Mac webcam, public MQTT transport, the deployed VPS GRU backend and a real browser dashboard.
+
+### Webcam run
+
+Observed in the real browser:
+
+- MQTT transport connected;
+- cloud prediction active;
+- real probability-history samples;
+- `POSE_LOST → RECOVERING → RECOVERED`;
+- normal operation after recovery.
+
+The VPS journal independently confirmed real predictions for the webcam source.
+
+### Prerecorded FALL positive control
+
+For:
+
+```text
+Subject.1/Fall backwards/FallBackwardsS1.avi
+```
+
+the real VPS produced:
+
+| Frame | Context | P(fall) |
+| ---: | ---: | ---: |
+| 85 | 86 | 0.975236 |
+| 95 | 96 | 0.979456 |
+| 105 | 106 | 0.981400 |
+| 115 | 116 | 0.982003 |
+
+The real browser showed:
+
+```text
+Raw label: FALL
+Raw probability: 98.2%
+Application status: FALL
+Prediction actionable: YES
+Pose: DETECTED
+FALL DETECTED banner: visible
+```
+
+The focused Stage 8 dashboard/edge/runtime regression suite passed:
+
+```text
+54 passed, 0 failures, 0 errors
+```
+
+## 10. Dataset and Split
+
+The project uses CAUCAFall V5.
+
+The fixed subject-independent split is:
+
+```text
+Train:      1, 2, 3, 4, 8, 9
+Validation: 5, 10
+Test:       6, 7
+```
+
+The held-out Test subjects are protected from tuning by the dataset protocol.
+
+See:
+
+- [Dataset protocol](docs/dataset_protocol.md)
+- [Split configuration](configs/dataset_split.json)
+- [Dataset inspection](artifacts/dataset_inspection/summary.md)
+
+## 11. Repository Structure
 
 ```text
 fall-detection-system/
 ├── edge/
-│   ├── camera/
-│   ├── pose/
-│   ├── preprocessing/
-│   ├── mqtt/
-│   └── main.py                 # created when Stage 2/3 starts
+│   └── main.py                  # camera/AVI, MediaPipe, MQTT, gate, dashboard bridge
+├── common/
+│   └── mqtt.py                  # shared MQTT protocol and connection wrapper
+├── backend/
+│   └── app/
+│       ├── main.py              # long-running MQTT backend
+│       └── inference.py         # rolling GRU inference
+├── frontend/
+│   ├── dashboard.py             # DashboardState + local Flask server
+│   ├── templates/
+│   │   └── dashboard.html
+│   └── static/
+│       ├── dashboard.css
+│       └── dashboard.js
 ├── ml/
 │   ├── datasets/
 │   ├── preprocessing/
@@ -247,125 +478,67 @@ fall-detection-system/
 │   ├── training/
 │   ├── evaluation/
 │   └── checkpoints/
-├── backend/
-│   └── app/
-│       ├── api/
-│       ├── mqtt/
-│       ├── inference/
-│       ├── events/
-│       ├── database/
-│       └── main.py             # created during backend stage
-├── frontend/
 ├── infrastructure/
-│   ├── compose.yaml            # created during cloud stage
 │   ├── mosquitto/
-│   └── nginx/
-├── tests/
-├── scripts/
+│   └── systemd/
+├── artifacts/
 ├── configs/
 ├── docs/
-│   └── architecture.md
-├── README.md
+├── tests/
+├── scripts/
 ├── AGENTS.md
-├── .gitignore
+├── README.md
 └── .env.example
 ```
 
-## 8. Development Stages
+## 12. Current Deployment
+
+The current course-demo deployment uses:
 
 ```text
-Stage 0  System definition and repository
-Stage 1  Dataset exploration
-Stage 2  Dataset → pose extraction
-Stage 3  Pose preprocessing / visualization
-Stage 4  GRU / TCN offline baseline
-Stage 5  Webcam → real-time local inference
-Stage 6  Edge → MQTT → Cloud
-Stage 7  FastAPI + PostgreSQL
-Stage 8  Web dashboard
-Stage 9  Robust alert handling
-Stage 10 Robustness + ablation experiments
-Stage 11 Optional IMU integration
-Stage 12 Optional multimodal fusion
+Mac
+  Edge + MediaPipe + application gate + local Dashboard
+
+Internet MQTT
+
+Ubuntu VPS
+  Mosquitto
+  Python virtual environment
+  systemd fall-backend service
+  CPU GRU inference
 ```
 
-Do not begin cloud deployment before the local camera → pose → temporal model loop has been validated.
+The VPS does not host the Dashboard. The browser connects only to the Mac loopback Flask service.
 
-## 9. Planned Deployment
+MQTT credentials are required by the deployed broker. Credentials must remain outside Git.
 
-Initial deployment target:
+The course MVP currently uses TCP MQTT without TLS. Production-grade TLS, public web hosting, stronger authentication and hardened network policy are outside the V1 scope.
 
-```text
-Alibaba Cloud Simple Application Server
-Hong Kong region
-Ubuntu 24.04 LTS
-Docker + Docker Compose
-```
+## 13. Known Limitations
 
-Expected containers later:
+- One camera and one monitored person are the target scenario.
+- Multi-person tracking is not implemented.
+- Raw cloud predictions can still be wrong; the pose-validity gate only addresses the demonstrated prolonged-pose-loss failure mode.
+- Training uses full clips while deployed inference uses rolling context.
+- Dashboard events are in-memory and are not persisted.
+- The Dashboard is localhost-only and has no production authentication.
+- The deployed MQTT transport is not a production security design.
+- No FastAPI, WebSocket, PostgreSQL or React layer is used in the current V1.
+- No IMU or multimodal fusion is implemented.
+- Subjects 6 and 7 remain reserved for final held-out evaluation in the frozen ML configuration.
+- The system is a course prototype, not a medical device and not intended for medical diagnosis.
 
-- Mosquitto
-- FastAPI backend + inference
-- PostgreSQL
-- React/Nginx
+## 14. Deferred Work
 
-## 10. Research Questions
+Potential extensions include:
 
-- **RQ1:** Can skeleton-based temporal modeling provide reliable real-time fall detection?
-- **RQ2:** Can an edge-cloud architecture reduce transferred data while preserving real-time performance?
-- **RQ3:** Can multi-stage event handling reduce false alarms compared with direct model-threshold alarms?
-- **RQ4:** How do lighting, occlusion, frame-rate degradation, and network impairment affect F1 and latency?
-- **RQ5 (optional):** Does vision-IMU fusion improve performance and robustness under missing or degraded modalities?
+- held-out final Test evaluation when the evaluation plan authorizes it;
+- broader real-camera robustness testing;
+- latency/FPS measurement;
+- TLS-secured MQTT;
+- persistent event storage;
+- public authenticated dashboard/API;
+- multi-person handling;
+- IMU integration and vision-IMU fusion.
 
-## 11. Current Status
-
-**Stage 6 local MQTT integration is complete.** A real Mosquitto broker and separate
-edge/backend processes passed the authorized AVI → OpenCV/MediaPipe → streaming
-preprocessing → MQTT → rolling GRU → MQTT prediction smoke test (125 frames,
-4 predictions). The frozen Stage 5 unnormalized checkpoint remains selected;
-its SHA256 is enforced at backend startup. Test 6/7 remains sealed.
-
-The online policy collects 86 frames, predicts every 10 new frames and retains
-the latest 200, using true lengths. Full-clip training versus rolling inference
-remains a known limitation. Camera CLI support exists but was not hardware-tested.
-Ubuntu Mosquitto + venv/systemd deployment configuration is provided; **actual
-remote VPS deployment is pending infrastructure access**. Stage 7 has not started.
-See [runtime commands, protocol and cloud deployment](docs/stage6_mqtt_runtime.md),
-[executed local smoke evidence](artifacts/integration/stage6/smoke.json), and
-[final ML configuration](artifacts/evaluation/stage5/final_ml_config.json).
-
-The course-project sprint closes further Stage 3.2 temporal-annotation research;
-Stage 3.2j is retained at `63793aa50f91d1df3429ac081ae23b7dc6dd9d6c` without
-genuine review. Historical Stage 3.0 build guards remain unchanged. See the
-[Stage 3.3 usage, feature contract and validation](docs/stage33_minimal_preprocessing.md)
-and [executed readiness audit](artifacts/preprocessing/stage33_causal/audit.json).
-
-The local CAUCAFall V5 download passes structural and full sequential media validation:
-10 subjects × 10 activities = 100 AVI videos, all 19,877 frames decoded with metadata-count agreement at reported 20 FPS and 720 × 480 resolution. Six PNGs and four frame TXT
-annotations have unmatched basenames; all 100 `classes.txt` files are separate
-metadata. Raw data is unchanged.
-
-See [inspection usage and annotation exceptions](ml/datasets/README.md),
-[generated summary](artifacts/dataset_inspection/summary.md), and
-[video inventory](artifacts/dataset_inspection/inventory.csv).
-
-Stage 1.3 pose compatibility: **PASS WITH WARNINGS**, using the official MediaPipe
-Tasks API on ten clips. Valid 33-landmark poses were returned for 1,504/1,724
-frames (87.24% pose availability, not accuracy or robustness evidence).
-Subject.1 / Fall forward remains a key warning: 94/190 valid poses (49.47%),
-with a longest missing run of 92 frames (4.60 seconds). Stage 1.4 defines
-missing-pose and low-visibility policy in the dataset protocol. See the [compatibility report](artifacts/pose_compatibility/REPORT.md)
-for missing-pose intervals, runtime workaround, and required follow-up protocol.
-
-Stage 1.4 — dataset protocol and subject-independent split — is complete.
-**Stage 1 has passed Gate Review.** The [dataset protocol](docs/dataset_protocol.md) freezes labels, subject
-membership and raw pose/missingness rules; the [split config](configs/dataset_split.json)
-and [100-video split manifest](artifacts/dataset_inspection/split_inventory.csv)
-record train/validation/test assignments (60/20/20 videos). All five architecture
-Stage 1 questions have documented answers, with compatibility warnings retained.
-
-Gate-review correction: the final fixed subject-independent split is train
-8/4/3/9/1/2, validation 10/5, test 6/7. Subjects 1–5 were explored in Stage 1.3;
-Subjects 6/7 are reserved for final evaluation under the protocol
-[held-out test policy](docs/dataset_protocol.md#held-out-test-policy). Seed 42
-describes only the original candidate, not the final adjusted assignment.
+For the current course V1, priority is a complete, reproducible and demonstrable edge-cloud system rather than additional infrastructure.
