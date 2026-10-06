@@ -19,7 +19,7 @@ from edge import main as edge
 
 def prediction_message(**changes):
     prediction = dict(schema_version=1, source_id="webcam-demo", sequence_id="demo-sequence",
-                      fall_probability=.014, predicted_label="non_fall", buffer_length=200)
+                      fall_probability=.014, predicted_label="non_fall", buffer_length=200, frame_index=85)
     prediction.update(changes)
     return SimpleNamespace(payload=json.dumps(prediction).encode())
 
@@ -32,32 +32,39 @@ class PredictionTests(unittest.TestCase):
         thread.start()
         thread.join(timeout=1)
         self.assertFalse(thread.is_alive())
-        self.assertEqual(latest.snapshot(), (.014, "non_fall", 200))
+        self.assertEqual(latest.snapshot(), (.014, "non_fall", 200, 85))
         for change in (dict(source_id="other"), dict(sequence_id="old-sequence"),
                        dict(schema_version=True), dict(fall_probability=True),
                        dict(fall_probability=float("nan")), dict(fall_probability=float("inf")),
                        dict(fall_probability=1.1), dict(predicted_label="invalid"),
-                       dict(buffer_length=True), dict(buffer_length=0), dict(buffer_length=None)):
+                       dict(buffer_length=True), dict(buffer_length=0), dict(buffer_length=None),
+                       dict(frame_index=True), dict(frame_index=-1), dict(frame_index=None), dict(frame_index=1.5)):
             with self.subTest(change=change):
                 latest.on_message(None, None, prediction_message(**change))
-                self.assertEqual(latest.snapshot(), (.014, "non_fall", 200))
+                self.assertEqual(latest.snapshot(), (.014, "non_fall", 200, 85))
         for payload in (b'{"broken":', b'[]', b'\xff'):
             latest.on_message(None, None, SimpleNamespace(payload=payload))
-            self.assertEqual(latest.snapshot(), (.014, "non_fall", 200))
-        latest.on_message(None, None, prediction_message(fall_probability=.9, predicted_label="fall", buffer_length=86))
-        self.assertEqual(latest.snapshot(), (.9, "fall", 86))
+            self.assertEqual(latest.snapshot(), (.014, "non_fall", 200, 85))
+        latest.on_message(None, None, prediction_message(fall_probability=.9, predicted_label="fall", buffer_length=86, frame_index=95))
+        self.assertEqual(latest.snapshot(), (.9, "fall", 86, 95))
+        latest.on_message(None, None, prediction_message(frame_index=85))
+        self.assertEqual(latest.snapshot(), (.9, "fall", 86, 95))
 
     def test_waiting_overlay_prediction_overlay_and_q(self):
         cv2, frame = MagicMock(), np.zeros((480, 640, 3), dtype=np.uint8)
+        application = edge.PoseValidityGate(5)
+        application.step(False, 0, None)
         cv2.waitKey.return_value = -1
-        self.assertFalse(edge.preview_frame(frame, None, cv2, pose_detected=False))
+        self.assertFalse(edge.preview_frame(frame, None, cv2, pose_detected=False, application=application))
         lines = [call.args[1] for call in cv2.putText.call_args_list]
         for expected in ("INITIALIZING CLOUD MODEL...", "--", "MISSING", "WAITING", "Press Q to exit"):
             self.assertIn(expected, lines)
         self.assertFalse(any("%" in line for line in lines))
         cv2.putText.reset_mock()
         cv2.waitKey.return_value = ord("q")
-        self.assertTrue(edge.preview_frame(frame, (.014, "non_fall", 200), cv2, pose_detected=True))
+        prediction = edge.Prediction(.014, "non_fall", 200, 85)
+        application.step(True, 85, prediction)
+        self.assertTrue(edge.preview_frame(frame, prediction, cv2, pose_detected=True, application=application))
         lines = [call.args[1] for call in cv2.putText.call_args_list]
         for expected in ("FALL DETECTION SYSTEM", "NORMAL", "1.4%", "200 frames", "DETECTED", "CONNECTED"):
             self.assertIn(expected, lines)
@@ -72,8 +79,11 @@ class PredictionTests(unittest.TestCase):
             with self.subTest(probability=probability, label=label):
                 cv2 = MagicMock()
                 cv2.waitKey.return_value = -1
+                prediction = edge.Prediction(probability, label, 200, 85)
+                application = edge.PoseValidityGate(5)
+                application.step(True, 85, prediction)
                 edge.preview_frame(np.zeros((480, 640, 3), dtype=np.uint8),
-                                   (probability, label, 200), cv2, pose_detected=True)
+                                   prediction, cv2, pose_detected=True, application=application)
                 status_call = next(call for call in cv2.putText.call_args_list if call.args[1] == status)
                 self.assertEqual(status_call.args[5], color)
                 bars = [call for call in cv2.rectangle.call_args_list if call.args[1] == (32, 307)]
@@ -88,6 +98,101 @@ class PredictionTests(unittest.TestCase):
                 edge.main()
         self.assertEqual(result.exception.code, 0)
         self.assertIn("--preview", output.getvalue())
+
+
+class PoseValidityTests(unittest.TestCase):
+    def test_missing_boundary_preserves_raw_fall(self):
+        latest = edge.LatestPrediction("webcam-demo", "demo-sequence")
+        latest.on_message(None, None, prediction_message(fall_probability=.72, predicted_label="fall", frame_index=100))
+        raw = latest.snapshot()
+        application = edge.PoseValidityGate(edge.PreprocessingConfig().max_forward_fill_frames)
+        application.step(True, 100, raw)
+        for missing_count in range(1, 6):
+            application.step(False, 100 + missing_count, raw)
+            self.assertEqual(application.consecutive_missing_frames, missing_count)
+            self.assertEqual(application.application_status, "FALL")
+            self.assertTrue(application.prediction_actionable)
+        application.step(False, 106, raw)
+        self.assertEqual(application.application_status, "POSE_LOST")
+        self.assertFalse(application.prediction_actionable)
+        self.assertIs(latest.snapshot(), raw)
+        self.assertEqual(raw, (.72, "fall", 200, 100))
+
+    def test_initializing_and_leading_missing(self):
+        application = edge.PoseValidityGate(5)
+        application.step(True, 0, None)
+        self.assertEqual(application.application_status, "INITIALIZING")
+        self.assertFalse(application.prediction_actionable)
+        for index in range(1, 7):
+            application.step(False, index, None)
+        self.assertEqual(application.application_status, "POSE_LOST")
+        application.step(True, 7, None)
+        self.assertEqual(application.application_status, "RECOVERING")
+        self.assertFalse(application.prediction_actionable)
+
+    def test_recovery_waits_for_return_frame_and_resumes_raw_normal_or_fall(self):
+        for label, probability, fresh_index, expected in (("non_fall", .014, 6, "NORMAL"),
+                                                        ("fall", .975236, 15, "FALL")):
+            with self.subTest(label=label):
+                application = edge.PoseValidityGate(5)
+                stale = edge.Prediction(.72, "fall", 200, 5)
+                for index in range(6):
+                    application.step(False, index, stale)
+                application.step(True, 6, stale)
+                self.assertEqual(application.recovery_frame_index, 6)
+                self.assertEqual(application.consecutive_missing_frames, 0)
+                for prediction in (None, stale):
+                    application.step(True, 7, prediction)
+                    self.assertEqual(application.application_status, "RECOVERING")
+                    self.assertFalse(application.prediction_actionable)
+                    self.assertEqual(application.recovery_frame_index, 6)
+                fresh = edge.Prediction(probability, label, 200, fresh_index)
+                application.step(True, max(8, fresh_index), fresh)
+                self.assertEqual(application.application_status, expected)
+                self.assertTrue(application.prediction_actionable)
+                self.assertIsNone(application.recovery_frame_index)
+                self.assertEqual(fresh.predicted_label, label)
+                self.assertEqual(fresh.fall_probability, probability)
+
+    def test_repeated_loss_records_a_new_recovery_frame(self):
+        application = edge.PoseValidityGate(5)
+        raw = edge.Prediction(.72, "fall", 200, 5)
+        for index in range(6):
+            application.step(False, index, raw)
+        application.step(True, 6, raw)
+        for index in range(7, 12):
+            application.step(False, index, raw)
+            self.assertEqual(application.application_status, "RECOVERING")
+            self.assertFalse(application.prediction_actionable)
+        application.step(False, 12, raw)
+        self.assertEqual(application.application_status, "POSE_LOST")
+        application.step(True, 13, edge.Prediction(.014, "non_fall", 200, 6))
+        self.assertEqual(application.recovery_frame_index, 13)
+        self.assertEqual(application.application_status, "RECOVERING")
+        self.assertFalse(application.prediction_actionable)
+
+    def test_suppressed_overlay_keeps_raw_fall_visible(self):
+        application = edge.PoseValidityGate(5)
+        raw = edge.Prediction(.72, "fall", 200, 5)
+        for index in range(6):
+            application.step(False, index, raw)
+        for detected, expected in ((False, "POSE LOST"), (True, "RECOVERING")):
+            with self.subTest(status=expected):
+                application.step(detected, 6, raw)
+                cv2 = MagicMock()
+                cv2.waitKey.return_value = -1
+                edge.preview_frame(np.zeros((480, 640, 3), dtype=np.uint8), raw, cv2,
+                                   pose_detected=detected, application=application)
+                lines = [call.args[1] for call in cv2.putText.call_args_list]
+                for text in (expected, "FALL", "72.0%", "CONNECTED"):
+                    self.assertIn(text, lines)
+                self.assertNotIn("NORMAL", lines)
+                self.assertTrue(any("SUPPRESSED" in line for line in lines))
+                raw_label = next(call for call in cv2.putText.call_args_list if call.args[1] == "FALL")
+                self.assertEqual(raw_label.args[5], (173, 184, 193))
+                self.assertFalse(application.prediction_actionable)
+                if detected:
+                    self.assertIn("Raw Cloud (stale):", lines)
 
 
 class EdgeExitTests(unittest.TestCase):
@@ -159,6 +264,41 @@ class EdgeExitTests(unittest.TestCase):
         self.assertIn("MISSING", lines)
         self.assertIn("INITIALIZING CLOUD MODEL...", lines)
         self.assertIn("WAITING", lines)
+        self.assert_released()
+
+    def test_pose_loss_and_recovery_do_not_reset_sequence_or_change_features(self):
+        self.cv2.waitKey.side_effect = [-1] * 8 + [ord("q")]
+        missing = np.full((33, 4), np.nan, dtype=np.float32)
+        observations = [(True, self.landmarks)] + [(False, missing)] * 6 + [(True, self.landmarks)] * 2
+        states = []
+        original_preview = edge.preview_frame
+
+        def publish(topic, message):
+            self.published.append((topic, message))
+            if message["message_type"] == "frame":
+                index = message["frame_index"]
+                if index in (0, 7, 8):
+                    callback = self.constructor.call_args.kwargs["on_message"]
+                    callback(None, None, prediction_message(frame_index={0: 0, 7: 6, 8: 7}[index],
+                        fall_probability=.014 if index == 8 else .72,
+                        predicted_label="non_fall" if index == 8 else "fall"))
+
+        def preview(*args, **kwargs):
+            application = kwargs["application"]
+            states.append((application.application_status, application.prediction_actionable))
+            return original_preview(*args, **kwargs)
+
+        self.connection.publish.side_effect = publish
+        with patch.object(edge, "encode_pose", side_effect=observations), patch.object(edge, "preview_frame", side_effect=preview):
+            edge.main()
+        self.assertEqual(states, [("FALL", True)] * 6 + [("POSE_LOST", False), ("RECOVERING", False), ("NORMAL", True)])
+        messages = [message for _, message in self.published]
+        self.assertEqual([message["message_type"] for message in messages], ["sequence_start"] + ["frame"] * 9 + ["sequence_end"])
+        self.assertEqual({message["sequence_id"] for message in messages}, {"demo-sequence"})
+        for index, message in enumerate(messages[1:-1]):
+            self.assertEqual(message["frame_index"], index)
+            self.assertEqual(message["pose_detected"], index not in range(1, 7))
+            self.assertEqual(message["features"], [0.] * 132 if index == 6 else [.25] * 132)
         self.assert_released()
 
     def test_ctrl_c_sends_sequence_end_and_returns_without_exception(self):

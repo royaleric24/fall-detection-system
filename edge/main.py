@@ -15,7 +15,7 @@ import time
 import uuid
 from pathlib import Path
 from threading import Lock
-from typing import Any
+from typing import Any, NamedTuple
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -30,13 +30,20 @@ REPO = Path(__file__).resolve().parents[1]
 LOGGER = logging.getLogger(__name__)
 
 
+class Prediction(NamedTuple):
+    fall_probability: float
+    predicted_label: str
+    buffer_length: int
+    frame_index: int
+
+
 class LatestPrediction:
     """MQTT callback stores an immutable snapshot; OpenCV stays on the main thread."""
 
     def __init__(self, source_id: str, sequence_id: str) -> None:
         self.source_id, self.sequence_id = source_id, sequence_id
         self._lock = Lock()
-        self._value: tuple[float, str, int] | None = None
+        self._value: Prediction | None = None
 
     def on_message(self, client: Any, userdata: Any, message: Any) -> None:
         try:
@@ -48,22 +55,57 @@ class LatestPrediction:
                 return
             probability = prediction.get("fall_probability")
             label, length = prediction.get("predicted_label"), prediction.get("buffer_length")
+            index = prediction.get("frame_index")
             if (type(prediction.get("schema_version")) is not int or prediction["schema_version"] != 1
                     or type(probability) not in (int, float) or not 0 <= probability <= 1
-                    or label not in ("fall", "non_fall") or type(length) is not int or length <= 0):
+                    or label not in ("fall", "non_fall") or type(length) is not int or length <= 0
+                    or type(index) is not int or index < 0):
                 raise ValueError("Invalid prediction display fields")
             with self._lock:
-                self._value = (float(probability), label, length)
+                if self._value is None or index >= self._value.frame_index:
+                    self._value = Prediction(float(probability), label, length, index)
         except (ValueError, TypeError, UnicodeError) as exc:
             LOGGER.warning("Ignored malformed prediction: %s", exc)
 
-    def snapshot(self) -> tuple[float, str, int] | None:
+    def snapshot(self) -> Prediction | None:
         with self._lock:
             return self._value
 
 
-def preview_frame(frame: Any, prediction: tuple[float, str, int] | None, cv2: Any,
-                  *, pose_detected: bool) -> bool:
+class PoseValidityGate:
+    """Main-thread application state only; never changes telemetry or cloud history."""
+
+    def __init__(self, max_forward_fill_frames: int) -> None:
+        self.max_forward_fill_frames = max_forward_fill_frames
+        self.consecutive_missing_frames = 0
+        self.recovery_frame_index: int | None = None
+        self.application_status = "INITIALIZING"
+        self.prediction_actionable = False
+
+    def step(self, pose_detected: bool, frame_index: int, prediction: Prediction | None) -> None:
+        was_lost = self.consecutive_missing_frames > self.max_forward_fill_frames
+        if pose_detected:
+            if was_lost:
+                self.recovery_frame_index = frame_index
+            self.consecutive_missing_frames = 0
+        else:
+            self.consecutive_missing_frames += 1
+        self.prediction_actionable = False
+        if self.consecutive_missing_frames > self.max_forward_fill_frames:
+            self.application_status = "POSE_LOST"
+        elif (self.recovery_frame_index is not None
+              and (prediction is None or prediction.frame_index < self.recovery_frame_index)):
+            self.application_status = "RECOVERING"
+        elif prediction is None:
+            self.application_status = "INITIALIZING"
+        else:
+            self.recovery_frame_index = None
+            self.application_status = "NORMAL" if prediction.predicted_label == "non_fall" else "FALL"
+            self.prediction_actionable = True
+
+
+def preview_frame(frame: Any, prediction: Prediction | None, cv2: Any,
+                  *, pose_detected: bool, application: PoseValidityGate) -> bool:
     """Draw only after pose publication; return True when the user presses q."""
     height, width = frame.shape[:2]
     scale = min(width / 640, height / 480)
@@ -72,7 +114,9 @@ def preview_frame(frame: Any, prediction: tuple[float, str, int] | None, cv2: An
     white, muted = (242, 244, 246), (173, 184, 193)
     green, red, amber = (105, 218, 105), (82, 82, 245), (90, 202, 245)
     connected = prediction is not None  # Received a prediction this sequence; no heartbeat semantics.
-    status_color = amber if not connected else (green if prediction[1] == "non_fall" else red)
+    status = application.application_status
+    status_color = green if status == "NORMAL" else red if status == "FALL" else amber
+    raw_color = status_color if application.prediction_actionable else muted
 
     def point(x: float, y: float) -> tuple[int, int]:
         return round(x * scale), round(y * scale)
@@ -92,23 +136,29 @@ def preview_frame(frame: Any, prediction: tuple[float, str, int] | None, cv2: An
     text("CLOUD", width / scale - 94, 31, .5)
     cv2.circle(frame, point(width / scale - 112, 26), max(1, round(5 * scale)), green if connected else amber, -1)
     cv2.rectangle(frame, point(16, panel_top), point(20, panel_top + 224), status_color, -1)
-    if connected:
+    if status != "INITIALIZING":
         text("STATUS", 32, panel_top + 31, .42, muted)
-        text("NORMAL" if prediction[1] == "non_fall" else "FALL", 169, panel_top + 35, .85, status_color, 2)
+        text(status.replace("_", " "), 169, panel_top + 35, .7, status_color, 2)
     else:
         text("INITIALIZING CLOUD MODEL...", 32, panel_top + 32, .5, amber, 2)
-    text("Fall Probability:", 32, panel_top + 73, color=muted)
-    text(f"{prediction[0]:.1%}" if connected else "--", 265, panel_top + 73, .6, thickness=2)
+    text("Raw Cloud (stale):" if status == "RECOVERING" and connected else "Raw Cloud:", 32, panel_top + 55, .4, muted)
+    text(prediction.predicted_label.replace("_", "-").upper() if connected else "--", 170, panel_top + 55, .4, raw_color)
+    text("Raw Probability:", 32, panel_top + 73, color=muted)
+    text(f"{prediction.fall_probability:.1%}" if connected else "--", 265, panel_top + 73, .6, raw_color, 2)
     cv2.rectangle(frame, point(32, panel_top + 89), point(366, panel_top + 101), (52, 63, 74), -1)
-    fill_width = round(334 * prediction[0]) if connected else 0
+    fill_width = round(334 * prediction.fall_probability) if connected else 0
     if fill_width > 0:
-        cv2.rectangle(frame, point(32, panel_top + 89), point(32 + fill_width, panel_top + 101), status_color, -1)
-    text("Buffer:", 32, panel_top + 133, color=muted)
-    text(f"{prediction[2]} frames" if connected else "--", 170, panel_top + 133)
-    text("Pose:", 32, panel_top + 164, color=muted)
-    text("DETECTED" if pose_detected else "MISSING", 170, panel_top + 164, color=green if pose_detected else amber)
-    text("Cloud:", 32, panel_top + 195, color=muted)
-    text("CONNECTED" if connected else "WAITING", 170, panel_top + 195, color=green if connected else amber)
+        cv2.rectangle(frame, point(32, panel_top + 89), point(32 + fill_width, panel_top + 101), raw_color, -1)
+    note = ("Waiting for cloud prediction..." if status == "INITIALIZING" else
+            "SUPPRESSED - waiting for fresh prediction" if status == "RECOVERING" else
+            "Prediction: SUPPRESSED" if not application.prediction_actionable else "Prediction actionable")
+    text(note, 32, panel_top + 122, .4, status_color)
+    text("Buffer:", 32, panel_top + 149, color=muted)
+    text(f"{prediction.buffer_length} frames" if connected else "--", 170, panel_top + 149)
+    text("Pose:", 32, panel_top + 174, color=muted)
+    text("DETECTED" if pose_detected else "MISSING", 170, panel_top + 174, color=green if pose_detected else amber)
+    text("Cloud:", 32, panel_top + 199, color=muted)
+    text("CONNECTED" if connected else "WAITING", 170, panel_top + 199, color=green if connected else amber)
     text("Press Q to exit", 16, bottom - 12)
     cv2.imshow("Cloud Fall Detection", frame)
     return cv2.waitKey(1) & 0xFF == ord("q")
@@ -148,6 +198,7 @@ def main() -> None:
     sequence_started = completed = False
     frames = detected_frames = 0
     preprocessor = StreamingPreprocessor(config)
+    application = PoseValidityGate(config.max_forward_fill_frames)
     common = dict(schema_version=1, source_id=source_id, sequence_id=sequence_id)
     last_mp_time = last_epoch_time = -1
     capture = cv2.VideoCapture(source)
@@ -187,7 +238,9 @@ def main() -> None:
                 connection.publish(topic, validate_pose(message))
                 frames += 1
                 detected_frames += int(detected)
-                if args.preview and preview_frame(frame, latest.snapshot(), cv2, pose_detected=detected):
+                prediction = latest.snapshot()
+                application.step(detected, message["frame_index"], prediction)
+                if args.preview and preview_frame(frame, prediction, cv2, pose_detected=detected, application=application):
                     break
                 if not camera and not args.unpaced:
                     time.sleep(max(0, started + frames/fps - time.monotonic()))
