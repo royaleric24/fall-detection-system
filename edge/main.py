@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["numpy==2.2.6", "mediapipe==0.10.35", "opencv-contrib-python==4.12.0.88", "paho-mqtt==2.1.0"]
+# dependencies = ["numpy==2.2.6", "mediapipe==0.10.35", "opencv-contrib-python==4.12.0.88", "paho-mqtt==2.1.0", "Flask==3.1.2"]
 # ///
 """OpenCV/MediaPipe edge publisher with optional cloud prediction preview."""
 
@@ -44,6 +44,7 @@ class LatestPrediction:
         self.source_id, self.sequence_id = source_id, sequence_id
         self._lock = Lock()
         self._value: Prediction | None = None
+        self._received_at: float | None = None
 
     def on_message(self, client: Any, userdata: Any, message: Any) -> None:
         try:
@@ -62,6 +63,8 @@ class LatestPrediction:
                     or type(index) is not int or index < 0):
                 raise ValueError("Invalid prediction display fields")
             with self._lock:
+                if self._value is None or index > self._value.frame_index:
+                    self._received_at = time.monotonic()
                 if self._value is None or index >= self._value.frame_index:
                     self._value = Prediction(float(probability), label, length, index)
         except (ValueError, TypeError, UnicodeError) as exc:
@@ -70,6 +73,11 @@ class LatestPrediction:
     def snapshot(self) -> Prediction | None:
         with self._lock:
             return self._value
+
+    def snapshot_with_received_at(self) -> tuple[Prediction | None, float | None]:
+        """Read prediction and NEW-frame arrival time atomically for UI health only."""
+        with self._lock:
+            return self._value, self._received_at
 
 
 class PoseValidityGate:
@@ -174,8 +182,12 @@ def main() -> None:
     parser.add_argument("--camera-fps", type=float, default=float(os.getenv("CAMERA_FPS", "20")))
     parser.add_argument("--unpaced", action="store_true", help="Decode AVI as fast as possible for smoke tests")
     parser.add_argument("--preview", action="store_true", help="Show video with latest cloud prediction; q to quit")
+    parser.add_argument("--dashboard", action="store_true", help="Serve authoritative state at http://127.0.0.1:8767")
+    parser.add_argument("--dashboard-port", type=int, default=8767, help="Local Dashboard port (default: 8767)")
     parser.add_argument("--summary", type=Path)
     args = parser.parse_args()
+    if not 1 <= args.dashboard_port <= 65535:
+        parser.error("--dashboard-port must be between 1 and 65535")
     source_id, sequence_id = identifier(args.source_id), identifier(args.sequence_id)
     camera = args.source.isdecimal()
     # This identity guard runs before importing/OpenCV-opening any dataset media.
@@ -195,6 +207,7 @@ def main() -> None:
         raise ValueError("Invalid source/camera FPS")
     latest = LatestPrediction(source_id, sequence_id)
     connection = None
+    dashboard_state = dashboard_server = None
     sequence_started = completed = False
     frames = detected_frames = 0
     preprocessor = StreamingPreprocessor(config)
@@ -207,9 +220,15 @@ def main() -> None:
             verify_capture(capture, metadata, cv2)
         elif not capture.isOpened():
             raise ValueError("Camera unavailable")
-        connection = MQTTConnection(on_message=latest.on_message if args.preview else None)
-        if args.preview:
+        connection = MQTTConnection(on_message=latest.on_message if args.preview or args.dashboard else None)
+        if args.preview or args.dashboard:
             connection.subscription = f"{connection.prefix}/prediction/{source_id}"
+        if args.dashboard:
+            from frontend.dashboard import DashboardServer, DashboardState
+            dashboard_state = DashboardState(source_id, sequence_id, connection.connected)
+            dashboard_server = DashboardServer(dashboard_state, args.dashboard_port)
+            dashboard_server.start()
+            LOGGER.info("dashboard_url http://127.0.0.1:%d", dashboard_server.port)
         started = time.monotonic()
         connection.start()
         topic = f"{connection.prefix}/pose/{source_id}"
@@ -238,8 +257,15 @@ def main() -> None:
                 connection.publish(topic, validate_pose(message))
                 frames += 1
                 detected_frames += int(detected)
-                prediction = latest.snapshot()
+                if dashboard_state is not None:
+                    prediction, received_at = latest.snapshot_with_received_at()
+                else:
+                    prediction = latest.snapshot()
                 application.step(detected, message["frame_index"], prediction)
+                if dashboard_state is not None:
+                    dashboard_state.update(frame_index=message["frame_index"], pose_detected=detected,
+                                           prediction=prediction, application=application,
+                                           prediction_received_at=received_at)
                 if args.preview and preview_frame(frame, prediction, cv2, pose_detected=detected, application=application):
                     break
                 if not camera and not args.unpaced:
@@ -260,8 +286,12 @@ def main() -> None:
                     if connection is not None:
                         connection.close()
                 finally:
-                    if args.preview:
-                        cv2.destroyAllWindows()
+                    try:
+                        if args.preview:
+                            cv2.destroyAllWindows()
+                    finally:
+                        if dashboard_server is not None:
+                            dashboard_server.close()
     summary = dict(source_id=source_id, sequence_id=sequence_id, frames_published=frames,
                    pose_detected_frames=detected_frames, missing_pose_frames=frames-detected_frames,
                    source_fps=fps, timestamp_kind="unix_epoch" if camera else "clip_relative",

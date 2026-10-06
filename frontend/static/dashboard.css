@@ -1,0 +1,15 @@
+body { margin: 24px; background: #f5f6f8; color: #202733; font: 16px system-ui, sans-serif; }
+main { max-width: 850px; }
+h1 { font-size: 26px; }
+h2 { font-size: 17px; }
+section { margin: 18px 0; padding: 16px 20px; background: white; border: 1px solid #d7dce3; }
+dl { display: grid; grid-template-columns: 260px 1fr; gap: 10px; }
+dt { color: #505c6b; }
+dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+p { line-height: 1.5; }
+#application-status { padding: 12px; font-size: 24px; font-weight: 700; background: #fff1c6; color: #735000; }
+#application-status[data-status="NORMAL"] { background: #e1f4e5; color: #185c2e; }
+#application-status[data-status="FALL"] { background: #b82127; color: white; }
+#application-status[data-status="POSE_LOST"], #application-status[data-status="RECOVERING"] { background: #fff1c6; color: #735000; }
+body[data-unavailable="true"] section { opacity: .55; }
+body[data-unavailable="true"] #http-status { color: #9c2025; font-weight: 700; }

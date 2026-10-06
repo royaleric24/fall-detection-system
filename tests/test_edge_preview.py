@@ -25,6 +25,20 @@ def prediction_message(**changes):
 
 
 class PredictionTests(unittest.TestCase):
+    def test_new_prediction_arrival_time_ignores_duplicates_and_late_messages(self):
+        latest = edge.LatestPrediction("webcam-demo", "demo-sequence")
+        self.assertEqual(latest.snapshot_with_received_at(), (None, None))
+        with patch.object(edge.time, "monotonic", return_value=10.) as clock:
+            latest.on_message(None, None, prediction_message(frame_index=85))
+            clock.return_value = 20.
+            latest.on_message(None, None, prediction_message(frame_index=85))
+            latest.on_message(None, None, prediction_message(frame_index=75))
+            self.assertEqual(latest.snapshot_with_received_at()[1], 10.)
+            latest.on_message(None, None, prediction_message(frame_index=95))
+            raw, received_at = latest.snapshot_with_received_at()
+            self.assertEqual(raw.frame_index, 95)
+            self.assertEqual(received_at, 20.)
+
     def test_latest_callback_snapshot_and_invalid_messages(self):
         latest = edge.LatestPrediction("webcam-demo", "demo-sequence")
         self.assertIsNone(latest.snapshot())
@@ -340,6 +354,88 @@ class EdgeExitTests(unittest.TestCase):
         self.cv2.imshow.assert_not_called()
         self.cv2.waitKey.assert_not_called()
         self.assert_released(preview=False)
+
+    def test_dashboard_without_preview_subscribes_and_copies_authoritative_gate(self):
+        from frontend.dashboard import DashboardState
+        self.argv.remove("--preview")
+        self.argv.append("--dashboard")
+        self.capture.read.side_effect = [(True, self.frame), KeyboardInterrupt]
+        self.connection.connected.is_set.return_value = True
+        server = MagicMock(port=8767)
+        created_states = []
+
+        def state(*args):
+            created_states.append(DashboardState(*args))
+            return created_states[-1]
+
+        def publish(topic, message):
+            self.published.append((topic, message))
+            if message["message_type"] == "frame":
+                callback = self.constructor.call_args.kwargs["on_message"]
+                callback(None, None, prediction_message())
+
+        self.connection.publish.side_effect = publish
+        self.connection.start.side_effect = lambda: self.assertEqual(self.connection.subscription, "fall/prediction/webcam-demo")
+        with patch("frontend.dashboard.DashboardState", side_effect=state), \
+             patch("frontend.dashboard.DashboardServer", return_value=server), \
+             patch.object(edge, "PoseValidityGate", wraps=edge.PoseValidityGate) as gate:
+            edge.main()
+        gate.assert_called_once_with(5)
+        value = created_states[0].snapshot()
+        self.assertEqual(value["application_status"], "NORMAL")
+        self.assertTrue(value["prediction_actionable"])
+        self.assertEqual(value["raw_prediction"]["fall_probability"], .014)
+        self.assertEqual(value["cloud_prediction_status"], "ACTIVE")
+        self.assertEqual(set(self.published[1][1]), {
+            "schema_version", "source_id", "sequence_id", "message_type", "frame_index",
+            "timestamp_ms", "timestamp_kind", "fps", "pose_detected", "features",
+        })
+        self.assertEqual(self.published[1][1]["features"], [.25] * 132)
+        server.start.assert_called_once()
+        server.close.assert_called_once()
+        self.cv2.imshow.assert_not_called()
+        self.assert_released(preview=False)
+
+    def test_dashboard_cleanup_on_q_ctrl_c_avi_eof_and_startup_failure(self):
+        scenarios = ("q", "ctrl_c", "avi_eof", "mqtt_start", "dashboard_start", "sequence_end")
+        for scenario in scenarios:
+            with self.subTest(exit=scenario):
+                self.capture.reset_mock()
+                self.connection.reset_mock()
+                self.cv2.reset_mock()
+                self.capture.read.side_effect = None
+                self.capture.read.return_value = (True, self.frame)
+                self.connection.start.side_effect = None
+                self.connection.publish.side_effect = lambda *args: None
+                self.argv[:] = ["edge.main", "--source", "0", "--pose-model", str(self.model), "--preview", "--dashboard"]
+                server = MagicMock(port=8767)
+                if scenario == "ctrl_c":
+                    self.capture.read.side_effect = KeyboardInterrupt
+                elif scenario == "avi_eof":
+                    self.argv[self.argv.index("--source") + 1] = "/private/tmp/synthetic.avi"
+                    self.argv.append("--unpaced")
+                    self.metadata.side_effect = None
+                    self.metadata.return_value = dict(source_fps=20., expected_frame_count=0,
+                                                      source_relative_video_path="synthetic.avi")
+                    self.capture.read.return_value = (False, None)
+                elif scenario == "mqtt_start":
+                    self.connection.start.side_effect = ConnectionError("Synthetic MQTT failure")
+                elif scenario == "dashboard_start":
+                    server.start.side_effect = RuntimeError("Synthetic Dashboard failure")
+                elif scenario == "sequence_end":
+                    def publish(topic, message):
+                        if message["message_type"] == "sequence_end":
+                            raise ConnectionError("Synthetic end failure")
+                    self.connection.publish.side_effect = publish
+                with patch("frontend.dashboard.DashboardServer", return_value=server), \
+                     patch.object(edge, "verify_capture"):
+                    if scenario in ("mqtt_start", "dashboard_start", "sequence_end"):
+                        with self.assertRaises((ConnectionError, RuntimeError)):
+                            edge.main()
+                    else:
+                        edge.main()
+                server.close.assert_called_once()
+                self.assert_released()
 
 
 if __name__ == "__main__":

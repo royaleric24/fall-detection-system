@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fall Detection Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+  <script defer src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</head>
+<body>
+  <main>
+    <h1>Fall Detection Dashboard</h1>
+    <p id="http-status" role="status">Connecting to local Edge Dashboard…</p>
+    <p>Source: <span id="source-id">—</span> · Sequence: <span id="sequence-id">—</span></p>
+    <section aria-labelledby="application-heading">
+      <h2 id="application-heading">APPLICATION STATUS</h2>
+      <p id="application-status" data-status="INITIALIZING">INITIALIZING</p>
+      <dl>
+        <dt>Actionable</dt><dd id="actionable">—</dd>
+        <dt>Pose Status</dt><dd id="pose-status">—</dd>
+        <dt>Edge Frame</dt><dd id="edge-frame">—</dd>
+        <dt>Consecutive Missing Frames</dt><dd id="missing-frames">—</dd>
+        <dt>Recovery Frame</dt><dd id="recovery-frame">—</dd>
+      </dl>
+    </section>
+    <section aria-labelledby="raw-heading">
+      <h2 id="raw-heading">RAW CLOUD MODEL</h2>
+      <p>Raw values remain visible when application output is suppressed.</p>
+      <dl>
+        <dt>Raw Fall Probability</dt><dd id="probability">—</dd>
+        <dt>Raw Label</dt><dd id="raw-label">—</dd>
+        <dt>Latest Inference Context</dt><dd id="context">—</dd>
+        <dt>Prediction Frame</dt><dd id="prediction-frame">—</dd>
+      </dl>
+    </section>
+    <section aria-labelledby="health-heading">
+      <h2 id="health-heading">RUNTIME HEALTH</h2>
+      <dl>
+        <dt>MQTT Status</dt><dd id="mqtt-status">—</dd>
+        <dt>Cloud Prediction Status</dt><dd id="prediction-status">—</dd>
+        <dt>Last New Prediction Age</dt><dd id="prediction-age">—</dd>
+      </dl>
+      <p>Prediction freshness is display metadata; it does not change application status or actionable.</p>
+    </section>
+  </main>
+</body>
+</html>
